@@ -1,11 +1,12 @@
-import com.amadeus.*;
+import com.amadeus.Amadeus;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import java.io.IOException;
 
+import static org.junit.Assert.assertNull;
+
 public class AmadeusTest {
-    @Test public void testTest() throws IOException {
-        Amadeus amadeus = new Amadeus();
-        assertNull("test should return a string", amadeus.test());
-    }
+  @Test public void testGet() throws IOException {
+    Amadeus amadeus = new Amadeus();
+    assertNull("test should return a string", amadeus.get());
+  }
 }

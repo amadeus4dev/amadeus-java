@@ -1,3 +1,6 @@
 # Grade files
 .gradle
 build
+.project
+.settings
+.classpath
