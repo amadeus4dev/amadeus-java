@@ -9,6 +9,7 @@ import com.amadeus.Configuration;
 import java.lang.NullPointerException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 import org.junit.Test;
 
 public class ConfigurationTest {
@@ -62,5 +63,19 @@ public class ConfigurationTest {
     assertEquals("should set the client secret",
                  configuration.getClientSecret(),
                  "ENV_CLIENT_SECRET");
+  }
+
+  @Test public void testBuildDefaults() {
+    Configuration configuration = new Configuration();
+    assertTrue("should have a logger",
+               configuration.getLogger() instanceof Logger);
+    assertEquals("should have a default log level",
+               configuration.getLogLevel(), "silent");
+    assertEquals("should have a default host name",
+               configuration.getHostname(), "test");
+    assertEquals("should have a host",
+               configuration.getHost(), "test.api.amadeus.com");
+    assertTrue("should use ssl", configuration.isSsl());
+    assertEquals("should use port 443", configuration.getPort(), 443);
   }
 }

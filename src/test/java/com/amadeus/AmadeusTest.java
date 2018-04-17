@@ -1,5 +1,6 @@
 package com.amadeus;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import com.amadeus.Amadeus;
@@ -17,5 +18,9 @@ public class AmadeusTest {
   @Test public void testBuilder() {
     assertTrue("should return a Configuration",
                Amadeus.builder() instanceof Configuration);
+  }
+
+  @Test public void testVersion() {
+    assertEquals("should have a version number", Amadeus.VERSION, "1.0.0");
   }
 }
