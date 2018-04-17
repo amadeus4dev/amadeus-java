@@ -15,7 +15,14 @@ package com.amadeus;
 // import java.net.URLEncoder;
 import lombok.Getter;
 
+/**
+ * The Amadeus API client.
+ */
 public class Amadeus {
+  /**
+   * All the config for the API client.
+   * @return The config for this API client
+   */
   private final @Getter Configuration configuration;
 
   protected Amadeus(Configuration configuration) {
@@ -33,7 +40,7 @@ public class Amadeus {
    *                          .build();
    * </pre>
    *
-   * @return [description]
+   * @return a Configuration object
    */
   public static Configuration builder() {
     return new Configuration();

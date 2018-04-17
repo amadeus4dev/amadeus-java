@@ -1,4 +1,5 @@
 plugins {
+    id 'io.franzbecker.gradle-lombok' version '1.12'
     id 'java'
     id 'checkstyle'
     id 'osgi'
@@ -23,7 +24,6 @@ repositories {
 
 dependencies {
     compile 'com.google.code.gson:gson:2.8.2'
-  	compileOnly 'org.projectlombok:lombok:1.16.20'
     testCompile group: 'junit', name: 'junit', version:'4.12'
 }
 
@@ -44,32 +44,20 @@ jar {
     }
 }
 
-task delombok {
-    description 'Delomboks the entire source code tree'
-    def srcDelomboked = 'build/src-delomboked'
-    def srcJava = 'src'
+import io.franzbecker.gradle.lombok.task.DelombokTask
 
-    inputs.files file( srcJava )
-    outputs.dir file( srcDelomboked )
-
-    doLast {
-        def collection = files( configurations.compile + configurations.testCompile )
-        def sumTree = collection + fileTree( dir: 'bin' )
-
-        ant.taskdef( name: 'delombok', classname: 'lombok.delombok.ant.DelombokTask',
-            classpath: configurations.compile.asPath +
-                       configurations.testCompile.asPath )
-        ant.delombok( from:srcJava, to:srcDelomboked, classpath: sumTree.asPath )
-
-        // Replace current src directory with delomboked source
-        copy {
-            from srcDelomboked
-            into srcJava
-        }
+task delombok(type: DelombokTask, dependsOn: compileJava) {
+    ext.outputDir = file("$buildDir/delombok")
+    outputs.dir(outputDir)
+    sourceSets.main.java.srcDirs.each {
+        inputs.dir(it)
+        args(it, "-d", outputDir)
     }
 }
 
 javadoc {
-    source = sourceSets.main.allJava
-    classpath = configurations.compile
+    dependsOn delombok
+    source = delombok.outputDir
+    failOnError = false
+    options.memberLevel = JavadocMemberLevel.PUBLIC
 }
