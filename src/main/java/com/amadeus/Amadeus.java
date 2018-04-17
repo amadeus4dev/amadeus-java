@@ -14,11 +14,12 @@ package com.amadeus;
 // import java.io.UnsupportedEncodingException;
 // import java.net.URLEncoder;
 import lombok.Getter;
+import lombok.ToString;
 
 /**
  * The Amadeus API client.
  */
-public class Amadeus {
+@ToString public class Amadeus {
   /**
    * All the config for the API client.
    * @return The config for this API client
