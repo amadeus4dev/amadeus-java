@@ -43,3 +43,33 @@ jar {
         instruction 'Export-Package', '*'
     }
 }
+
+task delombok {
+    description 'Delomboks the entire source code tree'
+    def srcDelomboked = 'build/src-delomboked'
+    def srcJava = 'src'
+
+    inputs.files file( srcJava )
+    outputs.dir file( srcDelomboked )
+
+    doLast {
+        def collection = files( configurations.compile + configurations.testCompile )
+        def sumTree = collection + fileTree( dir: 'bin' )
+
+        ant.taskdef( name: 'delombok', classname: 'lombok.delombok.ant.DelombokTask',
+            classpath: configurations.compile.asPath +
+                       configurations.testCompile.asPath )
+        ant.delombok( from:srcJava, to:srcDelomboked, classpath: sumTree.asPath )
+
+        // Replace current src directory with delomboked source
+        copy {
+            from srcDelomboked
+            into srcJava
+        }
+    }
+}
+
+javadoc {
+    source = sourceSets.main.allJava
+    classpath = configurations.compile
+}

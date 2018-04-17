@@ -1,18 +1,21 @@
 package com.amadeus;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import com.amadeus.Amadeus;
-import java.io.IOException;
+import com.amadeus.Configuration;
+
 import org.junit.Test;
 
 public class AmadeusTest {
-  @Test public void testGetConfiguration() throws IOException {
-    Amadeus amadeus = Amadeus.builder()
-                             .setClientId("ABC")
-                             .setClientSecret("DEF")
-                             .build();
+  @Test public void testInitialize() {
+    Amadeus amadeus = new Amadeus(new Configuration());
+    assertTrue("should require a Configuration object",
+               amadeus instanceof Amadeus);
+  }
 
-    assertNotNull("should return a configuration object", amadeus.getConfiguration());
+  @Test public void testBuilder() {
+    assertTrue("should return a Configuration",
+               Amadeus.builder() instanceof Configuration);
   }
 }
