@@ -60,7 +60,7 @@ public class Configuration {
   /**
    * Wether to use SSL. Defaults to True
    *
-   * @param boolean A boolean specifying if the connection should use SSL
+   * @param ssl A boolean specifying if the connection should use SSL
    * @return A boolean specifying if the connection should use SSL
    */
   private @Getter @Setter boolean ssl;
@@ -68,7 +68,7 @@ public class Configuration {
    * The port to use. Defaults to 443 for an SSL connection, and 80 for
    * a non SSL connection.
    *
-   * @param int The port to use for the connection
+   * @param port The port to use for the connection
    * @return The port to use for the connection
    */
   private @Getter @Setter int port;
