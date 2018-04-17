@@ -13,54 +13,64 @@ import java.util.HashMap;
 import java.util.Map;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.net.HttpURLConnection;
+import lombok.Getter;
 
 public class Amadeus {
-  public Object get() throws IOException {
-      HashMap<String, String> postDataParams = new HashMap<String, String>();
-      postDataParams.put("grant_type", "client_credentials");
-      postDataParams.put("client_id", "4VAbDeMqiIczO87qdAWVASJ036UdB8ht");
-      postDataParams.put("client_secret", "clMCtT4tc5Pc4eDH");
+  private final @Getter Configuration configuration;
 
-      Gson gson = new Gson();
-      String uri = "https://test.api.amadeus.com/v1/security/oauth2/token";
+  public Amadeus(Configuration configuration) {
+    this.configuration = configuration;
+  }
 
-      URL url = new URL(uri);
-      HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-      connection.setRequestProperty("Accept", "application/json, application/vnd.amadeus+json");
-      connection.setRequestMethod("POST");
-      connection.setDoInput(true);
-      connection.setDoOutput(true);
+  public static Configuration builder() {
+    return new Configuration();
+  }
 
-      OutputStream os = connection.getOutputStream();
-      BufferedWriter writer = new BufferedWriter(
-        new OutputStreamWriter(os, "UTF-8"));
-      writer.write(getPostDataString(postDataParams));
+  public Object post(String path) throws IOException {
+    HashMap<String, String> postDataParams = new HashMap<String, String>();
+    postDataParams.put("grant_type", "client_credentials");
+    postDataParams.put("client_id", this.configuration.getClientId());
+    postDataParams.put("client_secret", this.configuration.getClientSecret());
 
-      writer.flush();
-      writer.close();
-      os.close();
+    Gson gson = new Gson();
+    String uri = String.format("https://test.api.amadeus.com/%s", path);
 
-      int responseCode = connection.getResponseCode();
+    URL url = new URL(uri);
+    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+    connection.setRequestProperty("Accept", "application/json, application/vnd.amadeus+json");
+    connection.setRequestMethod("POST");
+    connection.setDoInput(true);
+    connection.setDoOutput(true);
+
+    OutputStream os = connection.getOutputStream();
+    BufferedWriter writer = new BufferedWriter(
+      new OutputStreamWriter(os, "UTF-8"));
+    writer.write(getPostDataString(postDataParams));
+
+    writer.flush();
+    writer.close();
+    os.close();
+
+    int responseCode = connection.getResponseCode();
 
 
-      System.out.println(responseCode);
+    System.out.println(responseCode);
 
-      if(responseCode == HttpURLConnection.HTTP_OK){
-          BufferedReader in = new BufferedReader(
-            new InputStreamReader(connection.getInputStream()));
-          String inputLine;
-          StringBuffer response = new StringBuffer();
+    if(responseCode == HttpURLConnection.HTTP_OK){
+        BufferedReader in = new BufferedReader(
+          new InputStreamReader(connection.getInputStream()));
+        String inputLine;
+        StringBuffer response = new StringBuffer();
 
-          while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
-          }
-          in.close();
+        while ((inputLine = in.readLine()) != null) {
+          response.append(inputLine);
+        }
+        in.close();
 
-          Object data = gson.fromJson(response.toString(), Object.class);
-          System.out.println(data);
-      }
-      return null;
+        Object data = gson.fromJson(response.toString(), Object.class);
+        System.out.println(data);
+    }
+    return null;
   }
 
   private String getPostDataString(HashMap<String, String> params) throws UnsupportedEncodingException{
