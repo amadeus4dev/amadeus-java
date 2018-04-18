@@ -1,20 +1,11 @@
 package com.amadeus;
 
-// import com.google.gson.Gson;
-// import java.net.HttpURLConnection;
-// import java.net.URL;
-// import java.io.IOException;
-// import java.io.InputStreamReader;
-// import java.io.OutputStreamWriter;
-// import java.io.OutputStream;
-// import java.io.BufferedReader;
-// import java.io.BufferedWriter;
-// import java.util.HashMap;
-// import java.util.Map;
-// import java.io.UnsupportedEncodingException;
-// import java.net.URLEncoder;
+import java.util.Map;
+
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.ToString;
+
 
 /**
  * The Amadeus API client.
@@ -38,15 +29,30 @@ import lombok.ToString;
    * an Amadeus client.
    *
    * <pre>
-   * Amadeus amadeus = Amadeus.builder()
-   *                          .setClientId('YOUR_CLIENT_ID')
-   *                          .setClientSecret('YOUR_CLIENT_SECRET')
-   *                          .build();
+   * Amadeus amadeus = Amadeus.builder("CLIENT_ID", "CLIENT_SECRET").build();
+   * </pre>
+   *
+   * @param clientId Your API client credential ID
+   * @param clientSecret Your API client credential secret
+   * @return a Configuration object
+   */
+  public static Configuration builder(@NonNull String clientId, @NonNull String clientSecret) {
+    return new Configuration(clientId, clientSecret);
+  }
+
+  /**
+   * Creates a builder object initialized with the environment variables that can be used to
+   * build an Amadeus API client.
+   *
+   * <pre>
+   * Amadeus amadeus = Amadeus.builder(System.getenv).build();
    * </pre>
    *
    * @return a Configuration object
    */
-  public static Configuration builder() {
-    return new Configuration();
+  public static Configuration builder(Map<String, String> environment) {
+    String clientId = environment.get("AMADEUS_CLIENT_ID");
+    String clientSecret = environment.get("AMADEUS_CLIENT_ID");
+    return Amadeus.builder(clientId, clientSecret);
   }
 }
