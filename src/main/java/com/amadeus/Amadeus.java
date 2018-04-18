@@ -45,9 +45,10 @@ import lombok.ToString;
    * build an Amadeus API client.
    *
    * <pre>
-   * Amadeus amadeus = Amadeus.builder(System.getenv).build();
+   * Amadeus amadeus = Amadeus.builder(System.getenv()).build();
    * </pre>
    *
+   * @param environment The system environment
    * @return a Configuration object
    */
   public static Configuration builder(Map<String, String> environment) {

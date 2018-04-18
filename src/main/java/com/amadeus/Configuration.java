@@ -81,7 +81,7 @@ public class Configuration {
    * An optional custom App ID to be passed in the User Agent to the
    * server (Defaults to null).
    *
-   * @param port An optional custom App ID
+   * @param customAppId An optional custom App ID
    * @return The optional custom App ID
    */
   private @Getter @Setter String customAppId;
@@ -89,7 +89,7 @@ public class Configuration {
    * An optional custom App version to be passed in the User Agent to the
    * server (Defaults to null).
    *
-   * @param port An optional custom App version
+   * @param customAppVersion An optional custom App version
    * @return The optional custom App version
    */
   private @Getter @Setter String customAppVersion;
