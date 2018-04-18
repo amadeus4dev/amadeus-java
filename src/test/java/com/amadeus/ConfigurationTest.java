@@ -1,16 +1,16 @@
 package com.amadeus;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 import com.amadeus.Amadeus;
 import com.amadeus.Configuration;
 
 import java.lang.NullPointerException;
+import java.security.InvalidParameterException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 public class ConfigurationTest {
   @Test public void testInitialize() {
@@ -67,15 +67,64 @@ public class ConfigurationTest {
 
   @Test public void testBuildDefaults() {
     Configuration configuration = new Configuration();
-    assertTrue("should have a logger",
-               configuration.getLogger() instanceof Logger);
-    assertEquals("should have a default log level",
-               configuration.getLogLevel(), "silent");
-    assertEquals("should have a default host name",
-               configuration.getHostname(), "test");
-    assertEquals("should have a host",
-               configuration.getHost(), "test.api.amadeus.com");
-    assertTrue("should use ssl", configuration.isSsl());
-    assertEquals("should use port 443", configuration.getPort(), 443);
+    assertTrue(configuration.getLogger() instanceof Logger);
+    assertEquals(configuration.getLogLevel(), "silent");
+    assertEquals(configuration.getHostname(), "test");
+    assertEquals(configuration.getHost(), "test.api.amadeus.com");
+    assertTrue(configuration.isSsl());
+    assertEquals(configuration.getPort(), 443);
+    assertNull(configuration.getCustomAppId());
+    assertNull(configuration.getCustomAppVersion());
+  }
+
+  @Test public void testBuildCustomLogger() {
+    Logger logger = Logger.getLogger("Test");
+    Configuration configuration = new Configuration()
+            .setLogger(logger)
+            .setLogLevel("debug");
+
+    assertEquals(configuration.getLogger(), logger);
+    assertEquals(configuration.getLogLevel(), "debug");
+  }
+
+  @Test public void testBuildCustomHostname() {
+    Configuration configuration = new Configuration().setHostname("production");
+    assertEquals(configuration.getHostname(), "production");
+    assertEquals(configuration.getHost(), "api.amadeus.com");
+  }
+
+  @Test (expected = IllegalArgumentException.class)
+  public void testBuildInvalidHostname() {
+    Configuration configuration = new Configuration().setHostname("foo");
+  }
+
+  @Test public void testBuildCustomHost() {
+    Configuration configuration = new Configuration().setHost("foo.bar.com");
+    assertEquals(configuration.getHost(), "foo.bar.com");
+  }
+
+  @Test public void testBuildCustomSsl() {
+    Configuration configuration = new Configuration().setSsl(true);
+    assertTrue(configuration.isSsl());
+    assertEquals(configuration.getPort(),443);
+  }
+
+
+  @Test public void testBuildCustomSslWithCustomPort() {
+    Configuration configuration = new Configuration().setPort(8080).setSsl(true);
+    assertTrue(configuration.isSsl());
+    assertEquals(configuration.getPort(),8080);
+  }
+
+  @Test public void testBuildCustomNonSsl() {
+    Configuration configuration = new Configuration().setSsl(false);
+    assertFalse(configuration.isSsl());
+    assertEquals(configuration.getPort(),80);
+  }
+
+  @Test public void testBuildCustomNonSslWithCustomPort() {
+    Configuration configuration = new Configuration().setPort(8080).setSsl(false);
+    assertFalse(configuration.isSsl());
+    assertEquals(configuration.getPort(),8080);
   }
 }
