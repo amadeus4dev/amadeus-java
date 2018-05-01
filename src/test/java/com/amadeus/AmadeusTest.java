@@ -25,10 +25,16 @@ public class AmadeusTest {
       {
         put("AMADEUS_CLIENT_ID", "123");
         put("AMADEUS_CLIENT_SECRET", "234");
+        put("AMADEUS_LOG_LEVEL", "debug");
+        put("AMADEUS_PORT", "123");
       }
     };
     assertTrue("should return a Configuration",
             Amadeus.builder(environment) instanceof Configuration);
+
+    Amadeus amadeus = Amadeus.builder(environment).build();
+    assertEquals(amadeus.getConfiguration().getLogLevel(), "debug");
+    assertEquals(amadeus.getConfiguration().getPort(), 123);
   }
 
   @Test(expected = NullPointerException.class)

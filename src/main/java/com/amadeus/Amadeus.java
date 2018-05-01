@@ -54,6 +54,9 @@ import lombok.ToString;
   public static Configuration builder(Map<String, String> environment) {
     String clientId = environment.get("AMADEUS_CLIENT_ID");
     String clientSecret = environment.get("AMADEUS_CLIENT_ID");
-    return Amadeus.builder(clientId, clientSecret);
+
+    Configuration configuration = Amadeus.builder(clientId, clientSecret);
+    configuration.parseEnvironment(environment);
+    return configuration;
   }
 }

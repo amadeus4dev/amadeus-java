@@ -2,6 +2,7 @@ package com.amadeus;
 
 import java.lang.NullPointerException;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import lombok.Getter;
@@ -37,7 +38,7 @@ public class Configuration {
    * @param logger The logger object
    * @return The logger object
    */
-  private @Getter @Setter Logger logger;
+  private @Getter @Setter Logger logger = Logger.getLogger("Amadeus");
   /**
    * The log level. Can be 'silent', 'warn', or 'debug'.
    * Defaults to 'silent'.
@@ -45,7 +46,7 @@ public class Configuration {
    * @param logLevel The log level for the logger
    * @return The log level for the logger
    */
-  private @Getter @Setter String logLevel;
+  private @Getter @Setter String logLevel = "silent";
   /**
    * The the name of the server API calls are made to, 'production' or 'test'.
    * Defaults to 'test'
@@ -53,7 +54,7 @@ public class Configuration {
    * @param hostname The name of the server API calls are made to
    * @return The name of the server API calls are made to
    */
-  private @Getter String hostname;
+  private @Getter String hostname = "test";
   /**
    * The optional custom host domain to use for API calls.
    * Defaults to internal value for 'hostname'.
@@ -61,14 +62,14 @@ public class Configuration {
    * @param host The optional custom host domain to use for API calls.
    * @return The optional custom host domain to use for API calls.
    */
-  private @Getter @Setter String host;
+  private @Getter @Setter String host = "test.api.amadeus.com";
   /**
    * Wether to use SSL. Defaults to True
    *
    * @param ssl A boolean specifying if the connection should use SSL
    * @return A boolean specifying if the connection should use SSL
    */
-  private @Getter boolean ssl;
+  private @Getter boolean ssl = true;
   /**
    * The port to use. Defaults to 443 for an SSL connection, and 80 for
    * a non SSL connection.
@@ -76,7 +77,7 @@ public class Configuration {
    * @param port The port to use for the connection
    * @return The port to use for the connection
    */
-  private @Getter @Setter int port;
+  private @Getter @Setter int port = 443;
   /**
    * An optional custom App ID to be passed in the User Agent to the
    * server (Defaults to null).
@@ -97,13 +98,22 @@ public class Configuration {
   protected Configuration(String clientId, String clientSecret) {
     this.clientId = clientId;
     this.clientSecret = clientSecret;
-    this.logger = Logger.getLogger("Amadeus");
-    this.logLevel = "silent";
-    this.hostname = "test";
-    this.host = "test.api.amadeus.com";
-    this.ssl = true;
-    this.port = 443;
-    // this.http =
+  }
+
+  protected Configuration parseEnvironment(Map<String, String> environment) {
+    setHostname(getOrDefault(environment, "HOSTNAME", hostname));
+    setHost(getOrDefault(environment, "HOOST", host));
+    setLogLevel(getOrDefault(environment, "LOG_LEVEL", logLevel));
+    setSsl(Boolean.parseBoolean(getOrDefault(environment, "SSL", String.valueOf(ssl))));
+    setPort(Integer.parseInt(getOrDefault(environment, "PORT", String.valueOf(port))));
+    setCustomAppId(getOrDefault(environment, "CUSTOM_APP_ID", customAppId));
+    setCustomAppVersion(getOrDefault(environment, "CUSTOM_APP_VERSION", customAppVersion));
+    return this;
+  }
+
+  private String getOrDefault(Map<String, String> environment, String key, String defaultValue) {
+    String value = environment.get(String.format("AMADEUS_%s", key));
+    return (value == null) ? defaultValue : value;
   }
 
   /**
