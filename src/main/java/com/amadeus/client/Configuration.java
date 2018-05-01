@@ -1,14 +1,14 @@
-package com.amadeus;
+package com.amadeus.client;
 
-import java.lang.NullPointerException;
-import java.util.HashMap;
+import com.amadeus.Amadeus;
+import com.amadeus.Params;
 import java.util.Map;
 import java.util.logging.Logger;
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
+
 
 /**
  * The configuration for the Amadeus API client.
@@ -16,25 +16,25 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @ToString
 public class Configuration {
-  private static final HashMap<String, String> HOSTS = new HashMap<String, String>() {
-    {
-      put("production", "api.amadeus.com");
-      put("test", "test.api.amadeus.com");
-    }
-  };
+  private static final Params HOSTS = Params
+          .build("production", "api.amadeus.com")
+          .put("test", "test.api.amadeus.com");
 
   /**
    * The client ID used to authenticate the API calls.
+   *
    * @return The client ID
    */
   private @Getter String clientId;
   /**
    * The client secret used to authenticate the API calls.
+   *
    * @return The client secret
    */
   private @Getter String clientSecret;
   /**
    * The logger that will be used to debug or warn to.
+   *
    * @param logger The logger object
    * @return The logger object
    */
@@ -100,6 +100,7 @@ public class Configuration {
     this.clientSecret = clientSecret;
   }
 
+  // Parses environment variables and initializes the values
   protected Configuration parseEnvironment(Map<String, String> environment) {
     setHostname(getOrDefault(environment, "HOSTNAME", hostname));
     setHost(getOrDefault(environment, "HOOST", host));
@@ -111,6 +112,7 @@ public class Configuration {
     return this;
   }
 
+  // Helper method for Java 7, as it's missing the getOrDefault method for Maps
   private String getOrDefault(Map<String, String> environment, String key, String defaultValue) {
     String value = environment.get(String.format("AMADEUS_%s", key));
     return (value == null) ? defaultValue : value;
@@ -136,7 +138,7 @@ public class Configuration {
   public Configuration setHostname(String hostname) {
     if (!HOSTS.containsKey(hostname)) {
       throw new IllegalArgumentException(
-              String.format("Hostname %s not found in %s", hostname,  HOSTS.keySet().toString()));
+              String.format("Hostname %s not found in %s", hostname, HOSTS.keySet().toString()));
     }
     this.hostname = hostname;
     this.host = HOSTS.get(hostname);

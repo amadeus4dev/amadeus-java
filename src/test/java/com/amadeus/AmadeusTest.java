@@ -3,18 +3,13 @@ package com.amadeus;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import com.amadeus.client.Configuration;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.Test;
 
 
 public class AmadeusTest {
-  @Test public void testInitialize() {
-    Amadeus amadeus = new Amadeus(new Configuration("id", "secret"));
-    assertTrue("should require a Configuration object",
-               amadeus instanceof Amadeus);
-  }
-
   @Test public void testBuilder() {
     assertTrue("should return a Configuration",
                Amadeus.builder("id", "secret") instanceof Configuration);
