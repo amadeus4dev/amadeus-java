@@ -1,79 +1,75 @@
 package com.amadeus;
 
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 import lombok.ToString;
 
-
+/**
+ * A convenient helper class for building data to pass into a request.
+ *
+ * <pre>
+ *   amadeus.get("/foo/bar", Params.with("first_name", "John").and("last_name", "Smith"));
+ * </pre>
+ */
 @ToString(includeFieldNames = false)
-public class Params {
-  private HashMap<String, String> map;
+public class Params extends HashMap<String, String> {
+  /**
+   * The constructor.
+   * @hide as we prefer to use the .with method.
+   */
+  public Params() {}
 
-  public Params() {
-    this.map = new HashMap<String, String>();
-  }
-
-  public static Params build(String key, Object value) {
-    return new Params().put(key, value);
-  }
-
-  public boolean containsKey(String key) {
-    return map.containsKey(key);
-  }
-
-  public Set keySet() {
-    return map.keySet();
-  }
-
-  public String get(String key) {
-    return map.get(key);
-  }
-
-  public Set<Map.Entry<String, String>> entrySet() {
-    return map.entrySet();
+  /**
+   * Initializes a new Param map with an initial key/value pair.
+   *
+   * <pre>
+   *   amadeus.get("/foo/bar", Params.with("first_name", "John"));
+   * </pre>
+   *
+   * @param key the key for the parameter to send to the API
+   * @param value the value for the given key
+   * @return the Param object, allowing for convenient chaining
+   */
+  public static Params with(String key, Object value) {
+    return new Params().and(key, value);
   }
 
   /**
-   * Test.
+   * Adds another key/value pair to the Params map. Automatically
+   * converts all values to strings.
    *
-   * @param key The key
-   * @param value The value
-   * @return a params
+   * <pre>
+   *   amadeus.get("/foo/bar", Params.with("first_name", "John").and("last_name", "Smith"));
+   * </pre>
+   *
+   * @param key the key for the parameter to send to the API
+   * @param value the value for the given key
+   * @return the Param object, allowing for convenient chaining
    */
-  public Params put(String key, Object value) {
-    map.put(key, value.toString());
+  public Params and(String key, Object value) {
+    put(key, value.toString());
     return this;
   }
 
   /**
    * Converts params into a HTTP query string.
-   *
-   * @return a HTTP query String.
-   * @throws UnsupportedEncodingException When any of the params were not UTF-8
+   * @hide only used internally
    */
   public String toQueryString() throws UnsupportedEncodingException {
-    StringBuilder result = new StringBuilder();
+    StringBuilder query = new StringBuilder();
     boolean first = true;
-    for (Map.Entry<String, String> entry : map.entrySet()) {
-      if (first) {
-        first = false;
-      } else {
-        result.append("&");
+    for (Map.Entry<String, String> entry : entrySet()) {
+      if (!first) {
+        query.append("&");
       }
-
-      result.append(URLEncoder.encode(entry.getKey(), "UTF-8"));
-      result.append("=");
-      result.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
+      first = false;
+      query.append(URLEncoder.encode(entry.getKey(), "UTF-8"));
+      query.append("=");
+      query.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
     }
 
-    return result.toString();
+    return query.toString();
   }
 }

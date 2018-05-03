@@ -2,20 +2,19 @@ package com.amadeus.client;
 
 import com.amadeus.Amadeus;
 import com.amadeus.Params;
+import com.amadeus.Request;
 import com.amadeus.Response;
-
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.util.logging.Logger;
 
-public class HTTP extends ConfigurableClient {
+public class HTTPClient extends ConfigurableClient {
   private AccessToken accessToken;
 
-  public HTTP(Configuration configuration) {
+  public HTTPClient(Configuration configuration) {
     super(configuration);
   }
 
@@ -34,11 +33,13 @@ public class HTTP extends ConfigurableClient {
   /**
    * Test.
    *
-   * @param verb The verb
-   * @param path The path
-   * @param params The params
-   * @param bearerToken The token
-   * @return
+   * @hide
+   *
+   * @param verb test
+   * @param path test
+   * @param params test
+   * @param bearerToken test
+   * @return test
    */
   public Response unauthenticatedRequest(String verb, String path,
                                                Params params, String bearerToken) {
@@ -56,19 +57,10 @@ public class HTTP extends ConfigurableClient {
 
   private Request buildRequest(String verb, String path,
                                Params params, String bearerToken) {
-    return new Request()
-            .setVerb(verb)
-            .setHost(getConfiguration().getHost())
-            .setPath(path)
-            .setParams(params)
-            .setBearerToken(bearerToken)
-            .setLanguageVersion(System.getProperty("java.version"))
-            .setClientVersion(Amadeus.VERSION)
-            .setAppId(getConfiguration().getCustomAppId())
-            .setAppVersion(getConfiguration().getCustomAppVersion())
-            .setPort(getConfiguration().getPort())
-            .setSsl(getConfiguration().isSsl())
-            .build();
+    Configuration config = getConfiguration();
+    return new Request(verb, config.getHost(), path, params, bearerToken,
+            System.getProperty("java.version"), Amadeus.VERSION, config.getCustomAppId(),
+            config.getCustomAppVersion(), config.getPort(), config.isSsl());
   }
 
   private void log(Object object) {
@@ -91,18 +83,18 @@ public class HTTP extends ConfigurableClient {
     HttpURLConnection connection;
 
     try {
-      connection = request.buildConnection();
-      write(request.getParams(), connection);
+      request.establishConnection();
+      write(request);
     } catch (IOException e) {
       // Connection Could not be established
       e.printStackTrace();
     }
   }
 
-  private void write(Params params, HttpURLConnection connection) throws IOException {
-    OutputStream os = connection.getOutputStream();
+  private void write(Request request) throws IOException {
+    OutputStream os = request.getConnection().getOutputStream();
     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
-    writer.write(params.toQueryString());
+    writer.write(request.getParams().toQueryString());
     writer.flush();
     writer.close();
     os.close();

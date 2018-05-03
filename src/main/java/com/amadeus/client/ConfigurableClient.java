@@ -2,16 +2,20 @@ package com.amadeus.client;
 
 import com.amadeus.Amadeus;
 import java.util.Map;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NonNull;
 
 
 public class ConfigurableClient {
   /**
-   * All the config for the API client.
-   * @return The config for this API client
+   * All the config for the API com.amadeus.client.
+   *
+   * @hide
+   *
+   * @return The config for this API com.amadeus.client
    */
-  protected final @Getter Configuration configuration;
+  private final @Getter Configuration configuration;
 
   public ConfigurableClient(Configuration configuration) {
     this.configuration = configuration;
@@ -19,14 +23,14 @@ public class ConfigurableClient {
 
   /**
    * Creates a builder object that can be used to build
-   * an Amadeus client.
+   * an Amadeus com.amadeus.client.
    *
    * <pre>
    * Amadeus amadeus = Amadeus.builder("CLIENT_ID", "CLIENT_SECRET").build();
    * </pre>
    *
-   * @param clientId Your API client credential ID
-   * @param clientSecret Your API client credential secret
+   * @param clientId Your API com.amadeus.client credential ID
+   * @param clientSecret Your API com.amadeus.client credential secret
    * @return a Configuration object
    */
   public static Configuration builder(@NonNull String clientId, @NonNull String clientSecret) {
@@ -35,7 +39,7 @@ public class ConfigurableClient {
 
   /**
    * Creates a builder object initialized with the environment variables that can be used to
-   * build an Amadeus API client.
+   * build an Amadeus API com.amadeus.client.
    *
    * <pre>
    * Amadeus amadeus = Amadeus.builder(System.getenv()).build();

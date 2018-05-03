@@ -11,25 +11,25 @@ import lombok.experimental.Accessors;
 
 
 /**
- * The configuration for the Amadeus API client.
+ * The configuration for the Amadeus API com.amadeus.client.
  */
 @Accessors(chain = true)
 @ToString
 public class Configuration {
   private static final Params HOSTS = Params
-          .build("production", "api.amadeus.com")
-          .put("test", "test.api.amadeus.com");
+          .with("production", "api.amadeus.com")
+          .and("test", "test.api.amadeus.com");
 
   /**
-   * The client ID used to authenticate the API calls.
+   * The com.amadeus.client ID used to authenticate the API calls.
    *
-   * @return The client ID
+   * @return The com.amadeus.client ID
    */
   private @Getter String clientId;
   /**
-   * The client secret used to authenticate the API calls.
+   * The com.amadeus.client secret used to authenticate the API calls.
    *
-   * @return The client secret
+   * @return The com.amadeus.client secret
    */
   private @Getter String clientSecret;
   /**
@@ -95,7 +95,7 @@ public class Configuration {
    */
   private @Getter @Setter String customAppVersion;
 
-  protected Configuration(String clientId, String clientSecret) {
+  public Configuration(String clientId, String clientSecret) {
     this.clientId = clientId;
     this.clientSecret = clientSecret;
   }
@@ -119,10 +119,10 @@ public class Configuration {
   }
 
   /**
-   * Builds an Amadeus client using the given documentation.
+   * Builds an Amadeus com.amadeus.client using the given documentation.
    *
-   * @return an Amadeus client
-   * @throws NullPointerException when a client ID or secret are missing
+   * @return an Amadeus com.amadeus.client
+   * @throws NullPointerException when a com.amadeus.client ID or secret are missing
    */
   public Amadeus build() throws NullPointerException {
     return new Amadeus(this);

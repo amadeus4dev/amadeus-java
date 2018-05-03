@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import com.amadeus.Amadeus;
+import com.amadeus.client.Configuration;
 import java.util.logging.Logger;
 import org.junit.Test;
 
@@ -22,10 +23,10 @@ public class ConfigurationTest {
 
     assertTrue("should return a Amadeus object",
                configuration.build() instanceof Amadeus);
-    assertEquals("should set the client ID",
+    assertEquals("should set the com.amadeus.client ID",
                  configuration.getClientId(),
                  "123");
-    assertEquals("should set the client secret",
+    assertEquals("should set the com.amadeus.client secret",
                 configuration.getClientSecret(),
                 "234");
   }

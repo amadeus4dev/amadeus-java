@@ -5,15 +5,13 @@ import com.amadeus.Params;
 import com.amadeus.Response;
 import com.google.gson.JsonObject;
 
-import java.util.Map;
-
 public class AccessToken {
   private static final int TOKEN_BUFFER = 10000;
   private final Amadeus client;
   private String accessToken;
   private long expiresAt;
 
-  public AccessToken(HTTP client) {
+  public AccessToken(HTTPClient client) {
     this.client = (Amadeus) client;
   }
 
@@ -41,9 +39,9 @@ public class AccessToken {
     return client.unauthenticatedRequest(
            "POST",
            "/v1/security/oauth2/token",
-            new Params().put("grant_type", "client_credentials")
-                  .put("client_id", client.getConfiguration().getClientId())
-                  .put("client_secret", client.getConfiguration().getClientSecret()),
+            Params.with("grant_type", "client_credentials")
+                  .and("client_id", client.getConfiguration().getClientId())
+                  .and("client_secret", client.getConfiguration().getClientSecret()),
            null
     );
   }
