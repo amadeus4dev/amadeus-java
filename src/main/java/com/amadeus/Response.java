@@ -1,10 +1,11 @@
 package com.amadeus;
 
-import com.amadeus.client.HTTPClient;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.util.Arrays;
@@ -32,7 +33,7 @@ public class Response {
   /**
    * The data extracted from the JSON data - if the body contained JSON.
    */
-  private @Getter JsonObject data;
+  private @Getter JsonArray data;
   /**
    * The raw body received from the API.
    */
@@ -42,21 +43,35 @@ public class Response {
    */
   private @Getter Request request;
 
-  /**
-   * The constructor.
-   * @hide as only used internally by HTTPClient
-   */
   public Response(Request request) {
     this.request = request;
   }
 
-  /**
-   * Tries to parse the raw response from the request.
-   * @hide as only used internally by HTTPClient
-   */
-  public void parse(HTTPClient client) {
+  // Tries to parse the raw response from the request.
+  protected void parse(HTTPClient client) {
     parseStatusCode();
     parseData(client);
+  }
+
+  // Detects of any errors have occured and throws the appropriate errors.
+  protected void detectError(HTTPClient client) throws ResponseException {
+    ResponseException exception = null;
+    if (statusCode >= 500) {
+      exception = new ServerException(this);
+    } else if (statusCode == 404) {
+      exception = new NotFoundException(this);
+    } else if (statusCode == 401) {
+      exception = new AuthenticationException(this);
+    } else if (statusCode >= 400) {
+      exception = new ClientException(this);
+    } else if (!parsed) {
+      exception = new ParserException(this);
+    }
+
+    if (exception != null) {
+      exception.log(client);
+      throw exception;
+    }
   }
 
   // Tries to parse the status code. Catches any errors and defaults to
@@ -74,14 +89,28 @@ public class Response {
     this.parsed = false;
     this.body = readBody();
     this.result = parseJson(client);
-    this.data = getResult().getAsJsonObject("data");
+    this.parsed = this.result != null;
+    if (result.has("data")) {
+      this.data = result.get("data").getAsJsonArray();
+    }
   }
 
   // Tries to read the body.
   private String readBody() {
+    // Get the connection
+    HttpURLConnection connection = getRequest().getConnection();
+
+    // Try to get the input stream
+    InputStream inputStream = null;
     try {
-      HttpURLConnection connection = getRequest().getConnection();
-      InputStreamReader inputStreamReader = new InputStreamReader(connection.getInputStream());
+      inputStream = connection.getInputStream();
+    } catch (IOException e) {
+      inputStream = connection.getErrorStream();
+    }
+
+    // Try to parse the input stream
+    try {
+      InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
       BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
       StringBuffer body = new StringBuffer();
       String inputLine;
@@ -89,9 +118,11 @@ public class Response {
         body.append(inputLine);
       }
       bufferedReader.close();
+      // Return the response body
       return body.toString();
     } catch (IOException e) {
-      //TODO: Catch any errors
+      System.out.println(e);
+      // return null if we could not parse the input stream
       return null;
     }
   }

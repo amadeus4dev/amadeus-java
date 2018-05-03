@@ -1,4 +1,4 @@
-package com.amadeus.client;
+package com.amadeus;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -6,7 +6,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import com.amadeus.Amadeus;
-import com.amadeus.client.Configuration;
+import com.amadeus.Configuration;
 import java.util.logging.Logger;
 import org.junit.Test;
 

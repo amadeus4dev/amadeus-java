@@ -13,13 +13,8 @@ import lombok.ToString;
  *   amadeus.get("/foo/bar", Params.with("first_name", "John").and("last_name", "Smith"));
  * </pre>
  */
-@ToString(includeFieldNames = false)
 public class Params extends HashMap<String, String> {
-  /**
-   * The constructor.
-   * @hide as we prefer to use the .with method.
-   */
-  public Params() {}
+  protected Params() {}
 
   /**
    * Initializes a new Param map with an initial key/value pair.
@@ -53,11 +48,8 @@ public class Params extends HashMap<String, String> {
     return this;
   }
 
-  /**
-   * Converts params into a HTTP query string.
-   * @hide only used internally
-   */
-  public String toQueryString() throws UnsupportedEncodingException {
+  // Converts params into a HTTP query string.
+  protected String toQueryString() {
     StringBuilder query = new StringBuilder();
     boolean first = true;
     for (Map.Entry<String, String> entry : entrySet()) {
@@ -65,11 +57,22 @@ public class Params extends HashMap<String, String> {
         query.append("&");
       }
       first = false;
-      query.append(URLEncoder.encode(entry.getKey(), "UTF-8"));
-      query.append("=");
-      query.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
+      try {
+        query.append(URLEncoder.encode(entry.getKey(), "UTF-8"));
+        query.append("=");
+        query.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
+      } catch (UnsupportedEncodingException e) {
+        //TODO: Decide what to do here
+      }
     }
 
     return query.toString();
+  }
+
+  /**
+   * Converts params into a HTTP query string.
+   */
+  public String toString() {
+    return toQueryString();
   }
 }

@@ -1,7 +1,5 @@
-package com.amadeus.client;
+package com.amadeus;
 
-import com.amadeus.Amadeus;
-import com.amadeus.Params;
 import java.util.Map;
 import java.util.logging.Logger;
 import lombok.Getter;
@@ -105,28 +103,9 @@ public class Configuration {
    */
   private @Getter @Setter String customAppVersion;
 
-  /**
-   * The constructor.
-   * @hide as ony used internally.
-   */
-  public Configuration(String clientId, String clientSecret) {
+  protected Configuration(String clientId, String clientSecret) {
     this.clientId = clientId;
     this.clientSecret = clientSecret;
-  }
-
-  /**
-   * Parses environment variables and initializes the values.
-   * @hide as only used internally
-   */
-  public Configuration parseEnvironment(Map<String, String> environment) {
-    setHostname(getOrDefault(environment, "HOSTNAME", hostname));
-    setHost(getOrDefault(environment, "HOOST", host));
-    setLogLevel(getOrDefault(environment, "LOG_LEVEL", logLevel));
-    setSsl(Boolean.parseBoolean(getOrDefault(environment, "SSL", String.valueOf(ssl))));
-    setPort(Integer.parseInt(getOrDefault(environment, "PORT", String.valueOf(port))));
-    setCustomAppId(getOrDefault(environment, "CUSTOM_APP_ID", customAppId));
-    setCustomAppVersion(getOrDefault(environment, "CUSTOM_APP_VERSION", customAppVersion));
-    return this;
   }
 
   /**
@@ -170,6 +149,17 @@ public class Configuration {
     return this;
   }
 
+  // Parses environment variables and initializes the values.
+  protected Configuration parseEnvironment(Map<String, String> environment) {
+    setHostname(getOrDefault(environment, "HOSTNAME", hostname));
+    setHost(getOrDefault(environment, "HOOST", host));
+    setLogLevel(getOrDefault(environment, "LOG_LEVEL", logLevel));
+    setSsl(Boolean.parseBoolean(getOrDefault(environment, "SSL", String.valueOf(ssl))));
+    setPort(Integer.parseInt(getOrDefault(environment, "PORT", String.valueOf(port))));
+    setCustomAppId(getOrDefault(environment, "CUSTOM_APP_ID", customAppId));
+    setCustomAppVersion(getOrDefault(environment, "CUSTOM_APP_VERSION", customAppVersion));
+    return this;
+  }
 
   // Helper method for Java 7, as it's missing the getOrDefault method for Maps
   private String getOrDefault(Map<String, String> environment, String key, String defaultValue) {

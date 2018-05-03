@@ -1,7 +1,5 @@
 package com.amadeus;
 
-import com.amadeus.client.Configuration;
-import com.amadeus.client.HTTPClient;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -83,11 +81,7 @@ public class Request {
    */
   private @Getter HttpURLConnection connection;
 
-  /**
-   * The constructor.
-   * @hide as only used internally
-   */
-  public Request(String verb, String path, Params params, String bearerToken,
+  protected Request(String verb, String path, Params params, String bearerToken,
                  HTTPClient client) {
     Configuration config = client.getConfiguration();
 
@@ -108,11 +102,8 @@ public class Request {
     prepareHeaders();
   }
 
-  /**
-   * Builds a HttpURLConnection using all the data for this request.
-   * @hide as only used internally
-   */
-  public void establishConnection() throws IOException {
+  // Builds a HttpURLConnection using all the data for this request.
+  protected void establishConnection() throws IOException {
     this.connection = (HttpURLConnection) new URL(uri).openConnection();
     connection.setRequestMethod(verb);
     connection.setDoInput(true);
@@ -124,14 +115,13 @@ public class Request {
 
   // Determines the scheme based on the SSL value
   private void determineScheme() {
-    this.scheme = this.isSsl() ? "https" : "http";
+    this.scheme = isSsl() ? "https" : "http";
   }
 
   // Prepares the full URL based on the scheme, host, port and path.
   private void prepareUrl() {
-    this.uri = String.format("%s://%s:%s/%s",
-            getScheme(), getHost(),
-            getPort(), getPath());
+    this.uri = String.format("%s://%s:%s%s?%s",
+            scheme, host, port, path, getQueryParams());
   }
 
   // Prepares the headers to be sent in the request
@@ -139,6 +129,9 @@ public class Request {
     this.headers = new HashMap<String, String>();
     headers.put("User-Agent", buildUserAgent());
     headers.put("Accept", "application/json, application/vnd.amadeus+json");
+    if (bearerToken != null) {
+      headers.put("Authorization", bearerToken);
+    }
   }
 
   // Determines the User-Agent header, based on the client version, language version, and custom
@@ -150,5 +143,14 @@ public class Request {
       userAgent = userAgent.concat(String.format(" %s/%s", appId, appVersion));
     }
     return userAgent;
+  }
+
+  // Gets the serialized params, only if this is a Get call
+  private String getQueryParams() {
+    if (verb == "GET" && params != null) {
+      return params.toQueryString();
+    } else {
+      return "";
+    }
   }
 }
