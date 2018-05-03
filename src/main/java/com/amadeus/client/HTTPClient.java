@@ -10,59 +10,102 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.util.logging.Logger;
+import lombok.Getter;
 
-public class HTTPClient extends ConfigurableClient {
-  private AccessToken accessToken;
+/**
+ * The HTTP part of the Amadeus API client. See the Amadeus class for
+ * more details on initialization.
+ */
+public class HTTPClient {
+  // A cached copy of the Access Token. It will auto refresh for every bearerToken (if needed)
+  private final AccessToken accessToken = new AccessToken(this);
 
-  public HTTPClient(Configuration configuration) {
-    super(configuration);
+  /**
+   * The configuration for this API client.
+   */
+  private @Getter Configuration configuration;
+
+  /**
+   * Constructor.
+   * @hide as only used internally
+   */
+  protected HTTPClient(Configuration configuration) {
+    this.configuration = configuration;
   }
 
+  /**
+   * <p>
+   *   A helper module for making generic GET requests calls. It is used by
+   *   every namespaced API GET method.
+   * </p>
+   *
+   * <pre>
+   *   amadeus.referenceData.urls.checkinLinks.get(Params.with("airline", "1X"));
+   * </pre>
+   *
+   * <p>
+   *   It can be used to make any generic API call that is automatically
+   *   authenticated using your API credentials:
+   * </p>
+   *
+   * <pre>
+   *    amadeus.get("/v2/reference-data/urls/checkin-links", Params.with("airline", "1X"));
+   * </pre>
+   *
+   * @param path The full path for the API call
+   * @param params The optional GET params to pass to the API
+   * @return a Response object containing the status code, body, and parsed data.
+   */
   public Response get(String path, Params params) {
     return request("GET", path, params);
   }
 
+  /**
+   * <p>
+   *   A helper module for making generic POST requests calls. It is used by
+   *   every namespaced API POST method.
+   * </p>
+   *
+   * <pre>
+   *   amadeus.foo.bar.post(Params.with("airline", "1X"));
+   * </pre>
+   *
+   * <p>
+   *   It can be used to make any generic API call that is automatically
+   *   authenticated using your API credentials:
+   * </p>
+   *
+   * <pre>
+   *    amadeus.post("/v1/foo/bar", Params.with("airline", "1X"));
+   * </pre>
+   *
+   * @param path The full path for the API call
+   * @param params The optional POST params to pass to the API
+   * @return a Response object containing the status code, body, and parsed data.
+   */
   public Response post(String path, Params params) {
     return request("POST", path, params);
   }
 
+  // A generic method for making requests of any verb.
   private Response request(String verb, String path, Params params) {
-    return unauthenticatedRequest(verb, path, params, getAccessToken().getBearerToken());
+    return unauthenticatedRequest(verb, path, params, accessToken.getBearerToken());
   }
 
   /**
-   * Test.
-   *
-   * @hide
-   *
-   * @param verb test
-   * @param path test
-   * @param params test
-   * @param bearerToken test
-   * @return test
+   * A generic method for making any authenticated or unauthenticated request,
+   * passing in the bearer token explicitly. Used primarily by the
+   * AccessToken to get the first AccessToken.
+   * @hide as only used internally
    */
   public Response unauthenticatedRequest(String verb, String path,
-                                               Params params, String bearerToken) {
-    Request request = buildRequest(verb, path, params, bearerToken);
+                                         Params params, String bearerToken) {
+    Request request = new Request(verb, path, params, bearerToken, this);
     log(request);
     return execute(request);
   }
 
-  private AccessToken getAccessToken() {
-    if (accessToken == null) {
-      this.accessToken = new AccessToken(this);
-    }
-    return accessToken;
-  }
-
-  private Request buildRequest(String verb, String path,
-                               Params params, String bearerToken) {
-    Configuration config = getConfiguration();
-    return new Request(verb, config.getHost(), path, params, bearerToken,
-            System.getProperty("java.version"), Amadeus.VERSION, config.getCustomAppId(),
-            config.getCustomAppVersion(), config.getPort(), config.isSsl());
-  }
-
+  // A simple log that only triggers if we are in debug mode
   private void log(Object object) {
     if (getConfiguration().getLogLevel() == "debug") {
       Logger logger = getConfiguration().getLogger();
@@ -70,27 +113,29 @@ public class HTTPClient extends ConfigurableClient {
     }
   }
 
+  // Executes a request and return a Response
   private Response execute(Request request) {
-    fetch(request);
-    Response response = new Response(request);
-    response.parse((Amadeus) this);
+    Response response = new Response(fetch(request));
+    response.parse(this);
     log(response);
     //    response.detectError(this);
     return response;
   }
 
-  private void fetch(Request request) {
-    HttpURLConnection connection;
 
+  // Tries to make an API call. Raises an error if it can't complete the call.
+  private Request fetch(Request request) {
     try {
       request.establishConnection();
       write(request);
     } catch (IOException e) {
-      // Connection Could not be established
+      // Todo: throw error
       e.printStackTrace();
     }
+    return request;
   }
 
+  // Writes the parameters to the request.
   private void write(Request request) throws IOException {
     OutputStream os = request.getConnection().getOutputStream();
     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));

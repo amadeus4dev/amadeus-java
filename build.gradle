@@ -63,7 +63,6 @@ javadoc {
     dependsOn delombok
     source = delombok.outputDir
     failOnError = false
-    exclude "com/amadeus/client/AccessToken.java"
     options.memberLevel = JavadocMemberLevel.PUBLIC
     title = null
     options.doclet = "com.google.doclava.Doclava"

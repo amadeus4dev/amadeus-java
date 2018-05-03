@@ -1,5 +1,6 @@
 package com.amadeus;
 
+import com.amadeus.client.HTTPClient;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import java.io.BufferedReader;
@@ -53,7 +54,7 @@ public class Response {
    * Tries to parse the raw response from the request.
    * @hide as only used internally by HTTPClient
    */
-  public void parse(Amadeus client) {
+  public void parse(HTTPClient client) {
     parseStatusCode();
     parseData(client);
   }
@@ -69,7 +70,7 @@ public class Response {
   }
 
   // Tries to parse the data
-  private void parseData(Amadeus client) {
+  private void parseData(HTTPClient client) {
     this.parsed = false;
     this.body = readBody();
     this.result = parseJson(client);
@@ -96,7 +97,7 @@ public class Response {
   }
 
   // Ties to parse the response body into a JSON Object
-  private JsonObject parseJson(Amadeus client) {
+  private JsonObject parseJson(HTTPClient client) {
     if (isJson()) {
       return new JsonParser().parse(getBody()).getAsJsonObject();
     }

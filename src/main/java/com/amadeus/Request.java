@@ -1,5 +1,7 @@
 package com.amadeus;
 
+import com.amadeus.client.Configuration;
+import com.amadeus.client.HTTPClient;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -85,20 +87,21 @@ public class Request {
    * The constructor.
    * @hide as only used internally
    */
-  public Request(String verb, String host, String path, Params params, String bearerToken,
-                 String languageVersion, String clientVersion, String appId, String appVersion,
-                 int port, boolean ssl) {
+  public Request(String verb, String path, Params params, String bearerToken,
+                 HTTPClient client) {
+    Configuration config = client.getConfiguration();
+
     this.verb = verb;
-    this.host = host;
+    this.host = config.getHost();
     this.path = path;
     this.params = params;
     this.bearerToken = bearerToken;
-    this.languageVersion = languageVersion;
-    this.clientVersion = clientVersion;
-    this.appId = appId;
-    this.appVersion = appVersion;
-    this.port = port;
-    this.ssl = ssl;
+    this.languageVersion = System.getProperty("java.version");
+    this.clientVersion = Amadeus.VERSION;
+    this.appId = config.getCustomAppId();
+    this.appVersion = config.getCustomAppVersion();
+    this.port = config.getPort();
+    this.ssl = config.isSsl();
 
     determineScheme();
     prepareUrl();

@@ -11,7 +11,17 @@ import lombok.experimental.Accessors;
 
 
 /**
- * The configuration for the Amadeus API com.amadeus.client.
+ * <p>The configuration for the Amadeus API client. To initialize, use the builder as follows:</p>
+ *
+ * <pre>
+ *   Amadeus amadeus = Amadeus.builder("CLIENT_ID", "CLIENT_SECRET").build();
+ * </pre>
+ *
+ * <p>Or pass in environment variables directly:</p>
+ *
+ * <pre>
+ *   Amadeus.builder(System.getenv()).build();
+ * </pre>
  */
 @Accessors(chain = true)
 @ToString
@@ -21,15 +31,15 @@ public class Configuration {
           .and("test", "test.api.amadeus.com");
 
   /**
-   * The com.amadeus.client ID used to authenticate the API calls.
+   * The client ID used to authenticate the API calls.
    *
-   * @return The com.amadeus.client ID
+   * @return The client ID
    */
   private @Getter String clientId;
   /**
-   * The com.amadeus.client secret used to authenticate the API calls.
+   * The client secret used to authenticate the API calls.
    *
-   * @return The com.amadeus.client secret
+   * @return The client secret
    */
   private @Getter String clientSecret;
   /**
@@ -95,13 +105,20 @@ public class Configuration {
    */
   private @Getter @Setter String customAppVersion;
 
+  /**
+   * The constructor.
+   * @hide as ony used internally.
+   */
   public Configuration(String clientId, String clientSecret) {
     this.clientId = clientId;
     this.clientSecret = clientSecret;
   }
 
-  // Parses environment variables and initializes the values
-  protected Configuration parseEnvironment(Map<String, String> environment) {
+  /**
+   * Parses environment variables and initializes the values.
+   * @hide as only used internally
+   */
+  public Configuration parseEnvironment(Map<String, String> environment) {
     setHostname(getOrDefault(environment, "HOSTNAME", hostname));
     setHost(getOrDefault(environment, "HOOST", host));
     setLogLevel(getOrDefault(environment, "LOG_LEVEL", logLevel));
@@ -112,17 +129,11 @@ public class Configuration {
     return this;
   }
 
-  // Helper method for Java 7, as it's missing the getOrDefault method for Maps
-  private String getOrDefault(Map<String, String> environment, String key, String defaultValue) {
-    String value = environment.get(String.format("AMADEUS_%s", key));
-    return (value == null) ? defaultValue : value;
-  }
-
   /**
-   * Builds an Amadeus com.amadeus.client using the given documentation.
+   * Builds an Amadeus client with the provided credentials.
    *
-   * @return an Amadeus com.amadeus.client
-   * @throws NullPointerException when a com.amadeus.client ID or secret are missing
+   * @return an Amadeus client
+   * @throws NullPointerException when a client ID or client secret is missing
    */
   public Amadeus build() throws NullPointerException {
     return new Amadeus(this);
@@ -146,7 +157,7 @@ public class Configuration {
   }
 
   /**
-   * Wether to use SSL. Defaults to True.
+   * Whether to use SSL. Defaults to True.
    *
    * @param ssl A boolean specifying if the connection should use SSL
    * @return A boolean specifying if the connection should use SSL
@@ -157,5 +168,12 @@ public class Configuration {
       setPort(80);
     }
     return this;
+  }
+
+
+  // Helper method for Java 7, as it's missing the getOrDefault method for Maps
+  private String getOrDefault(Map<String, String> environment, String key, String defaultValue) {
+    String value = environment.get(String.format("AMADEUS_%s", key));
+    return (value == null) ? defaultValue : value;
   }
 }
