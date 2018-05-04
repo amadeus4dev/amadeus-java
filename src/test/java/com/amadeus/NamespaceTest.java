@@ -7,6 +7,9 @@ import static org.mockito.Mockito.when;
 
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.referenceData.urls.CheckinLinks;
+import com.amadeus.shopping.FlightDates;
+import com.amadeus.shopping.FlightDestinations;
+import com.amadeus.shopping.FlightOffers;
 import com.amadeus.travel.analytics.FareSearches;
 import com.amadeus.travel.analytics.airTraffic.Traveled;
 import org.junit.Test;
@@ -17,6 +20,9 @@ public class NamespaceTest {
     assertNotNull(client.referenceData.urls.checkinLinks);
     assertNotNull(client.travel.analytics.airTraffic.traveled);
     assertNotNull(client.travel.analytics.fareSearches);
+    assertNotNull(client.shopping.flightDates);
+    assertNotNull(client.shopping.flightDestinations);
+    assertNotNull(client.shopping.flightOffers);
   }
 
   @Test public void testGetMethods() throws ResponseException {
@@ -46,5 +52,29 @@ public class NamespaceTest {
     FareSearches fareSearches = new FareSearches(client);
     assertTrue(fareSearches.get() instanceof Response);
     assertTrue(fareSearches.get(params) instanceof Response);
+
+    when(client.get("/v1/shopping/flight-dates", null))
+            .thenReturn(mock(Response.class));
+    when(client.get("/v1/shopping/flight-dates", params))
+            .thenReturn(mock(Response.class));
+    FlightDates flightDates = new FlightDates(client);
+    assertTrue(flightDates.get() instanceof Response);
+    assertTrue(flightDates.get(params) instanceof Response);
+
+    when(client.get("/v1/shopping/flight-destinations", null))
+            .thenReturn(mock(Response.class));
+    when(client.get("/v1/shopping/flight-destinations", params))
+            .thenReturn(mock(Response.class));
+    FlightDestinations flightDestinations = new FlightDestinations(client);
+    assertTrue(flightDestinations.get() instanceof Response);
+    assertTrue(flightDestinations.get(params) instanceof Response);
+
+    when(client.get("/v1/shopping/flight-offers", null))
+            .thenReturn(mock(Response.class));
+    when(client.get("/v1/shopping/flight-offers", params))
+            .thenReturn(mock(Response.class));
+    FlightOffers flightOffers = new FlightOffers(client);
+    assertTrue(flightOffers.get() instanceof Response);
+    assertTrue(flightOffers.get(params) instanceof Response);
   }
 }

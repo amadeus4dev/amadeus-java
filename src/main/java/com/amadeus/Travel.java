@@ -14,7 +14,7 @@ import com.amadeus.travel.analytics.Analytics;
  *
  * <pre>
  * Amadeus amadeus = Amadeus.builder("clientId", "secret").build();
- * amadeus.referenceData;</pre>
+ * amadeus.travel;</pre>
  *
  * @hide
  */
@@ -22,7 +22,7 @@ public class Travel {
   /**
    * <p>
    *   A namespaced client for the
-   *   <code>v2/travel/analytics</code> endpoints.
+   *   <code>/v2/travel/analytics</code> endpoints.
    * </p>
    */
   public Analytics analytics;

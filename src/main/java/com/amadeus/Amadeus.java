@@ -38,10 +38,19 @@ public class Amadeus extends HTTPClient {
    */
   public Travel travel;
 
+  /**
+   * <p>
+   *   A namespaced client for the
+   *   <code>/v1/shopping</code> endpoints.
+   * </p>
+   */
+  public Shopping shopping;
+
   protected Amadeus(Configuration configuration) {
     super(configuration);
     this.referenceData = new ReferenceData(this);
     this.travel = new Travel(this);
+    this.shopping = new Shopping(this);
   }
 
   /**
