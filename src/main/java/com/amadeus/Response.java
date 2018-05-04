@@ -43,7 +43,7 @@ public class Response {
    */
   private @Getter Request request;
 
-  public Response(Request request) {
+  protected Response(Request request) {
     this.request = request;
   }
 

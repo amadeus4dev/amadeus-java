@@ -20,10 +20,6 @@ public class HTTPClient {
    */
   private @Getter Configuration configuration;
 
-  /**
-   * Constructor.
-   * @hide as only used internally
-   */
   protected HTTPClient(Configuration configuration) {
     this.configuration = configuration;
   }

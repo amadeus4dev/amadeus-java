@@ -4,7 +4,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
-import lombok.ToString;
 
 /**
  * A convenient helper class for building data to pass into a request.

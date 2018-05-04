@@ -14,6 +14,16 @@ public class AmadeusTest {
                Amadeus.builder("id", "secret") instanceof Configuration);
   }
 
+  @Test(expected = NullPointerException.class)
+  public void testBuilderWithNullClientId() {
+    Amadeus.builder(null, "secret").build();
+  }
+
+  @Test(expected = NullPointerException.class)
+  public void testBuilderWithNullClientSecret() {
+    Amadeus.builder("client", null).build();
+  }
+
   @Test public void testBuilderWithEnvironment() {
     Map<String,String> environment = new HashMap<String,String>() {
       {
@@ -41,4 +51,5 @@ public class AmadeusTest {
   @Test public void testVersion() {
     assertEquals("should have a version number", Amadeus.VERSION, "1.0.0");
   }
+
 }

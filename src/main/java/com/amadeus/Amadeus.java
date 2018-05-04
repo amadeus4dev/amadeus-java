@@ -2,7 +2,6 @@ package com.amadeus;
 
 import java.util.Map;
 import lombok.NonNull;
-import lombok.ToString;
 
 /**
  * <p>The Amadeus API client. To initialize, use the builder as follows:</p>
@@ -17,7 +16,6 @@ import lombok.ToString;
  *   Amadeus.builder(System.getenv()).build();
  * </pre>
  */
-@ToString
 public class Amadeus extends HTTPClient {
   /**
    * The API version.

@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 
 import com.amadeus.Amadeus;
 import com.amadeus.Configuration;
+
 import java.util.logging.Logger;
 import org.junit.Test;
 
@@ -61,7 +62,7 @@ public class ConfigurationTest {
 
   @Test (expected = IllegalArgumentException.class)
   public void testBuildInvalidHostname() {
-    Configuration configuration = new Configuration("id", "secret").setHostname("foo");
+    new Configuration("id", "secret").setHostname("foo");
   }
 
   @Test public void testBuildCustomHost() {
@@ -92,5 +93,10 @@ public class ConfigurationTest {
     Configuration configuration = new Configuration("id", "secret").setPort(8080).setSsl(false);
     assertFalse(configuration.isSsl());
     assertEquals(configuration.getPort(),8080);
+  }
+
+  @Test public void testToString() {
+    Configuration configuration = new Configuration("id", "secret").setPort(8080).setSsl(false);
+    assertTrue(configuration.toString().startsWith("Configuration(clientId=id, clientSecret=secret,"));
   }
 }

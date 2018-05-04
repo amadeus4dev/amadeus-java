@@ -75,10 +75,7 @@ public class Request {
    * verb, port, path, host, etc.
    */
   private @Getter String uri;
-  /**
-   * The connection used to make the API call.
-   * @hide as only used internally
-   */
+  // The connection used to make the API call.
   private @Getter HttpURLConnection connection;
 
   protected Request(String verb, String path, Params params, String bearerToken,

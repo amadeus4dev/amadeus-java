@@ -1,5 +1,7 @@
 package com.amadeus;
 
+import com.amadeus.HTTPClient;
+import com.amadeus.Response;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import lombok.Getter;
@@ -17,6 +19,14 @@ public class ResponseException extends Exception {
     this.response = response;
     this.description = determineDescription(response);
     determineCode();
+  }
+
+  // Logs the response.
+  protected void log(HTTPClient client) {
+    if (client.getConfiguration().getLogLevel() == "warn") {
+      String warning = String.format("Amadeus %s %s", code, description);
+      client.getConfiguration().getLogger().warning(warning);
+    }
   }
 
   private void determineCode() {
@@ -78,13 +88,5 @@ public class ResponseException extends Exception {
       message.append(String.format("%s", json.get("detail").getAsString()));
     }
     return message;
-  }
-
-  // Logs the response.
-  protected void log(HTTPClient client) {
-    if (client.getConfiguration().getLogLevel() == "warn") {
-      String warning = String.format("Amadeus %s %s", code, description);
-      client.getConfiguration().getLogger().warning(warning);
-    }
   }
 }

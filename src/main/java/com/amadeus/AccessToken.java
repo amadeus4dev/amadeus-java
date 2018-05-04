@@ -2,23 +2,20 @@ package com.amadeus;
 
 import com.google.gson.JsonObject;
 
-/**
- * A memoized Access Token, with the ability to auto-refresh when needed.
- * @hide as only used internally
- */
+// A memoized Access Token, with the ability to auto-refresh when needed.
 class AccessToken {
   // Renew the token 10 seconds earlier than required,
   // just to account for system lag
   private static final long TOKEN_BUFFER = 10000L;
   // An instance of the API client
-  private final Amadeus client;
+  private final HTTPClient client;
   // The access token value
-  private String accessToken;
+  private String accessToken = null;
   // The (UNIX) expiry time of this token
   private long expiresAt;
 
   protected AccessToken(HTTPClient client) {
-    this.client = (Amadeus) client;
+    this.client = client;
   }
 
   // Creates a Bearer header using the cached Access Token.
@@ -30,7 +27,7 @@ class AccessToken {
   // Loads the access token if it's still null
   // or has expired.
   private void lazyUpdateAccessToken() throws ResponseException {
-    if (accessToken == null || needsRefresh()) {
+    if (needsRefresh()) {
       updateAccessToken();
     }
   }
