@@ -9,13 +9,6 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.amadeus.AccessToken;
-import com.amadeus.Amadeus;
-import com.amadeus.Configuration;
-import com.amadeus.Params;
-import com.amadeus.Response;
-import com.amadeus.ResponseException;
-
 import com.google.gson.JsonObject;
 import org.junit.Before;
 import org.junit.Test;

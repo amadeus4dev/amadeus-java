@@ -69,7 +69,7 @@ public class Response {
     }
 
     if (exception != null) {
-      exception.log(client);
+      exception.log(client.getConfiguration());
       throw exception;
     }
   }

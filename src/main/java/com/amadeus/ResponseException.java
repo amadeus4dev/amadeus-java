@@ -1,7 +1,5 @@
 package com.amadeus;
 
-import com.amadeus.HTTPClient;
-import com.amadeus.Response;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import lombok.Getter;
@@ -22,10 +20,10 @@ public class ResponseException extends Exception {
   }
 
   // Logs the response.
-  protected void log(HTTPClient client) {
-    if (client.getConfiguration().getLogLevel() == "warn") {
+  protected void log(Configuration configuration) {
+    if (configuration.getLogLevel() == "warn") {
       String warning = String.format("Amadeus %s %s", code, description);
-      client.getConfiguration().getLogger().warning(warning);
+      configuration.getLogger().warning(warning);
     }
   }
 
@@ -41,7 +39,7 @@ public class ResponseException extends Exception {
 
   private static StringBuffer determineShortDescription(Response response) {
     StringBuffer message = new StringBuffer();
-    if (response.getStatusCode() == 0) {
+    if (response == null || response.getStatusCode() == 0) {
       message.append("[---]");
     } else {
       message.append(String.format("[%s]", response.getStatusCode()));
@@ -68,9 +66,7 @@ public class ResponseException extends Exception {
     if (response.getResult().has("error")) {
       message.append(String.format("\n%s", result.get("error").getAsString()));
     }
-    if (response.getResult().has("error_description")) {
-      message.append(String.format("\n%s", result.get("error_description").getAsString()));
-    }
+    message.append(String.format("\n%s", result.get("error_description").getAsString()));
     return message;
   }
 
