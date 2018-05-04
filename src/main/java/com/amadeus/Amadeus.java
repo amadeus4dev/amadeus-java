@@ -22,11 +22,26 @@ public class Amadeus extends HTTPClient {
    */
   public static final String VERSION = "1.0.0";
 
+  /**
+   * <p>
+   *   A namespaced client for the
+   *   <code>/v2/reference-data</code> endpoints.
+   * </p>
+   */
   public ReferenceData referenceData;
+
+  /**
+   * <p>
+   *   A namespaced client for the
+   *   <code>/v1/travel</code> endpoints.
+   * </p>
+   */
+  public Travel travel;
 
   protected Amadeus(Configuration configuration) {
     super(configuration);
     this.referenceData = new ReferenceData(this);
+    this.travel = new Travel(this);
   }
 
   /**

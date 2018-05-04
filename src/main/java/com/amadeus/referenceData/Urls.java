@@ -16,6 +16,8 @@ import com.amadeus.referenceData.urls.CheckinLinks;
  * <pre>
  * Amadeus amadeus = Amadeus.builder("clientId", "secret").build();
  * amadeus.referenceData.urls;</pre>
+ *
+ * @hide
  */
 public class Urls {
   /**

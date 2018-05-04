@@ -1,11 +1,11 @@
 package com.amadeus;
 
-import com.amadeus.referenceData.Urls;
+import com.amadeus.travel.analytics.Analytics;
 
 /**
  * <p>
  *   A namespaced client for the
- *   <code>/v2/reference-data</code> endpoints.
+ *   <code>/v2/travel</code> endpoints.
  * </p>
  *
  * <p>
@@ -18,20 +18,20 @@ import com.amadeus.referenceData.Urls;
  *
  * @hide
  */
-public class ReferenceData {
+public class Travel {
   /**
    * <p>
    *   A namespaced client for the
-   *   <code>/v2/reference-data/urls</code> endpoints.
+   *   <code>v2/travel/analytics</code> endpoints.
    * </p>
    */
-  public Urls urls;
+  public Analytics analytics;
 
   /**
    * Constructor.
    * @hide
    */
-  public ReferenceData(Amadeus client) {
-    this.urls = new Urls(client);
+  public Travel(Amadeus client) {
+    this.analytics = new Analytics(client);
   }
 }
