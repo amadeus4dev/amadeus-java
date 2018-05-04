@@ -90,7 +90,7 @@ public class Response {
     this.body = readBody();
     this.result = parseJson(client);
     this.parsed = this.result != null;
-    if (result.has("data")) {
+    if (parsed && result.has("data")) {
       this.data = result.get("data").getAsJsonArray();
     }
   }
@@ -121,7 +121,6 @@ public class Response {
       // Return the response body
       return body.toString();
     } catch (IOException e) {
-      System.out.println(e);
       // return null if we could not parse the input stream
       return null;
     }
@@ -151,6 +150,6 @@ public class Response {
 
   // Checks if the response has a body
   private boolean hasBody() {
-    return getBody() != null;
+    return !(body == null || body.isEmpty());
   }
 }
