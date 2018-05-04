@@ -13,7 +13,7 @@ import lombok.Getter;
  */
 public class HTTPClient {
   // A cached copy of the Access Token. It will auto refresh for every bearerToken (if needed)
-  private final AccessToken accessToken = new AccessToken(this);
+  protected AccessToken accessToken = new AccessToken(this);
 
   /**
    * The configuration for this API client.
@@ -68,7 +68,7 @@ public class HTTPClient {
    * @see Amadeus#post(String, Params)
    */
   public Response post(String path) throws ResponseException {
-    return request("GET", path, null);
+    return request("POST", path, null);
   }
 
   /**
@@ -99,7 +99,7 @@ public class HTTPClient {
   }
 
   // A generic method for making requests of any verb.
-  private Response request(String verb, String path, Params params) throws ResponseException {
+  protected Response request(String verb, String path, Params params) throws ResponseException {
     return unauthenticatedRequest(verb, path, params, accessToken.getBearerToken());
   }
 
@@ -108,9 +108,14 @@ public class HTTPClient {
   // AccessToken to get the first AccessToken.
   protected Response unauthenticatedRequest(String verb, String path, Params params,
                                          String bearerToken) throws ResponseException {
-    Request request = new Request(verb, path, params, bearerToken, this);
+    Request request = buildRequest(verb, path, params, bearerToken);
     log(request);
     return execute(request);
+  }
+
+  // Builds a request
+  protected Request buildRequest(String verb, String path, Params params, String bearerToken) {
+    return new Request(verb, path, params, bearerToken, this);
   }
 
   // A simple log that only triggers if we are in debug mode
