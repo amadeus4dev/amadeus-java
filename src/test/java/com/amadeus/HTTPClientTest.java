@@ -10,6 +10,9 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.amadeus.client.AccessToken;
+import com.amadeus.exceptions.NetworkException;
+import com.amadeus.exceptions.ResponseException;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.OutputStream;

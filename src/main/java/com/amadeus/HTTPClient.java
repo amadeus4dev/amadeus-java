@@ -1,5 +1,8 @@
 package com.amadeus;
 
+import com.amadeus.client.AccessToken;
+import com.amadeus.exceptions.NetworkException;
+import com.amadeus.exceptions.ResponseException;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -106,7 +109,15 @@ public class HTTPClient {
   // A generic method for making any authenticated or unauthenticated request,
   // passing in the bearer token explicitly. Used primarily by the
   // AccessToken to get the first AccessToken.
-  protected Response unauthenticatedRequest(String verb, String path, Params params,
+
+  /**
+   * A generic method for making any authenticated or unauthenticated request,
+   * passing in the bearer token explicitly. Used primarily by the
+   * AccessToken to get the first AccessToken.
+   *
+   * @hides as only used internally
+   */
+  public Response unauthenticatedRequest(String verb, String path, Params params,
                                          String bearerToken) throws ResponseException {
     Request request = buildRequest(verb, path, params, bearerToken);
     log(request);

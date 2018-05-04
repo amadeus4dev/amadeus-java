@@ -7,6 +7,13 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.amadeus.exceptions.AuthenticationException;
+import com.amadeus.exceptions.ClientException;
+import com.amadeus.exceptions.NetworkException;
+import com.amadeus.exceptions.NotFoundException;
+import com.amadeus.exceptions.ParserException;
+import com.amadeus.exceptions.ResponseException;
+import com.amadeus.exceptions.ServerException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import java.util.logging.Logger;
@@ -16,13 +23,13 @@ import org.junit.Test;
 public class ExceptionsTest {
   @Test public void testNilResponse() {
     ResponseException error = new ResponseException(null);
-    assertEquals(error.toString(), "com.amadeus.ResponseException: [---]");
+    assertEquals(error.toString(), "com.amadeus.exceptions.ResponseException: [---]");
   }
 
   @Test public void testNoStatusCode() {
     Response response = mock(Response.class);
     ResponseException error = new ResponseException(response);
-    assertEquals(error.toString(), "com.amadeus.ResponseException: [---]");
+    assertEquals(error.toString(), "com.amadeus.exceptions.ResponseException: [---]");
   }
 
   @Test public void testNoJson() {
@@ -30,7 +37,7 @@ public class ExceptionsTest {
     when(response.getStatusCode()).thenReturn(400);
 
     ResponseException error = new ResponseException(response);
-    assertEquals(error.toString(), "com.amadeus.ResponseException: [400]");
+    assertEquals(error.toString(), "com.amadeus.exceptions.ResponseException: [400]");
   }
 
   @Test public void testForSingleError() {
@@ -42,7 +49,7 @@ public class ExceptionsTest {
     when(response.isParsed()).thenReturn(true);
 
     ResponseException error = new ResponseException(response);
-    assertEquals(error.toString(), "com.amadeus.ResponseException: [401]\n"
+    assertEquals(error.toString(), "com.amadeus.exceptions.ResponseException: [401]\n"
             + "error message");
   }
 
@@ -56,7 +63,7 @@ public class ExceptionsTest {
     when(response.isParsed()).thenReturn(true);
 
     ResponseException error = new ResponseException(response);
-    assertEquals(error.toString(), "com.amadeus.ResponseException: [401]\n"
+    assertEquals(error.toString(), "com.amadeus.exceptions.ResponseException: [401]\n"
             + "error description\n"
             + "error message");
   }
@@ -64,7 +71,7 @@ public class ExceptionsTest {
   @Test public void testForMultipleErrors() {
     Response response = mock(Response.class);
     when(response.getStatusCode()).thenReturn(401);
-    String body = "{\"errors\":[{\"status\":400,\"code\":32171,\"title\":\"MANDATORY DATA"
+    String body = "{\"exceptions\":[{\"status\":400,\"code\":32171,\"title\":\"MANDATORY DATA"
         + "MISSING\",\"detail\":\"This field must be filled.\",\"source\":{\"parameter\":\"d"
         + "epartureDate\"}},{\"status\":400,\"code\":32171,\"title\":\"MANDATORY DATA MISSIN"
         + "G\",\"detail\":\"This field must be filled.\",\"source\":{\"parameter\":\"origin\""
@@ -75,7 +82,7 @@ public class ExceptionsTest {
     when(response.isParsed()).thenReturn(true);
 
     ResponseException error = new ResponseException(response);
-    assertEquals(error.toString(), "com.amadeus.ResponseException: [401]\n"
+    assertEquals(error.toString(), "com.amadeus.exceptions.ResponseException: [401]\n"
             + "[departureDate] This field must be filled.\n"
             + "[origin] This field must be filled.\n"
             + "[destination] This field must be filled.");
@@ -84,26 +91,26 @@ public class ExceptionsTest {
   @Test public void testForEmptyErrors() {
     Response response = mock(Response.class);
     when(response.getStatusCode()).thenReturn(401);
-    String body = "{\"errors\":[{\"detail\":\"error\"}]}";
+    String body = "{\"exceptions\":[{\"detail\":\"error\"}]}";
     JsonObject json = new JsonParser().parse(body).getAsJsonObject();
     when(response.getResult()).thenReturn(json);
     when(response.isParsed()).thenReturn(true);
 
     ResponseException error = new ResponseException(response);
-    assertEquals(error.toString(), "com.amadeus.ResponseException: [401]\n"
+    assertEquals(error.toString(), "com.amadeus.exceptions.ResponseException: [401]\n"
             + "error");
   }
 
   @Test public void testForErrorsWithoutParameter() {
     Response response = mock(Response.class);
     when(response.getStatusCode()).thenReturn(401);
-    String body = "{\"errors\":[{\"detail\":\"error\", \"source\":{}}]}";
+    String body = "{\"exceptions\":[{\"detail\":\"error\", \"source\":{}}]}";
     JsonObject json = new JsonParser().parse(body).getAsJsonObject();
     when(response.getResult()).thenReturn(json);
     when(response.isParsed()).thenReturn(true);
 
     ResponseException error = new ResponseException(response);
-    assertEquals(error.toString(), "com.amadeus.ResponseException: [401]\n"
+    assertEquals(error.toString(), "com.amadeus.exceptions.ResponseException: [401]\n"
             + "error");
   }
 

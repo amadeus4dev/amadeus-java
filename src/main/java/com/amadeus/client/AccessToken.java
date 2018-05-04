@@ -1,5 +1,10 @@
-package com.amadeus;
+package com.amadeus.client;
 
+import com.amadeus.Configuration;
+import com.amadeus.HTTPClient;
+import com.amadeus.Params;
+import com.amadeus.Response;
+import com.amadeus.exceptions.ResponseException;
 import com.google.gson.JsonObject;
 
 /**
@@ -17,12 +22,19 @@ public class AccessToken {
   // The (UNIX) expiry time of this token
   private long expiresAt;
 
-  protected AccessToken(HTTPClient client) {
+  /**
+   * Constructor.
+   * @hides as only used internally
+   */
+  public AccessToken(HTTPClient client) {
     this.client = client;
   }
 
-  // Creates a Bearer header using the cached Access Token.
-  protected String getBearerToken() throws ResponseException {
+  /**
+   * Creates a Bearer header using the cached Access Token.
+   * @hides as only used internally
+   */
+  public String getBearerToken() throws ResponseException {
     lazyUpdateAccessToken();
     return String.format("Bearer %s", accessToken);
   }

@@ -8,6 +8,12 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import com.amadeus.exceptions.AuthenticationException;
+import com.amadeus.exceptions.ClientException;
+import com.amadeus.exceptions.NotFoundException;
+import com.amadeus.exceptions.ParserException;
+import com.amadeus.exceptions.ResponseException;
+import com.amadeus.exceptions.ServerException;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;

@@ -1,5 +1,11 @@
 package com.amadeus;
 
+import com.amadeus.exceptions.AuthenticationException;
+import com.amadeus.exceptions.ClientException;
+import com.amadeus.exceptions.NotFoundException;
+import com.amadeus.exceptions.ParserException;
+import com.amadeus.exceptions.ResponseException;
+import com.amadeus.exceptions.ServerException;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -53,7 +59,7 @@ public class Response {
     parseData(client);
   }
 
-  // Detects of any errors have occured and throws the appropriate errors.
+  // Detects of any exceptions have occured and throws the appropriate exceptions.
   protected void detectError(HTTPClient client) throws ResponseException {
     ResponseException exception = null;
     if (statusCode >= 500) {
@@ -74,7 +80,7 @@ public class Response {
     }
   }
 
-  // Tries to parse the status code. Catches any errors and defaults to
+  // Tries to parse the status code. Catches any exceptions and defaults to
   // status 0 if an error occurred.
   private void parseStatusCode() {
     try {

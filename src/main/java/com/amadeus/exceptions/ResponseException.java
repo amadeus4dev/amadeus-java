@@ -1,5 +1,7 @@
-package com.amadeus;
+package com.amadeus.exceptions;
 
+import com.amadeus.Configuration;
+import com.amadeus.Response;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import lombok.Getter;
@@ -12,15 +14,22 @@ public class ResponseException extends Exception {
   private @Getter Response response;
   private @Getter String description;
 
-  protected ResponseException(Response response) {
+  /**
+   * Constructor.
+   * @hides as only used internally
+   */
+  public ResponseException(Response response) {
     super(determineDescription(response));
     this.response = response;
     this.description = determineDescription(response);
     determineCode();
   }
 
-  // Logs the response.
-  protected void log(Configuration configuration) {
+  /**
+   * Logs the response.
+   * @hides as only used internally
+   */
+  public void log(Configuration configuration) {
     if (configuration.getLogLevel() == "warn") {
       String warning = String.format("Amadeus %s %s", code, description);
       configuration.getLogger().warning(warning);
@@ -53,7 +62,7 @@ public class ResponseException extends Exception {
       if (response.getResult().has("error_description")) {
         description.append(getErrorDescription(response));
       }
-      if (response.getResult().has("errors")) {
+      if (response.getResult().has("exceptions")) {
         description.append(getErrorsDescription(response));
       }
     }
@@ -72,7 +81,7 @@ public class ResponseException extends Exception {
 
   private static StringBuffer getErrorsDescription(Response response) {
     StringBuffer message = new StringBuffer();
-    for (JsonElement error : response.getResult().get("errors").getAsJsonArray()) {
+    for (JsonElement error : response.getResult().get("exceptions").getAsJsonArray()) {
       JsonObject json = error.getAsJsonObject();
       message.append("\n");
       if (json.has("source")) {

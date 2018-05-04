@@ -1,10 +1,12 @@
-package com.amadeus;
+package com.amadeus.exceptions;
+
+import com.amadeus.Response;
 
 /**
  * This error occurs when the path could not be found.
  */
 public class NotFoundException extends ResponseException {
-  protected NotFoundException(Response response) {
+  public NotFoundException(Response response) {
     super(response);
   }
 }
