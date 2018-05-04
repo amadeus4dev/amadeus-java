@@ -2,8 +2,11 @@ package com.amadeus;
 
 import com.google.gson.JsonObject;
 
-// A memoized Access Token, with the ability to auto-refresh when needed.
-class AccessToken {
+/**
+ * A memoized Access Token, with the ability to auto-refresh when needed.
+ * @hide as only used internally
+ */
+public class AccessToken {
   // Renew the token 10 seconds earlier than required,
   // just to account for system lag
   private static final long TOKEN_BUFFER = 10000L;

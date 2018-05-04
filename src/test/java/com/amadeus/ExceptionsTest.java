@@ -2,10 +2,11 @@ package com.amadeus;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import java.util.logging.Logger;
@@ -41,8 +42,8 @@ public class ExceptionsTest {
     when(response.isParsed()).thenReturn(true);
 
     ResponseException error = new ResponseException(response);
-    assertEquals(error.toString(), "com.amadeus.ResponseException: [401]\n" +
-            "error message");
+    assertEquals(error.toString(), "com.amadeus.ResponseException: [401]\n"
+            + "error message");
   }
 
   @Test public void testForSingleErrorWithName() {
@@ -55,29 +56,29 @@ public class ExceptionsTest {
     when(response.isParsed()).thenReturn(true);
 
     ResponseException error = new ResponseException(response);
-    assertEquals(error.toString(), "com.amadeus.ResponseException: [401]\n" +
-            "error description\n" +
-            "error message");
+    assertEquals(error.toString(), "com.amadeus.ResponseException: [401]\n"
+            + "error description\n"
+            + "error message");
   }
 
   @Test public void testForMultipleErrors() {
     Response response = mock(Response.class);
     when(response.getStatusCode()).thenReturn(401);
-    String body = "{\"errors\":[{\"status\":400,\"code\":32171,\"title\":\"MANDATORY DATA" +
-      "MISSING\",\"detail\":\"This field must be filled.\",\"source\":{\"parameter\":\"d"  +
-      "epartureDate\"}},{\"status\":400,\"code\":32171,\"title\":\"MANDATORY DATA MISSIN"  +
-      "G\",\"detail\":\"This field must be filled.\",\"source\":{\"parameter\":\"origin\"" +
-      "}},{\"status\":400,\"code\":32171,\"title\":\"MANDATORY DATA MISSING\",\"detail\""  +
-      ":\"This field must be filled.\",\"source\":{\"parameter\":\"destination\"}}]}";
+    String body = "{\"errors\":[{\"status\":400,\"code\":32171,\"title\":\"MANDATORY DATA"
+        + "MISSING\",\"detail\":\"This field must be filled.\",\"source\":{\"parameter\":\"d"
+        + "epartureDate\"}},{\"status\":400,\"code\":32171,\"title\":\"MANDATORY DATA MISSIN"
+        + "G\",\"detail\":\"This field must be filled.\",\"source\":{\"parameter\":\"origin\""
+        + "}},{\"status\":400,\"code\":32171,\"title\":\"MANDATORY DATA MISSING\",\"detail\""
+        + ":\"This field must be filled.\",\"source\":{\"parameter\":\"destination\"}}]}";
     JsonObject json = new JsonParser().parse(body).getAsJsonObject();
     when(response.getResult()).thenReturn(json);
     when(response.isParsed()).thenReturn(true);
 
     ResponseException error = new ResponseException(response);
-    assertEquals(error.toString(), "com.amadeus.ResponseException: [401]\n" +
-            "[departureDate] This field must be filled.\n" +
-            "[origin] This field must be filled.\n" +
-            "[destination] This field must be filled.");
+    assertEquals(error.toString(), "com.amadeus.ResponseException: [401]\n"
+            + "[departureDate] This field must be filled.\n"
+            + "[origin] This field must be filled.\n"
+            + "[destination] This field must be filled.");
   }
 
   @Test public void testForEmptyErrors() {
@@ -89,8 +90,8 @@ public class ExceptionsTest {
     when(response.isParsed()).thenReturn(true);
 
     ResponseException error = new ResponseException(response);
-    assertEquals(error.toString(), "com.amadeus.ResponseException: [401]\n" +
-            "error");
+    assertEquals(error.toString(), "com.amadeus.ResponseException: [401]\n"
+            + "error");
   }
 
   @Test public void testForErrorsWithoutParameter() {
@@ -102,8 +103,8 @@ public class ExceptionsTest {
     when(response.isParsed()).thenReturn(true);
 
     ResponseException error = new ResponseException(response);
-    assertEquals(error.toString(), "com.amadeus.ResponseException: [401]\n" +
-            "error");
+    assertEquals(error.toString(), "com.amadeus.ResponseException: [401]\n"
+            + "error");
   }
 
   @Test public void testLogIfWarn() {

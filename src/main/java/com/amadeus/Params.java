@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
+import lombok.NonNull;
 
 /**
  * A convenient helper class for building data to pass into a request.
@@ -13,6 +14,8 @@ import java.util.Map;
  * </pre>
  */
 public class Params extends HashMap<String, String> {
+  protected String encoding = "UTF-8";
+
   protected Params() {}
 
   /**
@@ -26,7 +29,7 @@ public class Params extends HashMap<String, String> {
    * @param value the value for the given key
    * @return the Param object, allowing for convenient chaining
    */
-  public static Params with(String key, Object value) {
+  public static Params with(@NonNull String key, Object value) {
     return new Params().and(key, value);
   }
 
@@ -42,8 +45,8 @@ public class Params extends HashMap<String, String> {
    * @param value the value for the given key
    * @return the Param object, allowing for convenient chaining
    */
-  public Params and(String key, Object value) {
-    put(key, value.toString());
+  public Params and(@NonNull String key, Object value) {
+    put(key, String.valueOf(value));
     return this;
   }
 
@@ -57,11 +60,11 @@ public class Params extends HashMap<String, String> {
       }
       first = false;
       try {
-        query.append(URLEncoder.encode(entry.getKey(), "UTF-8"));
+        query.append(URLEncoder.encode(entry.getKey(), encoding));
         query.append("=");
-        query.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
+        query.append(URLEncoder.encode(entry.getValue(), encoding));
       } catch (UnsupportedEncodingException e) {
-        //TODO: Decide what to do here
+        // no need to anything
       }
     }
 

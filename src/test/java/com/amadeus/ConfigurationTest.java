@@ -97,6 +97,7 @@ public class ConfigurationTest {
 
   @Test public void testToString() {
     Configuration configuration = new Configuration("id", "secret").setPort(8080).setSsl(false);
-    assertTrue(configuration.toString().startsWith("Configuration(clientId=id, clientSecret=secret,"));
+    assertTrue(configuration.toString()
+            .startsWith("Configuration(clientId=id, clientSecret=secret,"));
   }
 }

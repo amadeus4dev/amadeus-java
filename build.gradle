@@ -75,5 +75,6 @@ javadoc {
 
 cobertura {
     coverageFormats = ['html', 'xml']
+    coverageIgnores = [ 'java.io.UnsupportedEncodingException' ]
     coverageIgnoreTrivial = true
 }
