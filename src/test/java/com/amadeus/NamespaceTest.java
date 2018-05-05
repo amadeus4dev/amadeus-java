@@ -10,6 +10,8 @@ import com.amadeus.referenceData.urls.CheckinLinks;
 import com.amadeus.shopping.FlightDates;
 import com.amadeus.shopping.FlightDestinations;
 import com.amadeus.shopping.FlightOffers;
+import com.amadeus.shopping.HotelOffers;
+import com.amadeus.shopping.hotel.Offer;
 import com.amadeus.travel.analytics.FareSearches;
 import com.amadeus.travel.analytics.airTraffic.Traveled;
 import org.junit.Test;
@@ -23,6 +25,9 @@ public class NamespaceTest {
     assertNotNull(client.shopping.flightDates);
     assertNotNull(client.shopping.flightDestinations);
     assertNotNull(client.shopping.flightOffers);
+    assertNotNull(client.shopping.hotelOffers);
+    assertNotNull(client.shopping.hotel("123").hotelOffers);
+    assertNotNull(client.shopping.hotel("123").offer("234"));
   }
 
   @Test public void testGetMethods() throws ResponseException {
@@ -76,5 +81,30 @@ public class NamespaceTest {
     FlightOffers flightOffers = new FlightOffers(client);
     assertTrue(flightOffers.get() instanceof Response);
     assertTrue(flightOffers.get(params) instanceof Response);
+
+    when(client.get("/v1/shopping/hotel-offers", null))
+            .thenReturn(mock(Response.class));
+    when(client.get("/v1/shopping/hotel-offers", params))
+            .thenReturn(mock(Response.class));
+    HotelOffers hotelOffers = new HotelOffers(client);
+    assertTrue(hotelOffers.get() instanceof Response);
+    assertTrue(hotelOffers.get(params) instanceof Response);
+
+    when(client.get("/v1/shopping/hotels/123/hotel-offers", null))
+            .thenReturn(mock(Response.class));
+    when(client.get("/v1/shopping/hotels/123/hotel-offers", params))
+            .thenReturn(mock(Response.class));
+    com.amadeus.shopping.hotel.HotelOffers hotelOffers2
+            = new com.amadeus.shopping.hotel.HotelOffers(client, "123");
+    assertTrue(hotelOffers2.get() instanceof Response);
+    assertTrue(hotelOffers2.get(params) instanceof Response);
+
+    when(client.get("/v1/shopping/hotels/123/offers/234", null))
+            .thenReturn(mock(Response.class));
+    when(client.get("/v1/shopping/hotels/123/offers/234", params))
+            .thenReturn(mock(Response.class));
+    Offer offer = new Offer(client, "123", "234");
+    assertTrue(offer.get() instanceof Response);
+    assertTrue(offer.get(params) instanceof Response);
   }
 }
