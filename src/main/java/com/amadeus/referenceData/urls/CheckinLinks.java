@@ -5,6 +5,7 @@ import com.amadeus.Params;
 import com.amadeus.Response;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.CheckinLink;
+import com.amadeus.resources.Resource;
 import com.google.gson.Gson;
 
 /**
@@ -47,7 +48,7 @@ public class CheckinLinks {
    */
   public CheckinLink[] get(Params params) throws ResponseException {
     Response response = client.get("/v2/reference-data/urls/checkin-links", params);
-    return new Gson().fromJson(response.getData(), CheckinLink[].class);
+    return (CheckinLink[]) Resource.fromArray(response, CheckinLink[].class);
   }
 
   /**

@@ -5,6 +5,7 @@ import com.amadeus.Params;
 import com.amadeus.Response;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.FareSearch;
+import com.amadeus.resources.Resource;
 import com.google.gson.Gson;
 
 /**
@@ -51,7 +52,7 @@ public class FareSearches {
    */
   public FareSearch[] get(Params params) throws ResponseException {
     Response response = client.get("/v1/travel/analytics/fare-searches", params);
-    return new Gson().fromJson(response.getData(), FareSearch[].class);
+    return (FareSearch[]) Resource.fromArray(response, FareSearch[].class);
   }
 
   /**

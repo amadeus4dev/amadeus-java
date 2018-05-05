@@ -5,6 +5,7 @@ import com.amadeus.Params;
 import com.amadeus.Response;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.FlightDate;
+import com.amadeus.resources.Resource;
 import com.google.gson.Gson;
 
 /**
@@ -49,7 +50,7 @@ public class FlightDates {
    */
   public FlightDate[] get(Params params) throws ResponseException {
     Response response = client.get("/v1/shopping/flight-dates", params);
-    return new Gson().fromJson(response.getData(), FlightDate[].class);
+    return (FlightDate[]) Resource.fromArray(response, FlightDate[].class);
   }
 
   /**

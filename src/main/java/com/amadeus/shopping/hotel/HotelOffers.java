@@ -5,6 +5,7 @@ import com.amadeus.Params;
 import com.amadeus.Response;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.HotelOffer;
+import com.amadeus.resources.Resource;
 import com.google.gson.Gson;
 
 /**
@@ -49,7 +50,7 @@ public class HotelOffers {
   public HotelOffer get(Params params) throws ResponseException {
     String path = String.format("/v1/shopping/hotels/%s/hotel-offers", hotelId);
     Response response = client.get(path, params);
-    return new Gson().fromJson(response.getData(), HotelOffer.class);
+    return (HotelOffer) Resource.fromObject(response, HotelOffer.class);
   }
 
   /**

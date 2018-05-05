@@ -5,6 +5,7 @@ import com.amadeus.Params;
 import com.amadeus.Response;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.FlightDestination;
+import com.amadeus.resources.Resource;
 import com.google.gson.Gson;
 
 /**
@@ -48,7 +49,7 @@ public class FlightDestinations {
    */
   public FlightDestination[] get(Params params) throws ResponseException {
     Response response = client.get("/v1/shopping/flight-destinations", params);
-    return new Gson().fromJson(response.getData(), FlightDestination[].class);
+    return (FlightDestination[]) Resource.fromArray(response, FlightDestination[].class);
   }
 
   /**

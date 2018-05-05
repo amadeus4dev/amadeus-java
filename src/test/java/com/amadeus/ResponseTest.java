@@ -66,7 +66,7 @@ public class ResponseTest {
             new ByteArrayInputStream("{ \"data\": { \"foo\": \"bar\"}}".getBytes()));
 
     response.parse(client);
-    
+
     assertEquals(response.getStatusCode(), 200);
     assertEquals(response.getBody(), "{ \"data\": { \"foo\": \"bar\"}}");
     assertTrue(response.isParsed());

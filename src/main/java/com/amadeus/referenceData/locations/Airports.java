@@ -5,6 +5,7 @@ import com.amadeus.Params;
 import com.amadeus.Response;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.Location;
+import com.amadeus.resources.Resource;
 import com.google.gson.Gson;
 
 /**
@@ -48,7 +49,7 @@ public class Airports {
    */
   public Location[] get(Params params) throws ResponseException {
     Response response = client.get("/v1/reference-data/locations/airports", params);
-    return new Gson().fromJson(response.getData(), Location[].class);
+    return (Location[]) Resource.fromArray(response, Location[].class);
   }
 
   /**
