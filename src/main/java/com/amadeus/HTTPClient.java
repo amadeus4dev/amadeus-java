@@ -3,6 +3,7 @@ package com.amadeus;
 import com.amadeus.client.AccessToken;
 import com.amadeus.exceptions.NetworkException;
 import com.amadeus.exceptions.ResponseException;
+import com.amadeus.resources.Resource;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -101,15 +102,6 @@ public class HTTPClient {
     return request("POST", path, params);
   }
 
-  // A generic method for making requests of any verb.
-  protected Response request(String verb, String path, Params params) throws ResponseException {
-    return unauthenticatedRequest(verb, path, params, accessToken.getBearerToken());
-  }
-
-  // A generic method for making any authenticated or unauthenticated request,
-  // passing in the bearer token explicitly. Used primarily by the
-  // AccessToken to get the first AccessToken.
-
   /**
    * A generic method for making any authenticated or unauthenticated request,
    * passing in the bearer token explicitly. Used primarily by the
@@ -122,6 +114,91 @@ public class HTTPClient {
     Request request = buildRequest(verb, path, params, bearerToken);
     log(request);
     return execute(request);
+  }
+
+  /**
+   * Fetches the previous page for a given response.
+   * @param response a response object previously received for which includes an array of data
+   * @return a new response of data
+   * @throws ResponseException if the page could not be found
+   */
+  public Response previous(Response response) throws ResponseException {
+    return page("previous", response);
+  }
+
+  /**
+   * Fetches the previous page for a given response.
+   * @param resource one of the responses previously received from an API call
+   * @return a new array of resources of the same type
+   * @throws ResponseException if the page could not be found
+   */
+  public Resource[] previous(Resource resource) throws ResponseException {
+    return page("previous", resource);
+  }
+
+  /**
+   * Fetches the next page for a given response.
+   * @param response a response object previously received for which includes an array of data
+   * @return a new response of data
+   * @throws ResponseException if the page could not be found
+   */
+  public Response next(Response response) throws ResponseException {
+    return page("next", response);
+  }
+
+  /**
+   * Fetches the next page for a given response.
+   * @param resource one of the responses previously received from an API call
+   * @return a new array of resources of the same type
+   * @throws ResponseException if the page could not be found
+   */
+  public Resource[] next(Resource resource) throws ResponseException {
+    return page("next", resource);
+  }
+
+  /**
+   * Fetches the first page for a given response.
+   * @param response a response object previously received for which includes an array of data
+   * @return a new response of data
+   * @throws ResponseException if the page could not be found
+   */
+  public Response first(Response response) throws ResponseException {
+    return page("first", response);
+  }
+
+  /**
+   * Fetches the first page for a given response.
+   * @param resource one of the responses previously received from an API call
+   * @return a new array of resources of the same type
+   * @throws ResponseException if the page could not be found
+   */
+  public Resource[] first(Resource resource) throws ResponseException {
+    return page("first", resource);
+  }
+
+  /**
+   * Fetches the last page for a given response.
+   * @param response a response object previously received for which includes an array of data
+   * @return a new response of data
+   * @throws ResponseException if the page could not be found
+   */
+  public Response last(Response response) throws ResponseException {
+    return page("last", response);
+  }
+
+  /**
+   * Fetches the last page for a given response.
+   * @param resource one of the responses previously received from an API call
+   * @return a new array of resources of the same type
+   * @throws ResponseException if the page could not be found
+   */
+  public Resource[] last(Resource resource) throws ResponseException {
+    return page("last", resource);
+  }
+
+  // A generic method for making requests of any verb.
+  protected Response request(String verb, String path, Params params) throws ResponseException {
+    return unauthenticatedRequest(verb, path, params, accessToken.getBearerToken());
   }
 
   // Builds a request
@@ -168,5 +245,35 @@ public class HTTPClient {
       writer.close();
       os.close();
     }
+  }
+
+  /**
+   * Fetches the response for another page.
+   * @hide as ony used internally
+   */
+  protected Response page(String pageName, Response response) throws ResponseException {
+    try {
+      String[] parts = response.getResult().get("meta").getAsJsonObject()
+              .get("links").getAsJsonObject().get(pageName).getAsString().split("=");
+
+      String pageNumber = parts[parts.length - 1];
+
+      Request request = response.getRequest();
+      Params params = (Params) request.getParams().clone();
+      params.put("page[offset]", pageNumber);
+
+      return request(request.getVerb(), request.getPath(), params);
+    } catch (NullPointerException e) {
+      return null;
+    }
+  }
+
+  /**
+   * Fetches the response for another page.
+   * @hide as ony used internally
+   */
+  protected Resource[] page(String pageName, Resource resource) throws ResponseException {
+    Response response = page(pageName, resource.getResponse());
+    return Resource.fromArray(response, resource.getDeSerializationClass());
   }
 }

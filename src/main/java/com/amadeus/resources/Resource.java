@@ -1,14 +1,25 @@
 package com.amadeus.resources;
 
+import com.amadeus.Amadeus;
 import com.amadeus.Response;
 import com.google.gson.Gson;
 import lombok.Getter;
 
+/**
+ * A generic resource as returned by all namespaced APIs.
+ */
 public class Resource {
+  protected Resource() {}
+
   /**
    * The original response that this object is populated from.
    */
   private @Getter Response response;
+  /**
+   * The class used for deserialization.
+   * @hide as only used internally
+   */
+  private @Getter Class deSerializationClass;
 
   /**
    * Turns a response into a Gson deserialized array of resources,
@@ -19,6 +30,7 @@ public class Resource {
     Resource[] resources = (Resource[]) new Gson().fromJson(response.getData(), klass);
     for (Resource resource : resources) {
       resource.response = response;
+      resource.deSerializationClass = klass;
     }
     return resources;
   }

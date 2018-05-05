@@ -6,7 +6,6 @@ import com.amadeus.exceptions.NotFoundException;
 import com.amadeus.exceptions.ParserException;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.exceptions.ServerException;
-import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;

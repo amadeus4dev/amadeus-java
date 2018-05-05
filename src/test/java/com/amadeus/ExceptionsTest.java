@@ -49,8 +49,8 @@ public class ExceptionsTest {
     when(response.isParsed()).thenReturn(true);
 
     ResponseException error = new ResponseException(response);
-    assertEquals(error.toString(), "com.amadeus.exceptions.ResponseException: [401]\n"
-            + "error message");
+    assertEquals(error.toString(), "com.amadeus.exceptions.ResponseException: [401]"
+            + "\nerror message");
   }
 
   @Test public void testForSingleErrorWithName() {
@@ -63,15 +63,15 @@ public class ExceptionsTest {
     when(response.isParsed()).thenReturn(true);
 
     ResponseException error = new ResponseException(response);
-    assertEquals(error.toString(), "com.amadeus.exceptions.ResponseException: [401]\n"
-            + "error description\n"
-            + "error message");
+    assertEquals(error.toString(), "com.amadeus.exceptions.ResponseException: [401]"
+            + "\nerror description"
+            + "\nerror message");
   }
 
   @Test public void testForMultipleErrors() {
     Response response = mock(Response.class);
     when(response.getStatusCode()).thenReturn(401);
-    String body = "{\"exceptions\":[{\"status\":400,\"code\":32171,\"title\":\"MANDATORY DATA"
+    String body = "{\"errors\":[{\"status\":400,\"code\":32171,\"title\":\"MANDATORY DATA"
         + "MISSING\",\"detail\":\"This field must be filled.\",\"source\":{\"parameter\":\"d"
         + "epartureDate\"}},{\"status\":400,\"code\":32171,\"title\":\"MANDATORY DATA MISSIN"
         + "G\",\"detail\":\"This field must be filled.\",\"source\":{\"parameter\":\"origin\""
@@ -82,36 +82,36 @@ public class ExceptionsTest {
     when(response.isParsed()).thenReturn(true);
 
     ResponseException error = new ResponseException(response);
-    assertEquals(error.toString(), "com.amadeus.exceptions.ResponseException: [401]\n"
-            + "[departureDate] This field must be filled.\n"
-            + "[origin] This field must be filled.\n"
-            + "[destination] This field must be filled.");
+    assertEquals(error.toString(), "com.amadeus.exceptions.ResponseException: [401]"
+            + "\n[departureDate] This field must be filled."
+            + "\n[origin] This field must be filled."
+            + "\n[destination] This field must be filled.");
   }
 
   @Test public void testForEmptyErrors() {
     Response response = mock(Response.class);
     when(response.getStatusCode()).thenReturn(401);
-    String body = "{\"exceptions\":[{\"detail\":\"error\"}]}";
+    String body = "{\"errors\":[{\"detail\":\"error\"}]}";
     JsonObject json = new JsonParser().parse(body).getAsJsonObject();
     when(response.getResult()).thenReturn(json);
     when(response.isParsed()).thenReturn(true);
 
     ResponseException error = new ResponseException(response);
-    assertEquals(error.toString(), "com.amadeus.exceptions.ResponseException: [401]\n"
-            + "error");
+    assertEquals(error.toString(), "com.amadeus.exceptions.ResponseException: [401]"
+            + "\nerror");
   }
 
   @Test public void testForErrorsWithoutParameter() {
     Response response = mock(Response.class);
     when(response.getStatusCode()).thenReturn(401);
-    String body = "{\"exceptions\":[{\"detail\":\"error\", \"source\":{}}]}";
+    String body = "{\"errors\":[{\"detail\":\"error\", \"source\":{}}]}";
     JsonObject json = new JsonParser().parse(body).getAsJsonObject();
     when(response.getResult()).thenReturn(json);
     when(response.isParsed()).thenReturn(true);
 
     ResponseException error = new ResponseException(response);
-    assertEquals(error.toString(), "com.amadeus.exceptions.ResponseException: [401]\n"
-            + "error");
+    assertEquals(error.toString(), "com.amadeus.exceptions.ResponseException: [401]"
+            + "\nerror");
   }
 
   @Test public void testLogIfWarn() {

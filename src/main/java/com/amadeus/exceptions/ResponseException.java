@@ -62,7 +62,7 @@ public class ResponseException extends Exception {
       if (response.getResult().has("error_description")) {
         description.append(getErrorDescription(response));
       }
-      if (response.getResult().has("exceptions")) {
+      if (response.getResult().has("errors")) {
         description.append(getErrorsDescription(response));
       }
     }
@@ -81,7 +81,7 @@ public class ResponseException extends Exception {
 
   private static StringBuffer getErrorsDescription(Response response) {
     StringBuffer message = new StringBuffer();
-    for (JsonElement error : response.getResult().get("exceptions").getAsJsonArray()) {
+    for (JsonElement error : response.getResult().get("errors").getAsJsonArray()) {
       JsonObject json = error.getAsJsonObject();
       message.append("\n");
       if (json.has("source")) {

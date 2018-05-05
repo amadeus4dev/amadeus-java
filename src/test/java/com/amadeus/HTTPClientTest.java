@@ -2,6 +2,7 @@ package com.amadeus;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
+import static junit.framework.TestCase.assertNull;
 import static junit.framework.TestCase.assertTrue;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.any;
@@ -13,7 +14,10 @@ import static org.mockito.Mockito.when;
 import com.amadeus.client.AccessToken;
 import com.amadeus.exceptions.NetworkException;
 import com.amadeus.exceptions.ResponseException;
+import com.amadeus.resources.Resource;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -224,4 +228,111 @@ public class HTTPClientTest {
     Request request = client.buildRequest("GET", "/foo", null, null);
     assertNotNull(request);
   }
+
+  @Test public void testNextResponse() throws ResponseException {
+    Response response = mock(Response.class);
+    when(client.page("next", response)).thenReturn(response);
+    when(client.next(response)).thenCallRealMethod();
+    client.next(response);
+    verify(client, times(1)).page("next", response);
+  }
+
+  @Test public void testPreviousResponse() throws ResponseException {
+    Response response = mock(Response.class);
+    when(client.page("previous", response)).thenReturn(response);
+    when(client.previous(response)).thenCallRealMethod();
+    client.previous(response);
+    verify(client, times(1)).page("previous", response);
+  }
+
+  @Test public void testFirstResponse() throws ResponseException {
+    Response response = mock(Response.class);
+    when(client.page("first", response)).thenReturn(response);
+    when(client.first(response)).thenCallRealMethod();
+    client.first(response);
+    verify(client, times(1)).page("first", response);
+  }
+
+  @Test public void testLastResponse() throws ResponseException {
+    Response response = mock(Response.class);
+    when(client.page("last", response)).thenReturn(response);
+    when(client.last(response)).thenCallRealMethod();
+    client.last(response);
+    verify(client, times(1)).page("last", response);
+  }
+
+  @Test public void testNextResource() throws ResponseException {
+    Resource resource = mock(Resource.class);
+    when(client.page("next", resource)).thenReturn(null);
+    when(client.next(resource)).thenCallRealMethod();
+    client.next(resource);
+    verify(client, times(1)).page("next", resource);
+  }
+
+  @Test public void testPreviousResource() throws ResponseException {
+    Resource resource = mock(Resource.class);
+    when(client.page("previous", resource)).thenReturn(null);
+    when(client.previous(resource)).thenCallRealMethod();
+    client.previous(resource);
+    verify(client, times(1)).page("previous", resource);
+  }
+
+  @Test public void testFirstResource() throws ResponseException {
+    Resource resource = mock(Resource.class);
+    when(client.page("first", resource)).thenReturn(null);
+    when(client.first(resource)).thenCallRealMethod();
+    client.first(resource);
+    verify(client, times(1)).page("first", resource);
+  }
+
+  @Test public void testLastResource() throws ResponseException {
+    Resource resource = mock(Resource.class);
+    when(client.page("last", resource)).thenReturn(null);
+    when(client.last(resource)).thenCallRealMethod();
+    client.last(resource);
+    verify(client, times(1)).page("last", resource);
+  }
+
+  @Test public void testPage() throws ResponseException {
+    Response response = mock(Response.class);
+    Request request = mock(Request.class);
+
+    JsonObject jsonObject = new JsonParser().parse("{ \"meta\": { "
+            + "\"links\" : {\"next\": \"http://foobar.com?page=10\" } } }").getAsJsonObject();
+
+    when(response.getResult()).thenReturn(jsonObject);
+    when(response.getRequest()).thenReturn(request);
+    when(request.getVerb()).thenReturn("GET");
+    when(request.getPath()).thenReturn("/foo");
+    when(request.getParams()).thenReturn(Params.with("foo", "bar"));
+
+    when(client.request(anyString(), anyString(), any(Params.class))).thenReturn(response);
+    when(client.page("next", response)).thenCallRealMethod();
+
+    Response nextResponse = client.page("next", response);
+
+    assertNotNull(nextResponse);
+  }
+
+  @Test public void testPageWithoutLinks() throws ResponseException {
+    Response response = mock(Response.class);
+    Request request = mock(Request.class);
+
+    JsonObject jsonObject = new JsonParser().parse("{ \"meta\": { "
+            + "\"links\" : {} } }").getAsJsonObject();
+
+    when(response.getResult()).thenReturn(jsonObject);
+    when(response.getRequest()).thenReturn(request);
+    when(request.getVerb()).thenReturn("GET");
+    when(request.getPath()).thenReturn("/foo");
+    when(request.getParams()).thenReturn(Params.with("foo", "bar"));
+
+    when(client.request(anyString(), anyString(), any(Params.class))).thenReturn(response);
+    when(client.page("next", response)).thenCallRealMethod();
+
+    Response nextResponse = client.page("next", response);
+
+    assertNull(nextResponse);
+  }
 }
+

@@ -4,8 +4,14 @@ import java.util.Date;
 import lombok.Getter;
 import lombok.ToString;
 
+/**
+ * An FlightDestination object as returned by the FlightDestinations API.
+ * @see com.amadeus.shopping.FlightDestinations#get()
+ */
 @ToString
 public class FlightDestination extends Resource {
+  protected FlightDestination() {}
+
   private @Getter String type;
   private @Getter String origin;
   private @Getter String destination;
@@ -13,8 +19,14 @@ public class FlightDestination extends Resource {
   private @Getter Date returnDate;
   private @Getter Price price;
 
+  /**
+   * An FlightDestination-related object as returned by the FlightDestinations API.
+   * @see com.amadeus.shopping.FlightDestinations#get()
+   */
   @ToString
-  private class Price {
+  public class Price {
+    protected Price() {}
+
     private @Getter double total;
   }
 }
