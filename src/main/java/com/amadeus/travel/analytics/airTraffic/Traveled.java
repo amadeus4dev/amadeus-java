@@ -4,6 +4,8 @@ import com.amadeus.Amadeus;
 import com.amadeus.Params;
 import com.amadeus.Response;
 import com.amadeus.exceptions.ResponseException;
+import com.amadeus.resources.AirTraffic;
+import com.google.gson.Gson;
 
 /**
  * <p>
@@ -38,21 +40,22 @@ public class Traveled {
    * <pre>
    * amadeus.travel.analytics.airTraffic.traveled.get(Params
    *   .with("origin", "LHR")
-   *   .with("period", "2017-03");</pre>
+   *   .and("period", "2017-03"));</pre>
    *
    * @param params the parameters to send to the API
    * @return an API response object
    * @throws ResponseException when an exception occurs
    */
-  public Response get(Params params) throws ResponseException {
-    return client.get("/v1/travel/analytics/air-traffic/traveled", params);
+  public AirTraffic[] get(Params params) throws ResponseException {
+    Response response = client.get("/v1/travel/analytics/air-traffic/traveled", params);
+    return new Gson().fromJson(response.getData(), AirTraffic[].class);
   }
 
   /**
    * Convenience method for calling <code>get</code> without any parameters.
    * @see Traveled#get()
    */
-  public Response get() throws ResponseException {
+  public AirTraffic[] get() throws ResponseException {
     return get(null);
   }
 }

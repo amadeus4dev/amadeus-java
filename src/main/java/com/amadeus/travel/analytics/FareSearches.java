@@ -4,6 +4,8 @@ import com.amadeus.Amadeus;
 import com.amadeus.Params;
 import com.amadeus.Response;
 import com.amadeus.exceptions.ResponseException;
+import com.amadeus.resources.FareSearch;
+import com.google.gson.Gson;
 
 /**
  * <p>
@@ -40,22 +42,23 @@ public class FareSearches {
    * <pre>
    * amadeus.travel.analytics.fareSearches.get(Params
    *   .with("origin", "LHR")
-   *   .with("sourceCountry", "FR")
-   *   .with("period", 2011);</pre>
+   *   .and("sourceCountry", "FR")
+   *   .and("period", 2011));</pre>
    *
    * @param params the parameters to send to the API
    * @return an API response object
    * @throws ResponseException when an exception occurs
    */
-  public Response get(Params params) throws ResponseException {
-    return client.get("/v1/travel/analytics/air-traffic/traveled", params);
+  public FareSearch[] get(Params params) throws ResponseException {
+    Response response = client.get("/v1/travel/analytics/fare-searches", params);
+    return new Gson().fromJson(response.getData(), FareSearch[].class);
   }
 
   /**
    * Convenience method for calling <code>get</code> without any parameters.
    * @see FareSearches#get()
    */
-  public Response get() throws ResponseException {
+  public FareSearch[] get() throws ResponseException {
     return get(null);
   }
 }

@@ -6,7 +6,7 @@ import com.amadeus.exceptions.NotFoundException;
 import com.amadeus.exceptions.ParserException;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.exceptions.ServerException;
-import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import java.io.BufferedReader;
@@ -39,7 +39,7 @@ public class Response {
   /**
    * The data extracted from the JSON data - if the body contained JSON.
    */
-  private @Getter JsonArray data;
+  private @Getter JsonElement data;
   /**
    * The raw body received from the API.
    */
@@ -97,7 +97,12 @@ public class Response {
     this.result = parseJson(client);
     this.parsed = this.result != null;
     if (parsed && result.has("data")) {
-      this.data = result.get("data").getAsJsonArray();
+      if (result.get("data").isJsonArray()) {
+        this.data = result.get("data").getAsJsonArray();
+      }
+      if (result.get("data").isJsonObject()) {
+        this.data = result.get("data").getAsJsonObject();
+      }
     }
   }
 

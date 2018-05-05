@@ -4,6 +4,8 @@ import com.amadeus.Amadeus;
 import com.amadeus.Params;
 import com.amadeus.Response;
 import com.amadeus.exceptions.ResponseException;
+import com.amadeus.resources.CheckinLink;
+import com.google.gson.Gson;
 
 /**
  * <p>
@@ -40,18 +42,19 @@ public class CheckinLinks {
    * amadeus.referenceData.urls.checkinLinks.get(Params.with("airline", "1X"));</pre>
    *
    * @param params the parameters to send to the API
-   * @return an API response object
+   * @return an API resource
    * @throws ResponseException when an exception occurs
    */
-  public Response get(Params params) throws ResponseException {
-    return client.get("/v2/reference-data/urls/checkin-links", params);
+  public CheckinLink[] get(Params params) throws ResponseException {
+    Response response = client.get("/v2/reference-data/urls/checkin-links", params);
+    return new Gson().fromJson(response.getData(), CheckinLink[].class);
   }
 
   /**
    * Convenience method for calling <code>get</code> without any parameters.
    * @see CheckinLinks#get()
    */
-  public Response get() throws ResponseException {
+  public CheckinLink[] get() throws ResponseException {
     return get(null);
   }
 }

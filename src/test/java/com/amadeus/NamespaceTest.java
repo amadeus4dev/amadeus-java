@@ -1,7 +1,7 @@
 package com.amadeus;
 
+import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
-import static junit.framework.TestCase.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -17,9 +17,17 @@ import com.amadeus.shopping.HotelOffers;
 import com.amadeus.shopping.hotel.Offer;
 import com.amadeus.travel.analytics.FareSearches;
 import com.amadeus.travel.analytics.airTraffic.Traveled;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import org.junit.Before;
 import org.junit.Test;
 
 public class NamespaceTest {
+  private Amadeus client;
+  private Params params;
+  private Response singleResponse;
+  private Response multiResponse;
+
   @Test public void testAllNamespacesExist() {
     Amadeus client = Amadeus.builder("id", "secret").build();
     assertNotNull(client.referenceData.urls.checkinLinks);
@@ -35,105 +43,144 @@ public class NamespaceTest {
     assertNotNull(client.shopping.hotel("123").offer("234"));
   }
 
+  @Before public void setup() {
+    client = mock(Amadeus.class);
+    params = Params.with("airline", "1X");
+
+    // Prepare a plural response
+    JsonArray jsonArray = new JsonArray();
+    jsonArray.add(new JsonObject());
+    jsonArray.add(new JsonObject());
+    multiResponse = mock(Response.class);
+    when(multiResponse.isParsed()).thenReturn(true);
+    when(multiResponse.getData()).thenReturn(jsonArray);
+
+    // Prepare a single response
+    JsonObject jsonObject = new JsonObject();
+    jsonObject.addProperty("foo", "bar");
+    singleResponse = mock(Response.class);
+    when(singleResponse.isParsed()).thenReturn(true);
+    when(singleResponse.getData()).thenReturn(jsonObject);
+  }
+
   @Test public void testGetMethods() throws ResponseException {
-    Amadeus client = mock(Amadeus.class);
-    Params params = Params.with("airline", "1X");
-
+    // Testing CheckinLinks
     when(client.get("/v2/reference-data/urls/checkin-links", null))
-            .thenReturn(mock(Response.class));
+            .thenReturn(multiResponse);
     when(client.get("/v2/reference-data/urls/checkin-links", params))
-            .thenReturn(mock(Response.class));
+            .thenReturn(multiResponse);
     CheckinLinks checkinLinks = new CheckinLinks(client);
-    assertTrue(checkinLinks.get() instanceof Response);
-    assertTrue(checkinLinks.get(params) instanceof Response);
 
+    assertNotNull(checkinLinks.get());
+    assertNotNull(checkinLinks.get(params));
+    assertEquals(checkinLinks.get().length, 2);
+
+    // Testing location search
     when(client.get("/v1/reference-data/locations", null))
-            .thenReturn(mock(Response.class));
+            .thenReturn(multiResponse);
     when(client.get("/v1/reference-data/locations", params))
-            .thenReturn(mock(Response.class));
+            .thenReturn(multiResponse);
     Locations locations = new Locations(client);
-    assertTrue(locations.get() instanceof Response);
-    assertTrue(locations.get(params) instanceof Response);
+    assertNotNull(locations.get());
+    assertNotNull(locations.get(params));
+    assertEquals(locations.get().length, 2);
 
+    // Testing airport search
     when(client.get("/v1/reference-data/locations/airports", null))
-            .thenReturn(mock(Response.class));
+            .thenReturn(multiResponse);
     when(client.get("/v1/reference-data/locations/airports", params))
-            .thenReturn(mock(Response.class));
+            .thenReturn(multiResponse);
     Airports airports = new Airports(client);
-    assertTrue(airports.get() instanceof Response);
-    assertTrue(airports.get(params) instanceof Response);
+    assertNotNull(airports.get());
+    assertNotNull(airports.get(params));
+    assertEquals(airports.get().length, 2);
 
+    // Testing fetching a single location
     when(client.get("/v1/reference-data/locations/ALHR", null))
-            .thenReturn(mock(Response.class));
+            .thenReturn(singleResponse);
     when(client.get("/v1/reference-data/locations/ALHR", params))
-            .thenReturn(mock(Response.class));
+            .thenReturn(singleResponse);
     Location location = new Location(client, "ALHR");
-    assertTrue(location.get() instanceof Response);
-    assertTrue(location.get(params) instanceof Response);
+    assertNotNull(location.get());
+    assertNotNull(location.get(params));
 
+    // Testing traveled stats
     when(client.get("/v1/travel/analytics/air-traffic/traveled", null))
-            .thenReturn(mock(Response.class));
+            .thenReturn(multiResponse);
     when(client.get("/v1/travel/analytics/air-traffic/traveled", params))
-            .thenReturn(mock(Response.class));
+            .thenReturn(multiResponse);
     Traveled traveled = new Traveled(client);
-    assertTrue(traveled.get() instanceof Response);
-    assertTrue(traveled.get(params) instanceof Response);
+    assertNotNull(traveled.get());
+    assertNotNull(traveled.get(params));
+    assertEquals(traveled.get().length, 2);
 
+    // Testing fare search stats
     when(client.get("/v1/travel/analytics/fare-searches", null))
-            .thenReturn(mock(Response.class));
+            .thenReturn(multiResponse);
     when(client.get("/v1/travel/analytics/fare-searches", params))
-            .thenReturn(mock(Response.class));
+            .thenReturn(multiResponse);
     FareSearches fareSearches = new FareSearches(client);
-    assertTrue(fareSearches.get() instanceof Response);
-    assertTrue(fareSearches.get(params) instanceof Response);
+    assertNotNull(fareSearches.get());
+    assertNotNull(fareSearches.get(params));
+    assertEquals(fareSearches.get().length, 2);
 
+    // Testing flight date search
     when(client.get("/v1/shopping/flight-dates", null))
-            .thenReturn(mock(Response.class));
+            .thenReturn(multiResponse);
     when(client.get("/v1/shopping/flight-dates", params))
-            .thenReturn(mock(Response.class));
+            .thenReturn(multiResponse);
     FlightDates flightDates = new FlightDates(client);
-    assertTrue(flightDates.get() instanceof Response);
-    assertTrue(flightDates.get(params) instanceof Response);
+    assertNotNull(flightDates.get());
+    assertNotNull(flightDates.get(params));
+    assertEquals(flightDates.get().length, 2);
 
+    // Testing flight destination search
     when(client.get("/v1/shopping/flight-destinations", null))
-            .thenReturn(mock(Response.class));
+            .thenReturn(multiResponse);
     when(client.get("/v1/shopping/flight-destinations", params))
-            .thenReturn(mock(Response.class));
+            .thenReturn(multiResponse);
     FlightDestinations flightDestinations = new FlightDestinations(client);
-    assertTrue(flightDestinations.get() instanceof Response);
-    assertTrue(flightDestinations.get(params) instanceof Response);
+    assertNotNull(flightDestinations.get());
+    assertNotNull(flightDestinations.get(params));
+    assertEquals(flightDestinations.get().length, 2);
 
+    // Testing flight offer search
     when(client.get("/v1/shopping/flight-offers", null))
-            .thenReturn(mock(Response.class));
+            .thenReturn(multiResponse);
     when(client.get("/v1/shopping/flight-offers", params))
-            .thenReturn(mock(Response.class));
+            .thenReturn(multiResponse);
     FlightOffers flightOffers = new FlightOffers(client);
-    assertTrue(flightOffers.get() instanceof Response);
-    assertTrue(flightOffers.get(params) instanceof Response);
+    assertNotNull(flightOffers.get());
+    assertNotNull(flightOffers.get(params));
+    assertEquals(flightOffers.get().length, 2);
 
+    // Testing hotel offer search
     when(client.get("/v1/shopping/hotel-offers", null))
-            .thenReturn(mock(Response.class));
+            .thenReturn(multiResponse);
     when(client.get("/v1/shopping/hotel-offers", params))
-            .thenReturn(mock(Response.class));
+            .thenReturn(multiResponse);
     HotelOffers hotelOffers = new HotelOffers(client);
-    assertTrue(hotelOffers.get() instanceof Response);
-    assertTrue(hotelOffers.get(params) instanceof Response);
+    assertNotNull(hotelOffers.get());
+    assertNotNull(hotelOffers.get(params));
+    assertEquals(hotelOffers.get().length, 2);
 
+    // Testing hotel offer search for a hotel
     when(client.get("/v1/shopping/hotels/123/hotel-offers", null))
-            .thenReturn(mock(Response.class));
+            .thenReturn(singleResponse);
     when(client.get("/v1/shopping/hotels/123/hotel-offers", params))
-            .thenReturn(mock(Response.class));
+            .thenReturn(singleResponse);
     com.amadeus.shopping.hotel.HotelOffers hotelOffers2
             = new com.amadeus.shopping.hotel.HotelOffers(client, "123");
-    assertTrue(hotelOffers2.get() instanceof Response);
-    assertTrue(hotelOffers2.get(params) instanceof Response);
+    assertNotNull(hotelOffers2.get());
+    assertNotNull(hotelOffers2.get(params));
 
+    // Test fetching a specific offer
     when(client.get("/v1/shopping/hotels/123/offers/234", null))
-            .thenReturn(mock(Response.class));
+            .thenReturn(singleResponse);
     when(client.get("/v1/shopping/hotels/123/offers/234", params))
-            .thenReturn(mock(Response.class));
+            .thenReturn(singleResponse);
     Offer offer = new Offer(client, "123", "234");
-    assertTrue(offer.get() instanceof Response);
-    assertTrue(offer.get(params) instanceof Response);
+    assertNotNull(offer.get());
+    assertNotNull(offer.get(params));
   }
 }

@@ -4,6 +4,8 @@ import com.amadeus.Amadeus;
 import com.amadeus.Params;
 import com.amadeus.Response;
 import com.amadeus.exceptions.ResponseException;
+import com.amadeus.resources.HotelOffer;
+import com.google.gson.Gson;
 
 /**
  * <p>
@@ -44,16 +46,17 @@ public class HotelOffers {
    * @return an API response object
    * @throws ResponseException when an exception occurs
    */
-  public Response get(Params params) throws ResponseException {
+  public HotelOffer get(Params params) throws ResponseException {
     String path = String.format("/v1/shopping/hotels/%s/hotel-offers", hotelId);
-    return client.get(path, params);
+    Response response = client.get(path, params);
+    return new Gson().fromJson(response.getData(), HotelOffer.class);
   }
 
   /**
    * Convenience method for calling <code>get</code> without any parameters.
    * @see HotelOffers#get()
    */
-  public Response get() throws ResponseException {
+  public HotelOffer get() throws ResponseException {
     return get(null);
   }
 }

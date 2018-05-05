@@ -13,6 +13,7 @@ import static org.mockito.Mockito.when;
 import com.amadeus.client.AccessToken;
 import com.amadeus.exceptions.NetworkException;
 import com.amadeus.exceptions.ResponseException;
+import com.google.gson.JsonArray;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -94,7 +95,7 @@ public class HTTPClientTest {
     Response response = client.unauthenticatedRequest("GET", "/foo", params, null);
 
     assertTrue(response.isParsed());
-    assertEquals(response.getData().size(), 1);
+    assertEquals(((JsonArray) response.getData()).size(), 1);
   }
 
   @Test public void testUnauthenticatedPostRequest() throws ResponseException, IOException {
@@ -115,7 +116,7 @@ public class HTTPClientTest {
     Response response = client.unauthenticatedRequest("POST", "/foo", params, null);
 
     assertTrue(response.isParsed());
-    assertEquals(response.getData().size(), 1);
+    assertEquals(((JsonArray) response.getData()).size(), 1);
   }
 
   @Test public void testUnauthenticatedPostWithoutParams() throws ResponseException, IOException {
@@ -136,7 +137,7 @@ public class HTTPClientTest {
     Response response = client.unauthenticatedRequest("POST", "/foo", null, null);
 
     assertTrue(response.isParsed());
-    assertEquals(response.getData().size(), 1);
+    assertEquals(((JsonArray) response.getData()).size(), 1);
   }
 
 

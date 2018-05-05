@@ -4,6 +4,8 @@ import com.amadeus.Amadeus;
 import com.amadeus.Params;
 import com.amadeus.Response;
 import com.amadeus.exceptions.ResponseException;
+import com.amadeus.resources.Location;
+import com.google.gson.Gson;
 
 /**
  * <p>
@@ -44,15 +46,16 @@ public class Airports {
    * @return an API response object
    * @throws ResponseException when an exception occurs
    */
-  public Response get(Params params) throws ResponseException {
-    return client.get("/v1/reference-data/locations/airports", params);
+  public Location[] get(Params params) throws ResponseException {
+    Response response = client.get("/v1/reference-data/locations/airports", params);
+    return new Gson().fromJson(response.getData(), Location[].class);
   }
 
   /**
    * Convenience method for calling <code>get</code> without any parameters.
    * @see Airports#get()
    */
-  public Response get() throws ResponseException {
+  public Location[] get() throws ResponseException {
     return get(null);
   }
 }

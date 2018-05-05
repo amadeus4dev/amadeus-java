@@ -4,6 +4,8 @@ import com.amadeus.Amadeus;
 import com.amadeus.Params;
 import com.amadeus.Response;
 import com.amadeus.exceptions.ResponseException;
+import com.amadeus.resources.FlightDate;
+import com.google.gson.Gson;
 
 /**
  * <p>
@@ -45,15 +47,16 @@ public class FlightDates {
    * @return an API response object
    * @throws ResponseException when an exception occurs
    */
-  public Response get(Params params) throws ResponseException {
-    return client.get("/v1/shopping/flight-dates", params);
+  public FlightDate[] get(Params params) throws ResponseException {
+    Response response = client.get("/v1/shopping/flight-dates", params);
+    return new Gson().fromJson(response.getData(), FlightDate[].class);
   }
 
   /**
    * Convenience method for calling <code>get</code> without any parameters.
    * @see FlightDates#get()
    */
-  public Response get() throws ResponseException {
+  public FlightDate[] get() throws ResponseException {
     return get(null);
   }
 }

@@ -75,6 +75,6 @@ javadoc {
 
 cobertura {
     coverageFormats = ['html', 'xml']
-    coverageIgnores = [ 'java.io.UnsupportedEncodingException' ]
+    coverageIgnores = [ 'java.io.UnsupportedEncodingException', 'com.amadeus.resources.*' ]
     coverageIgnoreTrivial = true
 }

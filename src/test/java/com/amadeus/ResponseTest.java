@@ -58,6 +58,22 @@ public class ResponseTest {
     assertNotNull(response.getData());
   }
 
+  @Test public void testParseObjectData() throws IOException {
+    when(connection.getResponseCode()).thenReturn(200);
+    when(connection.getHeaderField("Content-Type")).thenReturn(
+            "application/json");
+    when(connection.getInputStream()).thenReturn(
+            new ByteArrayInputStream("{ \"data\": { \"foo\": \"bar\"}}".getBytes()));
+
+    response.parse(client);
+    
+    assertEquals(response.getStatusCode(), 200);
+    assertEquals(response.getBody(), "{ \"data\": { \"foo\": \"bar\"}}");
+    assertTrue(response.isParsed());
+    assertNotNull(response.getResult());
+    assertNotNull(response.getData());
+  }
+
 
   @Test public void testNoData() throws IOException {
     when(connection.getResponseCode()).thenReturn(200);
