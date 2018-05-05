@@ -1,5 +1,7 @@
 package com.amadeus;
 
+import com.amadeus.referenceData.Location;
+import com.amadeus.referenceData.Locations;
 import com.amadeus.referenceData.Urls;
 
 /**
@@ -19,6 +21,8 @@ import com.amadeus.referenceData.Urls;
  * @hide
  */
 public class ReferenceData {
+  private Amadeus client;
+
   /**
    * <p>
    *   A namespaced client for the
@@ -28,10 +32,30 @@ public class ReferenceData {
   public Urls urls;
 
   /**
+   * <p>
+   *   A namespaced client for the
+   *   <code>/v2/reference-data/locations</code> endpoints.
+   * </p>
+   */
+  public Locations locations;
+
+  /**
    * Constructor.
    * @hide
    */
   public ReferenceData(Amadeus client) {
+    this.client = client;
     this.urls = new Urls(client);
+    this.locations = new Locations(client);
+  }
+
+  /**
+   * <p>
+   *   A namespaced client for the
+   *   <code>/v2/reference-data/location/:hotel_id</code> endpoints.
+   * </p>
+   */
+  public Location location(String locationId) {
+    return new Location(client, locationId);
   }
 }

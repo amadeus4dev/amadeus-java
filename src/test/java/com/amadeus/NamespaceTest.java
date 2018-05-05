@@ -6,6 +6,9 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import com.amadeus.exceptions.ResponseException;
+import com.amadeus.referenceData.Location;
+import com.amadeus.referenceData.Locations;
+import com.amadeus.referenceData.locations.Airports;
 import com.amadeus.referenceData.urls.CheckinLinks;
 import com.amadeus.shopping.FlightDates;
 import com.amadeus.shopping.FlightDestinations;
@@ -20,6 +23,8 @@ public class NamespaceTest {
   @Test public void testAllNamespacesExist() {
     Amadeus client = Amadeus.builder("id", "secret").build();
     assertNotNull(client.referenceData.urls.checkinLinks);
+    assertNotNull(client.referenceData.locations.airports);
+    assertNotNull(client.referenceData.location("123"));
     assertNotNull(client.travel.analytics.airTraffic.traveled);
     assertNotNull(client.travel.analytics.fareSearches);
     assertNotNull(client.shopping.flightDates);
@@ -41,6 +46,30 @@ public class NamespaceTest {
     CheckinLinks checkinLinks = new CheckinLinks(client);
     assertTrue(checkinLinks.get() instanceof Response);
     assertTrue(checkinLinks.get(params) instanceof Response);
+
+    when(client.get("/v1/reference-data/locations", null))
+            .thenReturn(mock(Response.class));
+    when(client.get("/v1/reference-data/locations", params))
+            .thenReturn(mock(Response.class));
+    Locations locations = new Locations(client);
+    assertTrue(locations.get() instanceof Response);
+    assertTrue(locations.get(params) instanceof Response);
+
+    when(client.get("/v1/reference-data/locations/airports", null))
+            .thenReturn(mock(Response.class));
+    when(client.get("/v1/reference-data/locations/airports", params))
+            .thenReturn(mock(Response.class));
+    Airports airports = new Airports(client);
+    assertTrue(airports.get() instanceof Response);
+    assertTrue(airports.get(params) instanceof Response);
+
+    when(client.get("/v1/reference-data/locations/ALHR", null))
+            .thenReturn(mock(Response.class));
+    when(client.get("/v1/reference-data/locations/ALHR", params))
+            .thenReturn(mock(Response.class));
+    Location location = new Location(client, "ALHR");
+    assertTrue(location.get() instanceof Response);
+    assertTrue(location.get(params) instanceof Response);
 
     when(client.get("/v1/travel/analytics/air-traffic/traveled", null))
             .thenReturn(mock(Response.class));
