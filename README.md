@@ -240,10 +240,12 @@ AirTraffic[] airTraffics = amadeus.travel.analytics.airTraffic.traveled.get(Para
 // Get list of hotels by cityCode
 HotelOffer[] offers = amadeus.shopping.hotelOffers.get(Params
   .with("cityCode", "PAR"));
+  
 // Get list of offers for a specific hotel
 HotelOffer offer = amadeus.shopping
   .hotel("SMPARCOL")
   .hotelOffers.get();
+  
 // Confirm the availability of a specific offer for a specific hotel
 Offer offer = amadeus.shopping
   .hotel("SMPARCOL")
