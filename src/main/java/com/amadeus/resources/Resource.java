@@ -3,6 +3,7 @@ package com.amadeus.resources;
 import com.amadeus.Amadeus;
 import com.amadeus.Response;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import lombok.Getter;
 
 /**
@@ -27,7 +28,8 @@ public class Resource {
    * @hide as only used internally
    */
   public static Resource[] fromArray(Response response, Class klass) {
-    Resource[] resources = (Resource[]) new Gson().fromJson(response.getData(), klass);
+    Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+    Resource[] resources = (Resource[]) gson.fromJson(response.getData(), klass);
     for (Resource resource : resources) {
       resource.response = response;
       resource.deSerializationClass = klass;
@@ -41,8 +43,10 @@ public class Resource {
    * @hide as only used internally
    */
   public static Resource fromObject(Response response, Class klass) {
-    Resource resource = (Resource) new Gson().fromJson(response.getData(), klass);
+    Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+    Resource resource = (Resource) gson.fromJson(response.getData(), klass);
     resource.response = response;
+    resource.deSerializationClass = klass;
     return resource;
   }
 }

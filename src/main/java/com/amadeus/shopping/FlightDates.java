@@ -6,7 +6,6 @@ import com.amadeus.Response;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.FlightDate;
 import com.amadeus.resources.Resource;
-import com.google.gson.Gson;
 
 /**
  * <p>
