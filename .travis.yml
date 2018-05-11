@@ -1,0 +1,22 @@
+language: java
+jdk:
+  - oraclejdk7
+  - oraclejdk8
+  - oraclejdk9
+  - openjdk7
+  - openjdk8
+  - openjdk9
+branches:
+  only:
+    - master
+    - /^v[0-9]/
+before_deploy: ./gradlew javadoc
+deploy:
+  - provider: pages
+    local-dir: build/docs/javadoc
+    github-token: $GITHUB_TOKEN
+    skip-cleanup: true
+    keep-history: true
+    on:
+      branch: master
+      jdk: openjdk8
