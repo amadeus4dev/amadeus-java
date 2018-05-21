@@ -212,7 +212,7 @@ CheckinLink[] checkinLinks = amadeus.referenceData.urls.checkinLinks.get(Params
 
 // Airport & City Search (autocomplete)
 // Find all the cities and airports starting by the keyword 'Lon'
-Locations[] locations = amadeus.referenceData.locations.get(Param
+Location[] locations = amadeus.referenceData.locations.get(Params
   .with("keyword", "lon")
   .and("subType", Locations.ANY));
 
@@ -221,14 +221,14 @@ Location location = amadeus.referenceData
   .location("ALHR").get();
 
 // Airport Nearest Relevant
-Locations[] locations = amadeus.referenceData.locations.airports.get(Params
-  .with("longitude", 49.0000)
-  .and("latitude", 2.55));
+Location[] locations = amadeus.referenceData.locations.airports.get(Params
+  .with("latitude", 49.0000)
+  .and("longitude", 2.55));
 
 // Flight Most Searched Destinations
 FareSearch[] fareSearches = amadeus.travel.analytics.fareSearches.get(Params
-  .with("origin", "NCE")
-  .and("sourceCountry", "FR")
+  .with("origin", "SFO")
+  .and("sourceCountry", "US")
   .and("period", "2017-08"));
 
 // Flight Most Traveled Destinations
