@@ -31,7 +31,6 @@ deploy:
       jdk: openjdk8
   - provider: script
     script: ./gradlew bintrayUpload -x test -Dbintray.user=$BINTRAY_USER -Dbintray.key=$BINTRAY_KEY -Dbuild.number=$TRAVIS_BUILD_NUMBER
-    script
     on:
         tags: true
         jdk: openjdk8
