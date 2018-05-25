@@ -1,9 +1,19 @@
+buildscript {
+  repositories {
+    mavenLocal()
+    mavenCentral()
+    jcenter()
+  }
+}
+
 plugins {
     id 'io.franzbecker.gradle-lombok' version '1.12'
     id 'java'
     id 'net.saliman.cobertura' version '2.5.4'
     id 'checkstyle'
     id 'osgi'
+    id "maven-publish"
+    id "com.jfrog.bintray" version "1.7.3"
 }
 
 sourceCompatibility = 1.7
@@ -21,6 +31,8 @@ configurations {
 }
 
 repositories {
+    mavenLocal()
+    mavenCentral()
     jcenter()
 }
 
@@ -72,9 +84,92 @@ javadoc {
     options.docletpath = configurations.doclava.files.asType(List)
 }
 
-
 cobertura {
     coverageFormats = ['html', 'xml']
     coverageIgnores = [ 'java.io.UnsupportedEncodingException', 'com.amadeus.resources.*' ]
     coverageIgnoreTrivial = true
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+
+def pomConfig = {
+    licenses {
+        license {
+            name POM_LICENCE_NAME
+            url POM_LICENCE_URL
+            distribution POM_LICENCE_DIST
+        }
+    }
+    developers {
+        developer {
+            id "aroux"
+            name "Anthony Roux"
+            email "anthony.roux@amadeus.com"
+        }
+        developer {
+            id "cbetta"
+            name "Cristiano Betta"
+            email "cristiano@betta.io"
+        }
+    }
+
+    scm {
+        url POM_SCM_URL
+    }
+}
+
+publishing {
+    publications {
+        mavenPublication(MavenPublication) {
+            from components.java
+            artifact sourcesJar {
+                classifier "sources"
+            }
+            artifact javadocJar {
+                classifier "javadoc"
+            }
+            groupId GROUP
+            artifactId POM_ARTIFACT_ID
+            version VERSION_NAME
+            pom.withXml {
+                def root = asNode()
+                root.appendNode('description', POM_DESCRIPTION)
+                root.appendNode('name', POM_NAME)
+                root.appendNode('url', POM_URL)
+                root.children().last() + pomConfig
+            }
+        }
+    }
+}
+
+bintray {
+	user = System.getProperty('bintray.user')
+	key = System.getProperty('bintray.key')
+	publications = ['mavenPublication']
+
+	pkg {
+		repo = BINTRAY_REPO
+		name = BINTRAY_NAME
+		licenses = ['MIT']
+		vcsUrl = POM_SCM_URL
+		version {
+			name = VERSION_NAME
+			desc = VERSION_NAME
+			released  = new Date()
+		}
+	}
+
 }
