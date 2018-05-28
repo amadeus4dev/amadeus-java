@@ -11,7 +11,23 @@ documentation](https://amadeus4dev.github.io/amadeus-java/) on
 
 ## Installation
 
-This library requires Java 1.7+. You can install install it via Maven or Gradle.
+This library requires Java 1.7+ and the the [Gson library](https://github.com/google/gson). 
+
+With __Maven__ you need to add to your pom.xml
+```xml
+<dependency>
+  <groupId>com.google.code.gson</groupId>
+  <artifactId>gson</artifactId>
+  <version>2.8.5</version>
+</dependency>
+```
+
+With __Gradle__
+```js
+compile 'com.google.code.gson:gson:2.8.5'
+```
+
+You can install the SDK via Maven or Gradle.
 
 #### Maven
 ```xml
@@ -25,7 +41,6 @@ This library requires Java 1.7+. You can install install it via Maven or Gradle.
 ```js
 compile "com.amadeus:amadeus-java:1.0.0"
 ```
-
 ## Getting Started
 
 To send make your first API call you will need to [register for an Amadeus
