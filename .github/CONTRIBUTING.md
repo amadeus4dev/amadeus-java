@@ -5,7 +5,7 @@ To run the project locally, clone the repository and install the dependencies.
 ```
 git clone https://github.com/amadeusdev/amadeus-java.git
 cd amadeus-java
-bundle
+gradle
 ```
 
 Make sure you have Gradle installed as well.
@@ -18,20 +18,20 @@ For example, for InteliJ follow [these instructions](https://projectlombok.org/s
 
 ### Running tests
 
-To run tests, simply run `./gradlew tests`.
+To run tests, simply run `./gradlew test`
 
 We are trying to keep 100% coverage, so keep an eye on the `coverage` folder for an overview of the coverage.
 
 ### Building
 
-To build the jar run `./gradlew clean build`.
+To build the jar run `./gradlew clean build`
 
 ### Using a library locally
 
 To use a library locally as a dependency, simply link to this library in your Gradle project by path:
 
 ```js
-compile files('/path/to/libs/amadeus-java-1.0.0-SNAPSHOT.jar')
+compile files('/path/to/libs/amadeus-java-1.0.1-SNAPSHOT.jar')
 ```
 
 ### Releasing
