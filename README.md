@@ -41,6 +41,7 @@ You can install the SDK via Maven or Gradle.
 ```js
 compile "com.amadeus:amadeus-java:1.0.1"
 ```
+
 ## Getting Started
 
 To send make your first API call you will need to [register for an Amadeus
