@@ -18,12 +18,12 @@ This library requires Java 1.7+. You can install install it via Maven or Gradle.
 <dependency>
   <groupId>com.amadeus</groupId>
   <artifactId>amadeus-java</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
 </dependency>
 ```
 #### Gradle
 ```js
-compile "com.amadeus:amadeus-java:1.0.0"
+compile "com.amadeus:amadeus-java:1.0.1"
 ```
 
 ## Getting Started
