@@ -1,13 +1,12 @@
 package com.amadeus;
 
 /**
- * A class for constant variables
+ * A class for constant variables.
  *
  * <pre>
  *  To use: Constants.VARIABLE
  * </pre>
  */
-
 public final class Constants {
   // HTTP verbs
   public static final String GET = "GET";
