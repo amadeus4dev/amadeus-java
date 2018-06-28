@@ -1,6 +1,7 @@
 package com.amadeus.client;
 
 import com.amadeus.Configuration;
+import com.amadeus.Constants;
 import com.amadeus.HTTPClient;
 import com.amadeus.Params;
 import com.amadeus.Response;
@@ -64,19 +65,19 @@ public class AccessToken {
   private Response fetchAccessToken() throws ResponseException {
     Configuration config = client.getConfiguration();
     return client.unauthenticatedRequest(
-           "POST",
-           "/v1/security/oauth2/token",
-            Params.with("grant_type", "client_credentials")
-                  .and("client_id", config.getClientId())
-                  .and("client_secret", config.getClientSecret()),
+           Constants.POST,
+           Constants.AUTH_URL,
+            Params.with(Constants.GRANT_TYPE, Constants.CLIENT_CREDENTIALS)
+                  .and(Constants.CLIENT_ID, config.getClientId())
+                  .and(Constants.CLIENT_SECRET, config.getClientSecret()),
            null
     );
   }
 
   // Store the fetched access token and expiry date
   private void storeAccessToken(JsonObject result) {
-    this.accessToken = result.get("access_token").getAsString();
-    int expiresIn = result.get("expires_in").getAsInt();
+    this.accessToken = result.get(Constants.ACCESS_TOKEN).getAsString();
+    int expiresIn = result.get(Constants.EXPIRES_IN).getAsInt();
     this.expiresAt = System.currentTimeMillis() + expiresIn * 1000L;
   }
 }
