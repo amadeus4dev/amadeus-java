@@ -1,5 +1,6 @@
 package com.amadeus;
 
+import com.amadeus.Constants;
 import com.amadeus.client.AccessToken;
 import com.amadeus.exceptions.NetworkException;
 import com.amadeus.exceptions.ResponseException;
@@ -35,7 +36,7 @@ public class HTTPClient {
    * @see Amadeus#get(String, Params)
    */
   public Response get(String path) throws ResponseException {
-    return request("GET", path, null);
+    return request(Constants.GET, path, null);
   }
 
   /**
@@ -62,7 +63,7 @@ public class HTTPClient {
    * @return a Response object containing the status code, body, and parsed data.
    */
   public Response get(String path, Params params) throws ResponseException {
-    return request("GET", path, params);
+    return request(Constants.GET, path, params);
   }
 
   /**
@@ -72,7 +73,7 @@ public class HTTPClient {
    * @see Amadeus#post(String, Params)
    */
   public Response post(String path) throws ResponseException {
-    return request("POST", path, null);
+    return request(Constants.POST, path, null);
   }
 
   /**
@@ -99,7 +100,7 @@ public class HTTPClient {
    * @return a Response object containing the status code, body, and parsed data.
    */
   public Response post(String path, Params params) throws ResponseException {
-    return request("POST", path, params);
+    return request(Constants.POST, path, params);
   }
 
   /**
@@ -123,7 +124,7 @@ public class HTTPClient {
    * @throws ResponseException if the page could not be found
    */
   public Response previous(Response response) throws ResponseException {
-    return page("previous", response);
+    return page(Constants.PREVIOUS, response);
   }
 
   /**
@@ -133,7 +134,7 @@ public class HTTPClient {
    * @throws ResponseException if the page could not be found
    */
   public Resource[] previous(Resource resource) throws ResponseException {
-    return page("previous", resource);
+    return page(Constants.PREVIOUS, resource);
   }
 
   /**
@@ -143,7 +144,7 @@ public class HTTPClient {
    * @throws ResponseException if the page could not be found
    */
   public Response next(Response response) throws ResponseException {
-    return page("next", response);
+    return page(Constants.NEXT, response);
   }
 
   /**
@@ -153,7 +154,7 @@ public class HTTPClient {
    * @throws ResponseException if the page could not be found
    */
   public Resource[] next(Resource resource) throws ResponseException {
-    return page("next", resource);
+    return page(Constants.NEXT, resource);
   }
 
   /**
@@ -163,7 +164,7 @@ public class HTTPClient {
    * @throws ResponseException if the page could not be found
    */
   public Response first(Response response) throws ResponseException {
-    return page("first", response);
+    return page(Constants.FIRST, response);
   }
 
   /**
@@ -173,7 +174,7 @@ public class HTTPClient {
    * @throws ResponseException if the page could not be found
    */
   public Resource[] first(Resource resource) throws ResponseException {
-    return page("first", resource);
+    return page(Constants.FIRST, resource);
   }
 
   /**
@@ -183,7 +184,7 @@ public class HTTPClient {
    * @throws ResponseException if the page could not be found
    */
   public Response last(Response response) throws ResponseException {
-    return page("last", response);
+    return page(Constants.LAST, response);
   }
 
   /**
@@ -193,7 +194,7 @@ public class HTTPClient {
    * @throws ResponseException if the page could not be found
    */
   public Resource[] last(Resource resource) throws ResponseException {
-    return page("last", resource);
+    return page(Constants.LAST, resource);
   }
 
   // A generic method for making requests of any verb.
@@ -237,7 +238,7 @@ public class HTTPClient {
 
   // Writes the parameters to the request.
   private void write(Request request) throws IOException {
-    if (request.getVerb() == "POST" && request.getParams() != null) {
+    if (request.getVerb() == Constants.POST && request.getParams() != null) {
       OutputStream os = request.getConnection().getOutputStream();
       BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
       writer.write(request.getParams().toQueryString());

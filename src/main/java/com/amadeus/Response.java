@@ -1,5 +1,6 @@
 package com.amadeus;
 
+import com.amadeus.Constants;
 import com.amadeus.exceptions.AuthenticationException;
 import com.amadeus.exceptions.ClientException;
 import com.amadeus.exceptions.NotFoundException;
@@ -152,7 +153,7 @@ public class Response {
 
   // Checks if the response headers include a JSON mime-type.
   private boolean hasJsonHeader() {
-    String contentType = getRequest().getConnection().getHeaderField("Content-Type");
+    String contentType = getRequest().getConnection().getHeaderField(Constants.CONTENT_TYPE);
     String[] expectedContentTypes = new String[] {
       "application/json", "application/vnd.amadeus+json"
     };

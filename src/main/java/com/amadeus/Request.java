@@ -1,5 +1,7 @@
 package com.amadeus;
 
+import com.amadeus.Constants;
+
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -112,7 +114,7 @@ public class Request {
 
   // Determines the scheme based on the SSL value
   private void determineScheme() {
-    this.scheme = isSsl() ? "https" : "http";
+    this.scheme = isSsl() ? Constants.HTTPS : Constants.HTTP;
   }
 
   // Prepares the full URL based on the scheme, host, port and path.
@@ -124,10 +126,10 @@ public class Request {
   // Prepares the headers to be sent in the request
   private void prepareHeaders() {
     this.headers = new HashMap<String, String>();
-    headers.put("User-Agent", buildUserAgent());
-    headers.put("Accept", "application/json, application/vnd.amadeus+json");
+    headers.put(Constants.USER_AGENT, buildUserAgent());
+    headers.put(Constants.ACCEPT, "application/json, application/vnd.amadeus+json");
     if (bearerToken != null) {
-      headers.put("Authorization", bearerToken);
+      headers.put(Constants.AUTHORIZATION, bearerToken);
     }
   }
 
@@ -144,7 +146,7 @@ public class Request {
 
   // Gets the serialized params, only if this is a Get call
   private String getQueryParams() {
-    if (verb == "GET" && params != null) {
+    if (verb == Constants.GET && params != null) {
       return params.toQueryString();
     } else {
       return "";
