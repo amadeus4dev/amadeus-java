@@ -6,6 +6,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import com.amadeus.exceptions.ResponseException;
+import com.amadeus.referenceData.Airlines;
 import com.amadeus.referenceData.Location;
 import com.amadeus.referenceData.Locations;
 import com.amadeus.referenceData.locations.Airports;
@@ -16,6 +17,7 @@ import com.amadeus.shopping.FlightOffers;
 import com.amadeus.shopping.HotelOffers;
 import com.amadeus.shopping.hotel.Offer;
 import com.amadeus.travel.analytics.FareSearches;
+import com.amadeus.travel.analytics.airTraffic.Booked;
 import com.amadeus.travel.analytics.airTraffic.Traveled;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -33,7 +35,9 @@ public class NamespaceTest {
     assertNotNull(client.referenceData.urls.checkinLinks);
     assertNotNull(client.referenceData.locations.airports);
     assertNotNull(client.referenceData.location("123"));
+    assertNotNull(client.referenceData.airlines);
     assertNotNull(client.travel.analytics.airTraffic.traveled);
+    assertNotNull(client.travel.analytics.airTraffic.booked);
     assertNotNull(client.travel.analytics.fareSearches);
     assertNotNull(client.shopping.flightDates);
     assertNotNull(client.shopping.flightDestinations);
@@ -104,6 +108,17 @@ public class NamespaceTest {
     assertNotNull(location.get());
     assertNotNull(location.get(params));
 
+    // Testing airlines search
+    when(client.get("/v1/reference-data/airlines", null))
+            .thenReturn(multiResponse);
+    when(client.get("/v1/reference-data/airlines", params))
+            .thenReturn(multiResponse);
+    Airlines airlines = new Airlines(client);
+    assertNotNull(airlines.get());
+    assertNotNull(airlines.get(params));
+    assertEquals(airlines.get().length, 2);
+
+
     // Testing traveled stats
     when(client.get("/v1/travel/analytics/air-traffic/traveled", null))
             .thenReturn(multiResponse);
@@ -113,6 +128,16 @@ public class NamespaceTest {
     assertNotNull(traveled.get());
     assertNotNull(traveled.get(params));
     assertEquals(traveled.get().length, 2);
+
+    // Testing booked stats
+    when(client.get("/v1/travel/analytics/air-traffic/booked", null))
+            .thenReturn(multiResponse);
+    when(client.get("/v1/travel/analytics/air-traffic/booked", params))
+            .thenReturn(multiResponse);
+    Booked booked = new Booked(client);
+    assertNotNull(booked.get());
+    assertNotNull(booked.get(params));
+    assertEquals(booked.get().length, 2);
 
     // Testing fare search stats
     when(client.get("/v1/travel/analytics/fare-searches", null))

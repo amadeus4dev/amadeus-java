@@ -1,5 +1,6 @@
 package com.amadeus;
 
+import com.amadeus.referenceData.Airlines;
 import com.amadeus.referenceData.Location;
 import com.amadeus.referenceData.Locations;
 import com.amadeus.referenceData.Urls;
@@ -40,6 +41,15 @@ public class ReferenceData {
   public Locations locations;
 
   /**
+   * <p>
+   *   A namespaced client for the
+   *   <code>/v2/reference-data/airlines</code> endpoints.
+   * </p>
+   */
+  public Airlines airlines;
+
+
+  /**
    * Constructor.
    * @hide
    */
@@ -47,6 +57,7 @@ public class ReferenceData {
     this.client = client;
     this.urls = new Urls(client);
     this.locations = new Locations(client);
+    this.airlines = new Airlines(client);
   }
 
   /**

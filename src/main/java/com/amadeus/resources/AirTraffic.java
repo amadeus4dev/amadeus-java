@@ -1,6 +1,5 @@
 package com.amadeus.resources;
 
-import com.amadeus.travel.analytics.airTraffic.Traveled;
 import lombok.Getter;
 import lombok.ToString;
 
