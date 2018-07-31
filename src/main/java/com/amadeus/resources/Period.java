@@ -23,15 +23,15 @@ public class Period extends Resource {
   public class Analytics {
     protected Analytics() {}
 
-    private @Getter Travellers travellers;
+    private @Getter Travelers travelers;
 
     /**
      * An Period-related object as returned by the BusiestPeriod API.
      * @see Traveled#get()
      */
     @ToString
-    public class Travellers {
-      protected Travellers() {}
+    public class Travelers {
+      protected Travelers() {}
 
       private @Getter Double score;
     }

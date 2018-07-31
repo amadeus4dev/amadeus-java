@@ -24,8 +24,8 @@ import com.google.gson.Gson;
  */
 public class BusiestPeriod {
   private Amadeus client;
-  public static String ARRIVING = "ARRIVING";
-  public static String DEPARTING = "DEPARTING";
+  public static final String ARRIVING = "ARRIVING";
+  public static final String DEPARTING = "DEPARTING";
 
   /**
    * Constructor.

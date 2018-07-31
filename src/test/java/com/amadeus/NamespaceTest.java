@@ -18,6 +18,7 @@ import com.amadeus.shopping.HotelOffers;
 import com.amadeus.shopping.hotel.Offer;
 import com.amadeus.travel.analytics.FareSearches;
 import com.amadeus.travel.analytics.airTraffic.Booked;
+import com.amadeus.travel.analytics.airTraffic.BusiestPeriod;
 import com.amadeus.travel.analytics.airTraffic.Traveled;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -138,6 +139,16 @@ public class NamespaceTest {
     assertNotNull(booked.get());
     assertNotNull(booked.get(params));
     assertEquals(booked.get().length, 2);
+
+    // Testing busiest traveling period
+    when(client.get("/v1/travel/analytics/air-traffic/busiest-period", null))
+            .thenReturn(multiResponse);
+    when(client.get("/v1/travel/analytics/air-traffic/busiest-period", params))
+            .thenReturn(multiResponse);
+    BusiestPeriod busiestPeriod  = new BusiestPeriod(client);
+    assertNotNull(busiestPeriod.get());
+    assertNotNull(busiestPeriod.get(params));
+    assertEquals(busiestPeriod.get().length, 2);
 
     // Testing fare search stats
     when(client.get("/v1/travel/analytics/fare-searches", null))
