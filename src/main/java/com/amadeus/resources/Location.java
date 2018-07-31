@@ -71,7 +71,7 @@ public class Location extends Resource {
     protected Analytics() {}
 
     private @Getter Flights flights;
-    private @Getter Travellers travellers;
+    private @Getter Travelers travelers;
 
     /**
      * An Location-related object as returned by the Locaion API.
@@ -89,8 +89,8 @@ public class Location extends Resource {
      * @see com.amadeus.referenceData.Location#get()
      */
     @ToString
-    private class Travellers {
-      protected Travellers() {}
+    private class Travelers {
+      protected Travelers() {}
 
       private @Getter Double score;
     }

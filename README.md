@@ -226,6 +226,10 @@ FlightOffer[] flightOffers = amadeus.shopping.flightOffers.get(Params
 CheckinLink[] checkinLinks = amadeus.referenceData.urls.checkinLinks.get(Params
   .with("airline", "1X"));
 
+// Airline Code LookUp
+Airline[] airlines = amadeus.referenceData.airlines.get(Params
+  .with("IATACode", "BA"));
+
 // Airport & City Search (autocomplete)
 // Find all the cities and airports starting by the keyword 'Lon'
 Location[] locations = amadeus.referenceData.locations.get(Params
@@ -251,6 +255,17 @@ FareSearch[] fareSearches = amadeus.travel.analytics.fareSearches.get(Params
 AirTraffic[] airTraffics = amadeus.travel.analytics.airTraffic.traveled.get(Params
   .with("origin", "NCE")
   .and("period", "2017-08"));
+
+// Flight Most Booked Destinations
+AirTraffic[] airTraffics = amadeus.travel.analytics.airTraffic.booked.get(Params
+  .with("origin", "NCE")
+  .and("period", "2017-08"));
+
+// Flight Busiest Traveling Period
+Period[] busiestPeriods = amadeus.travel.analytics.airTraffic.busiestPeriod.get(Params
+  .with("cityCode", "PAR")
+  .and("period", "2017")
+  .and("direction", BusiestPeriod.ARRIVING);
 
 // Hotel Search API
 // Get list of hotels by cityCode

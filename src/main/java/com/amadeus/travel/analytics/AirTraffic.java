@@ -1,6 +1,8 @@
 package com.amadeus.travel.analytics;
 
 import com.amadeus.Amadeus;
+import com.amadeus.travel.analytics.airTraffic.Booked;
+import com.amadeus.travel.analytics.airTraffic.BusiestPeriod;
 import com.amadeus.travel.analytics.airTraffic.Traveled;
 
 /**
@@ -29,10 +31,28 @@ public class AirTraffic {
   public Traveled traveled;
 
   /**
+   * <p>
+   *   A namespaced client for the
+   *   <code>/v1/travel/analytics/air-traffic/booked</code> endpoints.
+   * </p>
+   */
+  public Booked booked;
+
+  /**
+   * <p>
+   *   A namespaced client for the
+   *   <code>/v1/travel/analytics/air-traffic/busiest-period</code> endpoints.
+   * </p>
+   */
+  public BusiestPeriod busiestPeriod;
+
+  /**
    * Constructor.
    * @hide
    */
   public AirTraffic(Amadeus client) {
     this.traveled = new Traveled(client);
+    this.booked = new Booked(client);
+    this.busiestPeriod = new BusiestPeriod(client);
   }
 }

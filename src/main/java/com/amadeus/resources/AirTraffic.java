@@ -1,6 +1,5 @@
 package com.amadeus.resources;
 
-import com.amadeus.travel.analytics.airTraffic.Traveled;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -26,7 +25,7 @@ public class AirTraffic extends Resource {
     protected Analytics() {}
 
     private @Getter Flights flights;
-    private @Getter Travellers travellers;
+    private @Getter Travelers travelers;
 
     /**
      * An AirTraffic-related object as returned by the AirTraffic API.
@@ -44,8 +43,8 @@ public class AirTraffic extends Resource {
      * @see Traveled#get()
      */
     @ToString
-    public class Travellers {
-      protected Travellers() {}
+    public class Travelers {
+      protected Travelers() {}
 
       private @Getter Double score;
     }
