@@ -34,12 +34,12 @@ You can install the SDK via Maven or Gradle.
 <dependency>
   <groupId>com.amadeus</groupId>
   <artifactId>amadeus-java</artifactId>
-  <version>1.0.1</version>
+  <version>1.1.0</version>
 </dependency>
 ```
 #### Gradle
 ```js
-compile "com.amadeus:amadeus-java:1.0.1"
+compile "com.amadeus:amadeus-java:1.1.0"
 ```
 
 ## Getting Started
@@ -208,23 +208,23 @@ Amadeus amadeus = Amadeus
 ```java
 // Flight Cheapest Date Search
 FlightDate[] flightDates = amadeus.shopping.flightDates.get(Params
-  .with("origin", "NCE")
-  .and("destination", "PAR")
-  .and("duration", 1));
+  .with("origin", "LON")
+  .and("destination", "FRA")
+  .and("duration", 3));
 
 // Flight Inspiration Search
 FlightDestination[] flightDestinations = amadeus.shopping.flightDestinations.get(Params
-  .with("origin", "MAD"));
+  .with("origin", "LON"));
 
 // Flight Low-fare Search
 FlightOffer[] flightOffers = amadeus.shopping.flightOffers.get(Params
   .with("origin", "MAD")
   .and("destination", "OPO")
-  .and("departureDate", "2018-07-08"));
+  .and("departureDate", "2018-11-01"));
 
 // Flight Check-in Links
 CheckinLink[] checkinLinks = amadeus.referenceData.urls.checkinLinks.get(Params
-  .with("airline", "1X"));
+  .with("airline", "BA"));
 
 // Airline Code LookUp
 Airline[] airlines = amadeus.referenceData.airlines.get(Params
@@ -263,7 +263,7 @@ AirTraffic[] airTraffics = amadeus.travel.analytics.airTraffic.booked.get(Params
 
 // Flight Busiest Traveling Period
 Period[] busiestPeriods = amadeus.travel.analytics.airTraffic.busiestPeriod.get(Params
-  .with("cityCode", "PAR")
+  .with("cityCode", "MAD")
   .and("period", "2017")
   .and("direction", BusiestPeriod.ARRIVING);
 
