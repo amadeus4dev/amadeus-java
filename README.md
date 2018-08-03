@@ -265,7 +265,7 @@ AirTraffic[] airTraffics = amadeus.travel.analytics.airTraffic.booked.get(Params
 Period[] busiestPeriods = amadeus.travel.analytics.airTraffic.busiestPeriod.get(Params
   .with("cityCode", "MAD")
   .and("period", "2017")
-  .and("direction", BusiestPeriod.ARRIVING);
+  .and("direction", BusiestPeriod.ARRIVING));
 
 // Hotel Search API
 // Get list of hotels by cityCode
