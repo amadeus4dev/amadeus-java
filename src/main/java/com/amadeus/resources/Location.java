@@ -24,11 +24,11 @@ public class Location extends Resource {
   private @Getter Double relevance;
 
   /**
-   * An Location-related object as returned by the Locaion API.
+   * An Location-related object as returned by the Location API.
    * @see com.amadeus.referenceData.Location#get()
    */
   @ToString
-  private class GeoCode {
+  public class GeoCode {
     protected GeoCode() {}
 
     private @Getter double latitude;
@@ -36,11 +36,11 @@ public class Location extends Resource {
   }
 
   /**
-   * An Location-related object as returned by the Locaion API.
+   * An Location-related object as returned by the Location API.
    * @see com.amadeus.referenceData.Location#get()
    */
   @ToString
-  private class Address {
+  public class Address {
     protected Address() {}
 
     private @Getter String cityName;
@@ -55,7 +55,7 @@ public class Location extends Resource {
    * @see com.amadeus.referenceData.Location#get()
    */
   @ToString
-  private class Distance {
+  public class Distance {
     protected Distance() {}
 
     private @Getter Double value;
@@ -67,7 +67,7 @@ public class Location extends Resource {
    * @see com.amadeus.referenceData.Location#get()
    */
   @ToString
-  private class Analytics {
+  public class Analytics {
     protected Analytics() {}
 
     private @Getter Flights flights;
@@ -78,7 +78,7 @@ public class Location extends Resource {
      * @see com.amadeus.referenceData.Location#get()
      */
     @ToString
-    private class Flights {
+    public class Flights {
       protected Flights() {}
 
       private @Getter Double score;
@@ -89,7 +89,7 @@ public class Location extends Resource {
      * @see com.amadeus.referenceData.Location#get()
      */
     @ToString
-    private class Travelers {
+    public class Travelers {
       protected Travelers() {}
 
       private @Getter Double score;
