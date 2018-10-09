@@ -21,7 +21,7 @@ public class HotelOffer extends Resource {
    * @see com.amadeus.shopping.HotelOffers#get()
    */
   @ToString
-  private class Hotel {
+  public class Hotel {
     protected Hotel() {}
 
     private @Getter String type;
@@ -70,7 +70,7 @@ public class HotelOffer extends Resource {
    * @see com.amadeus.shopping.HotelOffers#get()
    */
   @ToString
-  private class RateFamily {
+  public class RateFamily {
     protected RateFamily() {}
 
     private @Getter String code;
@@ -82,7 +82,7 @@ public class HotelOffer extends Resource {
    * @see com.amadeus.shopping.HotelOffers#get()
    */
   @ToString
-  private class Commission {
+  public class Commission {
     protected Commission() {}
 
     private @Getter String percentage;
@@ -95,7 +95,7 @@ public class HotelOffer extends Resource {
    * @see com.amadeus.shopping.HotelOffers#get()
    */
   @ToString
-  private class RoomDetails {
+  public class RoomDetails {
     protected RoomDetails() {}
 
     private @Getter String type;
@@ -108,7 +108,7 @@ public class HotelOffer extends Resource {
    * @see com.amadeus.shopping.HotelOffers#get()
    */
   @ToString
-  private class EstimatedRoomType {
+  public class EstimatedRoomType {
     protected EstimatedRoomType() {}
 
     private @Getter String category;
@@ -121,7 +121,7 @@ public class HotelOffer extends Resource {
    * @see com.amadeus.shopping.HotelOffers#get()
    */
   @ToString
-  private class HotelPrice {
+  public class HotelPrice {
     protected HotelPrice() {}
 
     private @Getter String currency;
@@ -136,7 +136,7 @@ public class HotelOffer extends Resource {
    * @see com.amadeus.shopping.HotelOffers#get()
    */
   @ToString
-  private class HotelTax {
+  public class HotelTax {
     protected HotelTax() {}
 
     private @Getter String currency;
@@ -154,7 +154,7 @@ public class HotelOffer extends Resource {
    * @see com.amadeus.shopping.HotelOffers#get()
    */
   @ToString
-  private class PriceVariations {
+  public class PriceVariations {
     protected PriceVariations() {}
 
     private @Getter BaseTotalAmount average;
@@ -166,7 +166,7 @@ public class HotelOffer extends Resource {
    * @see com.amadeus.shopping.HotelOffers#get()
    */
   @ToString
-  private class PriceVariation {
+  public class PriceVariation {
     protected PriceVariation() {}
 
     private @Getter String startDate;
@@ -180,7 +180,7 @@ public class HotelOffer extends Resource {
    * @see com.amadeus.shopping.HotelOffers#get()
    */
   @ToString
-  private class BaseTotalAmount {
+  public class BaseTotalAmount {
     protected BaseTotalAmount() {}
 
     private @Getter String base;
@@ -192,7 +192,7 @@ public class HotelOffer extends Resource {
    * @see com.amadeus.shopping.HotelOffers#get()
    */
   @ToString
-  private class Guests {
+  public class Guests {
     protected Guests() {}
 
     private @Getter Integer adults;
@@ -204,7 +204,7 @@ public class HotelOffer extends Resource {
    * @see com.amadeus.shopping.HotelOffers#get()
    */
   @ToString
-  private class TextWithLanguageType {
+  public class TextWithLanguageType {
     protected TextWithLanguageType() {}
 
     private @Getter String lang;
@@ -216,7 +216,7 @@ public class HotelOffer extends Resource {
    * @see com.amadeus.shopping.HotelOffers#get()
    */
   @ToString
-  private class MediaURI {
+  public class MediaURI {
     protected MediaURI() {}
 
     private @Getter String uri;
@@ -227,7 +227,7 @@ public class HotelOffer extends Resource {
    * @see com.amadeus.shopping.HotelOffers#get()
    */
   @ToString
-  private class AddressType {
+  public class AddressType {
     protected AddressType() {}
 
     private @Getter String[] lines;
@@ -242,7 +242,7 @@ public class HotelOffer extends Resource {
    * @see com.amadeus.shopping.HotelOffers#get()
    */
   @ToString
-  private class HotelContact {
+  public class HotelContact {
     protected HotelContact() {}
 
     private @Getter String phone;
@@ -254,7 +254,7 @@ public class HotelOffer extends Resource {
    * @see com.amadeus.shopping.HotelOffers#get()
    */
   @ToString
-  private class PolicyDetails {
+  public class PolicyDetails {
     protected PolicyDetails() {}
 
     private @Getter GuaranteePolicy guarantee;
@@ -269,7 +269,7 @@ public class HotelOffer extends Resource {
    * @see com.amadeus.shopping.HotelOffers#get()
    */
   @ToString
-  private class GuaranteePolicy {
+  public class GuaranteePolicy {
     protected GuaranteePolicy() {}
 
     private @Getter String amount;
@@ -283,7 +283,7 @@ public class HotelOffer extends Resource {
    * @see com.amadeus.shopping.HotelOffers#get()
    */
   @ToString
-  private class CancellationPolicy {
+  public class CancellationPolicy {
     protected CancellationPolicy() {}
 
     private @Getter String type;
@@ -299,7 +299,7 @@ public class HotelOffer extends Resource {
    * @see com.amadeus.shopping.HotelOffers#get()
    */
   @ToString
-  private class PaymentPolicy {
+  public class PaymentPolicy {
     protected PaymentPolicy() {}
 
     private @Getter String[] creditCards;
