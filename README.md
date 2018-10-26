@@ -59,7 +59,7 @@ import com.amadeus.resources.Location;
 public class AmadeusExample {
   public static void main(String[] args) throws ResponseException {
     Amadeus amadeus = Amadeus
-            .builder("[client_id]", "[client_secret]")
+            .builder("REPLACE_BY_YOUR_API_KEY", "REPLACE_BY_YOUR_API_SECRET")
             .build();
 
     Location[] locations = amadeus.referenceData.locations.get(Params
@@ -78,7 +78,7 @@ The client can be initialized directly.
 ```java
 //Initialize using parameters
 Amadeus amadeus = Amadeus
-        .builder("[client_id]", "[client_secret]")
+        .builder("REPLACE_BY_YOUR_API_KEY", "REPLACE_BY_YOUR_API_SECRET")
         .build();
 ```
 
@@ -123,10 +123,10 @@ in-depth information about every SDK method, its arguments and return types.
 
 This library conveniently maps every API path to a similar path.
 
-For example, `GET /v2/reference-data/urls/checkin-links?airline=1X` would be:
+For example, `GET /v2/reference-data/urls/checkin-links?airline=BA` would be:
 
 ```java
-amadeus.referenceData.urls.checkinLinks.get(Params.with("airline", "1X"));
+amadeus.referenceData.urls.checkinLinks.get(Params.with("airline", "BA"));
 ```
 
 Similarly, to select a resource by ID, you can pass in the ID to the **singular** path.
@@ -142,7 +142,7 @@ Keep in mind, this returns a raw `Resource`
 
 ```java
 Resource resource = amadeus.get('/v2/reference-data/urls/checkin-links',
-  Params.with("airline", "1X"));
+  Params.with("airline", "BA"));
 
 resource.getResult();
 ```
@@ -181,13 +181,18 @@ If a page is not available, the method will return `null`.
 
 The SDK makes it easy to add your own logger.
 
-```java
-require 'logger'
+```java TO FIX
+import java.util.logging.Logger;
 
-amadeus = Amadeus::Client.new(
-  client_id: '...',
-  client_secret: '...',
-  logger: Logger.new(STDOUT)
+// Assumes the current class is called MyLogger
+private final static Logger LOGGER = Logger.getLogger(MyLogger.class.getName());
+
+...
+
+Amadeus amadeus = Amadeus
+        .builder("REPLACE_BY_YOUR_API_KEY", "REPLACE_BY_YOUR_API_KEY")
+        .setLogger(LOGGER)
+        .build();
 )
 ```
 
@@ -198,29 +203,27 @@ variable.
 
 ```java
 Amadeus amadeus = Amadeus
-        .builder("[client_id]", "[client_secret]")
+        .builder("REPLACE_BY_YOUR_API_KEY", "REPLACE_BY_YOUR_API_SECRET")
         .setLogLevel("debug") // or warn
         .build();
 ```
 
 ## List of supported endpoints
-
 ```java
-// Flight Cheapest Date Search
-FlightDate[] flightDates = amadeus.shopping.flightDates.get(Params
-  .with("origin", "LON")
-  .and("destination", "FRA")
-  .and("duration", 3));
-
 // Flight Inspiration Search
 FlightDestination[] flightDestinations = amadeus.shopping.flightDestinations.get(Params
-  .with("origin", "LON"));
+  .with("origin", "MAD"));
+
+// Flight Cheapest Date Search
+FlightDate[] flightDates = amadeus.shopping.flightDates.get(Params
+  .with("origin", "NYC")
+  .and("destination", "MAD");
 
 // Flight Low-fare Search
 FlightOffer[] flightOffers = amadeus.shopping.flightOffers.get(Params
-  .with("origin", "MAD")
-  .and("destination", "OPO")
-  .and("departureDate", "2018-11-01"));
+  .with("origin", "NYC")
+  .and("destination", "MAD")
+  .and("departureDate", "2019-08-01"));
 
 // Flight Check-in Links
 CheckinLink[] checkinLinks = amadeus.referenceData.urls.checkinLinks.get(Params
@@ -231,11 +234,10 @@ Airline[] airlines = amadeus.referenceData.airlines.get(Params
   .with("IATACode", "BA"));
 
 // Airport & City Search (autocomplete)
-// Find all the cities and airports starting by the keyword 'Lon'
+// Find all the cities and airports starting by the keyword 'LON'
 Location[] locations = amadeus.referenceData.locations.get(Params
-  .with("keyword", "lon")
+  .with("keyword", "LON")
   .and("subType", Locations.ANY));
-
 // Get a specific city or airport based on its id
 Location location = amadeus.referenceData
   .location("ALHR").get();
@@ -247,19 +249,19 @@ Location[] locations = amadeus.referenceData.locations.airports.get(Params
 
 // Flight Most Searched Destinations
 FareSearch[] fareSearches = amadeus.travel.analytics.fareSearches.get(Params
-  .with("origin", "SFO")
-  .and("sourceCountry", "US")
-  .and("period", "2017-08"));
-
-// Flight Most Traveled Destinations
-AirTraffic[] airTraffics = amadeus.travel.analytics.airTraffic.traveled.get(Params
-  .with("origin", "NCE")
+  .with("origin", "MAD")
+  .and("sourceCountry", "SP")
   .and("period", "2017-08"));
 
 // Flight Most Booked Destinations
 AirTraffic[] airTraffics = amadeus.travel.analytics.airTraffic.booked.get(Params
-  .with("origin", "NCE")
+  .with("origin", "MAD")
   .and("period", "2017-08"));
+
+// Flight Most Traveled Destinations
+AirTraffic[] airTraffics = amadeus.travel.analytics.airTraffic.traveled.get(Params
+  .with("origin", "MAD")
+  .and("period", "2017-01"));
 
 // Flight Busiest Traveling Period
 Period[] busiestPeriods = amadeus.travel.analytics.airTraffic.busiestPeriod.get(Params
@@ -268,15 +270,13 @@ Period[] busiestPeriods = amadeus.travel.analytics.airTraffic.busiestPeriod.get(
   .and("direction", BusiestPeriod.ARRIVING));
 
 // Hotel Search API
-// Get list of hotels by cityCode
+// Get list of hotels by city code
 HotelOffer[] offers = amadeus.shopping.hotelOffers.get(Params
-  .with("cityCode", "PAR"));
-  
+  .with("cityCode", "MAD"));
 // Get list of offers for a specific hotel
 HotelOffer offer = amadeus.shopping
   .hotel("SMPARCOL")
   .hotelOffers.get();
-  
 // Confirm the availability of a specific offer for a specific hotel
 Offer offer = amadeus.shopping
   .hotel("SMPARCOL")
