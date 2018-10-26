@@ -190,7 +190,7 @@ private final static Logger LOGGER = Logger.getLogger(MyLogger.class.getName());
 ...
 
 Amadeus amadeus = Amadeus
-        .builder("REPLACE_BY_YOUR_API_KEY", "REPLACE_BY_YOUR_API_KEY")
+        .builder("REPLACE_BY_YOUR_API_KEY", "REPLACE_BY_YOUR_API_SECRET")
         .setLogger(LOGGER)
         .build();
 )
