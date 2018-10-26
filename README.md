@@ -203,7 +203,7 @@ variable.
 
 ```java
 Amadeus amadeus = Amadeus
-        .builder("REPLACE_BY_YOUR_API_KEY", "REPLACE_BY_YOUR_API_KEY")
+        .builder("REPLACE_BY_YOUR_API_KEY", "REPLACE_BY_YOUR_API_SECRET")
         .setLogLevel("debug") // or warn
         .build();
 ```
