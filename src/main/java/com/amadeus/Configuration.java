@@ -9,12 +9,12 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * The configuration for the Amadeus API client. To initialize, use the builder
- * as follows:
+ * The configuration for the Amadeus API client. To initialize, use the builder as follows:
  * </p>
  *
  * <pre>
- * Amadeus amadeus = Amadeus.builder("REPLACE_BY_YOUR_API_KEY", "REPLACE_BY_YOUR_API_SECRET").build();
+ * Amadeus amadeus =
+ *     Amadeus.builder("REPLACE_BY_YOUR_API_KEY", "REPLACE_BY_YOUR_API_SECRET").build();
  * </pre>
  *
  * <p>
@@ -28,7 +28,8 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @ToString
 public class Configuration {
-  private static final Params HOSTS = Params.with("production", "api.amadeus.com").and("test", "test.api.amadeus.com");
+  private static final Params HOSTS =
+      Params.with("production", "api.amadeus.com").and("test", "test.api.amadeus.com");
 
   /**
    * The client ID used to authenticate the API calls.
@@ -57,16 +58,15 @@ public class Configuration {
    */
   private @Getter @Setter String logLevel = "silent";
   /**
-   * The the name of the server API calls are made to, 'production' or 'test'.
-   * Defaults to 'test'
+   * The the name of the server API calls are made to, 'production' or 'test'. Defaults to 'test'
    *
    * @param hostname The name of the server API calls are made to
    * @return The name of the server API calls are made to
    */
   private @Getter String hostname = "test";
   /**
-   * The optional custom host domain to use for API calls. Defaults to internal
-   * value for 'hostname'.
+   * The optional custom host domain to use for API calls. Defaults to internal value for
+   * 'hostname'.
    *
    * @param host The optional custom host domain to use for API calls.
    * @return The optional custom host domain to use for API calls.
@@ -80,24 +80,21 @@ public class Configuration {
    */
   private @Getter boolean ssl = true;
   /**
-   * The port to use. Defaults to 443 for an SSL connection, and 80 for a non SSL
-   * connection.
+   * The port to use. Defaults to 443 for an SSL connection, and 80 for a non SSL connection.
    *
    * @param port The port to use for the connection
    * @return The port to use for the connection
    */
   private @Getter @Setter int port = 443;
   /**
-   * An optional custom App ID to be passed in the User Agent to the server
-   * (Defaults to null).
+   * An optional custom App ID to be passed in the User Agent to the server (Defaults to null).
    *
    * @param customAppId An optional custom App ID
    * @return The optional custom App ID
    */
   private @Getter @Setter String customAppId;
   /**
-   * An optional custom App version to be passed in the User Agent to the server
-   * (Defaults to null).
+   * An optional custom App version to be passed in the User Agent to the server (Defaults to null).
    *
    * @param customAppVersion An optional custom App version
    * @return The optional custom App version
@@ -120,8 +117,7 @@ public class Configuration {
   }
 
   /**
-   * The the name of the server API calls are made to, 'production' or 'test'.
-   * Defaults to 'test'.
+   * The the name of the server API calls are made to, 'production' or 'test'. Defaults to 'test'.
    *
    * @param hostname The name of the server API calls are made to
    * @return The name of the server API calls are made to

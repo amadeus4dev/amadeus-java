@@ -9,7 +9,8 @@ import lombok.NonNull;
  * </p>
  *
  * <pre>
- * Amadeus amadeus = Amadeus.builder("REPLACE_BY_YOUR_API_KEY", "REPLACE_BY_YOUR_API_SECRET").build();
+ * Amadeus amadeus =
+ *     Amadeus.builder("REPLACE_BY_YOUR_API_KEY", "REPLACE_BY_YOUR_API_SECRET").build();
  * </pre>
  *
  * <p>
@@ -55,8 +56,7 @@ public class Amadeus extends HTTPClient {
   }
 
   /**
-   * Creates a builder object that can be used to build an Amadeus
-   * com.amadeus.client.
+   * Creates a builder object that can be used to build an Amadeus com.amadeus.client.
    *
    * <pre>
    * Amadeus amadeus = Amadeus.builder("CLIENT_ID", "CLIENT_SECRET").build();
@@ -71,8 +71,8 @@ public class Amadeus extends HTTPClient {
   }
 
   /**
-   * Creates a builder object initialized with the environment variables that can
-   * be used to build an Amadeus API com.amadeus.client.
+   * Creates a builder object initialized with the environment variables that can be used to build
+   * an Amadeus API com.amadeus.client.
    *
    * <pre>
    * Amadeus amadeus = Amadeus.builder(System.getenv()).build();
