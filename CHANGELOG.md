@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.2 - 2018-10-28
+Contribution by [nirmalvp](https://github.com/nirmalvp)
+
+Bug fix - The AMADEUS_HOST environment variable wasn't working
+
 ## 1.1.1 - 2018-09-09
 
 Bug fix - Some sub-attributes accessors were private and not accessible
