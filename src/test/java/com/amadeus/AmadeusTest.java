@@ -31,6 +31,7 @@ public class AmadeusTest {
         put("AMADEUS_CLIENT_SECRET", "234");
         put("AMADEUS_LOG_LEVEL", "debug");
         put("AMADEUS_PORT", "123");
+        put("AMADEUS_HOST", "my.custom.host.com");
       }
     };
     assertTrue("should return a Configuration",
@@ -39,6 +40,7 @@ public class AmadeusTest {
     Amadeus amadeus = Amadeus.builder(environment).build();
     assertEquals(amadeus.getConfiguration().getLogLevel(), "debug");
     assertEquals(amadeus.getConfiguration().getPort(), 123);
+    assertEquals(amadeus.getConfiguration().getHost(), "my.custom.host.com");
   }
 
   /*
