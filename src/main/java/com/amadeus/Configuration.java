@@ -149,7 +149,7 @@ public class Configuration {
   // Parses environment variables and initializes the values.
   protected Configuration parseEnvironment(Map<String, String> environment) {
     setHostname(getOrDefault(environment, "HOSTNAME", hostname));
-    setHost(getOrDefault(environment, "HOOST", host));
+    setHost(getOrDefault(environment, "HOST", host));
     setLogLevel(getOrDefault(environment, "LOG_LEVEL", logLevel));
     setSsl(Boolean.parseBoolean(getOrDefault(environment, "SSL", String.valueOf(ssl))));
     setPort(Integer.parseInt(getOrDefault(environment, "PORT", String.valueOf(port))));
