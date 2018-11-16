@@ -35,7 +35,7 @@ public class HotelOffers {
 
   /**
    * <p>
-   *   SearchedDestination for hotels and retrieve availability and rates information.
+   *   Search for hotels and retrieve availability and rates information.
    * </p>
    *
    * <pre>
