@@ -6,7 +6,7 @@ import lombok.ToString;
 
 /**
  * An SearchedDestination object as returned by the SearchedByDestination API.
- * @see com.amadeus.travel.analytics.airTraffic.SearchedByDestination#get()
+ * @see SearchedByDestination#get()
  */
 @ToString
 public class SearchedDestination extends Resource {
