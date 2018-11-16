@@ -123,7 +123,7 @@ in-depth information about every SDK method, its arguments and return types.
 
 This library conveniently maps every API path to a similar path.
 
-For example, `GET /v2/reference-data/urls/checkin-links?airline=BA` would be:
+For example, `GET /v2/reference-data/urls/checkin-links?airlineCode=BA` would be:
 
 ```java
 amadeus.referenceData.urls.checkinLinks.get(Params.with("airlineCode", "BA"));
