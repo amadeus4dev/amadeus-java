@@ -27,13 +27,6 @@ public class Analytics {
    */
   public AirTraffic airTraffic;
 
-  /**
-   * <p>
-   *   A namespaced client for the
-   *   <code>/v1/travel/analytics/fare-searches</code> endpoints.
-   * </p>
-   */
-  public FareSearches fareSearches;
 
   /**
    * Constructor.
@@ -41,6 +34,5 @@ public class Analytics {
    */
   public Analytics(Amadeus client) {
     this.airTraffic = new AirTraffic(client);
-    this.fareSearches = new FareSearches(client);
   }
 }

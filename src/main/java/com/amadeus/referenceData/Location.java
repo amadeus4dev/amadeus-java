@@ -6,7 +6,6 @@ import com.amadeus.Response;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.referenceData.locations.Airports;
 import com.amadeus.resources.Resource;
-import com.google.gson.Gson;
 
 /**
  * <p>
@@ -19,7 +18,7 @@ import com.google.gson.Gson;
  * </p>
  *
  * <pre>
- * Amadeus amadeus = Amadeus.builder("clientId", "secret").build();
+ * Amadeus amadeus = Amadeus.builder(API_KEY, API_SECRET).build();
  * amadeus.referenceData.location(locationId);</pre>
  *
  * @hide

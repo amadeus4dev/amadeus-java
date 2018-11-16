@@ -40,7 +40,7 @@ public class Airlines {
    *
    * <pre>
    * amadeus.referenceData.airlines.get(Params
-   *   .with("IATACode", "BA"));</pre>
+   *   .with("airlineCodes", "BA"));</pre>
    *
    * @param params the parameters to send to the API
    * @return an API response object

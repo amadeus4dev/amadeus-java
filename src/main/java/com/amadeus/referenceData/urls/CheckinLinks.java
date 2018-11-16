@@ -19,7 +19,7 @@ import com.google.gson.Gson;
  * </p>
  *
  * <pre>
- * Amadeus amadeus = Amadeus.builder("clientId", "secret").build();
+ * Amadeus amadeus = Amadeus.builder(API_KEY, API_SECRET).build();
  * amadeus.referenceData.urls.checkinLinks;</pre>
  */
 public class CheckinLinks {
@@ -40,7 +40,7 @@ public class CheckinLinks {
    * </p>
    *
    * <pre>
-   * amadeus.referenceData.urls.checkinLinks.get(Params.with("airline", "1X"));</pre>
+   * amadeus.referenceData.urls.checkinLinks.get(Params.with("airlineCode", "BA"));</pre>
    *
    * @param params the parameters to send to the API
    * @return an API resource
