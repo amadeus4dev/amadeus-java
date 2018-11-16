@@ -40,7 +40,7 @@ public class Booked {
    *
    * <pre>
    * amadeus.travel.analytics.airTraffic.booked.get(Params
-   *   .with("origin", "LHR")
+   *   .with("originCityCode", "LHR")
    *   .and("period", "2017-03"));</pre>
    *
    * @param params the parameters to send to the API

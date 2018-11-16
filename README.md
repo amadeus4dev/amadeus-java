@@ -34,12 +34,12 @@ You can install the SDK via Maven or Gradle.
 <dependency>
   <groupId>com.amadeus</groupId>
   <artifactId>amadeus-java</artifactId>
-  <version>1.1.2</version>
+  <version>2.0.0</version>
 </dependency>
 ```
 #### Gradle
 ```js
-compile "com.amadeus:amadeus-java:1.1.2"
+compile "com.amadeus:amadeus-java:2.0.0"
 ```
 
 ## Getting Started
@@ -126,7 +126,7 @@ This library conveniently maps every API path to a similar path.
 For example, `GET /v2/reference-data/urls/checkin-links?airline=BA` would be:
 
 ```java
-amadeus.referenceData.urls.checkinLinks.get(Params.with("airline", "BA"));
+amadeus.referenceData.urls.checkinLinks.get(Params.with("airlineCode", "BA"));
 ```
 
 Similarly, to select a resource by ID, you can pass in the ID to the **singular** path.
@@ -142,7 +142,7 @@ Keep in mind, this returns a raw `Resource`
 
 ```java
 Resource resource = amadeus.get('/v2/reference-data/urls/checkin-links',
-  Params.with("airline", "BA"));
+  Params.with("airlineCode", "BA"));
 
 resource.getResult();
 ```
@@ -181,7 +181,7 @@ If a page is not available, the method will return `null`.
 
 The SDK makes it easy to add your own logger.
 
-```java TO FIX
+```java
 import java.util.logging.Logger;
 
 // Assumes the current class is called MyLogger
@@ -227,11 +227,11 @@ FlightOffer[] flightOffers = amadeus.shopping.flightOffers.get(Params
 
 // Flight Check-in Links
 CheckinLink[] checkinLinks = amadeus.referenceData.urls.checkinLinks.get(Params
-  .with("airline", "BA"));
+  .with("airlineCode", "BA"));
 
 // Airline Code LookUp
 Airline[] airlines = amadeus.referenceData.airlines.get(Params
-  .with("IATACode", "BA"));
+  .with("airlineCodes", "BA"));
 
 // Airport & City Search (autocomplete)
 // Find all the cities and airports starting by the keyword 'LON'
@@ -248,19 +248,26 @@ Location[] locations = amadeus.referenceData.locations.airports.get(Params
   .and("longitude", 2.55));
 
 // Flight Most Searched Destinations
-FareSearch[] fareSearches = amadeus.travel.analytics.fareSearches.get(Params
-  .with("origin", "MAD")
-  .and("sourceCountry", "SP")
-  .and("period", "2017-08"));
+// Which were the most searched flight destinations from Madrid in August 2017?
+SearchedDestination searchedDestination = amadeus.travel.analytics.airTraffic.searchedByDestination.get(Params
+        .with("originCityCode", "MAD")
+        .and("destinationCityCode", "NYC")
+        .and("searchPeriod", "2017-08")
+        .and("marketCountryCode", "ES"));
+// How many people in Spain searched for a trip from Madrid to New-York in September 2017?
+Search[] search = amadeus.travel.analytics.airTraffic.searched.get(Params
+        .with("originCityCode", "MAD")
+        .and("searchPeriod", "2017-08")
+        .and("marketCountryCode", "ES"));
 
 // Flight Most Booked Destinations
 AirTraffic[] airTraffics = amadeus.travel.analytics.airTraffic.booked.get(Params
-  .with("origin", "MAD")
+  .with("originCityCode", "MAD")
   .and("period", "2017-08"));
 
 // Flight Most Traveled Destinations
 AirTraffic[] airTraffics = amadeus.travel.analytics.airTraffic.traveled.get(Params
-  .with("origin", "MAD")
+  .with("originCityCode", "MAD")
   .and("period", "2017-01"));
 
 // Flight Busiest Traveling Period

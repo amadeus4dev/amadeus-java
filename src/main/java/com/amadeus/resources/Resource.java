@@ -1,6 +1,5 @@
 package com.amadeus.resources;
 
-import com.amadeus.Amadeus;
 import com.amadeus.Response;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

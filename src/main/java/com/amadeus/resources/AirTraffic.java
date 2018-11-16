@@ -3,6 +3,8 @@ package com.amadeus.resources;
 import lombok.Getter;
 import lombok.ToString;
 
+
+
 /**
  * An AirTraffic object as returned by the AirTraffic API.
  * @see Traveled#get()

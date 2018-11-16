@@ -6,3 +6,4 @@ build
 .classpath
 .idea
 out
+.DS_Store

@@ -51,7 +51,7 @@ public class Location extends Resource {
   }
 
   /**
-   * An Location-related object as returned by the Locaion API.
+   * An Location-related object as returned by the Location API.
    * @see com.amadeus.referenceData.Location#get()
    */
   @ToString
@@ -63,7 +63,7 @@ public class Location extends Resource {
   }
 
   /**
-   * An Location-related object as returned by the Locaion API.
+   * An Location-related object as returned by the Location API.
    * @see com.amadeus.referenceData.Location#get()
    */
   @ToString
@@ -74,7 +74,7 @@ public class Location extends Resource {
     private @Getter Travelers travelers;
 
     /**
-     * An Location-related object as returned by the Locaion API.
+     * An Location-related object as returned by the Location API.
      * @see com.amadeus.referenceData.Location#get()
      */
     @ToString
@@ -85,7 +85,7 @@ public class Location extends Resource {
     }
 
     /**
-     * An Location-related object as returned by the Locaion API.
+     * An Location-related object as returned by the Location API.
      * @see com.amadeus.referenceData.Location#get()
      */
     @ToString
