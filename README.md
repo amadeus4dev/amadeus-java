@@ -131,10 +131,10 @@ amadeus.referenceData.urls.checkinLinks.get(Params.with("airlineCode", "BA"));
 
 Similarly, to select a resource by ID, you can pass in the ID to the **singular** path.
 
-For example,  `GET /v1/shopping/hotel/ABC123/offers/DEF234` would be:
+For example,  `GET /v2/shopping/hotel-offers/XXX` would be:
 
 ```java
-amadeus.hotel("ABC123").offer("DEF234").get(...);
+amadeus.hotelOffer("XXX").get(...);
 ```
 
 You can make any arbitrary API call as well directly with the `.get` method.
@@ -282,12 +282,10 @@ HotelOffer[] offers = amadeus.shopping.hotelOffers.get(Params
   .with("cityCode", "MAD"));
 // Get list of offers for a specific hotel
 HotelOffer offer = amadeus.shopping
-  .hotel("SMPARCOL")
-  .hotelOffers.get();
-// Confirm the availability of a specific offer for a specific hotel
-Offer offer = amadeus.shopping
-  .hotel("SMPARCOL")
-  .offer("4BA070CE929E135B3268A9F2D0C51E9D4A6CF318BA10485322FA2C7E78C7852E").get();
+  .hotelOffersByHotel("SMPARCOL").get();
+// Confirm the availability of a specific offer
+HotelOffer offer = amadeus.shopping
+  .hotelOffer("4BA070CE929E135B3268A9F2D0C51E9D4A6CF318BA10485322FA2C7E78C7852E").get();
 ```
 
 ## Development & Contributing

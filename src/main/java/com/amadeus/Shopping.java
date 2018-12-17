@@ -3,8 +3,9 @@ package com.amadeus;
 import com.amadeus.shopping.FlightDates;
 import com.amadeus.shopping.FlightDestinations;
 import com.amadeus.shopping.FlightOffers;
-import com.amadeus.shopping.Hotel;
+import com.amadeus.shopping.HotelOffer;
 import com.amadeus.shopping.HotelOffers;
+import com.amadeus.shopping.HotelOffersByHotel;
 
 /**
  * <p>
@@ -52,10 +53,18 @@ public class Shopping {
   /**
    * <p>
    *   A namespaced client for the
-   *   <code>/v1/shopping/hotel-offers</code> endpoints.
+   *   <code>/v2/shopping/hotel-offers</code> endpoints.
    * </p>
    */
   public HotelOffers hotelOffers;
+
+  /**
+   * <p>
+   *   A namespaced client for the
+   *   <code>/v2/shopping/hotel-offers/by-hotel</code> endpoints.
+   * </p>
+   */
+  public HotelOffersByHotel hotelOffersByHotel;
 
   /**
    * Constructor.
@@ -67,6 +76,7 @@ public class Shopping {
     this.flightDestinations = new FlightDestinations(client);
     this.flightOffers = new FlightOffers(client);
     this.hotelOffers = new HotelOffers(client);
+    this.hotelOffersByHotel = new HotelOffersByHotel(client);
   }
 
   /**
@@ -75,7 +85,7 @@ public class Shopping {
    *   <code>/v1/shopping/hotel/:hotel_id</code> endpoints.
    * </p>
    */
-  public Hotel hotel(String hotelId) {
-    return new Hotel(client, hotelId);
+  public HotelOffer hotelOffer(String hotelId) {
+    return new HotelOffer(client, hotelId);
   }
 }

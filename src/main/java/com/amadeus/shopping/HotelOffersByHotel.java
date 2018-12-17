@@ -1,4 +1,4 @@
-package com.amadeus.shopping.hotel;
+package com.amadeus.shopping;
 
 import com.amadeus.Amadeus;
 import com.amadeus.Params;
@@ -6,12 +6,11 @@ import com.amadeus.Response;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.HotelOffer;
 import com.amadeus.resources.Resource;
-import com.google.gson.Gson;
 
 /**
  * <p>
  *   A namespaced client for the
- *   <code>/v1/shopping/hotels/:hotel_id/hotel-offers</code> endpoints.
+ *   <code>/v2/shopping/hotel-offers/by-hotel</code> endpoints.
  * </p>
  *
  * <p>
@@ -20,42 +19,40 @@ import com.google.gson.Gson;
  *
  * <pre>
  * Amadeus amadeus = Amadeus.builder("clientId", "secret").build();
- * amadeus.shopping.hotel(hotelId).hotelOffers;</pre>
+ * amadeus.shopping.HotelOffersByHotel;</pre>
  */
-public class HotelOffers {
+public class HotelOffersByHotel {
   private Amadeus client;
-  private String hotelId;
 
   /**
    * Constructor.
    * @hide
    */
-  public HotelOffers(Amadeus client, String hotelId) {
+  public HotelOffersByHotel(Amadeus client) {
     this.client = client;
-    this.hotelId = hotelId;
   }
 
   /**
    * <p>
-   *   Get one hotel and its available offers.
+   *   Get all offers for a dedicated hotel.
    * </p>
    *
    * <pre>
-   * amadeus.shopping.hotel("SMPARCOL").hotelOffers.get();</pre>
+   * amadeus.shopping.HotelOffersByHotel.get(Params
+   *   .with("hotelId", "XKPARC12"));</pre>
    *
    * @param params the parameters to send to the API
    * @return an API response object
    * @throws ResponseException when an exception occurs
    */
   public HotelOffer get(Params params) throws ResponseException {
-    String path = String.format("/v1/shopping/hotels/%s/hotel-offers", hotelId);
-    Response response = client.get(path, params);
+    Response response = client.get("/v2/shopping/hotel-offers/by-hotel", params);
     return (HotelOffer) Resource.fromObject(response, HotelOffer.class);
   }
 
   /**
    * Convenience method for calling <code>get</code> without any parameters.
-   * @see HotelOffers#get()
+   * @see HotelOffersByHotel#get()
    */
   public HotelOffer get() throws ResponseException {
     return get(null);
