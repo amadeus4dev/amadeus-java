@@ -242,10 +242,10 @@ Location[] locations = amadeus.referenceData.locations.get(Params
 Location location = amadeus.referenceData
   .location("ALHR").get();
 
-// Airport Nearest Relevant
+// Airport Nearest Relevant (for London)
 Location[] locations = amadeus.referenceData.locations.airports.get(Params
-  .with("latitude", 49.0000)
-  .and("longitude", 2.55));
+  .with("latitude", 0.1278)
+  .and("longitude", 51.5074));
 
 // Flight Most Searched Destinations
 // Which were the most searched flight destinations from Madrid in August 2017?
