@@ -37,6 +37,7 @@ public class HotelOffer extends Resource {
     private @Getter String cityCode;
     private @Getter double latitude;
     private @Getter double longitude;
+    private @Getter HotelDistance hotelDistance;
     private @Getter AddressType address;
     private @Getter HotelContact contact;
   }
@@ -52,7 +53,6 @@ public class HotelOffer extends Resource {
     private @Getter String type;
     private @Getter String id;
     private @Getter Integer roomQuantity;
-    private @Getter String bookingCode;
     private @Getter String rateCode;
     private @Getter RateFamily rateFamilyEstimated;
     private @Getter String category;
@@ -63,6 +63,19 @@ public class HotelOffer extends Resource {
     private @Getter Guests guests;
     private @Getter HotelPrice price;
     private @Getter PolicyDetails policies;
+  }
+
+  /**
+   * An HotelOffer-related object as returned by the HotelOffers API.
+   * @see com.amadeus.shopping.HotelOffers#get()
+   */
+  @ToString
+  public class HotelDistance {
+    protected HotelDistance() {}
+
+    private @Getter String description;
+    private @Getter double distance;
+    private @Getter String distanceUnit;
   }
 
   /**
@@ -220,6 +233,7 @@ public class HotelOffer extends Resource {
     protected MediaURI() {}
 
     private @Getter String uri;
+    private @Getter String category;
   }
 
   /**
@@ -262,6 +276,22 @@ public class HotelOffer extends Resource {
     private @Getter GuaranteePolicy prepay;
     private @Getter GuaranteePolicy holdTime;
     private @Getter CancellationPolicy cancellation;
+    private @Getter CheckInOutPolicy checkInOut;
+  }
+
+  /**
+   * An HotelOffer-related object as returned by the HotelOffers API.
+   * @see com.amadeus.shopping.HotelOffers#get()
+   */
+  @ToString
+  public class CheckInOutPolicy {
+
+    protected CheckInOutPolicy() {}
+
+    private @Getter String checkIn;
+    private @Getter TextWithLanguageType checkInDescription;
+    private @Getter String checkOut;
+    private @Getter TextWithLanguageType checkOutDescription;
   }
 
   /**

@@ -9,8 +9,9 @@ import com.amadeus.referenceData.urls.CheckinLinks;
 import com.amadeus.shopping.FlightDates;
 import com.amadeus.shopping.FlightDestinations;
 import com.amadeus.shopping.FlightOffers;
+import com.amadeus.shopping.HotelOffer;
 import com.amadeus.shopping.HotelOffers;
-import com.amadeus.shopping.hotel.Offer;
+import com.amadeus.shopping.HotelOffersByHotel;
 import com.amadeus.travel.analytics.airTraffic.Booked;
 import com.amadeus.travel.analytics.airTraffic.BusiestPeriod;
 import com.amadeus.travel.analytics.airTraffic.Searched;
@@ -45,8 +46,8 @@ public class NamespaceTest {
     TestCase.assertNotNull(client.shopping.flightDestinations);
     TestCase.assertNotNull(client.shopping.flightOffers);
     TestCase.assertNotNull(client.shopping.hotelOffers);
-    TestCase.assertNotNull(client.shopping.hotel("123").hotelOffers);
-    TestCase.assertNotNull(client.shopping.hotel("123").offer("234"));
+    TestCase.assertNotNull(client.shopping.hotelOffersByHotel);
+    TestCase.assertNotNull(client.shopping.hotelOffer("XXX"));
   }
 
   @Before
@@ -202,9 +203,9 @@ public class NamespaceTest {
     TestCase.assertEquals(flightOffers.get().length, 2);
 
     // Testing hotel offer search
-    Mockito.when(client.get("/v1/shopping/hotel-offers", null))
+    Mockito.when(client.get("/v2/shopping/hotel-offers", null))
         .thenReturn(multiResponse);
-    Mockito.when(client.get("/v1/shopping/hotel-offers", params))
+    Mockito.when(client.get("/v2/shopping/hotel-offers", params))
         .thenReturn(multiResponse);
     HotelOffers hotelOffers = new HotelOffers(client);
     TestCase.assertNotNull(hotelOffers.get());
@@ -212,22 +213,21 @@ public class NamespaceTest {
     TestCase.assertEquals(hotelOffers.get().length, 2);
 
     // Testing hotel offer search for a hotel
-    Mockito.when(client.get("/v1/shopping/hotels/123/hotel-offers", null))
+    Mockito.when(client.get("/v2/shopping/hotel-offers/by-hotel", null))
         .thenReturn(singleResponse);
-    Mockito.when(client.get("/v1/shopping/hotels/123/hotel-offers", params))
+    Mockito.when(client.get("/v2/shopping/hotel-offers/by-hotel", params))
         .thenReturn(singleResponse);
-    com.amadeus.shopping.hotel.HotelOffers hotelOffers2
-        = new com.amadeus.shopping.hotel.HotelOffers(client, "123");
-    TestCase.assertNotNull(hotelOffers2.get());
-    TestCase.assertNotNull(hotelOffers2.get(params));
+    HotelOffersByHotel hotelOffersByHotel = new HotelOffersByHotel(client);
+    TestCase.assertNotNull(hotelOffersByHotel.get());
+    TestCase.assertNotNull(hotelOffersByHotel.get(params));
 
     // Test fetching a specific offer
-    Mockito.when(client.get("/v1/shopping/hotels/123/offers/234", null))
+    Mockito.when(client.get("/v2/shopping/hotel-offers/XXX", null))
         .thenReturn(singleResponse);
-    Mockito.when(client.get("/v1/shopping/hotels/123/offers/234", params))
+    Mockito.when(client.get("/v2/shopping/hotel-offers/XXX", params))
         .thenReturn(singleResponse);
-    Offer offer = new Offer(client, "123", "234");
-    TestCase.assertNotNull(offer.get());
-    TestCase.assertNotNull(offer.get(params));
+    HotelOffer hotelOffer = new HotelOffer(client, "XXX");
+    TestCase.assertNotNull(hotelOffer.get());
+    TestCase.assertNotNull(hotelOffer.get(params));
   }
 }
