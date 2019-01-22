@@ -1,4 +1,22 @@
 # Changelog
+## 3.0.0 - 2019-01-22
+
+## Hotel Search v2 has been deployed (Hotel Search v1 is now deprecated)
+
+### General
+* Remove the support for Hotel Search v1
+* URLs for all three endpoints have been simplified for ease-of-use and consistency
+Find Hotels
+### Find Hotels - 1st endpoint
+* The parameter `hotels` has been renamed to `hotelIds`
+### View Hotel Rooms - 2nd endpoint
+* Update from `amadeus.shopping.hotel("BGLONBGB").hotelOffers.get();` to `amadeus.shopping.hotelOffersByHotel.get(Params.with("hotelId", "BGLONBGB"));`
+* Now get all images in ‘View Hotels Rooms’ endpoint using the view parameter as               `FULL_ALL_IMAGES`
+### View Room Details - 3rd endpoint
+* Updated from `amadeus.shopping.hotel("BGLONBGB").offer("XXX").get();` to `amadeus.shopping..hotelOffer("XXX").get();`
+* Image category added under Media in the response
+* Hotel distance added in the response
+* Response now refers to the common HotelOffer object model
 
 ## 2.0.0 - 2018-10-16
 
