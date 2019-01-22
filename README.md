@@ -281,8 +281,7 @@ Period[] busiestPeriods = amadeus.travel.analytics.airTraffic.busiestPeriod.get(
 HotelOffer[] offers = amadeus.shopping.hotelOffers.get(Params
   .with("cityCode", "MAD"));
 // Get list of offers for a specific hotel
-HotelOffer offer = amadeus.shopping
-  .hotelOffersByHotel("SMPARCOL").get();
+HotelOffer hotelOffer = amadeus.shopping.hotelOffersByHotel.get(Params.with("hotelId", "BGLONBGB");
 // Confirm the availability of a specific offer
 HotelOffer offer = amadeus.shopping
   .hotelOffer("4BA070CE929E135B3268A9F2D0C51E9D4A6CF318BA10485322FA2C7E78C7852E").get();
