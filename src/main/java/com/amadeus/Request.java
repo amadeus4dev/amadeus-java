@@ -106,7 +106,9 @@ public class Request {
     this.connection = (HttpURLConnection) new URL(uri).openConnection();
     connection.setRequestMethod(verb);
     connection.setDoInput(true);
-    connection.setDoOutput(true);
+    if (verb == Constants.POST) {
+      connection.setDoOutput(true);
+    }
     for (Map.Entry<String, String> entry : headers.entrySet()) {
       connection.setRequestProperty(entry.getKey(), entry.getValue());
     }
