@@ -217,7 +217,7 @@ FlightDestination[] flightDestinations = amadeus.shopping.flightDestinations.get
 // Flight Cheapest Date Search
 FlightDate[] flightDates = amadeus.shopping.flightDates.get(Params
   .with("origin", "NYC")
-  .and("destination", "MAD");
+  .and("destination", "MAD"));
 
 // Flight Low-fare Search
 FlightOffer[] flightOffers = amadeus.shopping.flightOffers.get(Params
