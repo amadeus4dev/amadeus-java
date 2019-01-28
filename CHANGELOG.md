@@ -1,4 +1,9 @@
 # Changelog
+## 3.0.1 - 2019-01-28
+[Bug #21](https://github.com/amadeus4dev/amadeus-java/issues/21) reported by [vht210](https://github.com/vht210), thank you very much!
+
+Fix a bug in the Request.java with HTTPURLConnection, making the SDK doing only POST calls in Android.
+
 ## 3.0.0 - 2019-01-22
 
 ## Hotel Search v2 has been deployed (Hotel Search v1 is now deprecated)
