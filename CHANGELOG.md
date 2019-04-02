@@ -1,4 +1,13 @@
 # Changelog
+
+## 3.1.0 - 2019-04-02
+
+# Points of interest API
+
+New version of the Java SDK to support a new endpoint:
+
+* [Points of Interest](https://developers.amadeus.com/self-service/category/210/api-doc/55/api-docs-and-example/10014)
+
 ## 3.0.1 - 2019-01-28
 [Bug #21](https://github.com/amadeus4dev/amadeus-java/issues/21) reported by [vht210](https://github.com/vht210), thank you very much!
 

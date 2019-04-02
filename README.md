@@ -34,12 +34,12 @@ You can install the SDK via Maven or Gradle.
 <dependency>
   <groupId>com.amadeus</groupId>
   <artifactId>amadeus-java</artifactId>
-  <version>3.0.1</version>
+  <version>3.1.0</version>
 </dependency>
 ```
 #### Gradle
 ```js
-compile "com.amadeus:amadeus-java:3.0.1"
+compile "com.amadeus:amadeus-java:3.1.0"
 ```
 
 ## Getting Started
@@ -293,7 +293,7 @@ PointOfInterest[] pointsOfInterest = amadeus.referenceData.locations.pointsOfInt
 
 // What are the popular places in Barcelona? (based on a square)
 PointOfInterest[] pointsOfInterest = amadeus.referenceData.locations.pointsOfInterest.bySquare.get(Params
-    .with("norh", "41.397158")
+    .with("north", "41.397158")
     .and("west", "2.160873")
     .and("south", "41.394582")
     .and("east", "2.177181"));
