@@ -20,7 +20,7 @@ import com.google.gson.Gson;
  *
  * <pre>
  * Amadeus amadeus = Amadeus.builder("clientId", "secret").build();
- * amadeus.referenceData.locations.pointsOfInterest;</pre>
+ * amadeus.referenceData.locations.pointsOfInterest.bySquare;</pre>
  */
 public class BySquare {
   private Amadeus client;
@@ -35,7 +35,8 @@ public class BySquare {
 
   /**
    * <p>
-   *   Returns a list of relevant point of interests near to a given point.
+   *   Returns a list of relevant point of interests within a square defined by
+   *   cardinal points.
    * </p>
    *
    * <pre>
