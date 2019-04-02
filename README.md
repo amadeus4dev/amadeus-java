@@ -284,6 +284,19 @@ HotelOffer[] offers = amadeus.shopping.hotelOffers.get(Params
 HotelOffer hotelOffer = amadeus.shopping.hotelOffersByHotel.get(Params.with("hotelId", "BGLONBGB"));
 // Confirm the availability of a specific offer
 HotelOffer offer = amadeus.shopping.hotelOffer("4BA070CE929E135B3268A9F2D0C51E9D4A6CF318BA10485322FA2C7E78C7852E").get();
+
+// Points of Interest
+// What are the popular places in Barcelona (based a geo location and a radius)
+PointOfInterest[] pointsOfInterest = amadeus.referenceData.locations.pointsOfInterest.get(Params
+   .with("latitude", "41.39715")
+   .and("longitude", "2.160873"));
+
+// What are the popular places in Barcelona? (based on a square)
+PointOfInterest[] pointsOfInterest = amadeus.referenceData.locations.pointsOfInterest.bySquare.get(Params
+    .with("norh", "41.397158")
+    .and("west", "2.160873")
+    .and("south", "41.394582")
+    .and("east", "2.177181"));
 ```
 
 ## Development & Contributing

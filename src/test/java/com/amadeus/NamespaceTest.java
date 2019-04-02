@@ -5,6 +5,8 @@ import com.amadeus.referenceData.Airlines;
 import com.amadeus.referenceData.Location;
 import com.amadeus.referenceData.Locations;
 import com.amadeus.referenceData.locations.Airports;
+import com.amadeus.referenceData.locations.PointsOfInterest;
+import com.amadeus.referenceData.locations.pointsOfInterest.BySquare;
 import com.amadeus.referenceData.urls.CheckinLinks;
 import com.amadeus.shopping.FlightDates;
 import com.amadeus.shopping.FlightDestinations;
@@ -36,6 +38,8 @@ public class NamespaceTest {
     Amadeus client = Amadeus.builder("id", "secret").build();
     TestCase.assertNotNull(client.referenceData.urls.checkinLinks);
     TestCase.assertNotNull(client.referenceData.locations.airports);
+    TestCase.assertNotNull(client.referenceData.locations.pointsOfInterest);
+    TestCase.assertNotNull(client.referenceData.locations.pointsOfInterest.bySquare);
     TestCase.assertNotNull(client.referenceData.location("123"));
     TestCase.assertNotNull(client.referenceData.airlines);
     TestCase.assertNotNull(client.travel.analytics.airTraffic.traveled);
@@ -103,6 +107,26 @@ public class NamespaceTest {
     TestCase.assertNotNull(airports.get());
     TestCase.assertNotNull(airports.get(params));
     TestCase.assertEquals(airports.get().length, 2);
+
+    // Testing points of interest
+    Mockito.when(client.get("/v1/reference-data/locations/pois", null))
+        .thenReturn(multiResponse);
+    Mockito.when(client.get("/v1/reference-data/locations/pois", params))
+        .thenReturn(multiResponse);
+    PointsOfInterest pois = new PointsOfInterest(client);
+    TestCase.assertNotNull(pois.get());
+    TestCase.assertNotNull(pois.get(params));
+    TestCase.assertEquals(pois.get().length, 2);
+
+    // Testing points of interest by square
+    Mockito.when(client.get("/v1/reference-data/locations/pois/by-square", null))
+        .thenReturn(multiResponse);
+    Mockito.when(client.get("/v1/reference-data/locations/pois/by-square", params))
+        .thenReturn(multiResponse);
+    PointsOfInterest poisSquare = new PointsOfInterest(client);
+    TestCase.assertNotNull(poisSquare.get());
+    TestCase.assertNotNull(poisSquare.get(params));
+    TestCase.assertEquals(poisSquare.get().length, 2);
 
     // Testing fetching a single location
     Mockito.when(client.get("/v1/reference-data/locations/ALHR", null))

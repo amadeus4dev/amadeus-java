@@ -5,6 +5,7 @@ import com.amadeus.Params;
 import com.amadeus.Response;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.referenceData.locations.Airports;
+import com.amadeus.referenceData.locations.PointsOfInterest;
 import com.amadeus.resources.Location;
 import com.amadeus.resources.Resource;
 import com.google.gson.Gson;
@@ -35,10 +36,19 @@ public class Locations {
   /**
    * <p>
    *   A namespaced client for the
-   *   <code>/v2/reference-data/urls/checkin-links</code> endpoints.
+   *   <code>/v2/reference-data/locations/airports</code> endpoints.
    * </p>
    */
   public Airports airports;
+
+  /**
+   * <p>
+   *   A namespaced client for the
+   *   <code>/v2/reference-data/locations/pois</code> endpoints.
+   * </p>
+   */
+  public PointsOfInterest pointsOfInterest;
+
 
   /**
    * Constructor.
@@ -47,6 +57,7 @@ public class Locations {
   public Locations(Amadeus client) {
     this.client = client;
     this.airports = new Airports(client);
+    this.pointsOfInterest = new PointsOfInterest(client);
   }
 
   /**
@@ -70,7 +81,7 @@ public class Locations {
 
   /**
    * Convenience method for calling <code>get</code> without any parameters.
-   * @see Airports#get()
+   * @see Locations#get()
    */
   public Location[] get() throws ResponseException {
     return get(null);
