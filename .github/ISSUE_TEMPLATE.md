@@ -16,7 +16,7 @@ __Stable Behavior?__ [What percentage of the time does it reproduce?]
 
 ## Versions
 
-[What version of Ruby/Rubygems are you running? What Operating System are you on?]
+[What version of Java/JVM are you running? What Operating System are you on?]
 
 ## Checklist
 
