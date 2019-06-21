@@ -70,7 +70,8 @@ public class AccessToken {
             Params.with(Constants.GRANT_TYPE, Constants.CLIENT_CREDENTIALS)
                   .and(Constants.CLIENT_ID, config.getClientId())
                   .and(Constants.CLIENT_SECRET, config.getClientSecret()),
-           null
+        null,
+        null
     );
   }
 

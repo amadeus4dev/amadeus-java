@@ -35,6 +35,7 @@ public class HTTPClientTest {
   Request request;
   HttpURLConnection connection;
   Logger logger;
+  String body;
 
   @Before public void setup()  {
     client = mock(Amadeus.class);
@@ -44,6 +45,7 @@ public class HTTPClientTest {
     request = mock(Request.class);
     connection = mock(HttpURLConnection.class);
     logger = mock(Logger.class);
+    body = "[{}]";
 
     when(client.getConfiguration()).thenReturn(configuration);
     when(configuration.getLogger()).thenReturn(logger);
@@ -53,33 +55,40 @@ public class HTTPClientTest {
   @Test public void testGetWithoutParams() throws ResponseException {
     when(client.get(anyString())).thenCallRealMethod();
     client.get("/foo");
-    verify(client, times(1)).request("GET", "/foo", null);
+    verify(client, times(1)).request("GET", "/foo", null, null);
   }
 
   @Test public void testGetWithParams() throws ResponseException {
     when(client.get(anyString(), any(Params.class))).thenCallRealMethod();
     client.get("/foo", params);
-    verify(client, times(1)).request("GET", "/foo", params);
+    verify(client, times(1)).request("GET", "/foo", params, null);
   }
 
-  @Test public void testPostWithoutParams() throws ResponseException {
+  @Test public void testPostWithoutParamsWithoutBody() throws ResponseException {
     when(client.post(anyString())).thenCallRealMethod();
     client.post("/foo");
-    verify(client, times(1)).request("POST", "/foo", null);
+    verify(client, times(1)).request("POST", "/foo", null, null);
   }
 
-  @Test public void testPostWitParams() throws ResponseException {
+  @Test public void testPostWithParamsWithoutBody() throws ResponseException {
     when(client.post(anyString(), any(Params.class))).thenCallRealMethod();
     client.post("/foo", params);
-    verify(client, times(1)).request("POST", "/foo", params);
+    verify(client, times(1)).request("POST", "/foo", params, null);
+  }
+
+  @Test public void testPostWithoutParamsWithBody() throws ResponseException {
+    when(client.post(anyString(), anyString())).thenCallRealMethod();
+    client.post("/foo", "[{}]");
+    verify(client, times(1)).request("POST", "/foo", null, body);
   }
 
   @Test public void testRequest() throws ResponseException {
     client.accessToken = accessToken;
     when(accessToken.getBearerToken()).thenReturn("token");
-    when(client.request(anyString(), anyString(), any(Params.class))).thenCallRealMethod();
-    client.request("GET","/foo", params);
-    verify(client, times(1)).unauthenticatedRequest("GET", "/foo", params, "token");
+    when(client.request(anyString(), anyString(),
+        any(Params.class), anyString())).thenCallRealMethod();
+    client.request("GET","/foo", params, body);
+    verify(client, times(1)).unauthenticatedRequest("GET", "/foo", params, body, "token");
   }
 
   @Test public void testUnauthenticatedGetRequest() throws ResponseException, IOException {
@@ -93,10 +102,10 @@ public class HTTPClientTest {
     when(connection.getInputStream()).thenReturn(
             new ByteArrayInputStream("{ \"data\": [{}]}".getBytes()));
 
-    when(client.buildRequest("GET", "/foo", params, null)).thenReturn(request);
-    when(client.unauthenticatedRequest("GET", "/foo", params, null)).thenCallRealMethod();
+    when(client.buildRequest("GET", "/foo", params, null,null)).thenReturn(request);
+    when(client.unauthenticatedRequest("GET", "/foo", params, null,null)).thenCallRealMethod();
 
-    Response response = client.unauthenticatedRequest("GET", "/foo", params, null);
+    Response response = client.unauthenticatedRequest("GET", "/foo", params, null, null);
 
     assertTrue(response.isParsed());
     assertEquals(((JsonArray) response.getData()).size(), 1);
@@ -114,18 +123,20 @@ public class HTTPClientTest {
     when(connection.getInputStream()).thenReturn(
             new ByteArrayInputStream("{ \"data\": [{}]}".getBytes()));
 
-    when(client.buildRequest("POST", "/foo", params, null)).thenReturn(request);
-    when(client.unauthenticatedRequest("POST", "/foo", params, null)).thenCallRealMethod();
+    when(client.buildRequest("POST", "/foo", params, null, null)).thenReturn(request);
+    when(client.unauthenticatedRequest("POST", "/foo",
+        params, null,null)).thenCallRealMethod();
 
-    Response response = client.unauthenticatedRequest("POST", "/foo", params, null);
+    Response response = client.unauthenticatedRequest("POST", "/foo",
+        params, null,null);
 
     assertTrue(response.isParsed());
     assertEquals(((JsonArray) response.getData()).size(), 1);
   }
 
-  @Test public void testUnauthenticatedPostWithoutParams() throws ResponseException, IOException {
+  @Test public void testUnauthenticatedPostWithoutBody() throws ResponseException, IOException {
     when(request.getVerb()).thenReturn("POST");
-    when(request.getParams()).thenReturn(null);
+    when(request.getBody()).thenReturn(null);
     when(request.getConnection()).thenReturn(connection);
 
     when(connection.getOutputStream()).thenReturn(mock(OutputStream.class));
@@ -135,10 +146,10 @@ public class HTTPClientTest {
     when(connection.getInputStream()).thenReturn(
             new ByteArrayInputStream("{ \"data\": [{}]}".getBytes()));
 
-    when(client.buildRequest("POST", "/foo", null, null)).thenReturn(request);
-    when(client.unauthenticatedRequest("POST", "/foo", null, null)).thenCallRealMethod();
+    when(client.buildRequest("POST", "/foo", null, null,null)).thenReturn(request);
+    when(client.unauthenticatedRequest("POST", "/foo", null, null,null)).thenCallRealMethod();
 
-    Response response = client.unauthenticatedRequest("POST", "/foo", null, null);
+    Response response = client.unauthenticatedRequest("POST", "/foo", null, null,null);
 
     assertTrue(response.isParsed());
     assertEquals(((JsonArray) response.getData()).size(), 1);
@@ -158,10 +169,10 @@ public class HTTPClientTest {
     when(connection.getInputStream()).thenReturn(
             new ByteArrayInputStream("{ \"data\": [{}]}".getBytes()));
 
-    when(client.buildRequest("POST", "/foo", params, null)).thenReturn(request);
-    when(client.unauthenticatedRequest("POST", "/foo", params, null)).thenCallRealMethod();
+    when(client.buildRequest("POST", "/foo", params, null,null)).thenReturn(request);
+    when(client.unauthenticatedRequest("POST", "/foo", params, null,null)).thenCallRealMethod();
 
-    client.unauthenticatedRequest("POST", "/foo", params, null);
+    client.unauthenticatedRequest("POST", "/foo", params, null,null);
   }
 
   @Test public void testLogIfDebug() throws ResponseException, IOException {
@@ -176,10 +187,10 @@ public class HTTPClientTest {
     when(connection.getInputStream()).thenReturn(
             new ByteArrayInputStream("{ \"data\": [{}]}".getBytes()));
 
-    when(client.buildRequest("GET", "/foo", null, null)).thenReturn(request);
-    when(client.unauthenticatedRequest("GET", "/foo", null, null)).thenCallRealMethod();
+    when(client.buildRequest("GET", "/foo", null, null,null)).thenReturn(request);
+    when(client.unauthenticatedRequest("GET", "/foo", null, null,null)).thenCallRealMethod();
 
-    client.unauthenticatedRequest("GET", "/foo", null, null);
+    client.unauthenticatedRequest("GET", "/foo", null, null,null);
 
     verify(logger, times(2)).info(anyString());
   }
@@ -195,10 +206,10 @@ public class HTTPClientTest {
     when(connection.getInputStream()).thenReturn(
             new ByteArrayInputStream("{ \"data\": [{}]}".getBytes()));
 
-    when(client.buildRequest("GET", "/foo", null, null)).thenReturn(request);
-    when(client.unauthenticatedRequest("GET", "/foo", null, null)).thenCallRealMethod();
+    when(client.buildRequest("GET", "/foo", null, null,null)).thenReturn(request);
+    when(client.unauthenticatedRequest("GET", "/foo", null, null,null)).thenCallRealMethod();
 
-    client.unauthenticatedRequest("GET", "/foo", null, null);
+    client.unauthenticatedRequest("GET", "/foo", null, null,null);
 
     verify(logger, times(0)).info(anyString());
   }
@@ -215,17 +226,17 @@ public class HTTPClientTest {
     when(connection.getInputStream()).thenReturn(
             new ByteArrayInputStream("{ \"data\": [{}]}".getBytes()));
 
-    when(client.buildRequest("GET", "/foo", null, null)).thenReturn(request);
-    when(client.unauthenticatedRequest("GET", "/foo", null, null)).thenCallRealMethod();
+    when(client.buildRequest("GET", "/foo", null, null,null)).thenReturn(request);
+    when(client.unauthenticatedRequest("GET", "/foo", null, null,null)).thenCallRealMethod();
 
-    client.unauthenticatedRequest("GET", "/foo", null, null);
+    client.unauthenticatedRequest("GET", "/foo", null, null,null);
 
     verify(logger, times(0)).info(anyString());
   }
 
   @Test public void testBuildRequest() {
-    when(client.buildRequest("GET", "/foo", null, null)).thenCallRealMethod();
-    Request request = client.buildRequest("GET", "/foo", null, null);
+    when(client.buildRequest("GET", "/foo", null, null,null)).thenCallRealMethod();
+    Request request = client.buildRequest("GET", "/foo", null, null,null);
     assertNotNull(request);
   }
 
@@ -306,11 +317,13 @@ public class HTTPClientTest {
     when(request.getPath()).thenReturn("/foo");
     when(request.getParams()).thenReturn(Params.with("foo", "bar"));
 
-    when(client.request(anyString(), anyString(), any(Params.class))).thenReturn(response);
+    when(client.request(anyString(), anyString(),
+        any(Params.class), anyString())).thenReturn(response);
+    client.accessToken = accessToken;
+    when(accessToken.getBearerToken()).thenReturn("token");
     when(client.page("next", response)).thenCallRealMethod();
 
     Response nextResponse = client.page("next", response);
-
     assertNotNull(nextResponse);
   }
 
@@ -327,7 +340,8 @@ public class HTTPClientTest {
     when(request.getPath()).thenReturn("/foo");
     when(request.getParams()).thenReturn(Params.with("foo", "bar"));
 
-    when(client.request(anyString(), anyString(), any(Params.class))).thenReturn(response);
+    when(client.request(anyString(), anyString(),
+        any(Params.class), anyString())).thenReturn(response);
     when(client.page("next", response)).thenCallRealMethod();
 
     Response nextResponse = client.page("next", response);
