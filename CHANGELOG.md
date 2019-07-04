@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.2.0 - 2019-06-04
+Release of the [Flight Choice Prediction API](https://developers.amadeus.com/self-service/category/air/api-doc/flight-choice-prediction)
+
+> The Flight Choice Prediction API allows developers to forecast traveler choices in the context of search & shopping. Exposing machine learning & AI services for travel, this API consumes the output of the Flight Low-fare Search API and returns augmented content with probabilities of choices for each flight offers.
+
 ## 3.1.0 - 2019-04-02
 
 # Points of interest API
@@ -67,7 +72,7 @@ Bug fix - Some sub-attributes accessors were private and not accessible
 
 ## 1.1.0 - 2018-08-01
 
-New version of the Java library to support our 3 new endpoints: 
+New version of the Java library to support our 3 new endpoints:
 
 * [Flight Most Booked Destinations](https://developers.amadeus.com/self-service/category/203/api-doc/27)
 

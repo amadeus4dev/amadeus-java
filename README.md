@@ -11,7 +11,7 @@ documentation](https://amadeus4dev.github.io/amadeus-java/) on
 
 ## Installation
 
-This library requires Java 1.7+ and the the [Gson library](https://github.com/google/gson). 
+This library requires Java 1.7+ and the the [Gson library](https://github.com/google/gson).
 
 With __Maven__ you need to add to your pom.xml
 ```xml
@@ -34,12 +34,12 @@ You can install the SDK via Maven or Gradle.
 <dependency>
   <groupId>com.amadeus</groupId>
   <artifactId>amadeus-java</artifactId>
-  <version>3.1.0</version>
+  <version>3.2.0</version>
 </dependency>
 ```
 #### Gradle
 ```js
-compile "com.amadeus:amadeus-java:3.1.0"
+compile "com.amadeus:amadeus-java:3.2.0"
 ```
 
 ## Getting Started
