@@ -5,6 +5,7 @@ import com.amadeus.client.AccessToken;
 import com.amadeus.exceptions.NetworkException;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.Resource;
+import com.google.gson.JsonObject;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -36,7 +37,7 @@ public class HTTPClient {
    * @see Amadeus#get(String, Params)
    */
   public Response get(String path) throws ResponseException {
-    return request(Constants.GET, path, null);
+    return request(Constants.GET, path, null,null);
   }
 
   /**
@@ -63,7 +64,7 @@ public class HTTPClient {
    * @return a Response object containing the status code, body, and parsed data.
    */
   public Response get(String path, Params params) throws ResponseException {
-    return request(Constants.GET, path, params);
+    return request(Constants.GET, path, params, null);
   }
 
   /**
@@ -73,7 +74,7 @@ public class HTTPClient {
    * @see Amadeus#post(String, Params)
    */
   public Response post(String path) throws ResponseException {
-    return request(Constants.POST, path, null);
+    return request(Constants.POST, path, null, null);
   }
 
   /**
@@ -100,7 +101,57 @@ public class HTTPClient {
    * @return a Response object containing the status code, body, and parsed data.
    */
   public Response post(String path, Params params) throws ResponseException {
-    return request(Constants.POST, path, params);
+    return request(Constants.POST, path, params, null);
+  }
+
+  /**
+   * <p>
+   *   A helper module for making generic POST requests calls. It is used by
+   *   every namespaced API POST method.
+   * </p>
+   *
+   * <pre>
+   *   amadeus.foo.bar.post(Params.with("airline", "1X"));
+   * </pre>
+   *
+   * <p>
+   *   It can be used to make any generic API call that is automatically
+   *   authenticated using your API credentials:
+   * </p>
+   *
+   * <pre>
+   *    amadeus.post("/v1/foo/bar", Params.with("airline", "1X"));
+   * </pre>
+   *
+   * @param path The full path for the API call
+   * @param body The optional POST params to pass to the API
+   * @return a Response object containing the status code, body, and parsed data.
+   */
+  public Response post(String path, String body) throws ResponseException {
+    return request(Constants.POST, path, null, body);
+  }
+
+  /**
+   * <p>
+   *   A helper module for making generic POST requests calls. It is used by
+   *   every namespaced API POST method.
+   * </p>
+   *
+   * <p>
+   *   It can be used to make any generic API call that is automatically
+   *   authenticated using your API credentials:
+   * </p>
+   *
+   * <pre>
+   *    amadeus.post("/v1/foo/bar", { "foo" : "bar" })
+   * </pre>
+   *
+   * @param path The full path for the API call
+   * @param body The POST JsonObject body to pass to the API
+   * @return a Response object containing the status code, body, and parsed data.
+   */
+  public Response post(String path, JsonObject body) throws ResponseException {
+    return request(Constants.POST, path, null, body.toString());
   }
 
   /**
@@ -110,9 +161,9 @@ public class HTTPClient {
    *
    * @hides as only used internally
    */
-  public Response unauthenticatedRequest(String verb, String path, Params params,
-                                         String bearerToken) throws ResponseException {
-    Request request = buildRequest(verb, path, params, bearerToken);
+  public Response unauthenticatedRequest(String verb, String path, Params params, String body,
+      String bearerToken) throws ResponseException {
+    Request request = buildRequest(verb, path, params, body, bearerToken);
     log(request);
     return execute(request);
   }
@@ -198,13 +249,15 @@ public class HTTPClient {
   }
 
   // A generic method for making requests of any verb.
-  protected Response request(String verb, String path, Params params) throws ResponseException {
-    return unauthenticatedRequest(verb, path, params, accessToken.getBearerToken());
+  protected Response request(String verb, String path, Params params, String body)
+      throws ResponseException {
+    return unauthenticatedRequest(verb, path, params, body, accessToken.getBearerToken());
   }
 
   // Builds a request
-  protected Request buildRequest(String verb, String path, Params params, String bearerToken) {
-    return new Request(verb, path, params, bearerToken, this);
+  protected Request buildRequest(String verb, String path, Params params, String body,
+      String bearerToken) {
+    return new Request(verb, path, params, body, bearerToken, this);
   }
 
   // A simple log that only triggers if we are in debug mode
@@ -238,10 +291,22 @@ public class HTTPClient {
 
   // Writes the parameters to the request.
   private void write(Request request) throws IOException {
+
+
     if (request.getVerb() == Constants.POST && request.getParams() != null) {
       OutputStream os = request.getConnection().getOutputStream();
       BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
       writer.write(request.getParams().toQueryString());
+      writer.flush();
+      writer.close();
+      os.close();
+    }
+    if (request.getVerb() == Constants.POST && request.getParams() == null) {
+      OutputStream os = request.getConnection().getOutputStream();
+      BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+      if (request.getBody() != null) {
+        writer.write(request.getBody());
+      }
       writer.flush();
       writer.close();
       os.close();
@@ -263,7 +328,7 @@ public class HTTPClient {
       Params params = (Params) request.getParams().clone();
       params.put("page[offset]", pageNumber);
 
-      return request(request.getVerb(), request.getPath(), params);
+      return request(request.getVerb(), request.getPath(), params, "emptyBody");
     } catch (NullPointerException e) {
       return null;
     }

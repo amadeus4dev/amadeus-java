@@ -3,9 +3,11 @@ install: true
 
 sudo: false
 jdk:
-  - oraclejdk8
-  - oraclejdk9
   - openjdk8
+#  JDK 9 disable because of TravisCI problems
+# https://travis-ci.community/t/install-jdk-sh-failing-for-openjdk9-and-10/3998/17
+#  - openjdk9
+
 
 before_install:
   - chmod +x gradlew

@@ -14,6 +14,7 @@ import com.amadeus.shopping.FlightOffers;
 import com.amadeus.shopping.HotelOffer;
 import com.amadeus.shopping.HotelOffers;
 import com.amadeus.shopping.HotelOffersByHotel;
+import com.amadeus.shopping.flightOffers.Prediction;
 import com.amadeus.travel.analytics.airTraffic.Booked;
 import com.amadeus.travel.analytics.airTraffic.BusiestPeriod;
 import com.amadeus.travel.analytics.airTraffic.Searched;
@@ -32,6 +33,7 @@ public class NamespaceTest {
   private Params params;
   private Response singleResponse;
   private Response multiResponse;
+  private String body;
 
   @Test
   public void testAllNamespacesExist() {
@@ -49,6 +51,7 @@ public class NamespaceTest {
     TestCase.assertNotNull(client.shopping.flightDates);
     TestCase.assertNotNull(client.shopping.flightDestinations);
     TestCase.assertNotNull(client.shopping.flightOffers);
+    TestCase.assertNotNull(client.shopping.flightOffers.prediction);
     TestCase.assertNotNull(client.shopping.hotelOffers);
     TestCase.assertNotNull(client.shopping.hotelOffersByHotel);
     TestCase.assertNotNull(client.shopping.hotelOffer("XXX"));
@@ -58,6 +61,7 @@ public class NamespaceTest {
   public void setup() {
     client = Mockito.mock(Amadeus.class);
     params = Params.with("airline", "1X");
+    body = "{ \"data\": [{}]}";
 
     // Prepare a plural response
     JsonArray jsonArray = new JsonArray();
@@ -253,5 +257,18 @@ public class NamespaceTest {
     HotelOffer hotelOffer = new HotelOffer(client, "XXX");
     TestCase.assertNotNull(hotelOffer.get());
     TestCase.assertNotNull(hotelOffer.get(params));
+  }
+
+  @Test
+  public void testPostMethods() throws ResponseException {
+    // Testing flight choice prediction
+    Mockito.when(client.post("/v1/shopping/flight-offers/prediction", (String) null))
+        .thenReturn(multiResponse);
+    Mockito.when(client.post("/v1/shopping/flight-offers/prediction", body))
+        .thenReturn(multiResponse);
+    Prediction flightOffersPrediction = new Prediction(client);
+    TestCase.assertNotNull(flightOffersPrediction.post());
+    TestCase.assertNotNull(flightOffersPrediction.post(body));
+    TestCase.assertEquals(flightOffersPrediction.post().length, 2);
   }
 }

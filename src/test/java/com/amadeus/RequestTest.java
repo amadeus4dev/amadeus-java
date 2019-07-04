@@ -11,7 +11,7 @@ public class RequestTest {
   @Test public void testInitializer() {
     Amadeus amadeus = Amadeus.builder("123", "234").build();
     Params params = Params.with("foo", "bar");
-    Request request = new Request("GET", "/foo/bar", params, "token", amadeus);
+    Request request = new Request("GET", "/foo/bar", params, null,"token", amadeus);
 
     assertEquals(request.getVerb(), "GET");
     assertEquals(request.getHost(), "test.api.amadeus.com");
@@ -35,7 +35,7 @@ public class RequestTest {
   @Test public void testInitializerWithoutBearerToken() {
     Amadeus amadeus = Amadeus.builder("123", "234").build();
     Params params = Params.with("foo", "bar");
-    Request request = new Request("GET", "/foo/bar", params, null, amadeus);
+    Request request = new Request("GET", "/foo/bar", params, null, null, amadeus);
 
     assertEquals(request.getHeaders().size(), 2);
     assertEquals(request.getHeaders().get("Authorization"), null);
@@ -47,7 +47,7 @@ public class RequestTest {
             .setCustomAppId("amadeus-cli")
             .build();
     Params params = Params.with("foo", "bar");
-    Request request = new Request("GET", "/foo/bar", params, "token", amadeus);
+    Request request = new Request("GET", "/foo/bar", params, null,"token", amadeus);
 
     assertTrue(request.getHeaders()
             .get("User-Agent").matches("amadeus-java/.* java/.* amadeus-cli/.*"));
@@ -57,7 +57,7 @@ public class RequestTest {
     Amadeus amadeus = Amadeus.builder("123", "234")
             .setSsl(false)
             .build();
-    Request request = new Request("GET", "/foo/bar", null, "token", amadeus);
+    Request request = new Request("GET", "/foo/bar", null, null, "token", amadeus);
 
     assertEquals(request.getScheme(), "http");
   }
@@ -65,27 +65,27 @@ public class RequestTest {
   @Test public void testBuildUriForGetRequest() {
     Amadeus amadeus = Amadeus.builder("123", "234").build();
     Params params = Params.with("foo", "bar");
-    Request request = new Request("GET", "/foo/bar", params, null, amadeus);
+    Request request = new Request("GET", "/foo/bar", params, null,null, amadeus);
     assertEquals(request.getUri(), "https://test.api.amadeus.com:443/foo/bar?foo=bar");
   }
 
   @Test public void testBuildUriForGetRequestWithoutParams() {
     Amadeus amadeus = Amadeus.builder("123", "234").build();
-    Request request = new Request("GET", "/foo/bar", null, null, amadeus);
+    Request request = new Request("GET", "/foo/bar", null, null,null, amadeus);
     assertEquals(request.getUri(), "https://test.api.amadeus.com:443/foo/bar?");
   }
 
   @Test public void testBuildUriForPostRequest() {
     Amadeus amadeus = Amadeus.builder("123", "234").build();
     Params params = Params.with("foo", "bar");
-    Request request = new Request("POST", "/foo/bar", params, null, amadeus);
+    Request request = new Request("POST", "/foo/bar", params, null,null, amadeus);
 
     assertEquals(request.getUri(), "https://test.api.amadeus.com:443/foo/bar?");
   }
 
   @Test public void testToString() {
     Amadeus amadeus = Amadeus.builder("123", "234").build();
-    Request request = new Request("GET", "/foo/bar", null, null, amadeus);
+    Request request = new Request("GET", "/foo/bar", null, null,null, amadeus);
 
     assertTrue(request.toString()
             .startsWith("Request(verb=GET, scheme=https, host=test.api.amadeus.com"));
@@ -93,7 +93,7 @@ public class RequestTest {
 
   @Test public void testEstablishConnection() throws IOException {
     Amadeus amadeus = Amadeus.builder("123", "234").build();
-    Request request = new Request("POST", "/v1/security/oauth2/token", null, null, amadeus);
+    Request request = new Request("POST", "/v1/security/oauth2/token", null, null,null, amadeus);
     request.establishConnection();
     assertNotNull(request.getConnection());
   }

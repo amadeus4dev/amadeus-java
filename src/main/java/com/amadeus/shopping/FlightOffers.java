@@ -6,6 +6,7 @@ import com.amadeus.Response;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.FlightOffer;
 import com.amadeus.resources.Resource;
+import com.amadeus.shopping.flightOffers.Prediction;
 import com.google.gson.Gson;
 
 /**
@@ -24,6 +25,7 @@ import com.google.gson.Gson;
  */
 public class FlightOffers {
   private Amadeus client;
+  public Prediction prediction;
 
   /**
    * Constructor.
@@ -31,6 +33,7 @@ public class FlightOffers {
    */
   public FlightOffers(Amadeus client) {
     this.client = client;
+    this.prediction = new Prediction(client);
   }
 
   /**

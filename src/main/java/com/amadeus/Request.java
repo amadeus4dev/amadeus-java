@@ -2,6 +2,7 @@ package com.amadeus;
 
 import com.amadeus.Constants;
 
+import com.google.gson.JsonElement;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -40,6 +41,10 @@ public class Request {
    * The params to send to the API endpoint.
    */
   private @Getter Params params;
+  /**
+   * The body to send to the API endpoint.
+   */
+  private @Getter String body;
   /**
    * The bearer token used to authenticate the API call.
    */
@@ -80,7 +85,7 @@ public class Request {
   // The connection used to make the API call.
   private @Getter HttpURLConnection connection;
 
-  protected Request(String verb, String path, Params params, String bearerToken,
+  protected Request(String verb, String path, Params params, String body, String bearerToken,
                  HTTPClient client) {
     Configuration config = client.getConfiguration();
 
@@ -88,6 +93,7 @@ public class Request {
     this.host = config.getHost();
     this.path = path;
     this.params = params;
+    this.body = body;
     this.bearerToken = bearerToken;
     this.languageVersion = System.getProperty("java.version");
     this.clientVersion = Amadeus.VERSION;
@@ -130,6 +136,7 @@ public class Request {
     this.headers = new HashMap<String, String>();
     headers.put(Constants.USER_AGENT, buildUserAgent());
     headers.put(Constants.ACCEPT, "application/json, application/vnd.amadeus+json");
+
     if (bearerToken != null) {
       headers.put(Constants.AUTHORIZATION, bearerToken);
     }

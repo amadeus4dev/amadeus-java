@@ -15,6 +15,7 @@ public class FlightOffer extends Resource {
   private @Getter String type;
   private @Getter String id;
   private @Getter OfferItem[] offerItems;
+  private @Getter String choiceProbability;
 
   /**
    * An FlightOffer-related object as returned by the FlightOffers API.
