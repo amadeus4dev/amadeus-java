@@ -134,7 +134,7 @@ Similarly, to select a resource by ID, you can pass in the ID to the **singular*
 For example,  `GET /v2/shopping/hotel-offers/XXX` would be:
 
 ```java
-amadeus.hotelOffer("XXX").get(...);
+amadeus.shopping.hotelOffer("XXX").get(...);
 ```
 
 You can make any arbitrary API call as well directly with the `.get` method.
