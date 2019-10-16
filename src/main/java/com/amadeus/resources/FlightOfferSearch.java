@@ -12,7 +12,7 @@ public class FlightOfferSearch extends Resource {
 
   private @Getter String type;
   private @Getter String id;
-
+  private @Getter String source;
   private @Getter boolean instantTicketingRequired;
   private @Getter boolean nonHomogeneous;
   private @Getter boolean oneWay;
@@ -21,6 +21,9 @@ public class FlightOfferSearch extends Resource {
   private @Getter Itinerary[] itineraries;
   private @Getter SearchPrice price;
   private @Getter PricingOptions pricingOptions;
+  private @Getter String[] validatingAirlineCodes;
+  private @Getter TravelerPricing[] travelerPricings;
+
 
 
   @ToString
@@ -94,14 +97,15 @@ public class FlightOfferSearch extends Resource {
   }
 
   @ToString
-  public class TravelerPricings {
-    protected TravelerPricings() {
+  public class TravelerPricing {
+    protected TravelerPricing() {
     }
 
     private @Getter String travelerId;
     private @Getter String fareOption;
     private @Getter String travelerType;
     private @Getter SearchPrice price;
+    private @Getter FareDetailsBySegment[] fareDetailsBySegment;
   }
 
   @ToString

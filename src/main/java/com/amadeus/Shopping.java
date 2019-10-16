@@ -54,7 +54,7 @@ public class Shopping {
   /**
    * <p>
    *   A namespaced client for the
-   *   <code>/v2/shopping/hotel-offers</code> endpoints.
+   *   <code>/v2/shopping/flight-offers</code> endpoints.
    * </p>
    */
   public FlightOffersSearch flightOffersSearch;

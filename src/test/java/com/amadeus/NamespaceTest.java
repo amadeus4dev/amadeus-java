@@ -6,20 +6,11 @@ import com.amadeus.referenceData.Location;
 import com.amadeus.referenceData.Locations;
 import com.amadeus.referenceData.locations.Airports;
 import com.amadeus.referenceData.locations.PointsOfInterest;
-import com.amadeus.referenceData.locations.pointsOfInterest.BySquare;
 import com.amadeus.referenceData.urls.CheckinLinks;
-import com.amadeus.shopping.FlightDates;
-import com.amadeus.shopping.FlightDestinations;
-import com.amadeus.shopping.FlightOffers;
-import com.amadeus.shopping.HotelOffer;
-import com.amadeus.shopping.HotelOffers;
-import com.amadeus.shopping.HotelOffersByHotel;
+import com.amadeus.resources.FlightOfferSearch;
+import com.amadeus.shopping.*;
 import com.amadeus.shopping.flightOffers.Prediction;
-import com.amadeus.travel.analytics.airTraffic.Booked;
-import com.amadeus.travel.analytics.airTraffic.BusiestPeriod;
-import com.amadeus.travel.analytics.airTraffic.Searched;
-import com.amadeus.travel.analytics.airTraffic.SearchedByDestination;
-import com.amadeus.travel.analytics.airTraffic.Traveled;
+import com.amadeus.travel.analytics.airTraffic.*;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import junit.framework.TestCase;
@@ -51,6 +42,7 @@ public class NamespaceTest {
     TestCase.assertNotNull(client.shopping.flightDates);
     TestCase.assertNotNull(client.shopping.flightDestinations);
     TestCase.assertNotNull(client.shopping.flightOffers);
+    TestCase.assertNotNull(client.shopping.flightOffersSearch);
     TestCase.assertNotNull(client.shopping.flightOffers.prediction);
     TestCase.assertNotNull(client.shopping.hotelOffers);
     TestCase.assertNotNull(client.shopping.hotelOffersByHotel);
@@ -257,6 +249,15 @@ public class NamespaceTest {
     HotelOffer hotelOffer = new HotelOffer(client, "XXX");
     TestCase.assertNotNull(hotelOffer.get());
     TestCase.assertNotNull(hotelOffer.get(params));
+
+    // Test flight offer search v2
+    Mockito.when(client.get("/v2/shopping/flight-offers", null))
+        .thenReturn(multiResponse);
+    Mockito.when(client.get("/v2/shopping/flight-offers", params))
+        .thenReturn(multiResponse);
+    FlightOffersSearch flightOfferSearch = new FlightOffersSearch(client);
+    TestCase.assertNotNull(flightOfferSearch.get(params));
+
   }
 
   @Test
