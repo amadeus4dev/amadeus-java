@@ -225,7 +225,7 @@ FlightOffer[] flightOffers = amadeus.shopping.flightOffers.get(Params
   .and("destination", "MAD")
   .and("departureDate", "2019-08-01"));
 
-// Flight Offer Search v2
+// Flight Offer Search v2 GET
 FlightOfferSearch[] flightOffersSearches = amadeus.shopping.flightOffersSearch.get(
               Params.with("originLocationCode", "SYD")
                       .and("destinationLocationCode", "BKK")
@@ -234,6 +234,10 @@ FlightOfferSearch[] flightOffersSearches = amadeus.shopping.flightOffersSearch.g
                       .and("adults", 2)
                       .and("max", 3)
       );
+
+// Flight Offer Search v2 POST
+// body can be a String version of your JSON or a JsonObject
+FlightOfferSearch[] flightOffersSearches = amadeus.shopping.flightOffersSearch.post(body);
 
 // Flight Choice Prediction
 // Note that the example calls 2 APIs: Flight Low-fare Search & Flight Choice Prediction

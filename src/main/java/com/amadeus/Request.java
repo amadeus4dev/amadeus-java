@@ -139,6 +139,8 @@ public class Request {
 
     if (bearerToken != null) {
       headers.put(Constants.AUTHORIZATION, bearerToken);
+      headers.put(Constants.CONTENT_TYPE, "application/vnd.amadeus+json");
+
     }
   }
 
