@@ -97,6 +97,7 @@ public class Shopping {
     this.hotelOffersByHotel = new HotelOffersByHotel(client);
     this.flightOffersSearch = new FlightOffersSearch(client);
     this.hotelRatings = new HotelRatings(client);
+
   }
 
   /**
