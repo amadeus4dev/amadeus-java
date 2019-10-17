@@ -2,8 +2,8 @@ package com.amadeus.resources;
 
 import lombok.Getter;
 
-public class HotelRating extends Resource {
-  protected HotelRating() {}
+public class HotelSentiment extends Resource {
+  protected HotelSentiment() {}
 
   private @Getter String hotelId;
   private @Getter String type;
