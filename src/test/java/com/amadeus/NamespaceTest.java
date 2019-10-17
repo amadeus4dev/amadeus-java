@@ -11,6 +11,7 @@ import com.amadeus.referenceData.urls.CheckinLinks;
 import com.amadeus.shopping.FlightDates;
 import com.amadeus.shopping.FlightDestinations;
 import com.amadeus.shopping.FlightOffers;
+import com.amadeus.shopping.FlightOffersSearch;
 import com.amadeus.shopping.HotelOffer;
 import com.amadeus.shopping.HotelOffers;
 import com.amadeus.shopping.HotelOffersByHotel;
@@ -51,6 +52,7 @@ public class NamespaceTest {
     TestCase.assertNotNull(client.shopping.flightDates);
     TestCase.assertNotNull(client.shopping.flightDestinations);
     TestCase.assertNotNull(client.shopping.flightOffers);
+    TestCase.assertNotNull(client.shopping.flightOffersSearch);
     TestCase.assertNotNull(client.shopping.flightOffers.prediction);
     TestCase.assertNotNull(client.shopping.hotelOffers);
     TestCase.assertNotNull(client.shopping.hotelOffersByHotel);
@@ -257,6 +259,15 @@ public class NamespaceTest {
     HotelOffer hotelOffer = new HotelOffer(client, "XXX");
     TestCase.assertNotNull(hotelOffer.get());
     TestCase.assertNotNull(hotelOffer.get(params));
+
+    // Test flight offer search v2
+    Mockito.when(client.get("/v2/shopping/flight-offers", null))
+        .thenReturn(multiResponse);
+    Mockito.when(client.get("/v2/shopping/flight-offers", params))
+        .thenReturn(multiResponse);
+    FlightOffersSearch flightOfferSearch = new FlightOffersSearch(client);
+    TestCase.assertNotNull(flightOfferSearch.get(params));
+
   }
 
   @Test

@@ -3,6 +3,7 @@ package com.amadeus;
 import com.amadeus.shopping.FlightDates;
 import com.amadeus.shopping.FlightDestinations;
 import com.amadeus.shopping.FlightOffers;
+import com.amadeus.shopping.FlightOffersSearch;
 import com.amadeus.shopping.HotelOffer;
 import com.amadeus.shopping.HotelOffers;
 import com.amadeus.shopping.HotelOffersByHotel;
@@ -53,6 +54,14 @@ public class Shopping {
   /**
    * <p>
    *   A namespaced client for the
+   *   <code>/v2/shopping/flight-offers</code> endpoints.
+   * </p>
+   */
+  public FlightOffersSearch flightOffersSearch;
+
+  /**
+   * <p>
+   *   A namespaced client for the
    *   <code>/v2/shopping/hotel-offers</code> endpoints.
    * </p>
    */
@@ -77,6 +86,7 @@ public class Shopping {
     this.flightOffers = new FlightOffers(client);
     this.hotelOffers = new HotelOffers(client);
     this.hotelOffersByHotel = new HotelOffersByHotel(client);
+    this.flightOffersSearch = new FlightOffersSearch(client);
   }
 
   /**
