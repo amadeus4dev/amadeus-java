@@ -1,4 +1,4 @@
-package com.amadeus.shopping;
+package com.amadeus.ereputation;
 
 import com.amadeus.Amadeus;
 import com.amadeus.Params;
@@ -7,10 +7,10 @@ import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.HotelRating;
 import com.amadeus.resources.Resource;
 
-public class HotelRatings {
+public class HotelSentiments {
   private Amadeus client;
 
-  public HotelRatings(Amadeus client) {
+  public HotelSentiments(Amadeus client) {
     this.client = client;
   }
 
