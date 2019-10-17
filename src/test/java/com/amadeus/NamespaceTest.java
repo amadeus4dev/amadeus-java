@@ -56,7 +56,7 @@ public class NamespaceTest {
     TestCase.assertNotNull(client.shopping.flightOffers.prediction);
     TestCase.assertNotNull(client.shopping.hotelOffers);
     TestCase.assertNotNull(client.shopping.hotelOffersByHotel);
-    TestCase.assertNotNull(client.ereputation.hotelSentiments);
+    TestCase.assertNotNull(client.eReputation.hotelSentiments);
     TestCase.assertNotNull(client.shopping.hotelOffer("XXX"));
   }
 

@@ -53,14 +53,14 @@ public class Amadeus extends HTTPClient {
    * A namespaced client for the <code>/v2/e-reputation</code> endpoints.
    * </p>
    */
-  public EReputation ereputation;
+  public EReputation eReputation;
 
   protected Amadeus(Configuration configuration) {
     super(configuration);
     this.referenceData = new ReferenceData(this);
     this.travel = new Travel(this);
     this.shopping = new Shopping(this);
-    this.ereputation = new EReputation(this);
+    this.eReputation = new EReputation(this);
   }
 
   /**
