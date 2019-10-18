@@ -232,8 +232,7 @@ FlightOfferSearch[] flightOffersSearches = amadeus.shopping.flightOffersSearch.g
                       .and("departureDate", "2020-01-01")
                       .and("returnDate", "2020-01-05")
                       .and("adults", 2)
-                      .and("max", 3)
-      );
+                      .and("max", 3));
 
 // Flight Offer Search v2 POST
 // body can be a String version of your JSON or a JsonObject
