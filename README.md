@@ -307,6 +307,8 @@ HotelOffer[] offers = amadeus.shopping.hotelOffers.get(Params
 HotelOffer hotelOffer = amadeus.shopping.hotelOffersByHotel.get(Params.with("hotelId", "BGLONBGB"));
 // Confirm the availability of a specific offer
 HotelOffer offer = amadeus.shopping.hotelOffer("4BA070CE929E135B3268A9F2D0C51E9D4A6CF318BA10485322FA2C7E78C7852E").get();
+// Hotel Ratings / Sentiments
+HotelSentiment[] hotelSentiments = amadeus.ereputation.hotelSentiments.get(Params.with("hotelIds", "ELONMFS,ADNYCCTB"));
 
 // Points of Interest
 // What are the popular places in Barcelona (based a geo location and a radius)

@@ -1,12 +1,12 @@
 package com.amadeus;
 
+import com.amadeus.ereputation.HotelSentiments;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.referenceData.Airlines;
 import com.amadeus.referenceData.Location;
 import com.amadeus.referenceData.Locations;
 import com.amadeus.referenceData.locations.Airports;
 import com.amadeus.referenceData.locations.PointsOfInterest;
-import com.amadeus.referenceData.locations.pointsOfInterest.BySquare;
 import com.amadeus.referenceData.urls.CheckinLinks;
 import com.amadeus.shopping.FlightDates;
 import com.amadeus.shopping.FlightDestinations;
@@ -56,6 +56,7 @@ public class NamespaceTest {
     TestCase.assertNotNull(client.shopping.flightOffers.prediction);
     TestCase.assertNotNull(client.shopping.hotelOffers);
     TestCase.assertNotNull(client.shopping.hotelOffersByHotel);
+    TestCase.assertNotNull(client.ereputation.hotelSentiments);
     TestCase.assertNotNull(client.shopping.hotelOffer("XXX"));
   }
 
@@ -267,6 +268,14 @@ public class NamespaceTest {
         .thenReturn(multiResponse);
     FlightOffersSearch flightOfferSearch = new FlightOffersSearch(client);
     TestCase.assertNotNull(flightOfferSearch.get(params));
+
+    // Test hotel ratings
+    Mockito.when(client.get("/v2/e-reputation/hotel-sentiments", null))
+            .thenReturn(multiResponse);
+    Mockito.when(client.get("/v2/e-reputation/hotel-sentiments", params))
+            .thenReturn(multiResponse);
+    HotelSentiments hotelSentiments = new HotelSentiments(client);
+    TestCase.assertNotNull(hotelSentiments.get(params));
 
   }
 

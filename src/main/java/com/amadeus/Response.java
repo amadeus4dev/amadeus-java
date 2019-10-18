@@ -42,6 +42,10 @@ public class Response {
    */
   private @Getter JsonElement data;
   /**
+   * The warnings received from the API call.
+   */
+  private @Getter JsonElement warnings;
+  /**
    * The raw body received from the API.
    */
   private @Getter String body;
@@ -103,6 +107,14 @@ public class Response {
       }
       if (result.get("data").isJsonObject()) {
         this.data = result.get("data").getAsJsonObject();
+      }
+    }
+    if (parsed && result.has("warnings")) {
+      if (result.get("warnings").isJsonArray()) {
+        this.warnings = result.get("warnings").getAsJsonArray();
+      }
+      if (result.get("warnings").isJsonObject()) {
+        this.warnings = result.get("warnings").getAsJsonObject();
       }
     }
   }
