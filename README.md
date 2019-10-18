@@ -223,14 +223,14 @@ FlightDate[] flightDates = amadeus.shopping.flightDates.get(Params
 FlightOffer[] flightOffers = amadeus.shopping.flightOffers.get(Params
   .with("origin", "NYC")
   .and("destination", "MAD")
-  .and("departureDate", "2019-08-01"));
+  .and("departureDate", "2020-04-01"));
 
 // Flight Offer Search v2 GET
 FlightOfferSearch[] flightOffersSearches = amadeus.shopping.flightOffersSearch.get(
               Params.with("originLocationCode", "SYD")
                       .and("destinationLocationCode", "BKK")
-                      .and("departureDate", "2020-01-01")
-                      .and("returnDate", "2020-01-05")
+                      .and("departureDate", "2020-04-01")
+                      .and("returnDate", "2020-04-05")
                       .and("adults", 2)
                       .and("max", 3));
 
@@ -241,7 +241,7 @@ FlightOfferSearch[] flightOffersSearches = amadeus.shopping.flightOffersSearch.p
 // Flight Choice Prediction
 // Note that the example calls 2 APIs: Flight Low-fare Search & Flight Choice Prediction
 FlightOffer[] flightOffers = amadeus.shopping.flightOffers
-        .get(Params.with("origin", "MAD").and("destination", "NYC").and("departureDate", "2020-01-01").and("max", "2"));
+        .get(Params.with("origin", "MAD").and("destination", "NYC").and("departureDate", "2020-04-01").and("max", "2"));
 
 // Using a JSonObject
 JsonObject result = flightOffers[0].getResponse().getResult();
