@@ -13,7 +13,7 @@ plugins {
     id 'checkstyle'
     id 'osgi'
     id "maven-publish"
-    id "com.jfrog.bintray" version "1.+"
+    id "com.jfrog.bintray" version "1.8.4"
 }
 
 sourceCompatibility = 1.7
