@@ -1,5 +1,15 @@
 # Changelog
+##3.3.0-2019-10-18
+Big thanks to [Spiros Batziopoulos](https://github.com/SealSoft) for his contributions! The 2 APIs below were added to the SDK by him! :clap:
+ 
 
+Add support for the [Hotel Ratings API](https://developers.amadeus.com/self-service/category/hotel/api-doc/hotel-ratings)
+
+> The Hotel Ratings API provides hotel ratings based on automated sentiment analysis algorithm applied on the online reviews. Apart from an overall rating for a hotel also provides ratings for different categories of each (e.g.: staff, pool, internet, location). This provides a key content information for decision making during a shopping experience being able to compare how good a hotel is compared to others, sort hotels by ratings, filter by categories or recommend a hotel based on the trip context.
+
+Add support for the [Flight Offers Search API](https://developers.amadeus.com/self-service/category/air/api-doc/flight-offers-search)
+
+> The Flight Offers Search API allows to get cheapest flight recommendations and prices on a given journey. It provides a list of flight recommendations and fares from a given origin (city or airport), for a given date (or date range) and for a given list of passengers. Additional information such as bag allowance, first ancillary bag prices or fare details are also provided.
 ## 3.2.0 - 2019-06-04
 Release of the [Flight Choice Prediction API](https://developers.amadeus.com/self-service/category/air/api-doc/flight-choice-prediction)
 
