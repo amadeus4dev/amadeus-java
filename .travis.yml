@@ -20,7 +20,9 @@ jobs:
     - stage: build
       script: ./gradlew build
 
-before_deploy: ./gradlew javadoc
+before_deploy:
+  - ./gradlew javadoc
+  - git stash drop
 
 deploy:
   - provider: pages
