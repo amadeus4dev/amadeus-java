@@ -5,7 +5,10 @@ import java.util.Date;
 import lombok.Getter;
 import lombok.ToString;
 
-
+/**
+ * An Airline object as returned by the Airline Code LookUp API.
+ * @see com.amadeus.shopping.flightOffersSearch#get()
+ */
 @ToString
 public class FlightOfferSearch extends Resource {
   protected FlightOfferSearch() {}

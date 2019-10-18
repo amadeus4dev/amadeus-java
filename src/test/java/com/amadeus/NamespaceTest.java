@@ -35,6 +35,7 @@ public class NamespaceTest {
   private Response singleResponse;
   private Response multiResponse;
   private String body;
+  private JsonObject jsonObject;
 
   @Test
   public void testAllNamespacesExist() {
@@ -75,7 +76,7 @@ public class NamespaceTest {
     Mockito.when(multiResponse.getData()).thenReturn(jsonArray);
 
     // Prepare a single response
-    JsonObject jsonObject = new JsonObject();
+    jsonObject = new JsonObject();
     jsonObject.addProperty("foo", "bar");
     singleResponse = Mockito.mock(Response.class);
     Mockito.when(singleResponse.isParsed()).thenReturn(true);
@@ -261,7 +262,7 @@ public class NamespaceTest {
     TestCase.assertNotNull(hotelOffer.get());
     TestCase.assertNotNull(hotelOffer.get(params));
 
-    // Test flight offer search v2
+    // Test flight offers search get
     Mockito.when(client.get("/v2/shopping/flight-offers", null))
         .thenReturn(multiResponse);
     Mockito.when(client.get("/v2/shopping/flight-offers", params))
@@ -276,7 +277,6 @@ public class NamespaceTest {
             .thenReturn(multiResponse);
     HotelSentiments hotelSentiments = new HotelSentiments(client);
     TestCase.assertNotNull(hotelSentiments.get(params));
-
   }
 
   @Test
@@ -290,5 +290,17 @@ public class NamespaceTest {
     TestCase.assertNotNull(flightOffersPrediction.post());
     TestCase.assertNotNull(flightOffersPrediction.post(body));
     TestCase.assertEquals(flightOffersPrediction.post().length, 2);
+
+    // Test flight offers search post
+    Mockito.when(client.post("/v2/shopping/flight-offers", (String) null))
+            .thenReturn(multiResponse);
+    Mockito.when(client.post("/v2/shopping/flight-offers", body))
+            .thenReturn(multiResponse);
+    Mockito.when(client.post("/v2/shopping/flight-offers", jsonObject))
+            .thenReturn(multiResponse);
+    FlightOffersSearch flightOfferSearch = new FlightOffersSearch(client);
+    TestCase.assertNotNull(flightOfferSearch.post());
+    TestCase.assertNotNull(flightOfferSearch.post(body));
+    TestCase.assertEquals(flightOfferSearch.post().length, 2);
   }
 }

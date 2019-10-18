@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
+
 import org.junit.Test;
 
 public class RequestTest {
@@ -25,11 +26,13 @@ public class RequestTest {
     assertEquals(request.getPort(), 443);
     assertEquals(request.isSsl(), true);
     assertEquals(request.getScheme(), "https");
-    assertEquals(request.getHeaders().size(), 3);
+    assertEquals(request.getHeaders().size(), 4);
     assertEquals(request.getHeaders()
-            .get("Accept"), "application/json, application/vnd.amadeus+json");
-    assertEquals(request.getHeaders().get("Authorization"), "token");
-    assertTrue(request.getHeaders().get("User-Agent").matches("amadeus-java/.* java/.*"));
+            .get(Constants.ACCEPT), "application/json, application/vnd.amadeus+json");
+    assertEquals(request.getHeaders()
+            .get(Constants.CONTENT_TYPE), "application/vnd.amadeus+json");
+    assertEquals(request.getHeaders().get(Constants.AUTHORIZATION), "token");
+    assertTrue(request.getHeaders().get(Constants.USER_AGENT).matches("amadeus-java/.* java/.*"));
   }
 
   @Test public void testInitializerWithoutBearerToken() {
