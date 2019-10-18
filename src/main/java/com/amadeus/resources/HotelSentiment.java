@@ -1,7 +1,14 @@
 package com.amadeus.resources;
 
 import lombok.Getter;
+import lombok.ToString;
 
+/**
+ * An HotelSentiment object as returned by the Hotel Ratings API.
+ * @see HotelSentiments#get()
+ */
+
+@ToString
 public class HotelSentiment extends Resource {
   protected HotelSentiment() {}
 
@@ -11,6 +18,7 @@ public class HotelSentiment extends Resource {
   private @Getter int numberOfReviews;
   private @Getter Sentiment sentiments;
 
+  @ToString
   public class Sentiment {
     protected Sentiment() {}
 
