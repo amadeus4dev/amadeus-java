@@ -56,6 +56,14 @@ public class FlightOffersSearch {
   }
 
   /**
+   * Convenience method for calling <code>get</code> without any parameters.
+   * @see FlightOffersSearch#get()
+   */
+  public FlightOfferSearch[] get() throws ResponseException {
+    return get(null);
+  }
+
+  /**
    * <p>
    * The Flight Offers Search API allows to get cheapest flight recommendations on a given journey.
    * It provides a list of flight recommendations and fares from a given origin,
