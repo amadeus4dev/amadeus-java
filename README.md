@@ -325,6 +325,13 @@ PointOfInterest[] pointsOfInterest = amadeus.referenceData.locations.pointsOfInt
     .and("west", "2.160873")
     .and("south", "41.394582")
     .and("east", "2.177181"));
+
+// Trip Purpose Prediction API
+Prediction tripPurpose = amadeus.travel.predictions.tripPurpose.get(Params
+    .with("originLocationCode", "NYC")
+    .with("destinationLocationCode", "MAD")
+    .with("departureDate", "2020-08-01")
+    .and("returnDate", "2020-08-12"));
 ```
 
 ## Development & Contributing

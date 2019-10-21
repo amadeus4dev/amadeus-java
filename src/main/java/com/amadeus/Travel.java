@@ -1,5 +1,7 @@
 package com.amadeus;
 
+import com.amadeus.resources.Prediction;
+import com.amadeus.travel.Predictions;
 import com.amadeus.travel.analytics.Analytics;
 
 /**
@@ -28,10 +30,19 @@ public class Travel {
   public Analytics analytics;
 
   /**
+   * <p>
+   *   A namespaced client for the
+   *   <code>/v2/travel/predictions</code> endpoints.
+   * </p>
+   */
+  public Predictions predictions;
+
+  /**
    * Constructor.
    * @hide
    */
   public Travel(Amadeus client) {
     this.analytics = new Analytics(client);
+    this.predictions = new Predictions(client);
   }
 }

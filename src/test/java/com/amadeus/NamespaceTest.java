@@ -21,6 +21,7 @@ import com.amadeus.travel.analytics.airTraffic.BusiestPeriod;
 import com.amadeus.travel.analytics.airTraffic.Searched;
 import com.amadeus.travel.analytics.airTraffic.SearchedByDestination;
 import com.amadeus.travel.analytics.airTraffic.Traveled;
+import com.amadeus.travel.predictions.TripPurpose;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import junit.framework.TestCase;
@@ -50,6 +51,7 @@ public class NamespaceTest {
     TestCase.assertNotNull(client.travel.analytics.airTraffic.booked);
     TestCase.assertNotNull(client.travel.analytics.airTraffic.searched);
     TestCase.assertNotNull(client.travel.analytics.airTraffic.searchedByDestination);
+    TestCase.assertNotNull(client.travel.predictions.tripPurpose);
     TestCase.assertNotNull(client.shopping.flightDates);
     TestCase.assertNotNull(client.shopping.flightDestinations);
     TestCase.assertNotNull(client.shopping.flightOffers);
@@ -277,6 +279,14 @@ public class NamespaceTest {
             .thenReturn(multiResponse);
     HotelSentiments hotelSentiments = new HotelSentiments(client);
     TestCase.assertNotNull(hotelSentiments.get(params));
+
+    // Test trip purpose prediction
+    Mockito.when(client.get("/v1/travel/predictions/trip-purpose", null))
+            .thenReturn(singleResponse);
+    Mockito.when(client.get("/v1/travel/predictions/trip-purpose", params))
+            .thenReturn(singleResponse);
+    TripPurpose tripPurpose = new TripPurpose(client);
+    TestCase.assertNotNull(tripPurpose.get(params));
   }
 
   @Test
