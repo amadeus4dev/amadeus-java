@@ -155,6 +155,54 @@ public class HTTPClient {
   }
 
   /**
+   * <p>
+   *   A helper module for making generic POST requests calls. It is used by
+   *   every namespaced API POST method.
+   * </p>
+   *
+   * <p>
+   *   It can be used to make any generic API call that is automatically
+   *   authenticated using your API credentials:
+   * </p>
+   *
+   * <pre>
+   *    amadeus.post("/v1/foo/bar", Params.with("airline", "1X"), { "foo" : "bar" })
+   * </pre>
+   *
+   * @param path The full path for the API call
+   * @param params The optional POST params to pass to the API
+   * @param body The POST JsonObject body to pass to the API
+   * @return a Response object containing the status code, body, and parsed data.
+   */
+  public Response post(String path, Params params, JsonObject body) throws ResponseException {
+    return request(Constants.POST, path, params, body.toString());
+  }
+
+  /**
+   * <p>
+   *   A helper module for making generic POST requests calls. It is used by
+   *   every namespaced API POST method.
+   * </p>
+   *
+   * <p>
+   *   It can be used to make any generic API call that is automatically
+   *   authenticated using your API credentials:
+   * </p>
+   *
+   * <pre>
+   *    amadeus.post("/v1/foo/bar", Params.with("airline", "1X"), { "foo" : "bar" })
+   * </pre>
+   *
+   * @param path The full path for the API call
+   * @param params The optional POST params to pass to the API
+   * @param body The POST String object body to pass to the API
+   * @return a Response object containing the status code, body, and parsed data.
+   */
+  public Response post(String path, Params params, String body) throws ResponseException {
+    return request(Constants.POST, path, params, body.toString());
+  }
+
+  /**
    * A generic method for making any authenticated or unauthenticated request,
    * passing in the bearer token explicitly. Used primarily by the
    * AccessToken to get the first AccessToken.
