@@ -238,6 +238,12 @@ FlightOfferSearch[] flightOffersSearches = amadeus.shopping.flightOffersSearch.g
 // body can be a String version of your JSON or a JsonObject
 FlightOfferSearch[] flightOffersSearches = amadeus.shopping.flightOffersSearch.post(body);
 
+// Flight Offer price
+FlightPrice[] flightPricing = amadeus.shopping.flightOffersSearch.pricing.post(
+                    body,
+                    Params.with("include", "other-services")
+                          .and("forceClass", "false"))  
+
 // Flight Choice Prediction
 // Note that the example calls 2 APIs: Flight Low-fare Search & Flight Choice Prediction
 FlightOffer[] flightOffers = amadeus.shopping.flightOffers

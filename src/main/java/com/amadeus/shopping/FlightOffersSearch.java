@@ -6,6 +6,7 @@ import com.amadeus.Response;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.FlightOfferSearch;
 import com.amadeus.resources.Resource;
+import com.amadeus.shopping.flightOffers.Pricing;
 import com.google.gson.JsonObject;
 
 /**
@@ -24,6 +25,7 @@ import com.google.gson.JsonObject;
  */
 public class FlightOffersSearch {
   private Amadeus client;
+  public Pricing pricing;
 
   /**
    * Constructor.
@@ -32,6 +34,7 @@ public class FlightOffersSearch {
    */
   public FlightOffersSearch(Amadeus client) {
     this.client = client;
+    this.pricing = new Pricing(client);
   }
 
   /**
