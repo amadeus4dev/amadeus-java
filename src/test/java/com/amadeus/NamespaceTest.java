@@ -307,14 +307,13 @@ public class NamespaceTest {
 
     // Test flight price
     Mockito.when(client.post("/v1/shopping/flight-offers/pricing", (String) null))
-            .thenReturn(multiResponse);
+            .thenReturn(singleResponse);
     Mockito.when(client.post("/v1/shopping/flight-offers/pricing", body))
-            .thenReturn(multiResponse);
+            .thenReturn(singleResponse);
     Mockito.when(client.post("/v1/shopping/flight-offers/pricing", params, jsonObject))
-            .thenReturn(multiResponse);
+            .thenReturn(singleResponse);
     Pricing pricing = new Pricing(client);
     TestCase.assertNotNull(pricing.post());
     TestCase.assertNotNull(pricing.post(body));
-    TestCase.assertEquals(pricing.post().length, 2);
   }
 }
