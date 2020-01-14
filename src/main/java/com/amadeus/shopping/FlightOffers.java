@@ -45,7 +45,7 @@ public class FlightOffers {
    * amadeus.shopping.flightOffers.get(Params
    *   .with("origin", "LHR")
    *   .and("destination", "LAX")
-   *   .and("departureDate", "2017-12-24"));</pre>
+   *   .and("departureDate", "2020-08-01"));</pre>
    *
    * @param params the parameters to send to the API
    * @return an API response object
