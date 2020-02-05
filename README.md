@@ -1,7 +1,7 @@
 # Amadeus Java SDK
 
 [![Build Status](https://travis-ci.org/amadeus4dev/amadeus-java.svg?branch=master)][travis]
-[![Contact Support](https://github.com/amadeus4dev/amadeus-ruby/raw/master/.github/images/support.svg?sanitize=true)][support]
+[![Contact Support](https://github.com/amadeus4dev/amadeus-java/raw/master/.github/images/support.svg?sanitize=true)][support]
 
 Amadeus provides a set of APIs for the travel industry. Flights, Hotels, Locations and more.
 
@@ -116,8 +116,8 @@ in-depth information about every SDK method, its arguments and return types.
 * [Get Started](https://amadeus4dev.github.io/amadeus-java/) documentation
   * [Initialize the SDK](https://amadeus4dev.github.io/amadeus-java/)
   * [Find an Airport](https://amadeus4dev.github.io/amadeus-java/)
-  * [Find a Flight](https://amadeus4dev.github.io/amadeus-ruby/)
-  * [Get Flight Inspiration](https://amadeus4dev.github.io/amadeus-ruby/)
+  * [Find a Flight](https://amadeus4dev.github.io/amadeus-java/)
+  * [Get Flight Inspiration](https://amadeus4dev.github.io/amadeus-java/)
 
 ## Making API calls
 
