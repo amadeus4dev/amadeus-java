@@ -325,6 +325,18 @@ PointOfInterest[] pointsOfInterest = amadeus.referenceData.locations.pointsOfInt
     .and("west", "2.160873")
     .and("south", "41.394582")
     .and("east", "2.177181"));
+
+Delay[] flightDelay = amadeus.travel.predictions.flightDelay.get(Params
+    .with("originLocationCode", "NCE")
+    .and("destinationLocationCode", "IST")
+    .and("departureDate", "2020-08-01")
+    .and("departureTime", "18:20:00"))
+    .and("arrivalDate", "2020-08-01")
+    .and("arrivalTime", "22:15:00")
+    .and("aircraftCode", "321"))
+    .and("carrierCode", "TK")
+    .and("flightNumber", "1816")
+    .and("duration", "PT31H10M"));
 ```
 
 ## Development & Contributing
