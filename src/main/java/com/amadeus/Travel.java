@@ -27,7 +27,7 @@ public class Travel {
    * </p>
    */
   public Analytics analytics;
-    /**
+  /**
    * <p>
    *   A namespaced client for the
    *   <code>/v1/travel/predictions</code> endpoints.

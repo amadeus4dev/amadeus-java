@@ -49,7 +49,7 @@ public class FlightDelay {
    *     .and("carrierCode", "TK")
    *     .and("flightNumber", "1816")
    *     .and("duration", "PT31H10M"));
-   *
+   * </pre>
    * @param params the parameters to send to the API
    * @return an API response object
    * @throws ResponseException when an exception occurs
