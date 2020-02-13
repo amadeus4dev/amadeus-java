@@ -289,7 +289,6 @@ public class NamespaceTest {
     FlightDelay flightDelay = new FlightDelay(client);
     TestCase.assertNotNull(flightDelay.get());
     TestCase.assertNotNull(flightDelay.get(params));
-    TestCase.assertEquals(flightDelay.get().length, 2);
   }
 
   @Test
