@@ -1,5 +1,6 @@
 package com.amadeus;
 
+import com.amadeus.airport.predictions.AirportOnTime;
 import com.amadeus.ereputation.HotelSentiments;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.referenceData.Airlines;
@@ -21,7 +22,6 @@ import com.amadeus.travel.analytics.airTraffic.BusiestPeriod;
 import com.amadeus.travel.analytics.airTraffic.Searched;
 import com.amadeus.travel.analytics.airTraffic.SearchedByDestination;
 import com.amadeus.travel.analytics.airTraffic.Traveled;
-import com.amadeus.airport.predictions.AirportOnTime;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import junit.framework.TestCase;
