@@ -288,7 +288,7 @@ public class NamespaceTest {
     AirportOnTime airportOnTime = new AirportOnTime(client);
     TestCase.assertNotNull(airportOnTime.get());
     TestCase.assertNotNull(airportOnTime.get(params));
-    }
+  }
 
   @Test
   public void testPostMethods() throws ResponseException {
