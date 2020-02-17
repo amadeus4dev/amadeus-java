@@ -38,7 +38,7 @@ public class AirportOnTime {
    * </p>
    *
    * <pre>
-   * OnTime[] AirportOnTime = amadeus.airport.predictions.onTime.get(Params
+   * OnTime airportOnTime = amadeus.airport.predictions.onTime.get(Params
    *     .with("airportCode", "NCE")
    *     .and("date", "2020-09-01"));
    * </pre>
@@ -46,16 +46,16 @@ public class AirportOnTime {
    * @return an API response object
    * @throws ResponseException when an exception occurs
    */
-  public OnTime[] get(Params params) throws ResponseException {
+  public OnTime get(Params params) throws ResponseException {
     Response response = client.get("/v1/airport/predictions/on-time", params);
-    return (OnTime[]) Resource.fromArray(response, OnTime[].class);
+    return (OnTime) Resource.fromObject(response, OnTime.class);
   }
 
   /**
    * Convenience method for calling <code>get</code> without any parameters.
    * @see AirportOnTime#get()
    */
-  public OnTime[] get() throws ResponseException {
+  public OnTime get() throws ResponseException {
     return get(null);
   }
 }

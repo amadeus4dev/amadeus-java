@@ -282,13 +282,13 @@ public class NamespaceTest {
 
     // Test airport-on-time 
     Mockito.when(client.get("/v1/airport/predictions/on-time", null))
-        .thenReturn(multiResponse);
+    .thenReturn(singleResponse);
     Mockito.when(client.get("/v1/airport/predictions/on-time", params))
-        .thenReturn(multiResponse);
+    .thenReturn(singleResponse);
     AirportOnTime airportOnTime = new AirportOnTime(client);
     TestCase.assertNotNull(airportOnTime.get());
     TestCase.assertNotNull(airportOnTime.get(params));
-  }
+    }
 
   @Test
   public void testPostMethods() throws ResponseException {
