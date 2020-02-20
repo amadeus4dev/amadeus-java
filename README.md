@@ -330,6 +330,18 @@ PointOfInterest[] pointsOfInterest = amadeus.referenceData.locations.pointsOfInt
 OnTime AirportOnTime = amadeus.airport.predictions.onTime.get(Params
     .with("airportCode", "NCE")
     .and("date", "2020-09-01"));  
+
+Delay[] flightDelay = amadeus.travel.predictions.flightDelay.get(Params
+    .with("originLocationCode", "NCE")
+    .and("destinationLocationCode", "IST")
+    .and("departureDate", "2020-08-01")
+    .and("departureTime", "18:20:00")
+    .and("arrivalDate", "2020-08-01")
+    .and("arrivalTime", "22:15:00")
+    .and("aircraftCode", "321")
+    .and("carrierCode", "TK")
+    .and("flightNumber", "1816")
+    .and("duration", "PT31H10M"));
 ```
 
 ## Development & Contributing

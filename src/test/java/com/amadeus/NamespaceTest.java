@@ -9,6 +9,7 @@ import com.amadeus.referenceData.Locations;
 import com.amadeus.referenceData.locations.Airports;
 import com.amadeus.referenceData.locations.PointsOfInterest;
 import com.amadeus.referenceData.urls.CheckinLinks;
+import com.amadeus.resources.Delay;
 import com.amadeus.shopping.FlightDates;
 import com.amadeus.shopping.FlightDestinations;
 import com.amadeus.shopping.FlightOffers;
@@ -22,6 +23,7 @@ import com.amadeus.travel.analytics.airTraffic.BusiestPeriod;
 import com.amadeus.travel.analytics.airTraffic.Searched;
 import com.amadeus.travel.analytics.airTraffic.SearchedByDestination;
 import com.amadeus.travel.analytics.airTraffic.Traveled;
+import com.amadeus.travel.predictions.FlightDelay;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import junit.framework.TestCase;
@@ -51,6 +53,7 @@ public class NamespaceTest {
     TestCase.assertNotNull(client.travel.analytics.airTraffic.booked);
     TestCase.assertNotNull(client.travel.analytics.airTraffic.searched);
     TestCase.assertNotNull(client.travel.analytics.airTraffic.searchedByDestination);
+    TestCase.assertNotNull(client.travel.predictions.flightDelay);
     TestCase.assertNotNull(client.shopping.flightDates);
     TestCase.assertNotNull(client.shopping.flightDestinations);
     TestCase.assertNotNull(client.shopping.flightOffers);
@@ -288,6 +291,15 @@ public class NamespaceTest {
     AirportOnTime airportOnTime = new AirportOnTime(client);
     TestCase.assertNotNull(airportOnTime.get());
     TestCase.assertNotNull(airportOnTime.get(params));
+    
+    // Test flight delay predictions
+    Mockito.when(client.get("/v1/travel/predictions/flight-delay", null))
+        .thenReturn(multiResponse);
+    Mockito.when(client.get("/v1/travel/predictions/flight-delay", params))
+        .thenReturn(multiResponse);
+    FlightDelay flightDelay = new FlightDelay(client);
+    TestCase.assertNotNull(flightDelay.get());
+    TestCase.assertNotNull(flightDelay.get(params));
   }
 
   @Test

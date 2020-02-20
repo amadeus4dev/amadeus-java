@@ -1,6 +1,7 @@
 package com.amadeus;
 
 import com.amadeus.travel.analytics.Analytics;
+import com.amadeus.travel.predictions.Predictions;
 
 /**
  * <p>
@@ -26,6 +27,13 @@ public class Travel {
    * </p>
    */
   public Analytics analytics;
+  /**
+   * <p>
+   *   A namespaced client for the
+   *   <code>/v1/travel/predictions</code> endpoints.
+   * </p>
+   */
+  public Predictions predictions;
 
   /**
    * Constructor.
@@ -33,5 +41,6 @@ public class Travel {
    */
   public Travel(Amadeus client) {
     this.analytics = new Analytics(client);
+    this.predictions = new Predictions(client);
   }
 }
