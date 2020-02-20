@@ -14,7 +14,7 @@ import com.amadeus.Amadeus;
  *
  * <pre>
  * Amadeus amadeus = Amadeus.builder("clientId", "secret").build();
- * amadeus.travel.analytics;</pre>
+ * amadeus.travel.predictions;</pre>
  *
  * @hide
  */
