@@ -1,5 +1,6 @@
 package com.amadeus;
 
+import com.amadeus.airport.predictions.AirportOnTime;
 import com.amadeus.ereputation.HotelSentiments;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.referenceData.Airlines;
@@ -62,6 +63,7 @@ public class NamespaceTest {
     TestCase.assertNotNull(client.shopping.hotelOffersByHotel);
     TestCase.assertNotNull(client.ereputation.hotelSentiments);
     TestCase.assertNotNull(client.shopping.hotelOffer("XXX"));
+    TestCase.assertNotNull(client.airport.predictions.onTime);
   }
 
   @Before
@@ -281,6 +283,15 @@ public class NamespaceTest {
     HotelSentiments hotelSentiments = new HotelSentiments(client);
     TestCase.assertNotNull(hotelSentiments.get(params));
 
+    // Test airport-on-time 
+    Mockito.when(client.get("/v1/airport/predictions/on-time", null))
+            .thenReturn(singleResponse);
+    Mockito.when(client.get("/v1/airport/predictions/on-time", params))
+            .thenReturn(singleResponse);
+    AirportOnTime airportOnTime = new AirportOnTime(client);
+    TestCase.assertNotNull(airportOnTime.get());
+    TestCase.assertNotNull(airportOnTime.get(params));
+    
     // Test flight delay predictions
     Mockito.when(client.get("/v1/travel/predictions/flight-delay", null))
         .thenReturn(multiResponse);
