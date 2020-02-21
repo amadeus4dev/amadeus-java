@@ -40,7 +40,7 @@ public class FlightOrder {
    *
    * <pre>
    *  com.amadeus.resources.FlightOrder order = amadeus.booking.flightOrder.(
-   * "4BA070CE929E135B3268A9F2D0C51E9D4A6CF318BA10485322FA2C7E78C7852E").get();
+   * "eJzTd9f3NjIJdzUGAAp%2fAiY=").get();
    * </pre>
    * @param params the parameters to send to the API
    * @return an API response object
