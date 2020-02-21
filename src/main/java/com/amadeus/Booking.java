@@ -15,6 +15,9 @@ public class Booking {
 
   public Booking(Amadeus client) {
     this.client = client;
-    this.flightOrder = new FlightOrder(client);
+  }
+
+  public FlightOrder flightOrder(String flightOrderId) {
+    return new FlightOrder(client, flightOrderId);
   }
 }

@@ -39,7 +39,7 @@ public class FlightOrder extends Resource {
     private @Getter Date dateOfBirth;
     private @Getter Name name;
     private @Getter Contact contact;
-    private @Getter Document documents;
+    private @Getter Document[] documents;
   }
 
   @ToString
@@ -56,7 +56,7 @@ public class FlightOrder extends Resource {
     protected Contact() {
     }
 
-    private @Getter Phone phones;
+    private @Getter Phone[] phones;
   }
 
   @ToString

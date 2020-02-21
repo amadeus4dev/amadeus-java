@@ -9,7 +9,7 @@ import com.amadeus.resources.Resource;
 /**
  * <p>
  *   A namespaced client for the
- *   <code>/v1/booking/flight-orders</code> endpoints.
+ *   <code>/v1/booking/flight-orders:flightOrderId</code> endpoints.
  * </p>
  *
  * <p>
@@ -22,13 +22,15 @@ import com.amadeus.resources.Resource;
  */
 public class FlightOrder {
   private Amadeus client;
+  private String flightOfferId;
 
   /**
    * Constructor.
    * @hide
    */
-  public FlightOrder(Amadeus client) {
+  public FlightOrder(Amadeus client, String flightOfferId) {
     this.client = client;
+    this.flightOfferId = flightOfferId;
   }
 
   /**
@@ -44,18 +46,19 @@ public class FlightOrder {
    * @return an API response object
    * @throws ResponseException when an exception occurs
    */
-  public com.amadeus.resources.FlightOrder[] get(Params params) throws ResponseException {
-    Response response = client.get(
-        "/v1/booking/flight-orders/", params);
-    return (com.amadeus.resources.FlightOrder[]) Resource.fromArray(
-        response, com.amadeus.resources.FlightOrder[].class);
-  }
 
+  public com.amadeus.resources.FlightOrder get(Params params) throws ResponseException {
+    String path = String.format("/v1/booking/flight-orders/%s", flightOfferId);
+    Response response = client.get(path, params);
+    return (com.amadeus.resources.FlightOrder) Resource.fromObject(
+        response, com.amadeus.resources.FlightOrder.class);
+  }
+  
   /**
    * Convenience method for calling <code>get</code> without any parameters.
-   * @see FlightDelay#get()
+   * @see com.amadeus.booking.FlightOrder#get()
    */
-  public com.amadeus.resources.FlightOrder[] get() throws ResponseException {
+  public com.amadeus.resources.FlightOrder get() throws ResponseException {
     return get(null);
   }
 }
