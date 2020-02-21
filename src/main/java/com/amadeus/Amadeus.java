@@ -62,6 +62,13 @@ public class Amadeus extends HTTPClient {
    */
   public Airport airport;
 
+  /**
+   * <p>
+   * A namespaced client for the <code>/v1/booking</code> endpoints.
+   * </p>
+   */
+  public Booking booking;
+
   protected Amadeus(Configuration configuration) {
     super(configuration);
     this.referenceData = new ReferenceData(this);
@@ -69,6 +76,7 @@ public class Amadeus extends HTTPClient {
     this.shopping = new Shopping(this);
     this.ereputation = new EReputation(this);
     this.airport = new Airport(this);
+    this.booking = new Booking(this);
   }
 
   /**
