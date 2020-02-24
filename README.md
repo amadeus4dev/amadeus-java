@@ -273,19 +273,6 @@ Location[] locations = amadeus.referenceData.locations.airports.get(Params
   .with("latitude", 0.1278)
   .and("longitude", 51.5074));
 
-// Flight Most Searched Destinations
-// Which were the most searched flight destinations from Madrid in August 2017?
-SearchedDestination searchedDestination = amadeus.travel.analytics.airTraffic.searchedByDestination.get(Params
-        .with("originCityCode", "MAD")
-        .and("destinationCityCode", "NYC")
-        .and("searchPeriod", "2017-08")
-        .and("marketCountryCode", "ES"));
-// How many people in Spain searched for a trip from Madrid to New-York in September 2017?
-Search[] search = amadeus.travel.analytics.airTraffic.searched.get(Params
-        .with("originCityCode", "MAD")
-        .and("searchPeriod", "2017-08")
-        .and("marketCountryCode", "ES"));
-
 // Flight Most Booked Destinations
 AirTraffic[] airTraffics = amadeus.travel.analytics.airTraffic.booked.get(Params
   .with("originCityCode", "MAD")
