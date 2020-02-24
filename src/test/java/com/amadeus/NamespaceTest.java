@@ -20,8 +20,6 @@ import com.amadeus.shopping.HotelOffersByHotel;
 import com.amadeus.shopping.flightOffers.Prediction;
 import com.amadeus.travel.analytics.airTraffic.Booked;
 import com.amadeus.travel.analytics.airTraffic.BusiestPeriod;
-import com.amadeus.travel.analytics.airTraffic.Searched;
-import com.amadeus.travel.analytics.airTraffic.SearchedByDestination;
 import com.amadeus.travel.analytics.airTraffic.Traveled;
 import com.amadeus.travel.predictions.FlightDelay;
 import com.google.gson.JsonArray;
@@ -51,8 +49,6 @@ public class NamespaceTest {
     TestCase.assertNotNull(client.referenceData.airlines);
     TestCase.assertNotNull(client.travel.analytics.airTraffic.traveled);
     TestCase.assertNotNull(client.travel.analytics.airTraffic.booked);
-    TestCase.assertNotNull(client.travel.analytics.airTraffic.searched);
-    TestCase.assertNotNull(client.travel.analytics.airTraffic.searchedByDestination);
     TestCase.assertNotNull(client.travel.predictions.flightDelay);
     TestCase.assertNotNull(client.shopping.flightDates);
     TestCase.assertNotNull(client.shopping.flightDestinations);
@@ -189,25 +185,6 @@ public class NamespaceTest {
     TestCase.assertNotNull(busiestPeriod.get());
     TestCase.assertNotNull(busiestPeriod.get(params));
     TestCase.assertEquals(busiestPeriod.get().length, 2);
-
-    // Testing most searched destinations
-    Mockito.when(client.get("/v1/travel/analytics/air-traffic/searched", null))
-        .thenReturn(multiResponse);
-    Mockito.when(client.get("/v1/travel/analytics/air-traffic/searched", params))
-        .thenReturn(multiResponse);
-    Searched searches = new Searched(client);
-    TestCase.assertNotNull(searches.get());
-    TestCase.assertNotNull(searches.get(params));
-    TestCase.assertEquals(searches.get().length, 2);
-
-    // Testing searched stats
-    Mockito.when(client.get("/v1/travel/analytics/air-traffic/searched/by-destination", null))
-        .thenReturn(singleResponse);
-    Mockito.when(client.get("/v1/travel/analytics/air-traffic/searched/by-destination", params))
-        .thenReturn(singleResponse);
-    SearchedByDestination searchesByDestination = new SearchedByDestination(client);
-    TestCase.assertNotNull(searchesByDestination.get());
-    TestCase.assertNotNull(searchesByDestination.get(params));
 
     // Testing flight date search
     Mockito.when(client.get("/v1/shopping/flight-dates", null))
