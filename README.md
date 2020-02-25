@@ -337,7 +337,7 @@ SeatMap[] seatmap = amadeus.shopping.seatMaps.get(Params
 
 // What is the the seat map of a given flight?
 // The body can be a String version of your JSON or a JsonObject
-SeatMap[] seatmap = amadeus.shopping.seatMaps..post(body);
+SeatMap[] seatmap = amadeus.shopping.seatMaps.post(body);
 ```
 
 ## Development & Contributing
