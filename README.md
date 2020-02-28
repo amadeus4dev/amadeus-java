@@ -240,7 +240,7 @@ FlightOfferSearch[] flightOffersSearches = amadeus.shopping.flightOffersSearch.p
 
 // Flight Order Management
 // The flightOrderID comes from the Flight Create Orders (in test environment it's temporary)
-com.amadeus.resources.FlightOrder order = amadeus.booking.flightOrder("eJzTd9f3NjIJdzUGAAp%2fAiY=").get();
+FlightOrder order = amadeus.booking.flightOrder("eJzTd9f3NjIJdzUGAAp%2fAiY=").get();
 
 // Flight Choice Prediction
 // Note that the example calls 2 APIs: Flight Low-fare Search & Flight Choice Prediction

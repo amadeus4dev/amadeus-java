@@ -9,7 +9,7 @@ import com.amadeus.resources.Resource;
 /**
  * <p>
  *   A namespaced client for the
- *   <code>/v1/booking/flight-orders:flightOrderId</code> endpoints.
+ *   <code>/v1/booking/flight-orders/:flightOrderId</code> endpoints.
  * </p>
  *
  * <p>
@@ -35,11 +35,13 @@ public class FlightOrder {
 
   /**
    * <p>
-   *   Allows you to manipulate a flight order.
+   *   Allows you to manipulate a flight order. The flightOfferId
+   *   used is an example for educational purposes. In test enviromnent 
+   *   it's temporary.
    * </p>
    *
    * <pre>
-   *  com.amadeus.resources.FlightOrder order = amadeus.booking.flightOrder.(
+   * FlightOrder order = amadeus.booking.flightOrder.(
    * "eJzTd9f3NjIJdzUGAAp%2fAiY=").get();
    * </pre>
    * @param params the parameters to send to the API
