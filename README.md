@@ -238,6 +238,10 @@ FlightOfferSearch[] flightOffersSearches = amadeus.shopping.flightOffersSearch.g
 // body can be a String version of your JSON or a JsonObject
 FlightOfferSearch[] flightOffersSearches = amadeus.shopping.flightOffersSearch.post(body);
 
+// Flight Order Management
+// The flightOrderID comes from the Flight Create Orders (in test environment it's temporary)
+FlightOrder order = amadeus.booking.flightOrder("eJzTd9f3NjIJdzUGAAp%2fAiY=").get();
+
 // Flight Choice Prediction
 // Note that the example calls 2 APIs: Flight Low-fare Search & Flight Choice Prediction
 FlightOffer[] flightOffers = amadeus.shopping.flightOffers
