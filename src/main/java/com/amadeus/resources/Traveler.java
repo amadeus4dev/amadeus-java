@@ -1,7 +1,7 @@
 package com.amadeus.resources;
 
-import java.util.Date;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 /**
@@ -10,52 +10,74 @@ import lombok.ToString;
  */
 @ToString
 public class Traveler extends Resource {
-  protected Traveler() {}
+  public Traveler(String id, String dateOfBirth, Name name, Contact contact, Document[] documents) {
+    this.name = name;
+    this.contact = contact;
+  }
 
-  private @Getter String id;
-  private @Getter Date dateOfBirth;
-  private @Getter Name name;
-  private @Getter Contact contact;
-  private @Getter Document[] documents;
+  public Traveler() {
+
+  }
+
+  private @Getter @Setter String id;
+  private @Getter @Setter String dateOfBirth;
+  private @Getter @Setter Name name;
+  private @Getter @Setter Contact contact;
+  private @Getter @Setter Document[] documents;
 
   @ToString
   public class Name {
-    protected Name() {
+    public Name(String firstName, String lastName) {
+      this.firstName = firstName;
+      this.lastName = lastName;
     }
 
-    private @Getter String firstName;
-    private @Getter String lastName;
+    private @Getter @Setter String firstName;
+    private @Getter @Setter String lastName;
+
   }
 
   @ToString
   public class Contact {
-    protected Contact() {
+    public Contact() {
     }
 
-    private @Getter Phone[] phones;
+    public Contact(Phone phones) {
+    }
+
+    private @Getter @Setter Phone[] phones;
   }
 
   @ToString
   public class Document {
-    protected Document() {
+    public Document() {
     }
 
-    private @Getter String documentType;
-    private @Getter String number;
-    private @Getter Date expiryDate;
-    private @Getter String issuanceCountry;
-    private @Getter String nationality;
-    private @Getter boolean holder;
+    public Document(String documentType, String number, String expiryDate, 
+        String issuanceCountry, String nationality, boolean holder) {
+
+    }
+    
+    private @Getter @Setter String documentType;
+    private @Getter @Setter String number;
+    private @Getter @Setter String expiryDate;
+    private @Getter @Setter String issuanceCountry;
+    private @Getter @Setter String nationality;
+    private @Getter @Setter boolean holder;
   }
 
   @ToString
   public class Phone {
 
-    protected Phone() {
+    public Phone() {
     }
     
-    private @Getter String countryCallingCode;
-    private @Getter String number;
+    public Phone(String countryCallingCode, String number) {
+    }
+
+    private @Getter @Setter String countryCallingCode;
+    private @Getter @Setter String number;
+    private @Getter @Setter String deviceType;
   }
 
 }

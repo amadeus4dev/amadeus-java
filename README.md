@@ -333,6 +333,8 @@ Delay[] flightDelay = amadeus.travel.predictions.flightDelay.get(Params
     .and("carrierCode", "TK")
     .and("flightNumber", "1816")
     .and("duration", "PT31H10M"));
+
+FlightOrder[] createdOrder = amadeus.booking.flightOrder.pricing.post(flightOffers, travelers);
 ```
 
 ## Development & Contributing
