@@ -335,13 +335,10 @@ Delay[] flightDelay = amadeus.travel.predictions.flightDelay.get(Params
     .and("duration", "PT31H10M"));
 
 // Book a flight with Flight Create Orders
-// Using a JSonObject
-JsonObject result = flightOffers[0].getResponse().getResult();
-FlightOrder createdOrder = amadeus.booking.flightOrders.pricing.post(result);
-// Using a String
-String body = flightOffers[0].getResponse().getBody();
-FlightOrder createdOrder = amadeus.booking.flightOrders.pricing.post(result);
+// Using a JSonObject or String
+FlightOrder createdOrder = amadeus.booking.flightOrders.pricing.post(body);
 // Using a JsonObject for flight offer and Traveler[] as traveler information
+// see example at src/main/java/examples/flight/createorders/FlightCreateOrders.java
 FlightOrder createdOrder = amadeus.booking.flightOrders.post(flightOffersSearches, travelerArray);
 ```
 

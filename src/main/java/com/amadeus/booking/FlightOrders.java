@@ -76,7 +76,7 @@ public class FlightOrders {
    * </p>
    *
    * <pre>
-   * amadeus.booking.flightOrders.post(body);</pre>
+   * amadeus.booking.flightOrders.post(object);</pre>
    *
    * @param flightOffersSearches List of flight-offers as FlightOfferSearch[]
    * @param travelers List of travelers as Traveler[]
