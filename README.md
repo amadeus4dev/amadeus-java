@@ -322,6 +322,7 @@ OnTime AirportOnTime = amadeus.airport.predictions.onTime.get(Params
     .with("airportCode", "NCE")
     .and("date", "2020-09-01"));  
 
+// What's the likelihood of a given flight to be delayed?
 Delay[] flightDelay = amadeus.travel.predictions.flightDelay.get(Params
     .with("originLocationCode", "NCE")
     .and("destinationLocationCode", "IST")
@@ -334,12 +335,22 @@ Delay[] flightDelay = amadeus.travel.predictions.flightDelay.get(Params
     .and("flightNumber", "1816")
     .and("duration", "PT31H10M"));
 
+<<<<<<< HEAD
 // Book a flight with Flight Create Orders
 // Using a JSonObject or String
 FlightOrder createdOrder = amadeus.booking.flightOrders.pricing.post(body);
 // Using a JsonObject for flight offer and Traveler[] as traveler information
 // see example at src/main/java/examples/flight/createorders/FlightCreateOrders.java
 FlightOrder createdOrder = amadeus.booking.flightOrders.post(flightOffersSearches, travelerArray);
+=======
+// What is the the seat map of a given flight?
+SeatMap[] seatmap = amadeus.shopping.seatMaps.get(Params
+    .with("flight-orderId", "eJzTd9f3NjIJdzUGAAp%2fAiY="));
+
+// What is the the seat map of a given flight?
+// The body can be a String version of your JSON or a JsonObject
+SeatMap[] seatmap = amadeus.shopping.seatMaps.post(body);
+>>>>>>> master
 ```
 
 ## Development & Contributing

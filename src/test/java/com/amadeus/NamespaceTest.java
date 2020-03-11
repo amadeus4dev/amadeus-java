@@ -11,7 +11,6 @@ import com.amadeus.referenceData.Locations;
 import com.amadeus.referenceData.locations.Airports;
 import com.amadeus.referenceData.locations.PointsOfInterest;
 import com.amadeus.referenceData.urls.CheckinLinks;
-import com.amadeus.resources.Delay;
 import com.amadeus.shopping.FlightDates;
 import com.amadeus.shopping.FlightDestinations;
 import com.amadeus.shopping.FlightOffers;
@@ -19,6 +18,7 @@ import com.amadeus.shopping.FlightOffersSearch;
 import com.amadeus.shopping.HotelOffer;
 import com.amadeus.shopping.HotelOffers;
 import com.amadeus.shopping.HotelOffersByHotel;
+import com.amadeus.shopping.SeatMaps;
 import com.amadeus.shopping.flightOffers.Prediction;
 import com.amadeus.travel.analytics.airTraffic.Booked;
 import com.amadeus.travel.analytics.airTraffic.BusiestPeriod;
@@ -59,6 +59,7 @@ public class NamespaceTest {
     TestCase.assertNotNull(client.shopping.flightOffers.prediction);
     TestCase.assertNotNull(client.shopping.hotelOffers);
     TestCase.assertNotNull(client.shopping.hotelOffersByHotel);
+    TestCase.assertNotNull(client.shopping.seatMaps);
     TestCase.assertNotNull(client.ereputation.hotelSentiments);
     TestCase.assertNotNull(client.shopping.hotelOffer("XXX"));
     TestCase.assertNotNull(client.airport.predictions.onTime);
@@ -281,6 +282,14 @@ public class NamespaceTest {
     TestCase.assertNotNull(flightDelay.get());
     TestCase.assertNotNull(flightDelay.get(params));
 
+    // Test SeatMaps get
+    Mockito.when(client.get("/v1/shopping/seatmaps", null))
+        .thenReturn(multiResponse);
+    Mockito.when(client.get("/v1/shopping/seatmaps", params))
+        .thenReturn(multiResponse);
+    SeatMaps seatmap = new SeatMaps(client);
+    TestCase.assertNotNull(seatmap.get(params));    
+    
     // Test fetching a specific offer
     Mockito.when(client.get("/v1/booking/flight-orders/XXX", null))
         .thenReturn(singleResponse);
@@ -323,5 +332,16 @@ public class NamespaceTest {
     FlightOrders order = new FlightOrders(client);
     TestCase.assertNotNull(order.post());
     TestCase.assertNotNull(order.post(body));
+    
+    // Test SeatMaps post
+    Mockito.when(client.post("/v1/shopping/seatmaps", (String) null))
+            .thenReturn(multiResponse);
+    Mockito.when(client.post("/v1/shopping/seatmaps", body))
+            .thenReturn(multiResponse);
+    Mockito.when(client.post("/v1/shopping/seatmaps", jsonObject))
+            .thenReturn(multiResponse);
+    SeatMaps seatmap = new SeatMaps(client);
+    TestCase.assertNotNull(seatmap.post());
+    TestCase.assertNotNull(seatmap.post(body));
   }
 }
