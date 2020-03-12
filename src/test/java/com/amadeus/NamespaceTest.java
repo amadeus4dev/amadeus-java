@@ -2,6 +2,7 @@ package com.amadeus;
 
 import com.amadeus.airport.predictions.AirportOnTime;
 import com.amadeus.booking.FlightOrder;
+import com.amadeus.booking.FlightOrders;
 import com.amadeus.ereputation.HotelSentiments;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.referenceData.Airlines;
@@ -323,6 +324,15 @@ public class NamespaceTest {
     TestCase.assertNotNull(flightOfferSearch.post(body));
     TestCase.assertEquals(flightOfferSearch.post().length, 2);
 
+    // Test flight create orders
+    Mockito.when(client.post("/v1/booking/flight-orders", (String) null))
+            .thenReturn(singleResponse);
+    Mockito.when(client.post("/v1/booking/flight-orders", body))
+            .thenReturn(singleResponse);   
+    FlightOrders order = new FlightOrders(client);
+    TestCase.assertNotNull(order.post());
+    TestCase.assertNotNull(order.post(body));
+    
     // Test SeatMaps post
     Mockito.when(client.post("/v1/shopping/seatmaps", (String) null))
             .thenReturn(multiResponse);

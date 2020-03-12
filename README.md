@@ -335,6 +335,14 @@ Delay[] flightDelay = amadeus.travel.predictions.flightDelay.get(Params
     .and("flightNumber", "1816")
     .and("duration", "PT31H10M"));
 
+// Flight Create Orders to book a flight
+// Using a JSonObject or String
+FlightOrder createdOrder = amadeus.booking.flightOrders.pricing.post(body);
+
+// Using a JsonObject for flight offer and Traveler[] as traveler information
+// see example at src/main/java/examples/flight/createorders/FlightCreateOrders.java
+FlightOrder createdOrder = amadeus.booking.flightOrders.post(flightOffersSearches, travelerArray);
+
 // What is the the seat map of a given flight?
 SeatMap[] seatmap = amadeus.shopping.seatMaps.get(Params
     .with("flight-orderId", "eJzTd9f3NjIJdzUGAAp%2fAiY="));
