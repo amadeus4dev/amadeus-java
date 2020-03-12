@@ -342,6 +342,10 @@ SeatMap[] seatmap = amadeus.shopping.seatMaps.get(Params
 // What is the the seat map of a given flight?
 // The body can be a String version of your JSON or a JsonObject
 SeatMap[] seatmap = amadeus.shopping.seatMaps.post(body);
+
+// AI-Generated Photos
+GeneratedPhoto photo = amadeus.media.files.generatedPhotos.get(Params
+    .with("category", "BEACH"));
 ```
 
 ## Development & Contributing
