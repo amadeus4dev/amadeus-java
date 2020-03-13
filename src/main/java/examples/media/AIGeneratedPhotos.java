@@ -28,7 +28,7 @@ public class AIGeneratedPhotos {
         .build();
 
     GeneratedPhoto photo = amadeus.media.files.generatedPhotos.get(Params
-    .with("category", "BEACH"));
+        .with("category", "BEACH"));
     System.out.println(photo);
   }
 }
