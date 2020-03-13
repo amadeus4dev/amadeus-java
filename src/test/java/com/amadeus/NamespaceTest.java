@@ -5,6 +5,7 @@ import com.amadeus.booking.FlightOrder;
 import com.amadeus.booking.FlightOrders;
 import com.amadeus.ereputation.HotelSentiments;
 import com.amadeus.exceptions.ResponseException;
+import com.amadeus.media.files.GeneratedPhotos;
 import com.amadeus.referenceData.Airlines;
 import com.amadeus.referenceData.Location;
 import com.amadeus.referenceData.Locations;
@@ -64,6 +65,7 @@ public class NamespaceTest {
     TestCase.assertNotNull(client.shopping.hotelOffer("XXX"));
     TestCase.assertNotNull(client.airport.predictions.onTime);
     TestCase.assertNotNull(client.booking.flightOrder("XXX"));
+    TestCase.assertNotNull(client.media.files.generatedPhotos);
   }
 
   @Before
@@ -298,6 +300,15 @@ public class NamespaceTest {
     FlightOrder flightOrder = new FlightOrder(client, "XXX");
     TestCase.assertNotNull(flightOrder.get());
     TestCase.assertNotNull(flightOrder.get(params));
+
+    // Testing AI-generated photos
+    Mockito.when(client.get("/v2/media/files/generated-photos", null))
+        .thenReturn(singleResponse);
+    Mockito.when(client.get("/v2/media/files/generated-photos", params))
+        .thenReturn(singleResponse);
+    GeneratedPhotos photo = new GeneratedPhotos(client);
+    TestCase.assertNotNull(photo.get());
+    TestCase.assertNotNull(photo.get(params));
   }
 
   @Test

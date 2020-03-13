@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.ToString;
 
 /**
- * An PointOfInterest object as returned by the Locaion API.
+ * An PointOfInterest object as returned by the Location API.
  * @see com.amadeus.referenceData.locations.PointOfInterest#get()
  */
 @ToString
