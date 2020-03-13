@@ -357,7 +357,7 @@ public class NamespaceTest {
     TestCase.assertNotNull(seatmap.post());
     TestCase.assertNotNull(seatmap.post(body));
 
-        // Test Hotel Booking post
+    // Test Hotel Booking post
     Mockito.when(client.post("/v1/booking/hotel-bookings", (String) null))
             .thenReturn(singleResponse);
     Mockito.when(client.post("/v1/booking/hotel-bookings", body))
