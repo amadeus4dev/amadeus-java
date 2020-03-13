@@ -27,7 +27,8 @@ public class AIGeneratedPhotos {
         .builder("YOUR_API_ID","YOUR_API_SECRET")
         .build();
 
-    GeneratedPhoto photo = amadeus.media.files.generatedPhotos.get(Params.with("category", "BEACH"));
+    GeneratedPhoto photo = amadeus.media.files.generatedPhotos.get(Params
+    .with("category", "BEACH"));
     System.out.println(photo);
   }
 }
