@@ -141,10 +141,9 @@ You can make any arbitrary API call as well directly with the `.get` method.
 Keep in mind, this returns a raw `Resource`
 
 ```java
-Resource resource = amadeus.get('/v2/reference-data/urls/checkin-links',
-  Params.with("airlineCode", "BA"));
+Response response = amadeus.get("/v2/reference-data/urls/checkin-links", Params.with("airlineCode", "BA"));
 
-resource.getResult();
+response.getResult();
 ```
 
 ## Response
