@@ -45,9 +45,9 @@ public class HotelBookings {
    * @return an API resource
    * @throws ResponseException when an exception occurs
    */
-  public HotelBooking post(JsonObject body) throws ResponseException {
+  public HotelBooking[] post(JsonObject body) throws ResponseException {
     Response response = client.post("/v1/booking/hotel-bookings", body);
-    return (HotelBooking) Resource.fromObject(response, HotelBooking.class);
+    return (HotelBooking[]) Resource.fromArray(response, HotelBooking[].class);
   }
 
   /**
@@ -62,9 +62,9 @@ public class HotelBookings {
    * @return an API resource
    * @throws ResponseException when an exception occurs
    */
-  public HotelBooking post(String body) throws ResponseException {
+  public HotelBooking[] post(String body) throws ResponseException {
     Response response = client.post("/v1/booking/hotel-bookings", body);
-    return (HotelBooking) Resource.fromObject(response, HotelBooking.class);
+    return (HotelBooking[]) Resource.fromArray(response, HotelBooking[].class);
   }
 
   /**
@@ -72,7 +72,7 @@ public class HotelBookings {
    *
    * @see HotelBookings#post()
    */
-  public HotelBooking post() throws ResponseException {
+  public HotelBooking[] post() throws ResponseException {
     return post((String) null);
   }
 }

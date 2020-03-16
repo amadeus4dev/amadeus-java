@@ -359,11 +359,11 @@ public class NamespaceTest {
 
     // Test Hotel Booking post
     Mockito.when(client.post("/v1/booking/hotel-bookings", (String) null))
-            .thenReturn(singleResponse);
+            .thenReturn(multiResponse);
     Mockito.when(client.post("/v1/booking/hotel-bookings", body))
-            .thenReturn(singleResponse);
+            .thenReturn(multiResponse);
     Mockito.when(client.post("/v1/booking/hotel-bookings", jsonObject))
-            .thenReturn(singleResponse);
+            .thenReturn(multiResponse);
     HotelBookings hotel = new HotelBookings(client);
     TestCase.assertNotNull(hotel.post());
     TestCase.assertNotNull(hotel.post(body));
