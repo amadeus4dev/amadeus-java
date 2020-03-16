@@ -303,7 +303,7 @@ HotelOffer offer = amadeus.shopping.hotelOffer("4BA070CE929E135B3268A9F2D0C51E9D
 
 // Hotel Booking
 // The body can be a String version of your JSON or a JsonObject
-HotelBooking hotel = amadeus.booking.hotelBookings.post(body);
+HotelBooking[] hotel = amadeus.booking.hotelBookings.post(body);
 
 // Hotel Ratings / Sentiments
 HotelSentiment[] hotelSentiments = amadeus.ereputation.hotelSentiments.get(Params.with("hotelIds", "ELONMFS,ADNYCCTB"));
