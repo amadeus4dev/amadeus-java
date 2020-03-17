@@ -40,6 +40,7 @@ public class Predictions {
    */
   public Predictions(Amadeus client) {
     this.tripPurpose = new TripPurpose(client);
+  }
 
   /**
    * Constructor.

@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.ToString;
 
 /**
- * An Period object as returned by the BusiestPeriod API.
+ * An Period object as returned by the Prediction APIs.
  *
  * @see com.amadeus.travel.predictions.TripPurpose#get()
  */

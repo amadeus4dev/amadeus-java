@@ -42,8 +42,8 @@ public class TripPurpose {
    * <pre>
    * amadeus.travel.predictions.tripPurpose.get(Params
    *   .with("originLocationCode", "NYC")
-   *   .with("destinationLocationCode", "MAD")
-   *   .with("departureDate", "2020-08-01")
+   *   .and("destinationLocationCode", "MAD")
+   *   .and("departureDate", "2020-08-01")
    *   .and("returnDate", "2020-08-12"));
    *   </pre>
    *
