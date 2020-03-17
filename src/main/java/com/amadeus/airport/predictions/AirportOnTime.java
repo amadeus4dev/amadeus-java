@@ -4,7 +4,7 @@ import com.amadeus.Amadeus;
 import com.amadeus.Params;
 import com.amadeus.Response;
 import com.amadeus.exceptions.ResponseException;
-import com.amadeus.resources.OnTime;
+import com.amadeus.resources.Prediction;
 import com.amadeus.resources.Resource;
 
 /**
@@ -46,16 +46,16 @@ public class AirportOnTime {
    * @return an API response object
    * @throws ResponseException when an exception occurs
    */
-  public OnTime get(Params params) throws ResponseException {
+  public Prediction get(Params params) throws ResponseException {
     Response response = client.get("/v1/airport/predictions/on-time", params);
-    return (OnTime) Resource.fromObject(response, OnTime.class);
+    return (Prediction) Resource.fromObject(response, Prediction.class);
   }
 
   /**
    * Convenience method for calling <code>get</code> without any parameters.
    * @see AirportOnTime#get()
    */
-  public OnTime get() throws ResponseException {
+  public Prediction get() throws ResponseException {
     return get(null);
   }
 }

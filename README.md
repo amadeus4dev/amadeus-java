@@ -317,12 +317,12 @@ PointOfInterest[] pointsOfInterest = amadeus.referenceData.locations.pointsOfInt
     .and("east", "2.177181"));
 
 // What's the likelihood flights from this airport will leave on time?
-OnTime AirportOnTime = amadeus.airport.predictions.onTime.get(Params
+Prediction AirportOnTime = amadeus.airport.predictions.onTime.get(Params
     .with("airportCode", "NCE")
     .and("date", "2020-09-01"));
 
 // What's the likelihood of a given flight to be delayed?
-Delay[] flightDelay = amadeus.travel.predictions.flightDelay.get(Params
+Prediction[] flightDelay = amadeus.travel.predictions.flightDelay.get(Params
     .with("originLocationCode", "NCE")
     .and("destinationLocationCode", "IST")
     .and("departureDate", "2020-08-01")
