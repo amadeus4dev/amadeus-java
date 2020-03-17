@@ -3,6 +3,7 @@ package com.amadeus;
 import com.amadeus.resources.Prediction;
 import com.amadeus.travel.Predictions;
 import com.amadeus.travel.analytics.Analytics;
+import com.amadeus.travel.predictions.Predictions;
 
 /**
  * <p>
@@ -28,6 +29,13 @@ public class Travel {
    * </p>
    */
   public Analytics analytics;
+  /**
+   * <p>
+   *   A namespaced client for the
+   *   <code>/v1/travel/predictions</code> endpoints.
+   * </p>
+   */
+  public Predictions predictions;
 
   /**
    * <p>

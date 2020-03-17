@@ -5,12 +5,12 @@ import com.amadeus.travel.predictions.TripPurpose;
 
 /**
  * <p>
- * A namespaced client for the
- * <code>/v1/travel/pridictions</code> endpoints.
+ *   A namespaced client for the
+ *   <code>/v1/travel/predictions</code> endpoints.
  * </p>
  *
  * <p>
- * Access via the Amadeus client object.
+ *   Access via the Amadeus client object.
  * </p>
  *
  * <pre>
@@ -28,6 +28,11 @@ public class Predictions {
    */
   public TripPurpose tripPurpose;
 
+  /*   A namespaced client for the
+   *   <code>/v1/travel/predictions/flight-delay</code> endpoints.
+   * </p>
+   */
+  public FlightDelay flightDelay;
   /**
    * Constructor.
    *
@@ -35,5 +40,12 @@ public class Predictions {
    */
   public Predictions(Amadeus client) {
     this.tripPurpose = new TripPurpose(client);
+
+  /**
+   * Constructor.
+   * @hide
+   */
+  public Predictions(Amadeus client) {
+    this.flightDelay = new FlightDelay(client);
   }
 }
