@@ -1,6 +1,7 @@
 package com.amadeus.travel;
 
 import com.amadeus.Amadeus;
+import com.amadeus.travel.predictions.FlightDelay;
 import com.amadeus.travel.predictions.TripPurpose;
 
 /**
@@ -28,11 +29,12 @@ public class Predictions {
    */
   public TripPurpose tripPurpose;
 
-  /*   A namespaced client for the
+  /**   A namespaced client for the
    *   <code>/v1/travel/predictions/flight-delay</code> endpoints.
    * </p>
    */
   public FlightDelay flightDelay;
+
   /**
    * Constructor.
    *
@@ -40,13 +42,6 @@ public class Predictions {
    */
   public Predictions(Amadeus client) {
     this.tripPurpose = new TripPurpose(client);
-  }
-
-  /**
-   * Constructor.
-   * @hide
-   */
-  public Predictions(Amadeus client) {
     this.flightDelay = new FlightDelay(client);
   }
 }
