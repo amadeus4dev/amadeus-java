@@ -1,7 +1,7 @@
 package com.amadeus;
 
+import com.amadeus.travel.Predictions;
 import com.amadeus.travel.analytics.Analytics;
-import com.amadeus.travel.predictions.Predictions;
 
 /**
  * <p>

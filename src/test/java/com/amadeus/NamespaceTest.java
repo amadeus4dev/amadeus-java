@@ -25,6 +25,7 @@ import com.amadeus.travel.analytics.airTraffic.Booked;
 import com.amadeus.travel.analytics.airTraffic.BusiestPeriod;
 import com.amadeus.travel.analytics.airTraffic.Traveled;
 import com.amadeus.travel.predictions.FlightDelay;
+import com.amadeus.travel.predictions.TripPurpose;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import junit.framework.TestCase;
@@ -52,6 +53,7 @@ public class NamespaceTest {
     TestCase.assertNotNull(client.referenceData.airlines);
     TestCase.assertNotNull(client.travel.analytics.airTraffic.traveled);
     TestCase.assertNotNull(client.travel.analytics.airTraffic.booked);
+    TestCase.assertNotNull(client.travel.predictions.tripPurpose);
     TestCase.assertNotNull(client.travel.predictions.flightDelay);
     TestCase.assertNotNull(client.shopping.flightDates);
     TestCase.assertNotNull(client.shopping.flightDestinations);
@@ -266,7 +268,14 @@ public class NamespaceTest {
     HotelSentiments hotelSentiments = new HotelSentiments(client);
     TestCase.assertNotNull(hotelSentiments.get(params));
 
-    // Test airport-on-time 
+    // Test trip purpose prediction
+    Mockito.when(client.get("/v1/travel/predictions/trip-purpose", null))
+            .thenReturn(singleResponse);
+    Mockito.when(client.get("/v1/travel/predictions/trip-purpose", params))
+            .thenReturn(singleResponse);
+    TripPurpose tripPurpose = new TripPurpose(client);
+    TestCase.assertNotNull(tripPurpose.get(params));
+    // Test airport-on-time
     Mockito.when(client.get("/v1/airport/predictions/on-time", null))
             .thenReturn(singleResponse);
     Mockito.when(client.get("/v1/airport/predictions/on-time", params))
@@ -274,7 +283,7 @@ public class NamespaceTest {
     AirportOnTime airportOnTime = new AirportOnTime(client);
     TestCase.assertNotNull(airportOnTime.get());
     TestCase.assertNotNull(airportOnTime.get(params));
-    
+
     // Test flight delay predictions
     Mockito.when(client.get("/v1/travel/predictions/flight-delay", null))
         .thenReturn(multiResponse);
@@ -290,8 +299,8 @@ public class NamespaceTest {
     Mockito.when(client.get("/v1/shopping/seatmaps", params))
         .thenReturn(multiResponse);
     SeatMaps seatmap = new SeatMaps(client);
-    TestCase.assertNotNull(seatmap.get(params));    
-    
+    TestCase.assertNotNull(seatmap.get(params));
+
     // Test fetching a specific offer
     Mockito.when(client.get("/v1/booking/flight-orders/XXX", null))
         .thenReturn(singleResponse);
@@ -339,11 +348,11 @@ public class NamespaceTest {
     Mockito.when(client.post("/v1/booking/flight-orders", (String) null))
             .thenReturn(singleResponse);
     Mockito.when(client.post("/v1/booking/flight-orders", body))
-            .thenReturn(singleResponse);   
+            .thenReturn(singleResponse);
     FlightOrders order = new FlightOrders(client);
     TestCase.assertNotNull(order.post());
     TestCase.assertNotNull(order.post(body));
-    
+
     // Test SeatMaps post
     Mockito.when(client.post("/v1/shopping/seatmaps", (String) null))
             .thenReturn(multiResponse);

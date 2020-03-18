@@ -4,7 +4,7 @@ import com.amadeus.Amadeus;
 import com.amadeus.Params;
 import com.amadeus.Response;
 import com.amadeus.exceptions.ResponseException;
-import com.amadeus.resources.Delay;
+import com.amadeus.resources.Prediction;
 import com.amadeus.resources.Resource;
 
 /**
@@ -54,16 +54,16 @@ public class FlightDelay {
    * @return an API response object
    * @throws ResponseException when an exception occurs
    */
-  public Delay[] get(Params params) throws ResponseException {
+  public Prediction[] get(Params params) throws ResponseException {
     Response response = client.get("/v1/travel/predictions/flight-delay", params);
-    return (Delay[]) Resource.fromArray(response, Delay[].class);
+    return (Prediction[]) Resource.fromArray(response, Prediction[].class);
   }
 
   /**
    * Convenience method for calling <code>get</code> without any parameters.
    * @see FlightDelay#get()
    */
-  public Delay[] get() throws ResponseException {
+  public Prediction[] get() throws ResponseException {
     return get(null);
   }
 }
