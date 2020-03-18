@@ -14,5 +14,15 @@ public class HotelBooking extends Resource {
   private @Getter String type;
   private @Getter String id;
   private @Getter String providerConfirmationId;
+  private @Getter AssociatedRecord associatedRecords;
+
+  @ToString
+  public class AssociatedRecord {
+    protected AssociatedRecord() {
+    }
+
+    private @Getter String reference;
+    private @Getter String originSystemCode;
+  }
 
 }

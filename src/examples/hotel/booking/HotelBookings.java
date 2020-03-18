@@ -25,7 +25,7 @@ public class HotelBookings {
         .builder("REPLACE_BY_YOUR_API_KEY","REPLACE_BY_YOUR_API_SECRET")
         .build();
     String body = "{\"data\""
-        + ":{\"offerId\":\"FA376EFA17201463D58D87E32990566D615CA3F35D976EEA4701434D24CB2BD7\""
+        + ":{\"offerId\":\"2F5B1C3B215FA11FD5A44BE210315B18FF91BDA2FEDDD879907A3798F41D1C28\""
         + ",\"guests\":[{\"id\":1,\"name\":{\"title\":\"MR\",\"firstName\":\"BOB\","
         + "\"lastName\" :\"SMITH\"},\"contact\":{\"phone\":\"+33679278416\",\""
         + "email\":\"bob.smith@email.com\"}}],\""
