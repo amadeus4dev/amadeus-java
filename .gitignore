@@ -9,3 +9,4 @@ out
 .DS_Store
 amadeus-java.iml
 Bin/
+.vscode/

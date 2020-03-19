@@ -1,7 +1,11 @@
 package com.amadeus;
 
+import com.amadeus.airport.predictions.AirportOnTime;
+import com.amadeus.booking.FlightOrder;
+import com.amadeus.booking.FlightOrders;
 import com.amadeus.ereputation.HotelSentiments;
 import com.amadeus.exceptions.ResponseException;
+import com.amadeus.media.files.GeneratedPhotos;
 import com.amadeus.referenceData.Airlines;
 import com.amadeus.referenceData.Location;
 import com.amadeus.referenceData.Locations;
@@ -15,13 +19,14 @@ import com.amadeus.shopping.FlightOffersSearch;
 import com.amadeus.shopping.HotelOffer;
 import com.amadeus.shopping.HotelOffers;
 import com.amadeus.shopping.HotelOffersByHotel;
+import com.amadeus.shopping.SeatMaps;
 import com.amadeus.shopping.flightOffers.Prediction;
 import com.amadeus.shopping.flightOffers.Pricing;
 import com.amadeus.travel.analytics.airTraffic.Booked;
 import com.amadeus.travel.analytics.airTraffic.BusiestPeriod;
-import com.amadeus.travel.analytics.airTraffic.Searched;
-import com.amadeus.travel.analytics.airTraffic.SearchedByDestination;
 import com.amadeus.travel.analytics.airTraffic.Traveled;
+import com.amadeus.travel.predictions.FlightDelay;
+import com.amadeus.travel.predictions.TripPurpose;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import junit.framework.TestCase;
@@ -49,8 +54,8 @@ public class NamespaceTest {
     TestCase.assertNotNull(client.referenceData.airlines);
     TestCase.assertNotNull(client.travel.analytics.airTraffic.traveled);
     TestCase.assertNotNull(client.travel.analytics.airTraffic.booked);
-    TestCase.assertNotNull(client.travel.analytics.airTraffic.searched);
-    TestCase.assertNotNull(client.travel.analytics.airTraffic.searchedByDestination);
+    TestCase.assertNotNull(client.travel.predictions.tripPurpose);
+    TestCase.assertNotNull(client.travel.predictions.flightDelay);
     TestCase.assertNotNull(client.shopping.flightDates);
     TestCase.assertNotNull(client.shopping.flightDestinations);
     TestCase.assertNotNull(client.shopping.flightOffers);
@@ -59,8 +64,12 @@ public class NamespaceTest {
     TestCase.assertNotNull(client.shopping.flightOffers.prediction);
     TestCase.assertNotNull(client.shopping.hotelOffers);
     TestCase.assertNotNull(client.shopping.hotelOffersByHotel);
+    TestCase.assertNotNull(client.shopping.seatMaps);
     TestCase.assertNotNull(client.ereputation.hotelSentiments);
     TestCase.assertNotNull(client.shopping.hotelOffer("XXX"));
+    TestCase.assertNotNull(client.airport.predictions.onTime);
+    TestCase.assertNotNull(client.booking.flightOrder("XXX"));
+    TestCase.assertNotNull(client.media.files.generatedPhotos);
   }
 
   @Before
@@ -187,25 +196,6 @@ public class NamespaceTest {
     TestCase.assertNotNull(busiestPeriod.get(params));
     TestCase.assertEquals(busiestPeriod.get().length, 2);
 
-    // Testing most searched destinations
-    Mockito.when(client.get("/v1/travel/analytics/air-traffic/searched", null))
-        .thenReturn(multiResponse);
-    Mockito.when(client.get("/v1/travel/analytics/air-traffic/searched", params))
-        .thenReturn(multiResponse);
-    Searched searches = new Searched(client);
-    TestCase.assertNotNull(searches.get());
-    TestCase.assertNotNull(searches.get(params));
-    TestCase.assertEquals(searches.get().length, 2);
-
-    // Testing searched stats
-    Mockito.when(client.get("/v1/travel/analytics/air-traffic/searched/by-destination", null))
-        .thenReturn(singleResponse);
-    Mockito.when(client.get("/v1/travel/analytics/air-traffic/searched/by-destination", params))
-        .thenReturn(singleResponse);
-    SearchedByDestination searchesByDestination = new SearchedByDestination(client);
-    TestCase.assertNotNull(searchesByDestination.get());
-    TestCase.assertNotNull(searchesByDestination.get(params));
-
     // Testing flight date search
     Mockito.when(client.get("/v1/shopping/flight-dates", null))
         .thenReturn(multiResponse);
@@ -279,6 +269,57 @@ public class NamespaceTest {
             .thenReturn(multiResponse);
     HotelSentiments hotelSentiments = new HotelSentiments(client);
     TestCase.assertNotNull(hotelSentiments.get(params));
+
+    // Test trip purpose prediction
+    Mockito.when(client.get("/v1/travel/predictions/trip-purpose", null))
+            .thenReturn(singleResponse);
+    Mockito.when(client.get("/v1/travel/predictions/trip-purpose", params))
+            .thenReturn(singleResponse);
+    TripPurpose tripPurpose = new TripPurpose(client);
+    TestCase.assertNotNull(tripPurpose.get(params));
+    // Test airport-on-time
+    Mockito.when(client.get("/v1/airport/predictions/on-time", null))
+            .thenReturn(singleResponse);
+    Mockito.when(client.get("/v1/airport/predictions/on-time", params))
+            .thenReturn(singleResponse);
+    AirportOnTime airportOnTime = new AirportOnTime(client);
+    TestCase.assertNotNull(airportOnTime.get());
+    TestCase.assertNotNull(airportOnTime.get(params));
+
+    // Test flight delay predictions
+    Mockito.when(client.get("/v1/travel/predictions/flight-delay", null))
+        .thenReturn(multiResponse);
+    Mockito.when(client.get("/v1/travel/predictions/flight-delay", params))
+        .thenReturn(multiResponse);
+    FlightDelay flightDelay = new FlightDelay(client);
+    TestCase.assertNotNull(flightDelay.get());
+    TestCase.assertNotNull(flightDelay.get(params));
+
+    // Test SeatMaps get
+    Mockito.when(client.get("/v1/shopping/seatmaps", null))
+        .thenReturn(multiResponse);
+    Mockito.when(client.get("/v1/shopping/seatmaps", params))
+        .thenReturn(multiResponse);
+    SeatMaps seatmap = new SeatMaps(client);
+    TestCase.assertNotNull(seatmap.get(params));
+
+    // Test fetching a specific offer
+    Mockito.when(client.get("/v1/booking/flight-orders/XXX", null))
+        .thenReturn(singleResponse);
+    Mockito.when(client.get("/v1/booking/flight-orders/XXX", params))
+        .thenReturn(singleResponse);
+    FlightOrder flightOrder = new FlightOrder(client, "XXX");
+    TestCase.assertNotNull(flightOrder.get());
+    TestCase.assertNotNull(flightOrder.get(params));
+
+    // Testing AI-generated photos
+    Mockito.when(client.get("/v2/media/files/generated-photos", null))
+        .thenReturn(singleResponse);
+    Mockito.when(client.get("/v2/media/files/generated-photos", params))
+        .thenReturn(singleResponse);
+    GeneratedPhotos photo = new GeneratedPhotos(client);
+    TestCase.assertNotNull(photo.get());
+    TestCase.assertNotNull(photo.get(params));
   }
 
   @Test
@@ -307,14 +348,33 @@ public class NamespaceTest {
 
     // Test flight price
     Mockito.when(client.post("/v1/shopping/flight-offers/pricing", (String) null))
-            .thenReturn(multiResponse);
+            .thenReturn(singleResponse);
     Mockito.when(client.post("/v1/shopping/flight-offers/pricing", body))
-            .thenReturn(multiResponse);
+            .thenReturn(singleResponse);
     Mockito.when(client.post("/v1/shopping/flight-offers/pricing", params, jsonObject))
-            .thenReturn(multiResponse);
+            .thenReturn(singleResponse);
     Pricing pricing = new Pricing(client);
     TestCase.assertNotNull(pricing.post());
     TestCase.assertNotNull(pricing.post(body));
-    TestCase.assertEquals(pricing.post().length, 2);
+
+    // Test flight create orders
+    Mockito.when(client.post("/v1/booking/flight-orders", (String) null))
+            .thenReturn(singleResponse);
+    Mockito.when(client.post("/v1/booking/flight-orders", body))
+            .thenReturn(singleResponse);
+    FlightOrders order = new FlightOrders(client);
+    TestCase.assertNotNull(order.post());
+    TestCase.assertNotNull(order.post(body));
+
+    // Test SeatMaps post
+    Mockito.when(client.post("/v1/shopping/seatmaps", (String) null))
+            .thenReturn(multiResponse);
+    Mockito.when(client.post("/v1/shopping/seatmaps", body))
+            .thenReturn(multiResponse);
+    Mockito.when(client.post("/v1/shopping/seatmaps", jsonObject))
+            .thenReturn(multiResponse);
+    SeatMaps seatmap = new SeatMaps(client);
+    TestCase.assertNotNull(seatmap.post());
+    TestCase.assertNotNull(seatmap.post(body));
   }
 }

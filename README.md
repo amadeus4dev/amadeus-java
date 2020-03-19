@@ -1,7 +1,7 @@
 # Amadeus Java SDK
 
 [![Build Status](https://travis-ci.org/amadeus4dev/amadeus-java.svg?branch=master)][travis]
-[![Contact Support](https://github.com/amadeus4dev/amadeus-ruby/raw/master/.github/images/support.svg?sanitize=true)][support]
+[![Contact Support](https://github.com/amadeus4dev/amadeus-java/raw/master/.github/images/support.svg?sanitize=true)][support]
 
 Amadeus provides a set of APIs for the travel industry. Flights, Hotels, Locations and more.
 
@@ -116,8 +116,8 @@ in-depth information about every SDK method, its arguments and return types.
 * [Get Started](https://amadeus4dev.github.io/amadeus-java/) documentation
   * [Initialize the SDK](https://amadeus4dev.github.io/amadeus-java/)
   * [Find an Airport](https://amadeus4dev.github.io/amadeus-java/)
-  * [Find a Flight](https://amadeus4dev.github.io/amadeus-ruby/)
-  * [Get Flight Inspiration](https://amadeus4dev.github.io/amadeus-ruby/)
+  * [Find a Flight](https://amadeus4dev.github.io/amadeus-java/)
+  * [Get Flight Inspiration](https://amadeus4dev.github.io/amadeus-java/)
 
 ## Making API calls
 
@@ -141,10 +141,9 @@ You can make any arbitrary API call as well directly with the `.get` method.
 Keep in mind, this returns a raw `Resource`
 
 ```java
-Resource resource = amadeus.get('/v2/reference-data/urls/checkin-links',
-  Params.with("airlineCode", "BA"));
+Response response = amadeus.get("/v2/reference-data/urls/checkin-links", Params.with("airlineCode", "BA"));
 
-resource.getResult();
+response.getResult();
 ```
 
 ## Response
@@ -229,14 +228,18 @@ FlightOffer[] flightOffers = amadeus.shopping.flightOffers.get(Params
 FlightOfferSearch[] flightOffersSearches = amadeus.shopping.flightOffersSearch.get(
               Params.with("originLocationCode", "SYD")
                       .and("destinationLocationCode", "BKK")
-                      .and("departureDate", "2020-04-01")
-                      .and("returnDate", "2020-04-05")
+                      .and("departureDate", "2020-11-01")
+                      .and("returnDate", "2020-11-08")
                       .and("adults", 2)
                       .and("max", 3));
 
 // Flight Offer Search v2 POST
 // body can be a String version of your JSON or a JsonObject
 FlightOfferSearch[] flightOffersSearches = amadeus.shopping.flightOffersSearch.post(body);
+
+// Flight Order Management
+// The flightOrderID comes from the Flight Create Orders (in test environment it's temporary)
+FlightOrder order = amadeus.booking.flightOrder("eJzTd9f3NjIJdzUGAAp%2fAiY=").get();
 
 // Flight Offer price
 FlightPrice[] flightPricing = amadeus.shopping.flightOffersSearch.pricing.post(
@@ -247,7 +250,7 @@ FlightPrice[] flightPricing = amadeus.shopping.flightOffersSearch.pricing.post(
 // Flight Choice Prediction
 // Note that the example calls 2 APIs: Flight Low-fare Search & Flight Choice Prediction
 FlightOffer[] flightOffers = amadeus.shopping.flightOffers
-        .get(Params.with("origin", "MAD").and("destination", "NYC").and("departureDate", "2020-04-01").and("max", "2"));
+        .get(Params.with("origin", "MAD").and("destination", "NYC").and("departureDate", "2020-08-01").and("max", "2"));
 
 // Using a JSonObject
 JsonObject result = flightOffers[0].getResponse().getResult();
@@ -278,19 +281,6 @@ Location location = amadeus.referenceData
 Location[] locations = amadeus.referenceData.locations.airports.get(Params
   .with("latitude", 0.1278)
   .and("longitude", 51.5074));
-
-// Flight Most Searched Destinations
-// Which were the most searched flight destinations from Madrid in August 2017?
-SearchedDestination searchedDestination = amadeus.travel.analytics.airTraffic.searchedByDestination.get(Params
-        .with("originCityCode", "MAD")
-        .and("destinationCityCode", "NYC")
-        .and("searchPeriod", "2017-08")
-        .and("marketCountryCode", "ES"));
-// How many people in Spain searched for a trip from Madrid to New-York in September 2017?
-Search[] search = amadeus.travel.analytics.airTraffic.searched.get(Params
-        .with("originCityCode", "MAD")
-        .and("searchPeriod", "2017-08")
-        .and("marketCountryCode", "ES"));
 
 // Flight Most Booked Destinations
 AirTraffic[] airTraffics = amadeus.travel.analytics.airTraffic.booked.get(Params
@@ -331,6 +321,51 @@ PointOfInterest[] pointsOfInterest = amadeus.referenceData.locations.pointsOfInt
     .and("west", "2.160873")
     .and("south", "41.394582")
     .and("east", "2.177181"));
+
+// What's the likelihood flights from this airport will leave on time?
+Prediction AirportOnTime = amadeus.airport.predictions.onTime.get(Params
+    .with("airportCode", "NCE")
+    .and("date", "2020-09-01"));
+
+// What's the likelihood of a given flight to be delayed?
+Prediction[] flightDelay = amadeus.travel.predictions.flightDelay.get(Params
+    .with("originLocationCode", "NCE")
+    .and("destinationLocationCode", "IST")
+    .and("departureDate", "2020-08-01")
+    .and("departureTime", "18:20:00")
+    .and("arrivalDate", "2020-08-01")
+    .and("arrivalTime", "22:15:00")
+    .and("aircraftCode", "321")
+    .and("carrierCode", "TK")
+    .and("flightNumber", "1816")
+    .and("duration", "PT31H10M"));
+
+// Flight Create Orders to book a flight
+// Using a JSonObject or String
+FlightOrder createdOrder = amadeus.booking.flightOrders.pricing.post(body);
+
+// Using a JsonObject for flight offer and Traveler[] as traveler information
+// see example at src/main/java/examples/flight/createorders/FlightCreateOrders.java
+FlightOrder createdOrder = amadeus.booking.flightOrders.post(flightOffersSearches, travelerArray);
+
+// What is the the seat map of a given flight?
+SeatMap[] seatmap = amadeus.shopping.seatMaps.get(Params
+    .with("flight-orderId", "eJzTd9f3NjIJdzUGAAp%2fAiY="));
+
+// What is the the seat map of a given flight?
+// The body can be a String version of your JSON or a JsonObject
+SeatMap[] seatmap = amadeus.shopping.seatMaps.post(body);
+
+// AI-Generated Photos
+GeneratedPhoto photo = amadeus.media.files.generatedPhotos.get(Params
+    .with("category", "BEACH"));
+
+// Trip Purpose Prediction
+Prediction tripPurpose = amadeus.travel.predictions.tripPurpose.get(Params
+    .with("originLocationCode", "NYC")
+    .and("destinationLocationCode", "MAD")
+    .and("departureDate", "2020-08-01")
+    .and("returnDate", "2020-08-12"));
 ```
 
 ## Development & Contributing

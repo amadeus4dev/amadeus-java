@@ -157,7 +157,7 @@ public class Request {
 
   // Gets the serialized params, only if this is a Get call
   private String getQueryParams() {
-    if (verb == Constants.GET && params != null) {
+    if (params != null) {
       return params.toQueryString();
     } else {
       return "";

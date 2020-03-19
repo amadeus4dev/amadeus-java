@@ -340,8 +340,23 @@ public class HTTPClient {
   // Writes the parameters to the request.
   private void write(Request request) throws IOException {
 
+    // POST with access token + body + URL parameters
+    if (request.getVerb() == Constants.POST && request.getParams() != null
+            && request.getBearerToken() != null) {
+      OutputStream os = request.getConnection().getOutputStream();
+      BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+      // writer.write(request.getParams().toQueryString());
+      if (request.getBody() != null) {
+        writer.write(request.getBody());
+      }
+      writer.flush();
+      writer.close();
+      os.close();
+    }
 
-    if (request.getVerb() == Constants.POST && request.getParams() != null) {
+    // POST with access without token (authentication call)
+    if (request.getVerb() == Constants.POST && request.getParams() != null
+            && request.getBearerToken() == null) {
       OutputStream os = request.getConnection().getOutputStream();
       BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
       writer.write(request.getParams().toQueryString());
@@ -349,6 +364,8 @@ public class HTTPClient {
       writer.close();
       os.close();
     }
+
+    // POST with access token + body
     if (request.getVerb() == Constants.POST && request.getParams() == null) {
       OutputStream os = request.getConnection().getOutputStream();
       BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
