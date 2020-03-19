@@ -245,7 +245,7 @@ FlightOrder order = amadeus.booking.flightOrder("eJzTd9f3NjIJdzUGAAp%2fAiY=").ge
 FlightPrice[] flightPricing = amadeus.shopping.flightOffersSearch.pricing.post(
                     body,
                     Params.with("include", "other-services")
-                          .and("forceClass", "false"))  
+                          .and("forceClass", "false"));
 
 // Flight Choice Prediction
 // Note that the example calls 2 APIs: Flight Low-fare Search & Flight Choice Prediction
