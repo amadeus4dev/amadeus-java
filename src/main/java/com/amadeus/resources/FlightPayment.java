@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.ToString;
 
 /**
- * An Airline object as returned by the Airline Code LookUp API.
+ * An FlightPayment object as returned by the Flight Offers Price API.
  * @see amadeus.shopping.flightOffersSearch.pricing#post()
  */
 @ToString
