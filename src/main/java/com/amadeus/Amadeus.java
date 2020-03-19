@@ -55,12 +55,37 @@ public class Amadeus extends HTTPClient {
    */
   public EReputation ereputation;
 
+  /**
+   * <p>
+   * A namespaced client for the <code>/v1/airport</code> endpoints.
+   * </p>
+   */
+  public Airport airport;
+
+  /**
+   * <p>
+   * A namespaced client for the <code>/v1/booking</code> endpoints.
+   * </p>
+   */
+  public Booking booking;
+
+  /**
+   * <p>
+   * A namespaced client for the <code>/v2/media</code> endpoints.
+   * </p>
+   */
+  public Media media;
+
   protected Amadeus(Configuration configuration) {
     super(configuration);
     this.referenceData = new ReferenceData(this);
     this.travel = new Travel(this);
     this.shopping = new Shopping(this);
     this.ereputation = new EReputation(this);
+    this.airport = new Airport(this);
+    this.booking = new Booking(this);
+    this.media = new Media(this);
+
   }
 
   /**

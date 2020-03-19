@@ -7,6 +7,7 @@ import com.amadeus.shopping.FlightOffersSearch;
 import com.amadeus.shopping.HotelOffer;
 import com.amadeus.shopping.HotelOffers;
 import com.amadeus.shopping.HotelOffersByHotel;
+import com.amadeus.shopping.SeatMaps;
 
 /**
  * <p>
@@ -76,6 +77,14 @@ public class Shopping {
   public HotelOffersByHotel hotelOffersByHotel;
 
   /**
+   * <p>
+   *   A namespaced client for the
+   *   <code>/v1/shopping/seatmaps</code> endpoints.
+   * </p>
+   */
+  public SeatMaps seatMaps;
+
+  /**
    * Constructor.
    * @hide
    */
@@ -87,6 +96,7 @@ public class Shopping {
     this.hotelOffers = new HotelOffers(client);
     this.hotelOffersByHotel = new HotelOffersByHotel(client);
     this.flightOffersSearch = new FlightOffersSearch(client);
+    this.seatMaps = new SeatMaps(client);
   }
 
   /**
