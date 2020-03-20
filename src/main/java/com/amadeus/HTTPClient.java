@@ -68,6 +68,33 @@ public class HTTPClient {
   }
 
   /**
+   * <p>
+   *   A helper module for making generic DELETE requests calls. It is used by
+   *   every namespaced API DELETE method.
+   * </p>
+   *
+   * <pre>
+   *   amadeus.referenceData.urls.checkinLinks.delete(Params.with("airline", "1X"));
+   * </pre>
+   *
+   * <p>
+   *   It can be used to make any generic API call that is automatically
+   *   authenticated using your API credentials:
+   * </p>
+   *
+   * <pre>
+   *    amadeus.delete("/v1/booking/flight-orders", Params.with("flight-orderId", "123"));
+   * </pre>
+   *
+   * @param path The full path for the API call
+   * @param params The optional DELETE params to pass to the API
+   * @return a Response object containing the status code, body, and parsed data.
+   */
+  public Response delete(String path, Params params) throws ResponseException {
+    return request(Constants.DELETE, path, params, null);
+  }
+
+  /**
    * A helper module for making generic POST requests calls. It is used by
    * every namespaced API POST method.
    *
