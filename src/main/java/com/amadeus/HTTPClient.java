@@ -95,6 +95,16 @@ public class HTTPClient {
   }
 
   /**
+   * A helper module for making generic DELETE requests calls. It is used by
+   * every namespaced API DELETE method.
+   *
+   * @see Amadeus#delete(String, Params)
+   */
+  public Response delete(String path) throws ResponseException {
+    return request(Constants.DELETE, path, null,null);
+  }
+
+  /**
    * A helper module for making generic POST requests calls. It is used by
    * every namespaced API POST method.
    *

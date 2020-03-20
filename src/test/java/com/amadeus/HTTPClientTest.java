@@ -64,6 +64,18 @@ public class HTTPClientTest {
     verify(client, times(1)).request("GET", "/foo", params, null);
   }
 
+  @Test public void testDeleteWithoutParams() throws ResponseException {
+    when(client.delete(anyString())).thenCallRealMethod();
+    client.delete("/foo");
+    verify(client, times(1)).request("DELETE", "/foo", null, null);
+  }
+
+  @Test public void testDeletetWithParams() throws ResponseException {
+    when(client.delete(anyString(), any(Params.class))).thenCallRealMethod();
+    client.delete("/foo", params);
+    verify(client, times(1)).request("DELETE", "/foo", params, null);
+  }
+
   @Test public void testPostWithoutParamsWithoutBody() throws ResponseException {
     when(client.post(anyString())).thenCallRealMethod();
     client.post("/foo");
@@ -106,6 +118,26 @@ public class HTTPClientTest {
     when(client.unauthenticatedRequest("GET", "/foo", params, null,null)).thenCallRealMethod();
 
     Response response = client.unauthenticatedRequest("GET", "/foo", params, null, null);
+
+    assertTrue(response.isParsed());
+    assertEquals(((JsonArray) response.getData()).size(), 1);
+  }
+
+  @Test public void testUnauthenticatedDeleteRequest() throws ResponseException, IOException {
+    when(request.getVerb()).thenReturn("DELETE");
+    when(request.getParams()).thenReturn(params);
+    when(request.getConnection()).thenReturn(connection);
+
+    when(connection.getResponseCode()).thenReturn(200);
+    when(connection.getHeaderField("Content-Type")).thenReturn(
+            "application/json");
+    when(connection.getInputStream()).thenReturn(
+            new ByteArrayInputStream("{ \"data\": [{}]}".getBytes()));
+
+    when(client.buildRequest("DELETE", "/foo", params, null,null)).thenReturn(request);
+    when(client.unauthenticatedRequest("DELETE", "/foo", params, null,null)).thenCallRealMethod();
+
+    Response response = client.unauthenticatedRequest("DELETE", "/foo", params, null, null);
 
     assertTrue(response.isParsed());
     assertEquals(((JsonArray) response.getData()).size(), 1);
