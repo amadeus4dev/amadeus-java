@@ -1,6 +1,7 @@
 package com.amadeus;
 
 import com.amadeus.travel.Predictions;
+import com.amadeus.travel.TripParserJobs;
 import com.amadeus.travel.analytics.Analytics;
 
 /**
@@ -34,6 +35,13 @@ public class Travel {
    * </p>
    */
   public Predictions predictions;
+  /**
+   * <p>
+   *   A namespaced client for the
+   *   <code>/v2/travel/trip-parser-jobs</code> endpoints.
+   * </p>
+   */
+  public TripParserJobs tripParserJobs;
 
   /**
    * Constructor.
@@ -42,5 +50,6 @@ public class Travel {
   public Travel(Amadeus client) {
     this.analytics = new Analytics(client);
     this.predictions = new Predictions(client);
+    this.tripParserJobs = new TripParserJobs(client);
   }
 }
