@@ -365,8 +365,8 @@ public class NamespaceTest {
     TestCase.assertNotNull(seatmap.post(body));
   }
 
-@Test
-public void testDeleteMethods() throws ResponseException {
+  @Test
+  public void testDeleteMethods() throws ResponseException {
     // Test deleting a specific offer
     Mockito.when(client.delete("/v1/booking/flight-orders/XXX", null))
         .thenReturn(singleResponse);
@@ -376,5 +376,5 @@ public void testDeleteMethods() throws ResponseException {
     TestCase.assertNotNull(flightOrder.delete());
     TestCase.assertNotNull(flightOrder.delete(params));
 
-    }
+  }
 }
