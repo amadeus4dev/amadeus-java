@@ -83,7 +83,7 @@ public class RequestTest {
     Params params = Params.with("foo", "bar");
     Request request = new Request("POST", "/foo/bar", params, null,null, amadeus);
 
-    assertEquals(request.getUri(), "https://test.api.amadeus.com:443/foo/bar?");
+    assertEquals(request.getUri(), "https://test.api.amadeus.com:443/foo/bar?foo=bar");
   }
 
   @Test public void testToString() {

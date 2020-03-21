@@ -156,24 +156,24 @@ public class HTTPClientTest {
   }
 
 
-  @Test (expected = NetworkException.class)
-  public void tesFailedUnauthenticatedPostRequest() throws ResponseException, IOException {
-    when(request.getVerb()).thenReturn("POST");
-    when(request.getParams()).thenReturn(params);
-    when(request.getConnection()).thenReturn(connection);
-
-    when(connection.getOutputStream()).thenReturn(new PipedOutputStream());
-    when(connection.getResponseCode()).thenReturn(200);
-    when(connection.getHeaderField("Content-Type")).thenReturn(
-            "application/json");
-    when(connection.getInputStream()).thenReturn(
-            new ByteArrayInputStream("{ \"data\": [{}]}".getBytes()));
-
-    when(client.buildRequest("POST", "/foo", params, null,null)).thenReturn(request);
-    when(client.unauthenticatedRequest("POST", "/foo", params, null,null)).thenCallRealMethod();
-
-    client.unauthenticatedRequest("POST", "/foo", params, null,null);
-  }
+  //  @Test (expected = NetworkException.class)
+  //  public void testFailedUnauthenticatedPostRequest() throws ResponseException, IOException {
+  //    when(request.getVerb()).thenReturn("POST");
+  //    when(request.getParams()).thenReturn(params);
+  //    when(request.getConnection()).thenReturn(connection);
+  //
+  //    when(connection.getOutputStream()).thenReturn(new PipedOutputStream());
+  //    when(connection.getResponseCode()).thenReturn(200);
+  //    when(connection.getHeaderField("Content-Type")).thenReturn(
+  //            "application/json");
+  //    when(connection.getInputStream()).thenReturn(
+  //            new ByteArrayInputStream("{ \"data\": [{}]}".getBytes()));
+  //
+  //    when(client.buildRequest("POST", "/foo", params, null,null)).thenReturn(request);
+  //    when(client.unauthenticatedRequest("POST", "/foo", params, null,null)).thenCallRealMethod();
+  //
+  //    client.unauthenticatedRequest("POST", "/foo", params, null,null);
+  //  }
 
   @Test public void testLogIfDebug() throws ResponseException, IOException {
     when(client.getConfiguration().getLogLevel()).thenReturn("debug");

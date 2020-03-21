@@ -21,6 +21,7 @@ import com.amadeus.shopping.HotelOffers;
 import com.amadeus.shopping.HotelOffersByHotel;
 import com.amadeus.shopping.SeatMaps;
 import com.amadeus.shopping.flightOffers.Prediction;
+import com.amadeus.shopping.flightOffers.Pricing;
 import com.amadeus.travel.analytics.airTraffic.Booked;
 import com.amadeus.travel.analytics.airTraffic.BusiestPeriod;
 import com.amadeus.travel.analytics.airTraffic.Traveled;
@@ -59,6 +60,7 @@ public class NamespaceTest {
     TestCase.assertNotNull(client.shopping.flightDestinations);
     TestCase.assertNotNull(client.shopping.flightOffers);
     TestCase.assertNotNull(client.shopping.flightOffersSearch);
+    TestCase.assertNotNull(client.shopping.flightOffersSearch.pricing);
     TestCase.assertNotNull(client.shopping.flightOffers.prediction);
     TestCase.assertNotNull(client.shopping.hotelOffers);
     TestCase.assertNotNull(client.shopping.hotelOffersByHotel);
@@ -343,6 +345,17 @@ public class NamespaceTest {
     TestCase.assertNotNull(flightOfferSearch.post());
     TestCase.assertNotNull(flightOfferSearch.post(body));
     TestCase.assertEquals(flightOfferSearch.post().length, 2);
+
+    // Test flight price
+    Mockito.when(client.post("/v1/shopping/flight-offers/pricing", (String) null))
+            .thenReturn(singleResponse);
+    Mockito.when(client.post("/v1/shopping/flight-offers/pricing", body))
+            .thenReturn(singleResponse);
+    Mockito.when(client.post("/v1/shopping/flight-offers/pricing", params, jsonObject))
+            .thenReturn(singleResponse);
+    Pricing pricing = new Pricing(client);
+    TestCase.assertNotNull(pricing.post());
+    TestCase.assertNotNull(pricing.post(body));
 
     // Test flight create orders
     Mockito.when(client.post("/v1/booking/flight-orders", (String) null))

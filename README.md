@@ -241,6 +241,12 @@ FlightOfferSearch[] flightOffersSearches = amadeus.shopping.flightOffersSearch.p
 // The flightOrderID comes from the Flight Create Orders (in test environment it's temporary)
 FlightOrder order = amadeus.booking.flightOrder("eJzTd9f3NjIJdzUGAAp%2fAiY=").get();
 
+// Flight Offer price
+FlightPrice[] flightPricing = amadeus.shopping.flightOffersSearch.pricing.post(
+                    body,
+                    Params.with("include", "other-services")
+                          .and("forceClass", "false"));
+
 // Flight Choice Prediction
 // Note that the example calls 2 APIs: Flight Low-fare Search & Flight Choice Prediction
 FlightOffer[] flightOffers = amadeus.shopping.flightOffers
