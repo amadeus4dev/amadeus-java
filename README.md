@@ -224,7 +224,7 @@ FlightOffer[] flightOffers = amadeus.shopping.flightOffers.get(Params
   .and("destination", "MAD")
   .and("departureDate", "2020-04-01"));
 
-// Flight Offer Search v2 GET
+// Flight Offers Search v2 GET
 FlightOfferSearch[] flightOffersSearches = amadeus.shopping.flightOffersSearch.get(
               Params.with("originLocationCode", "SYD")
                       .and("destinationLocationCode", "BKK")
@@ -233,7 +233,7 @@ FlightOfferSearch[] flightOffersSearches = amadeus.shopping.flightOffersSearch.g
                       .and("adults", 2)
                       .and("max", 3));
 
-// Flight Offer Search v2 POST
+// Flight Offers Search v2 POST
 // body can be a String version of your JSON or a JsonObject
 FlightOfferSearch[] flightOffersSearches = amadeus.shopping.flightOffersSearch.post(body);
 
@@ -243,6 +243,12 @@ FlightOfferSearch[] flightOffersSearches = amadeus.shopping.flightOffersSearch.p
 FlightOrder order = amadeus.booking.flightOrder("eJzTd9f3NjIJdzUGAAp%2fAiY=").get();
 // Cancel a flight order
 FlightOrder order = amadeus.booking.flightOrder("eJzTd9f3NjIJdzUGAAp%2fAiY=").delete();
+
+// Flight Offers price
+FlightPrice[] flightPricing = amadeus.shopping.flightOffersSearch.pricing.post(
+                    body,
+                    Params.with("include", "other-services")
+                          .and("forceClass", "false"));
 
 // Flight Choice Prediction
 // Note that the example calls 2 APIs: Flight Low-fare Search & Flight Choice Prediction
@@ -339,7 +345,7 @@ Prediction[] flightDelay = amadeus.travel.predictions.flightDelay.get(Params
 
 // Flight Create Orders to book a flight
 // Using a JSonObject or String
-FlightOrder createdOrder = amadeus.booking.flightOrders.pricing.post(body);
+FlightOrder createdOrder = amadeus.booking.flightOrders.post(body);
 
 // Using a JsonObject for flight offer and Traveler[] as traveler information
 // see example at src/main/java/examples/flight/createorders/FlightCreateOrders.java
