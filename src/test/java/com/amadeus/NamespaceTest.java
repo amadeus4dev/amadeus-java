@@ -50,6 +50,7 @@ public class NamespaceTest {
     TestCase.assertNotNull(client.referenceData.locations.airports);
     TestCase.assertNotNull(client.referenceData.locations.pointsOfInterest);
     TestCase.assertNotNull(client.referenceData.locations.pointsOfInterest.bySquare);
+    TestCase.assertNotNull(client.referenceData.locations.pointOfInterest("XXX"));
     TestCase.assertNotNull(client.referenceData.location("123"));
     TestCase.assertNotNull(client.referenceData.airlines);
     TestCase.assertNotNull(client.travel.analytics.airTraffic.traveled);
@@ -146,6 +147,16 @@ public class NamespaceTest {
     TestCase.assertNotNull(poisSquare.get());
     TestCase.assertNotNull(poisSquare.get(params));
     TestCase.assertEquals(poisSquare.get().length, 2);
+
+    // Testing retrieving point of interest
+    Mockito.when(client.get("/v1/reference-data/locations/pois/XXX", null))
+        .thenReturn(multiResponse);
+    Mockito.when(client.get("/v1/reference-data/locations/pois/XXX", params))
+        .thenReturn(multiResponse);
+    PointsOfInterest poi = new PointsOfInterest(client);
+    TestCase.assertNotNull(poi.get());
+    TestCase.assertNotNull(poi.get(params));
+    TestCase.assertEquals(poi.get().length, 2);
 
     // Testing fetching a single location
     Mockito.when(client.get("/v1/reference-data/locations/ALHR", null))
