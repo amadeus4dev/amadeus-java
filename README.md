@@ -239,7 +239,10 @@ FlightOfferSearch[] flightOffersSearches = amadeus.shopping.flightOffersSearch.p
 
 // Flight Order Management
 // The flightOrderID comes from the Flight Create Orders (in test environment it's temporary)
+// Retrieve a flight order
 FlightOrder order = amadeus.booking.flightOrder("eJzTd9f3NjIJdzUGAAp%2fAiY=").get();
+// Cancel a flight order
+FlightOrder order = amadeus.booking.flightOrder("eJzTd9f3NjIJdzUGAAp%2fAiY=").delete();
 
 // Flight Offers price
 FlightPrice[] flightPricing = amadeus.shopping.flightOffersSearch.pricing.post(
