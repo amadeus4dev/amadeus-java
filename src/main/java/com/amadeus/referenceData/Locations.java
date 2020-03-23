@@ -5,10 +5,10 @@ import com.amadeus.Params;
 import com.amadeus.Response;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.referenceData.locations.Airports;
+import com.amadeus.referenceData.locations.PointOfInterest;
 import com.amadeus.referenceData.locations.PointsOfInterest;
 import com.amadeus.resources.Location;
 import com.amadeus.resources.Resource;
-import com.google.gson.Gson;
 
 /**
  * <p>
@@ -49,6 +49,13 @@ public class Locations {
    */
   public PointsOfInterest pointsOfInterest;
 
+  /**
+   * <p>
+   *   A namespaced client for the
+   *   <code>/v2/reference-data/locations/pois</code> endpoints.
+   * </p>
+   */
+  public PointOfInterest pointOfInterest;
 
   /**
    * Constructor.
@@ -85,5 +92,9 @@ public class Locations {
    */
   public Location[] get() throws ResponseException {
     return get(null);
+  }
+
+  public PointOfInterest pointOfInterest(String id) {
+    return new PointOfInterest(client, id);
   }
 }
