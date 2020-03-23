@@ -342,7 +342,7 @@ Prediction[] flightDelay = amadeus.travel.predictions.flightDelay.get(Params
 
 // Flight Create Orders to book a flight
 // Using a JSonObject or String
-FlightOrder createdOrder = amadeus.booking.flightOrders.pricing.post(body);
+FlightOrder createdOrder = amadeus.booking.flightOrders.post(body);
 
 // Using a JsonObject for flight offer and Traveler[] as traveler information
 // see example at src/main/java/examples/flight/createorders/FlightCreateOrders.java
