@@ -330,6 +330,9 @@ PointOfInterest[] pointsOfInterest = amadeus.referenceData.locations.pointsOfInt
     .and("south", "41.394582")
     .and("east", "2.177181"));
 
+// Returns a single Point of Interest from a given id
+PointOfInterest pointOfInterest = amadeus.referenceData.locations.pointOfInterest("9CB40CB5D0").get();
+
 // What's the likelihood flights from this airport will leave on time?
 Prediction AirportOnTime = amadeus.airport.predictions.onTime.get(Params
     .with("airportCode", "NCE")
