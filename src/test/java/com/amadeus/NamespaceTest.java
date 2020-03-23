@@ -3,6 +3,7 @@ package com.amadeus;
 import com.amadeus.airport.predictions.AirportOnTime;
 import com.amadeus.booking.FlightOrder;
 import com.amadeus.booking.FlightOrders;
+import com.amadeus.booking.HotelBookings;
 import com.amadeus.ereputation.HotelSentiments;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.media.files.GeneratedPhotos;
@@ -69,6 +70,7 @@ public class NamespaceTest {
     TestCase.assertNotNull(client.shopping.hotelOffer("XXX"));
     TestCase.assertNotNull(client.airport.predictions.onTime);
     TestCase.assertNotNull(client.booking.flightOrder("XXX"));
+    TestCase.assertNotNull(client.booking.hotelBookings);
     TestCase.assertNotNull(client.media.files.generatedPhotos);
   }
 
@@ -376,6 +378,17 @@ public class NamespaceTest {
     SeatMaps seatmap = new SeatMaps(client);
     TestCase.assertNotNull(seatmap.post());
     TestCase.assertNotNull(seatmap.post(body));
+
+    // Test Hotel Booking post
+    Mockito.when(client.post("/v1/booking/hotel-bookings", (String) null))
+            .thenReturn(multiResponse);
+    Mockito.when(client.post("/v1/booking/hotel-bookings", body))
+            .thenReturn(multiResponse);
+    Mockito.when(client.post("/v1/booking/hotel-bookings", jsonObject))
+            .thenReturn(multiResponse);
+    HotelBookings hotel = new HotelBookings(client);
+    TestCase.assertNotNull(hotel.post());
+    TestCase.assertNotNull(hotel.post(body));
   }
 
   @Test
