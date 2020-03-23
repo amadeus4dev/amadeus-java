@@ -18,7 +18,7 @@ public class Booking {
   /**
    * <p>
    *   A namespaced client for the
-   *   <code>/v1/booking/flightOrder</code> endpoints.
+   *   <code>/v1/booking/flightOrders</code> endpoints.
    * </p>
    */
   public FlightOrders flightOrders;
