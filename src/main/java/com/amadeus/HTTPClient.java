@@ -74,7 +74,7 @@ public class HTTPClient {
    * </p>
    *
    * <pre>
-   *   amadeus.referenceData.urls.checkinLinks.delete(Params.with("airline", "1X"));
+   *   amadeus.booking.flightOrder("eJzTd9f3NjIJdzUGAAp%2fAiY=").delete();
    * </pre>
    *
    * <p>
@@ -83,7 +83,7 @@ public class HTTPClient {
    * </p>
    *
    * <pre>
-   *    amadeus.delete("/v1/booking/flight-orders", Params.with("flight-orderId", "123"));
+   *    amadeus.delete("/v1/foo/bar", Params.with("airline", "1X"));
    * </pre>
    *
    * @param path The full path for the API call
