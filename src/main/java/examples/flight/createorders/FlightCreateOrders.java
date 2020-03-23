@@ -69,6 +69,13 @@ public class FlightCreateOrders {
                 .and("max", 1));
 
     FlightOrder order = amadeus.booking.flightOrders.post(flightOffersSearches, travelerArray);
-    System.out.println(order);
+
+    // Return CO2 Emission of a given flight
+    String weight = order.getFlightOffers()[0].getItineraries(
+    )[0].getSegments()[0].getCo2Emissions()[0].getWeight();
+    String unit = order.getFlightOffers()[0].getItineraries(
+    )[0].getSegments()[0].getCo2Emissions()[0].getWeightUnit();
+
+    System.out.println(weight + unit);
   }
 }

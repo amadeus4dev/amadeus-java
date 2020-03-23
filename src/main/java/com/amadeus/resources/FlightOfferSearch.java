@@ -53,6 +53,17 @@ public class FlightOfferSearch extends Resource {
     private @Getter String id;
     private @Getter int numberOfStops;
     private @Getter boolean blacklistedInEU;
+    private @Getter Co2Emissions[] co2Emissions;
+  }
+
+  @ToString
+  public class Co2Emissions {
+    protected Co2Emissions() {
+    }
+
+    private @Getter String weight;
+    private @Getter String weightUnit;
+    private @Getter String cabin;
   }
 
   @ToString
