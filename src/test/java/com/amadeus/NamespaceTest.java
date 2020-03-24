@@ -3,6 +3,7 @@ package com.amadeus;
 import com.amadeus.airport.predictions.AirportOnTime;
 import com.amadeus.booking.FlightOrder;
 import com.amadeus.booking.FlightOrders;
+import com.amadeus.booking.HotelBookings;
 import com.amadeus.ereputation.HotelSentiments;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.media.files.GeneratedPhotos;
@@ -50,6 +51,7 @@ public class NamespaceTest {
     TestCase.assertNotNull(client.referenceData.locations.airports);
     TestCase.assertNotNull(client.referenceData.locations.pointsOfInterest);
     TestCase.assertNotNull(client.referenceData.locations.pointsOfInterest.bySquare);
+    TestCase.assertNotNull(client.referenceData.locations.pointOfInterest("XXX"));
     TestCase.assertNotNull(client.referenceData.location("123"));
     TestCase.assertNotNull(client.referenceData.airlines);
     TestCase.assertNotNull(client.travel.analytics.airTraffic.traveled);
@@ -69,6 +71,7 @@ public class NamespaceTest {
     TestCase.assertNotNull(client.shopping.hotelOffer("XXX"));
     TestCase.assertNotNull(client.airport.predictions.onTime);
     TestCase.assertNotNull(client.booking.flightOrder("XXX"));
+    TestCase.assertNotNull(client.booking.hotelBookings);
     TestCase.assertNotNull(client.media.files.generatedPhotos);
   }
 
@@ -146,6 +149,16 @@ public class NamespaceTest {
     TestCase.assertNotNull(poisSquare.get());
     TestCase.assertNotNull(poisSquare.get(params));
     TestCase.assertEquals(poisSquare.get().length, 2);
+
+    // Testing retrieving point of interest
+    Mockito.when(client.get("/v1/reference-data/locations/pois/XXX", null))
+        .thenReturn(multiResponse);
+    Mockito.when(client.get("/v1/reference-data/locations/pois/XXX", params))
+        .thenReturn(multiResponse);
+    PointsOfInterest poi = new PointsOfInterest(client);
+    TestCase.assertNotNull(poi.get());
+    TestCase.assertNotNull(poi.get(params));
+    TestCase.assertEquals(poi.get().length, 2);
 
     // Testing fetching a single location
     Mockito.when(client.get("/v1/reference-data/locations/ALHR", null))
@@ -376,5 +389,29 @@ public class NamespaceTest {
     SeatMaps seatmap = new SeatMaps(client);
     TestCase.assertNotNull(seatmap.post());
     TestCase.assertNotNull(seatmap.post(body));
+
+    // Test Hotel Booking post
+    Mockito.when(client.post("/v1/booking/hotel-bookings", (String) null))
+            .thenReturn(multiResponse);
+    Mockito.when(client.post("/v1/booking/hotel-bookings", body))
+            .thenReturn(multiResponse);
+    Mockito.when(client.post("/v1/booking/hotel-bookings", jsonObject))
+            .thenReturn(multiResponse);
+    HotelBookings hotel = new HotelBookings(client);
+    TestCase.assertNotNull(hotel.post());
+    TestCase.assertNotNull(hotel.post(body));
+  }
+
+  @Test
+  public void testDeleteMethods() throws ResponseException {
+    // Test deleting a specific offer
+    Mockito.when(client.delete("/v1/booking/flight-orders/XXX", null))
+        .thenReturn(singleResponse);
+    Mockito.when(client.delete("/v1/booking/flight-orders/XXX", params))
+        .thenReturn(singleResponse);
+    FlightOrder flightOrder = new FlightOrder(client, "XXX");
+    TestCase.assertNotNull(flightOrder.delete());
+    TestCase.assertNotNull(flightOrder.delete(params));
+
   }
 }

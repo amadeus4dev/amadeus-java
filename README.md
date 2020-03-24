@@ -239,7 +239,10 @@ FlightOfferSearch[] flightOffersSearches = amadeus.shopping.flightOffersSearch.p
 
 // Flight Order Management
 // The flightOrderID comes from the Flight Create Orders (in test environment it's temporary)
+// Retrieve a flight order
 FlightOrder order = amadeus.booking.flightOrder("eJzTd9f3NjIJdzUGAAp%2fAiY=").get();
+// Cancel a flight order
+FlightOrder order = amadeus.booking.flightOrder("eJzTd9f3NjIJdzUGAAp%2fAiY=").delete();
 
 // Flight Offers price
 FlightPrice[] flightPricing = amadeus.shopping.flightOffersSearch.pricing.post(
@@ -306,6 +309,11 @@ HotelOffer[] offers = amadeus.shopping.hotelOffers.get(Params
 HotelOffer hotelOffer = amadeus.shopping.hotelOffersByHotel.get(Params.with("hotelId", "BGLONBGB"));
 // Confirm the availability of a specific offer
 HotelOffer offer = amadeus.shopping.hotelOffer("4BA070CE929E135B3268A9F2D0C51E9D4A6CF318BA10485322FA2C7E78C7852E").get();
+
+// Hotel Booking
+// The body can be a String version of your JSON or a JsonObject
+HotelBooking[] hotel = amadeus.booking.hotelBookings.post(body);
+
 // Hotel Ratings / Sentiments
 HotelSentiment[] hotelSentiments = amadeus.ereputation.hotelSentiments.get(Params.with("hotelIds", "ELONMFS,ADNYCCTB"));
 
@@ -321,6 +329,9 @@ PointOfInterest[] pointsOfInterest = amadeus.referenceData.locations.pointsOfInt
     .and("west", "2.160873")
     .and("south", "41.394582")
     .and("east", "2.177181"));
+
+// Returns a single Point of Interest from a given id
+PointOfInterest pointOfInterest = amadeus.referenceData.locations.pointOfInterest("9CB40CB5D0").get();
 
 // What's the likelihood flights from this airport will leave on time?
 Prediction AirportOnTime = amadeus.airport.predictions.onTime.get(Params

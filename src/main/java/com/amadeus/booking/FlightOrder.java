@@ -55,12 +55,43 @@ public class FlightOrder {
     return (com.amadeus.resources.FlightOrder) Resource.fromObject(
         response, com.amadeus.resources.FlightOrder.class);
   }
-  
+
   /**
    * Convenience method for calling <code>get</code> without any parameters.
    * @see com.amadeus.booking.FlightOrder#get()
    */
   public com.amadeus.resources.FlightOrder get() throws ResponseException {
     return get(null);
+  }
+
+  /**
+   * <p>
+   *   Allows you to cancel a flight order. The flightOfferId
+   *   used is an example for educational purposes. In test enviromnent 
+   *   it's temporary.
+   * </p>
+   *
+   * <pre>
+   * FlightOrder order = amadeus.booking.flightOrder.(
+   * "eJzTd9f3NjIJdzUGAAp%2fAiY=").delete();
+   * </pre>
+   * @param params the parameters to send to the API
+   * @return an API response object
+   * @throws ResponseException when an exception occurs
+   */
+
+  public com.amadeus.resources.FlightOrder delete(Params params) throws ResponseException {
+    String path = String.format("/v1/booking/flight-orders/%s", flightOfferId);
+    Response response = client.delete(path, params);
+    return (com.amadeus.resources.FlightOrder) Resource.fromObject(
+        response, com.amadeus.resources.FlightOrder.class);
+  }
+  
+  /**
+   * Convenience method for calling <code>delete</code> without any parameters.
+   * @see com.amadeus.booking.FlightOrder#delete()
+   */
+  public com.amadeus.resources.FlightOrder delete() throws ResponseException {
+    return delete(null);
   }
 }
