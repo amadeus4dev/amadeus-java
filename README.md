@@ -23,8 +23,9 @@ With __Maven__ you need to add to your pom.xml
 ```
 
 With __Gradle__
+Available in `jcenter()` and `mavenCentral()`
 ```js
-compile 'com.google.code.gson:gson:2.8.5'
+implementation 'com.google.code.gson:gson:2.8.5'
 ```
 
 You can install the SDK via Maven or Gradle.
