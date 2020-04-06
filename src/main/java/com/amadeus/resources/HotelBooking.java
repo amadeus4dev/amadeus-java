@@ -14,7 +14,7 @@ public class HotelBooking extends Resource {
   private @Getter String type;
   private @Getter String id;
   private @Getter String providerConfirmationId;
-  private @Getter AssociatedRecord associatedRecords;
+  private @Getter AssociatedRecord[] associatedRecords;
 
   @ToString
   public class AssociatedRecord {
