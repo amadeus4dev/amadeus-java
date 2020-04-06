@@ -36,12 +36,12 @@ You can install the SDK via Maven or Gradle.
 <dependency>
   <groupId>com.amadeus</groupId>
   <artifactId>amadeus-java</artifactId>
-  <version>4.0.0</version>
+  <version>4.0.1</version>
 </dependency>
 ```
 #### Gradle
 ```js
-compile "com.amadeus:amadeus-java:4.0.0"
+compile "com.amadeus:amadeus-java:4.0.1"
 ```
 
 ## Getting Started
