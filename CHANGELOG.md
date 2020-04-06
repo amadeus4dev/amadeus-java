@@ -1,5 +1,5 @@
 # Changelog
-## 4.0.0-2020-04-06
+## 4.0.1-2020-04-06
 Bug fix - Updated AssociatedRecords to Array in HotelBooking.java
 
 ## 4.0.0-2020-03-24
