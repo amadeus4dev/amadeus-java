@@ -33,13 +33,15 @@ public class FlightOffersPrice {
                 .and("departureDate", "2020-11-01")
                 .and("returnDate", "2020-11-08")
                 .and("adults", 1)
-                .and("max", 1));
+                .and("max", 2));
 
+    // We price the 2nd flight of the list to confirm the price and the availability
     FlightPrice flightPricing = amadeus.shopping.flightOffersSearch.pricing.post(
-            flightOffersSearches,
+            flightOffersSearches[1],
             Params.with("include", "detailed-fare-rules")
               .and("forceClass", "false")
-          );  
+          );
+    
     System.out.println(flightPricing.getResponse());
   }
 }

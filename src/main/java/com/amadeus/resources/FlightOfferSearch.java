@@ -1,7 +1,6 @@
 package com.amadeus.resources;
 
 import com.google.gson.annotations.SerializedName;
-import java.util.Date;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -19,7 +18,7 @@ public class FlightOfferSearch extends Resource {
   private @Getter boolean instantTicketingRequired;
   private @Getter boolean nonHomogeneous;
   private @Getter boolean oneWay;
-  private @Getter Date lastTicketingDate;
+  private @Getter String lastTicketingDate;
   private @Getter int numberOfBookableSeats;
   private @Getter Itinerary[] itineraries;
   private @Getter SearchPrice price;
@@ -61,7 +60,7 @@ public class FlightOfferSearch extends Resource {
     protected Co2Emissions() {
     }
 
-    private @Getter String weight;
+    private @Getter int weight;
     private @Getter String weightUnit;
     private @Getter String cabin;
   }
@@ -108,6 +107,11 @@ public class FlightOfferSearch extends Resource {
   @ToString
   public class PricingOptions {
     private @Getter boolean includedCheckedBagsOnly;
+    private @Getter String[] fareType;
+    private @Getter String[] corporateCodes;
+    private @Getter boolean refundableFare;
+    private @Getter boolean noRestrictionFare;
+    private @Getter boolean noPenaltyFare;
   }
 
   @ToString
@@ -141,7 +145,7 @@ public class FlightOfferSearch extends Resource {
     protected IncludedCheckedBags() {
     }
 
-    private @Getter double weight;
+    private @Getter int weight;
     private @Getter String weightUnit;
   }
 }

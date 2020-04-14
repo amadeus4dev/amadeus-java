@@ -5,10 +5,15 @@ import com.amadeus.Response;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.FlightOfferSearch;
 import com.amadeus.resources.FlightOrder;
+import com.amadeus.resources.FlightPrice;
 import com.amadeus.resources.Resource;
 import com.amadeus.resources.Traveler;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+
 
 /**
  * <p>
@@ -35,6 +40,41 @@ public class FlightOrders {
   public FlightOrders(Amadeus client) {
     this.client = client;
   }
+
+  /**
+   * Build the JSON from the Travelers array.
+   *
+   * @param travelers array of Traveler
+   * @return
+   */
+  private JsonArray buildTravelersJSON(Traveler[] travelers) {
+    Gson gson = new GsonBuilder().create();
+    JsonArray travelerArray = new JsonArray();
+
+    for (int i = 0; i < travelers.length; i++) {
+      JsonElement traveler = gson.toJsonTree(travelers[i], Traveler.class);
+      travelerArray.add(traveler);
+    }
+    return travelerArray;
+  }
+
+  /**
+   * Build the JSON from the Travelers array.
+   *
+   * @param flightOffers Array of FlightOfferSearch
+   * @return JsonArray of the flightOffers
+   */
+  private JsonArray buildFlightOffersJSON(FlightOfferSearch[] flightOffers) {
+    Gson gson = new GsonBuilder().create();
+    JsonArray flightOffersArray = new JsonArray();
+
+    for (int i = 0; i < flightOffers.length; i++) {
+      JsonElement flightOffer = gson.toJsonTree(flightOffers[i], FlightOfferSearch.class);
+      flightOffersArray.add(flightOffer);
+    }
+    return flightOffersArray;
+  }
+
 
   /**
    * <p>
@@ -79,58 +119,82 @@ public class FlightOrders {
    * amadeus.booking.flightOrders.post(object);</pre>
    *
    * @param flightOffersSearches List of flight-offers as FlightOfferSearch[]
-   * @param travelers List of travelers as Traveler[]
+   * @param travelers            List of travelers as Traveler[]
    * @return an API resource
    * @throws ResponseException when an exception occurs
    */
-  public FlightOrder post(FlightOfferSearch[] flightOffersSearches, 
-      Traveler[] travelers) throws ResponseException {
+  public FlightOrder post(FlightOfferSearch[] flightOffersSearches,
+                          Traveler[] travelers) throws ResponseException {
 
-    JsonObject nameObject = new JsonObject();
-    nameObject.addProperty("firstName", travelers[0].getName().getFirstName());
-    nameObject.addProperty("lastName", travelers[0].getName().getLastName());
-
-    JsonObject phoneObject = new JsonObject();
-    phoneObject.addProperty("countryCallingCode", 
-        travelers[0].getContact().getPhones()[0].getCountryCallingCode());
-    phoneObject.addProperty("number", travelers[0].getContact().getPhones()[0].getNumber());
-    phoneObject.addProperty("deviceType", travelers[0].getContact().getPhones()[0].getDeviceType());
-
-
-    JsonArray phonesArray = new JsonArray();
-    phonesArray.add(phoneObject);
-
-    JsonObject contactObject = new JsonObject();
-    contactObject.add("phones", phonesArray);
-
-    JsonObject documentsOject = new JsonObject();
-    documentsOject.addProperty("documentType", travelers[0].getDocuments()[0].getDocumentType());
-    documentsOject.addProperty("number", travelers[0].getDocuments()[0].getNumber());
-    documentsOject.addProperty("expiryDate", travelers[0].getDocuments()[0].getExpiryDate());
-    documentsOject.addProperty("nationality", travelers[0].getDocuments()[0].getNationality());
-    documentsOject.addProperty("issuanceCountry", 
-        travelers[0].getDocuments()[0].getIssuanceCountry());
-    documentsOject.addProperty("holder", travelers[0].getDocuments()[0].isHolder());
-    JsonArray documentsArray = new JsonArray();
-    documentsArray.add(documentsOject);
-
-    JsonObject travelerObject = new JsonObject();
-    travelerObject.addProperty("id", travelers[0].getId());
-    travelerObject.addProperty("dateOfBirth", travelers[0].getDateOfBirth());
-    travelerObject.add("name", nameObject);
-    travelerObject.add("contact", contactObject);
-    travelerObject.add("documents", documentsArray);
-    JsonArray travelerArray = new JsonArray();
-    travelerArray.add(travelerObject);
-    
     JsonObject typeObject = new JsonObject();
     typeObject.addProperty("type", "flight-order");
-    typeObject.add("flightOffers", flightOffersSearches[0].getResponse().getData());
+
+    // Prepare the Flight Offers JSON
+    JsonArray flightOffersArray = buildFlightOffersJSON(flightOffersSearches);
+    typeObject.add("flightOffers", flightOffersArray);
+
+    // Prepare the TravelerJSON
+    JsonArray travelerArray = buildTravelersJSON(travelers);
     typeObject.add("travelers", travelerArray);
 
     JsonObject jsonObject = new JsonObject();
     jsonObject.add("data", typeObject);
-    System.out.println(jsonObject);
+
+    Response response = client.post("/v1/booking/flight-orders", jsonObject);
+    return (FlightOrder) Resource.fromObject(response, FlightOrder.class);
+  }
+
+  /**
+   * <p>
+   * The Flight Create Orders API allows you to perform flight booking.
+   * </p>
+   *
+   * <pre>
+   * amadeus.booking.flightOrders.post(flightOfferSearch, traveler);</pre>
+   *
+   * @param flightOffersSearch a flight-offer as FlightOfferSearch
+   * @param travelers          List of travelers as Traveler[]
+   * @return an API resource
+   * @throws ResponseException when an exception occurs
+   */
+  public FlightOrder post(FlightOfferSearch flightOffersSearch,
+                          Traveler[] travelers) throws ResponseException {
+    FlightOfferSearch[] flightOffersSearchArray = new FlightOfferSearch[1];
+    flightOffersSearchArray[0] = flightOffersSearch;
+
+    return post(flightOffersSearchArray, travelers);
+  }
+
+  /**
+   * <p>
+   * The Flight Create Orders API allows you to perform flight booking.
+   * </p>
+   *
+   * <pre>
+   * amadeus.booking.flightOrders.post(flightOfferSearch, traveler);</pre>
+   *
+   * @param flightPrice a flight-offers-pricing as FlightPrice
+   * @param travelers   List of travelers as Traveler[]
+   * @return an API resource
+   * @throws ResponseException when an exception occurs
+   */
+  public FlightOrder post(FlightPrice flightPrice,
+                          Traveler[] travelers) throws ResponseException {
+
+    JsonObject typeObject = new JsonObject();
+    typeObject.addProperty("type", "flight-order");
+
+    Gson gson = new GsonBuilder().create();
+
+    JsonArray flightOffersArray = buildFlightOffersJSON(flightPrice.getFlightOffers());
+    typeObject.add("flightOffers", flightOffersArray);
+
+    // Build Traveler JSON
+    JsonArray travelerArray = buildTravelersJSON(travelers);
+    typeObject.add("travelers", travelerArray);
+
+    JsonObject jsonObject = new JsonObject();
+    jsonObject.add("data", typeObject);
 
     Response response = client.post("/v1/booking/flight-orders", jsonObject);
     return (FlightOrder) Resource.fromObject(response, FlightOrder.class);
