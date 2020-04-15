@@ -1,4 +1,8 @@
 # Changelog
+## 4.1.0-2020-04-15
+Bug fix - Fix helpers for Flight Create Orders
+Add new helper methods to ease the use of Flight Booking APIs
+
 ## 4.0.1-2020-04-06
 Bug fix - Updated AssociatedRecords to Array in HotelBooking.java
 
