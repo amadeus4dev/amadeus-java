@@ -9,7 +9,7 @@ import com.amadeus.resources.FlightPrice;
 public class FlightOffersPrice {
   /**
    * <p>
-   *   An example to call hotel Booking API
+   *   An example to call Flight Offers Price API
    *   <code>/v1/shopping/flight-offers/pricing</code> endpoints.
    * </p>
    *
