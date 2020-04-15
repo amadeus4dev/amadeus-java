@@ -8,6 +8,10 @@ import com.amadeus.resources.FlightOfferSearch;
 import com.amadeus.resources.FlightPayment;
 import com.amadeus.resources.FlightPrice;
 import com.amadeus.resources.Resource;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 /**
@@ -38,17 +42,48 @@ public class Pricing {
   }
 
   /**
+   * Build the FlightOffers JSON.
+   * @param flightOffersSearches list of FlightOfferSearch to price
+   * @return a JsonArray representation of the object FlightOffersSearch
+   */
+  private JsonArray buildFlightOffersJSON(FlightOfferSearch[] flightOffersSearches) {
+    Gson gson = new GsonBuilder().create();
+    JsonArray flightOffersArray = new JsonArray();
+    // Add each flightOffersSearch to the array
+    for (int i = 0; i < flightOffersSearches.length; i++) {
+      JsonElement flightOffer = gson.toJsonTree(flightOffersSearches[i], FlightOfferSearch.class);
+      flightOffersArray.add(flightOffer);
+    }
+    return flightOffersArray;
+  }
+
+  /**
+   * Build the Flight Payment JSON.
+   * @param flightPayment FlightPayment information
+   * @return JsonArray representation of the flightPayment
+   */
+  private JsonArray buildPaymentJSON(FlightPayment flightPayment) {
+    Gson gson = new GsonBuilder().create();
+    JsonArray paymentArray = new JsonArray();
+
+    JsonElement payment = gson.toJsonTree(flightPayment, FlightPayment.class);
+    paymentArray.add(payment);
+
+    return paymentArray;
+  }
+
+  /**
    * <p>
    * The Flight Offers Price API allows the user to get or confirm the price of a flight
-   *  and obtain information about taxes and fees to be applied to the entire journey.
-   *  It is usually used after the Flight Offers Search API.
-   *  It also retrieves ancillary information and the payment information details.
+   * and obtain information about taxes and fees to be applied to the entire journey.
+   * It is usually used after the Flight Offers Search API.
+   * It also retrieves ancillary information and the payment information details.
    * </p>
    *
    * <pre>
    * amadeus.shopping.flightOffers.pricing.post(body, params);</pre>
    *
-   * @param body JSON body of flight-offers as JsonObject to price
+   * @param body   JSON body of flight-offers as JsonObject to price
    * @param params URL parameters such as include or forceClass
    * @return an API resource
    * @throws ResponseException when an exception occurs
@@ -61,15 +96,15 @@ public class Pricing {
   /**
    * <p>
    * The Flight Offers Price API allows the user to get or confirm the price of a flight
-   *  and obtain information about taxes and fees to be applied to the entire journey.
-   *  It is usually used after the Flight Offers Search API.
-   *  It also retrieves ancillary information and the payment information details.
+   * and obtain information about taxes and fees to be applied to the entire journey.
+   * It is usually used after the Flight Offers Search API.
+   * It also retrieves ancillary information and the payment information details.
    * </p>
    *
    * <pre>
    * amadeus.shopping.flightOffersSearch.pricing.post(body, params);</pre>
    *
-   * @param body JSON body of flight-offers as String to price
+   * @param body   JSON body of flight-offers as String to price
    * @param params URL parameters such as include or forceClass
    * @return an API resource
    * @throws ResponseException when an exception occurs
@@ -82,9 +117,9 @@ public class Pricing {
   /**
    * <p>
    * The Flight Offers Price API allows the user to get or confirm the price of a flight
-   *  and obtain information about taxes and fees to be applied to the entire journey.
-   *  It is usually used after the Flight Offers Search API.
-   *  It also retrieves ancillary information and the payment information details.
+   * and obtain information about taxes and fees to be applied to the entire journey.
+   * It is usually used after the Flight Offers Search API.
+   * It also retrieves ancillary information and the payment information details.
    * </p>
    *
    * <pre>
@@ -102,9 +137,9 @@ public class Pricing {
   /**
    * <p>
    * The Flight Offers Price API allows the user to get or confirm the price of a flight
-   *  and obtain information about taxes and fees to be applied to the entire journey.
-   *  It is usually used after the Flight Offers Search API.
-   *  It also retrieves ancillary information and the payment information details.
+   * and obtain information about taxes and fees to be applied to the entire journey.
+   * It is usually used after the Flight Offers Search API.
+   * It also retrieves ancillary information and the payment information details.
    * </p>
    *
    * <pre>
@@ -122,9 +157,9 @@ public class Pricing {
   /**
    * <p>
    * The Flight Offers Price API allows the user to get or confirm the price of a flight
-   *  and obtain information about taxes and fees to be applied to the entire journey.
-   *  It is usually used after the Flight Offers Search API.
-   *  It also retrieves ancillary information and the payment information details.
+   * and obtain information about taxes and fees to be applied to the entire journey.
+   * It is usually used after the Flight Offers Search API.
+   * It also retrieves ancillary information and the payment information details.
    * </p>
    *
    * <pre>
@@ -135,30 +170,44 @@ public class Pricing {
    * @throws ResponseException when an exception occurs
    */
   public FlightPrice post(FlightOfferSearch[] flightOffersSearches) throws ResponseException {
-    JsonObject typeObject = new JsonObject();
-    typeObject.addProperty("type", "flight-offers-pricing");
-    typeObject.add("flightOffers", flightOffersSearches[0].getResponse().getData());
-
-    JsonObject jsonObject = new JsonObject();
-    jsonObject.add("data", typeObject);
-
-    Response response = client.post("/v1/shopping/flight-offers/pricing", jsonObject);
-    return (FlightPrice) Resource.fromObject(response, FlightPrice.class);
+    return post(flightOffersSearches, (Params) null);
   }
 
   /**
    * <p>
    * The Flight Offers Price API allows the user to get or confirm the price of a flight
-   *  and obtain information about taxes and fees to be applied to the entire journey.
-   *  It is usually used after the Flight Offers Search API.
-   *  It also retrieves ancillary information and the payment information details.
+   * and obtain information about taxes and fees to be applied to the entire journey.
+   * It is usually used after the Flight Offers Search API.
+   * It also retrieves ancillary information and the payment information details.
+   * </p>
+   *
+   * <pre>
+   * amadeus.shopping.flightOffersSearch.pricing.post(flightOffersSearches);</pre>
+   *
+   * @param flightOffersSearch a flight-offers as FlightOfferSearch object to price
+   * @return an API resource
+   * @throws ResponseException when an exception occurs
+   */
+  public FlightPrice post(FlightOfferSearch flightOffersSearch) throws ResponseException {
+    FlightOfferSearch[] flightOffersSearchArray = new FlightOfferSearch[1];
+    flightOffersSearchArray[0] = flightOffersSearch;
+
+    return post(flightOffersSearchArray);
+  }
+
+  /**
+   * <p>
+   * The Flight Offers Price API allows the user to get or confirm the price of a flight
+   * and obtain information about taxes and fees to be applied to the entire journey.
+   * It is usually used after the Flight Offers Search API.
+   * It also retrieves ancillary information and the payment information details.
    * </p>
    *
    * <pre>
    * amadeus.shopping.flightOffersSearch.pricing.post(flightOffersSearches);</pre>
    *
    * @param flightOffersSearches List of flight-offers as FlightOfferSearch[] object to price
-   * @param params URL parameters such as include or forceClass
+   * @param params               URL parameters such as include or forceClass
    * @return an API resource
    * @throws ResponseException when an exception occurs
    */
@@ -166,29 +215,62 @@ public class Pricing {
                           Params params) throws ResponseException {
     JsonObject typeObject = new JsonObject();
     typeObject.addProperty("type", "flight-offers-pricing");
-    typeObject.add("flightOffers", flightOffersSearches[0].getResponse().getData());
+
+    JsonArray flightOffersArray = buildFlightOffersJSON(flightOffersSearches);
+    typeObject.add("flightOffers", flightOffersArray);
 
     JsonObject jsonObject = new JsonObject();
     jsonObject.add("data", typeObject);
 
-    Response response = client.post(
-            "/v1/shopping/flight-offers/pricing", params, jsonObject);
+    Response response;
+
+    // Is it a call with param or without param?
+    if (params != null) {
+      response = client.post(
+              "/v1/shopping/flight-offers/pricing", params, jsonObject);
+    } else {
+      response = client.post("/v1/shopping/flight-offers/pricing", jsonObject);
+    }
     return (FlightPrice) Resource.fromObject(response, FlightPrice.class);
   }
 
   /**
    * <p>
    * The Flight Offers Price API allows the user to get or confirm the price of a flight
-   *  and obtain information about taxes and fees to be applied to the entire journey.
-   *  It is usually used after the Flight Offers Search API.
-   *  It also retrieves ancillary information and the payment information details.
+   * and obtain information about taxes and fees to be applied to the entire journey.
+   * It is usually used after the Flight Offers Search API.
+   * It also retrieves ancillary information and the payment information details.
+   * </p>
+   *
+   * <pre>
+   * amadeus.shopping.flightOffersSearch.pricing.post(flightOffersSearches);</pre>
+   *
+   * @param flightOffersSearch a flight-offers as FlightOfferSearch object to price
+   * @param params             URL parameters such as include or forceClass
+   * @return an API resource
+   * @throws ResponseException when an exception occurs
+   */
+  public FlightPrice post(FlightOfferSearch flightOffersSearch,
+                          Params params) throws ResponseException {
+    FlightOfferSearch[] flightOffersSearchArray = new FlightOfferSearch[1];
+    flightOffersSearchArray[0] = flightOffersSearch;
+
+    return post(flightOffersSearchArray, params);
+  }
+
+  /**
+   * <p>
+   * The Flight Offers Price API allows the user to get or confirm the price of a flight
+   * and obtain information about taxes and fees to be applied to the entire journey.
+   * It is usually used after the Flight Offers Search API.
+   * It also retrieves ancillary information and the payment information details.
    * </p>
    *
    * <pre>
    * amadeus.shopping.flightOffersSearch.pricing.post(flightOffersSearches);</pre>
    *
    * @param flightOffersSearches List of flight-offers as FlightOfferSearch[] object to price
-   * @param flightPayment List of flight-offers as FlightOfferSearch[] object to price
+   * @param flightPayment        payment information object
    * @return an API resource
    * @throws ResponseException when an exception occurs
    */
@@ -196,20 +278,41 @@ public class Pricing {
                           FlightPayment flightPayment) throws ResponseException {
     JsonObject typeObject = new JsonObject();
     typeObject.addProperty("type", "flight-offers-pricing");
-    typeObject.add("flightOffers", flightOffersSearches[0].getResponse().getData());
 
-    JsonObject paymentObject = new JsonObject();
-    paymentObject.addProperty("brand", flightPayment.getBrand().toString());
-    paymentObject.addProperty("binNumber", flightPayment.getBinNumber().toString());
-    paymentObject.addProperty("flightOffersIds", flightPayment.getFlightOfferIds().toString());
+    typeObject.add("payment", buildPaymentJSON(flightPayment));
 
-    typeObject.add("payment", flightOffersSearches[0].getResponse().getData());
+    JsonArray flightOffersArray = buildFlightOffersJSON(flightOffersSearches);
+    typeObject.add("flightOffers", flightOffersArray);
 
     JsonObject jsonObject = new JsonObject();
     jsonObject.add("data", typeObject);
 
     Response response = client.post("/v1/shopping/flight-offers/pricing", jsonObject);
     return (FlightPrice) Resource.fromObject(response, FlightPrice.class);
+  }
+
+  /**
+   * <p>
+   * The Flight Offers Price API allows the user to get or confirm the price of a flight
+   * and obtain information about taxes and fees to be applied to the entire journey.
+   * It is usually used after the Flight Offers Search API.
+   * It also retrieves ancillary information and the payment information details.
+   * </p>
+   *
+   * <pre>
+   * amadeus.shopping.flightOffersSearch.pricing.post(flightOffersSearches);</pre>
+   *
+   * @param flightOffersSearch a flight-offers as FlightOfferSearch object to price
+   * @param flightPayment      payment information object
+   * @return an API resource
+   * @throws ResponseException when an exception occurs
+   */
+  public FlightPrice post(FlightOfferSearch flightOffersSearch,
+                          FlightPayment flightPayment) throws ResponseException {
+    FlightOfferSearch[] flightOffersSearchArray = new FlightOfferSearch[1];
+    flightOffersSearchArray[0] = flightOffersSearch;
+
+    return post(flightOffersSearchArray, flightPayment);
   }
 
   public FlightPrice post() throws ResponseException {

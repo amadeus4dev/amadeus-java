@@ -12,12 +12,12 @@ import com.amadeus.resources.Traveler.Phone;
 public class FlightCreateOrders {
   /**
    * <p>
-   *   An example to call the Flight Create Orders API
-   *   <code>/v1/booking/flight-orders</code> endpoints.
+   * An example to call the Flight Create Orders API
+   * <code>/v1/booking/flight-orders</code> endpoints.
    * </p>
    *
    * <p>
-   *   Access via the Amadeus client object.
+   * Access via the Amadeus client object.
    * </p>
    *
    * <pre>
@@ -25,6 +25,10 @@ public class FlightCreateOrders {
    * amadeus.booking.flightOrders;</pre>
    */
   public static void main(String[] args) throws ResponseException {
+
+    Amadeus amadeus = Amadeus
+            .builder("YOUR_CLIENT_ID", "YOUR_CLIENT_SECRET")
+            .build();
 
     Traveler traveler = new Traveler();
 
@@ -56,26 +60,28 @@ public class FlightCreateOrders {
     travelerArray[0] = traveler;
     System.out.println(travelerArray[0]);
 
-    Amadeus amadeus = Amadeus
-        .builder("YOUR_CLIENT_ID","YOUR_CLIENT_SECRET")
-        .build();
-
     FlightOfferSearch[] flightOffersSearches = amadeus.shopping.flightOffersSearch.get(
-        Params.with("originLocationCode", "SYD")
-                .and("destinationLocationCode", "BKK")
-                .and("departureDate", "2020-11-01")
-                .and("returnDate", "2020-11-08")
-                .and("adults", 1)
-                .and("max", 1));
+            Params.with("originLocationCode", "PAR")
+                    .and("destinationLocationCode", "NYC")
+                    .and("departureDate", "2020-11-01")
+                    .and("returnDate", "2020-11-08")
+                    .and("adults", 1)
+                    .and("max", 3));
 
-    FlightOrder order = amadeus.booking.flightOrders.post(flightOffersSearches, travelerArray);
+    // We price the 2nd flight of the list to confirm the price and the availability
+    FlightPrice flightPricing = amadeus.shopping.flightOffersSearch.pricing.post(
+            flightOffersSearches[1]);
 
-    // Return CO2 Emission of a given flight
-    String weight = order.getFlightOffers()[0].getItineraries(
+
+    // We book the flight previously priced
+    FlightOrder order = amadeus.booking.flightOrders.post(flightPricing, travelerArray);
+    System.out.println(order.getResponse());
+
+    // Return CO2 Emission of the previously booked flight
+    int weight = order.getFlightOffers()[0].getItineraries(
     )[0].getSegments()[0].getCo2Emissions()[0].getWeight();
     String unit = order.getFlightOffers()[0].getItineraries(
     )[0].getSegments()[0].getCo2Emissions()[0].getWeightUnit();
 
-    System.out.println(weight + unit);
   }
 }

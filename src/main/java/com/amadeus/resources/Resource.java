@@ -14,12 +14,12 @@ public class Resource {
   /**
    * The original response that this object is populated from.
    */
-  private @Getter Response response;
+  private transient @Getter Response response;
   /**
    * The class used for deserialization.
    * @hide as only used internally
    */
-  private @Getter Class deSerializationClass;
+  private transient @Getter Class deSerializationClass;
 
   /**
    * Turns a response into a Gson deserialized array of resources,
