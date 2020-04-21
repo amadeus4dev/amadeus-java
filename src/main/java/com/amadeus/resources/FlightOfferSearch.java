@@ -26,8 +26,7 @@ public class FlightOfferSearch extends Resource {
   private @Getter PricingOptions pricingOptions;
   private @Getter String[] validatingAirlineCodes;
   private @Getter TravelerPricing[] travelerPricings;
-
-
+  private @Getter String choiceProbability;
 
   @ToString
   public class Itinerary {
