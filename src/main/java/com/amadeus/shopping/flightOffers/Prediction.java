@@ -3,7 +3,7 @@ package com.amadeus.shopping.flightOffers;
 import com.amadeus.Amadeus;
 import com.amadeus.Response;
 import com.amadeus.exceptions.ResponseException;
-import com.amadeus.resources.FlightOffer;
+import com.amadeus.resources.FlightOfferSearch;
 import com.amadeus.resources.Resource;
 
 import com.google.gson.JsonObject;
@@ -15,7 +15,7 @@ import com.google.gson.JsonObject;
 /**
  * <p>
  * A namespaced client for the
- * <code>/v1/shopping/flight-offers/prediction</code> endpoints.
+ * <code>/v2/shopping/flight-offers/prediction</code> endpoints.
  * </p>
  *
  * <p>
@@ -41,9 +41,9 @@ public class Prediction {
 
   /**
    * <p>
-   * This machine learning API is based on a prediction model that takes the response of a flight
-   * search as input (Flight Low-fare Search) and predict, for each itinerary, the probably for a
-   * travel to select it.
+   * This Machine Learning API is based on a prediction model that takes the response of a flight
+   * search as input (Flight Offers Search) and predicts, for each itinerary, the probability to
+   * be selected.
    * </p>
    *
    * <pre>
@@ -53,16 +53,16 @@ public class Prediction {
    * @return an API resource
    * @throws ResponseException when an exception occurs
    */
-  public FlightOffer[] post(JsonObject body) throws ResponseException {
-    Response response = client.post("/v1/shopping/flight-offers/prediction", body);
-    return (FlightOffer[]) Resource.fromArray(response, FlightOffer[].class);
+  public FlightOfferSearch[] post(JsonObject body) throws ResponseException {
+    Response response = client.post("/v2/shopping/flight-offers/prediction", body);
+    return (FlightOfferSearch[]) Resource.fromArray(response, FlightOfferSearch[].class);
   }
 
   /**
    * <p>
    * This machine learning API is based on a prediction model that takes the response of a flight
-   * search as input (Flight Low-fare Search) and predict, for each itinerary, the probably for a
-   * travel to select it.
+   * search as input (Flight Offers Search) and predicts, for each itinerary, the probability to
+   * be selected.
    * </p>
    *
    * <pre>
@@ -72,9 +72,9 @@ public class Prediction {
    * @return an API resource
    * @throws ResponseException when an exception occurs
    */
-  public FlightOffer[] post(String body) throws ResponseException {
-    Response response = client.post("/v1/shopping/flight-offers/prediction", body);
-    return (FlightOffer[]) Resource.fromArray(response, FlightOffer[].class);
+  public FlightOfferSearch[] post(String body) throws ResponseException {
+    Response response = client.post("/v2/shopping/flight-offers/prediction", body);
+    return (FlightOfferSearch[]) Resource.fromArray(response, FlightOfferSearch[].class);
   }
 
   /**
@@ -82,7 +82,7 @@ public class Prediction {
    *
    * @see Prediction#post()
    */
-  public FlightOffer[] post() throws ResponseException {
+  public FlightOfferSearch[] post() throws ResponseException {
     return post((String) null);
   }
 }
