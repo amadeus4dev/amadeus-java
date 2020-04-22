@@ -252,7 +252,7 @@ FlightOfferSearch[] flightOffers = amadeus.shopping.flightOffersSearch.get(
               Params.with("originLocationCode", "NYC")
                       .and("destinationLocationCode", "MAD")
                       .and("departureDate", "2020-11-01")
-                      .and("returnDate", "2020-11-08")
+                      .and("returnDate", "2020-11-09")
                       .and("adults", 1));
 
 // Using a JSonObject
