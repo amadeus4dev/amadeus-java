@@ -229,16 +229,6 @@ public class NamespaceTest {
     TestCase.assertNotNull(flightDestinations.get(params));
     TestCase.assertEquals(flightDestinations.get().length, 2);
 
-    // Testing flight offer search
-    Mockito.when(client.get("/v1/shopping/flight-offers", null))
-        .thenReturn(multiResponse);
-    Mockito.when(client.get("/v1/shopping/flight-offers", params))
-        .thenReturn(multiResponse);
-    FlightOffers flightOffers = new FlightOffers(client);
-    TestCase.assertNotNull(flightOffers.get());
-    TestCase.assertNotNull(flightOffers.get(params));
-    TestCase.assertEquals(flightOffers.get().length, 2);
-
     // Testing hotel offer search
     Mockito.when(client.get("/v2/shopping/hotel-offers", null))
         .thenReturn(multiResponse);
@@ -338,9 +328,9 @@ public class NamespaceTest {
   @Test
   public void testPostMethods() throws ResponseException {
     // Testing flight choice prediction
-    Mockito.when(client.post("/v1/shopping/flight-offers/prediction", (String) null))
+    Mockito.when(client.post("/v2/shopping/flight-offers/prediction", (String) null))
         .thenReturn(multiResponse);
-    Mockito.when(client.post("/v1/shopping/flight-offers/prediction", body))
+    Mockito.when(client.post("/v2/shopping/flight-offers/prediction", body))
         .thenReturn(multiResponse);
     Prediction flightOffersPrediction = new Prediction(client);
     TestCase.assertNotNull(flightOffersPrediction.post());
