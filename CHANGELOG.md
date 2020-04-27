@@ -1,6 +1,6 @@
 # Changelog
 ## 5.0.0-2020-04-27
-Add support for the [Flight Choice Prediction v2](https://developers.amadeus.com/self-service/category/air/api-doc/flight-choice-prediction/api-reference>)
+Add support for the [Flight Choice Prediction v2](https://developers.amadeus.com/self-service/category/air/api-doc/flight-choice-prediction/api-reference)
 
 The input of Flight Choice Prediction v2 is the result of Flight Offers Search API - in v1 the input was the result of Flight Low-Fare Search
 
