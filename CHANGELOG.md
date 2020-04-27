@@ -1,4 +1,15 @@
 # Changelog
+## 5.0.0-2020-04-27
+Add support for the [Flight Choice Prediction v2](https://developers.amadeus.com/self-service/category/air/api-doc/flight-choice-prediction/api-reference)
+
+The input of Flight Choice Prediction v2 is the result of Flight Offers Search API - in v1 the input was the result of Flight Low-Fare Search
+
+Add choiceProbability to FlightOfferSearch resource
+
+Remove support for Flight Low-Fare Search: decommission on May 28, 2020 and mandatory migration to Flight Offers Search
+
+Remove support for Flight Choice Prediction v1
+
 ## 4.1.0-2020-04-15
 Bug fix - Fix helpers for Flight Create Orders
 Add new helper methods to ease the use of Flight Booking APIs
