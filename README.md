@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/amadeus4dev/amadeus-java.svg?branch=master)][travis]
 [![Contact Support](https://github.com/amadeus4dev/amadeus-java/raw/master/.github/images/support.svg?sanitize=true)][support]
 
-Amadeus provides a rich set of APIs for the travel industry. For more details, check out the [Amadeus for Developers Portal](https://developers.amadeus.com) or the `SDK class reference <https://amadeus4dev.github.io/amadeus-java/>`__.
+Amadeus provides a rich set of APIs for the travel industry. For more details, check out the [Amadeus for Developers Portal](https://developers.amadeus.com) or the [SDK class reference](https://amadeus4dev.github.io/amadeus-java/).
 
 ## Installation
 
@@ -24,7 +24,7 @@ compile "com.amadeus:amadeus-java:5.0.0"
 
 ## Getting Started
 
-To make your first API call, you will need to [register](https://developers.amadeus.com/create-account) for an Amadeus Developer Account and [set up your first application](https://developers.amadeus.com/my-apps).
+To make your first API call, you will need to [register](https://developers.amadeus.com/register) for an Amadeus Developer Account and [set up your first application](https://developers.amadeus.com/my-apps).
 
 ```java
 import com.amadeus.Amadeus;
@@ -98,7 +98,7 @@ amadeus.shopping.hotelOffer("XXX").get(...);
 ```
 
 You can make any arbitrary API call as well directly with the `.get` method.
-Keep in mind, this returns a raw `Resource`
+Keep in mind, this returns a raw `Resource`.
 
 ```java
 Response response = amadeus.get("/v2/reference-data/urls/checkin-links", Params.with("airlineCode", "BA"));
