@@ -3,33 +3,11 @@
 [![Build Status](https://travis-ci.org/amadeus4dev/amadeus-java.svg?branch=master)][travis]
 [![Contact Support](https://github.com/amadeus4dev/amadeus-java/raw/master/.github/images/support.svg?sanitize=true)][support]
 
-Amadeus provides a set of APIs for the travel industry. Flights, Hotels, Locations and more.
-
-For more details see the [Java
-documentation](https://amadeus4dev.github.io/amadeus-java/) on
-[Amadeus.com](https://developers.amadeus.com).
+Amadeus provides a rich set of APIs for the travel industry. For more details, check out the [Amadeus for Developers Portal](https://developers.amadeus.com) or the [SDK class reference](https://amadeus4dev.github.io/amadeus-java/).
 
 ## Installation
 
-This library requires Java 1.7+ and the the [Gson library](https://github.com/google/gson).
-
-With __Maven__ you need to add to your pom.xml
-```xml
-<dependency>
-  <groupId>com.google.code.gson</groupId>
-  <artifactId>gson</artifactId>
-  <version>2.8.5</version>
-</dependency>
-```
-
-With __Gradle__
-
-Available in `jcenter()` and `mavenCentral()`
-```js
-implementation 'com.google.code.gson:gson:2.8.5'
-```
-
-You can install the SDK via Maven or Gradle.
+This library requires Java 1.7+ and the [Gson library](https://github.com/google/gson). You can install the SDK via Maven or Gradle:
 
 #### Maven
 ```xml
@@ -46,9 +24,7 @@ compile "com.amadeus:amadeus-java:5.0.0"
 
 ## Getting Started
 
-To send make your first API call you will need to [register for an Amadeus
-Developer Account](https://developers.amadeus.com/create-account) and set up
-your first application.
+To make your first API call, you will need to [register](https://developers.amadeus.com/register) for an Amadeus Developer Account and [set up your first application](https://developers.amadeus.com/my-apps).
 
 ```java
 import com.amadeus.Amadeus;
@@ -75,7 +51,7 @@ public class AmadeusExample {
 
 ## Initialization
 
-The client can be initialized directly.
+The client can be initialized directly:
 
 ```java
 //Initialize using parameters
@@ -84,8 +60,7 @@ Amadeus amadeus = Amadeus
         .build();
 ```
 
-Alternatively it can be initialized without any parameters if the environment
-variables `AMADEUS_CLIENT_ID` and `AMADEUS_CLIENT_SECRET` are present.
+Alternatively, it can be initialized without any parameters if the environment variables `AMADEUS_CLIENT_ID` and `AMADEUS_CLIENT_SECRET` are present.
 
 ```java
 Amadeus amadeus = Amadeus
@@ -93,12 +68,9 @@ Amadeus amadeus = Amadeus
         .build();
 ```
 
-Your credentials can be found on the [Amadeus
-dashboard](https://developers.amadeus.com/my-apps). [Sign
-up](https://developers.amadeus.com/create-account) for an account today.
+Your credentials can be found on the [Amadeus dashboard](https://developers.amadeus.com/my-apps).
 
-By default the environment for the SDK is the `test` environment. To switch to
-a production (paid-for) environment please switch the hostname as follows:
+By default the SDK is set to `test` environment. To switch to a `production` (pay-as-you-go) environment, please switch the hostname as follows:
 
 ```java
 Amadeus amadeus = Amadeus
@@ -109,38 +81,24 @@ Amadeus amadeus = Amadeus
 
 ## Documentation
 
-Amadeus has a large set of APIs, and our documentation is here to get you
-started today. Head over to our
-[Reference](https://amadeus4dev.github.io/amadeus-java/) documentation for
-in-depth information about every SDK method, its arguments and return types.
-
-
-* [Get Started](https://amadeus4dev.github.io/amadeus-java/) documentation
-  * [Initialize the SDK](https://amadeus4dev.github.io/amadeus-java/)
-  * [Find an Airport](https://amadeus4dev.github.io/amadeus-java/)
-  * [Find a Flight](https://amadeus4dev.github.io/amadeus-java/)
-  * [Get Flight Inspiration](https://amadeus4dev.github.io/amadeus-java/)
+Amadeus has a large set of APIs, and our documentation is here to get you started. Head over to our [reference documentation](https://amadeus4dev.github.io/amadeus-java/) for in-depth information about every SDK method, its arguments and return types.
 
 ## Making API calls
 
-This library conveniently maps every API path to a similar path.
-
-For example, `GET /v2/reference-data/urls/checkin-links?airlineCode=BA` would be:
+This library conveniently maps every API path to a similar path. For example, `GET /v2/reference-data/urls/checkin-links?airlineCode=BA` would be:
 
 ```java
 amadeus.referenceData.urls.checkinLinks.get(Params.with("airlineCode", "BA"));
 ```
 
-Similarly, to select a resource by ID, you can pass in the ID to the **singular** path.
-
-For example,  `GET /v2/shopping/hotel-offers/XXX` would be:
+Similarly, to select a resource by ID, you can pass in the ID to the **singular** path. For example,  `GET /v2/shopping/hotel-offers/XXX` would be:
 
 ```java
 amadeus.shopping.hotelOffer("XXX").get(...);
 ```
 
 You can make any arbitrary API call as well directly with the `.get` method.
-Keep in mind, this returns a raw `Resource`
+Keep in mind, this returns a raw `Resource`.
 
 ```java
 Response response = amadeus.get("/v2/reference-data/urls/checkin-links", Params.with("airlineCode", "BA"));
@@ -150,8 +108,7 @@ response.getResult();
 
 ## Response
 
-Every successful API call returns a `Resource` object. The underlying
-`Resource` with the raw available.
+Every successful API call returns a `Resource` object. The `Resource` object has the raw response body (in string format) available:
 
 ```java
 Location[] locations = amadeus.referenceData.locations.get(Params
@@ -197,10 +154,7 @@ Amadeus amadeus = Amadeus
 )
 ```
 
-Additionally, to enable more verbose logging, you can set the appropriate level
-on your own logger, though the easiest way would be to enable debugging via a
-parameter on initialization, or using the `AMADEUS_LOG_LEVEL` environment
-variable.
+Additionally, to enable more verbose logging, you can set the appropriate level on your own logger. The easiest way would be to enable debugging via a parameter during initialization, or using the `AMADEUS_LOG_LEVEL` environment variable.
 
 ```java
 Amadeus amadeus = Amadeus
