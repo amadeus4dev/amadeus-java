@@ -76,6 +76,13 @@ public class Amadeus extends HTTPClient {
    */
   public Media media;
 
+  /**
+   * <p>
+   * A namespaced client for the <code>/v1/safety</code> endpoints.
+   * </p>
+   */
+  public Safety safety;
+
   protected Amadeus(Configuration configuration) {
     super(configuration);
     this.referenceData = new ReferenceData(this);
@@ -85,6 +92,7 @@ public class Amadeus extends HTTPClient {
     this.airport = new Airport(this);
     this.booking = new Booking(this);
     this.media = new Media(this);
+    this.safety = new Safety(this);
 
   }
 
