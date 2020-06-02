@@ -13,6 +13,7 @@ import com.amadeus.referenceData.Locations;
 import com.amadeus.referenceData.locations.Airports;
 import com.amadeus.referenceData.locations.PointsOfInterest;
 import com.amadeus.referenceData.urls.CheckinLinks;
+import com.amadeus.safety.SafetyRatedLocations;
 import com.amadeus.shopping.FlightDates;
 import com.amadeus.shopping.FlightDestinations;
 import com.amadeus.shopping.FlightOffers;
@@ -73,6 +74,9 @@ public class NamespaceTest {
     TestCase.assertNotNull(client.booking.flightOrder("XXX"));
     TestCase.assertNotNull(client.booking.hotelBookings);
     TestCase.assertNotNull(client.media.files.generatedPhotos);
+    TestCase.assertNotNull(client.safety.safetyRatedLocations);
+    TestCase.assertNotNull(client.safety.safetyRatedLocations.bySquare);
+    TestCase.assertNotNull(client.safety.safetyRatedLocation("XXX"));
   }
 
   @Before
@@ -159,6 +163,36 @@ public class NamespaceTest {
     TestCase.assertNotNull(poi.get());
     TestCase.assertNotNull(poi.get(params));
     TestCase.assertEquals(poi.get().length, 2);
+
+    // Testing safe place by coordinates
+    Mockito.when(client.get("/v1/safety/safety-rated-locations", null))
+        .thenReturn(multiResponse);
+    Mockito.when(client.get("/v1/safety/safety-rated-locations", params))
+        .thenReturn(multiResponse);
+    SafetyRatedLocations safetyCoords = new SafetyRatedLocations(client);
+    TestCase.assertNotNull(safetyCoords.get());
+    TestCase.assertNotNull(safetyCoords.get(params));
+    TestCase.assertEquals(safetyCoords.get().length, 2);
+
+    // Testing safe place by square
+    Mockito.when(client.get("/v1/safety/safety-rated-locations/by-square", null))
+        .thenReturn(multiResponse);
+    Mockito.when(client.get("/v1/safety/safety-rated-locations/by-square", params))
+        .thenReturn(multiResponse);
+    SafetyRatedLocations safetySquare = new SafetyRatedLocations(client);
+    TestCase.assertNotNull(safetySquare.get());
+    TestCase.assertNotNull(safetySquare.get(params));
+    TestCase.assertEquals(safetySquare.get().length, 2);
+
+    // Testing retrieving safe place
+    Mockito.when(client.get("/v1/safety/safety-rated-locations/XXX", null))
+        .thenReturn(multiResponse);
+    Mockito.when(client.get("/v1/safety/safety-rated-locations/XXX", params))
+        .thenReturn(multiResponse);
+    SafetyRatedLocations safetyById = new SafetyRatedLocations(client);
+    TestCase.assertNotNull(safetyById.get());
+    TestCase.assertNotNull(safetyById.get(params));
+    TestCase.assertEquals(safetyById.get().length, 2);
 
     // Testing fetching a single location
     Mockito.when(client.get("/v1/reference-data/locations/ALHR", null))
