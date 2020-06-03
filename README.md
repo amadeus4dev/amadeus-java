@@ -291,6 +291,22 @@ PointOfInterest[] pointsOfInterest = amadeus.referenceData.locations.pointsOfInt
 // Returns a single Point of Interest from a given id
 PointOfInterest pointOfInterest = amadeus.referenceData.locations.pointOfInterest("9CB40CB5D0").get();
 
+// Safe Place
+// How safe is Barcelona? (based a geo location and a radius)
+SafePlace[] safetyScore = amadeus.safety.safetyRatedLocations.get(Params
+      .with("latitude", "41.39715")
+      .and("longitude", "2.160873"));
+
+// How safe is Barcelona? (based on a square)
+SafePlace[] safetyScore = amadeus.safety.safetyRatedLocations.bySquare.get(Params
+    .with("north", "41.397158")
+    .and("west", "2.160873")
+    .and("south", "41.394582")
+    .and("east", "2.177181"));
+
+// What is the safety information of a location based on it's Id?
+SafePlace safetyScore = amadeus.safety.safetyRatedLocation("Q930400801").get();
+
 // What's the likelihood flights from this airport will leave on time?
 Prediction AirportOnTime = amadeus.airport.predictions.onTime.get(Params
     .with("airportCode", "NCE")
