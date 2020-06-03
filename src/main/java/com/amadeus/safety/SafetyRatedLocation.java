@@ -42,7 +42,7 @@ public class SafetyRatedLocation {
    * </p>
    *
    * <pre>
-   * amadeus.amadeus.safety.safetyRatedLocations.get(Params
+   * amadeus.safety.safetyRatedLocations.get(Params
    *   .with("longitude", 2.160873)
    *   .and("latitude", 41.397158));</pre>
    *
