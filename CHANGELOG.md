@@ -1,4 +1,7 @@
 # Changelog
+## 5.2.0-2020-06-11
+Add AircraftCabinAmenities to the SeatMap resource
+
 ## 5.1.0-2020-06-11
 Add support for the [Safe Place API](https://developers.amadeus.com/self-service/category/destination-content/api-doc/safe-place-api)
 
