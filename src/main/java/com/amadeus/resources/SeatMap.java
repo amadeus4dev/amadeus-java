@@ -19,6 +19,7 @@ public class SeatMap extends Resource {
   private @Getter Aircraft aircraft;
   private @Getter Departure departure;
   private @Getter Deck[] decks;
+  private @Getter AircraftCabinAmenities aircraftCabinAmenities;
 
   @ToString
   public class Aircraft {
@@ -56,6 +57,82 @@ public class SeatMap extends Resource {
   }
 
   @ToString
+  public class AircraftCabinAmenities {
+    protected AircraftCabinAmenities() {
+    }
+
+    private @Getter AmenityPower power;
+    private @Getter AmenityWifi wifi;
+    private @Getter AmenityBeverage beverage;
+    private @Getter AmenityFood food;
+    private @Getter AmenityEntertainment[] entertainment;
+    private @Getter AmenitySeat seat;
+
+  }
+
+  @ToString
+  public class AmenitySeat {
+    protected AmenitySeat() {
+    }
+
+    private @Getter int legSpace;
+    private @Getter String spaceUnit;
+    private @Getter String tilt;
+    private @Getter String amenityType;
+
+  }
+
+  @ToString
+  public class AmenityPower {
+    protected AmenityPower() {
+    }
+
+    private @Getter boolean isChargeable;
+    private @Getter String powerType;
+
+  }
+
+  @ToString
+  public class AmenityWifi {
+    protected AmenityWifi() {
+    }
+
+    private @Getter boolean isChargeable;
+    private @Getter String wifiCoverage;
+
+  }
+
+  @ToString
+  public class AmenityBeverage {
+    protected AmenityBeverage() {
+    }
+
+    private @Getter boolean isChargeable;
+    private @Getter String beverageType;
+
+  }
+
+  @ToString
+  public class AmenityFood {
+    protected AmenityFood() {
+    }
+
+    private @Getter boolean isChargeable;
+    private @Getter String foodType;
+
+  }
+
+  @ToString
+  public class AmenityEntertainment {
+    protected AmenityEntertainment() {
+    }
+
+    private @Getter boolean isChargeable;
+    private @Getter String entertainmentType;
+
+  }
+
+  @ToString
   public class DeckConfiguration {
     protected DeckConfiguration() {
     }
@@ -70,5 +147,4 @@ public class SeatMap extends Resource {
     private @Getter int endWingsX;
 
   }
-
 }
