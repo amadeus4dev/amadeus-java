@@ -20,7 +20,7 @@ import com.google.gson.Gson;
  *
  * <pre>
  * Amadeus amadeus = Amadeus.builder("clientId", "secret").build();
- * amadeus.referenceData.locations.recommendedLocations;</pre>
+ * amadeus.referenceData.recommendedLocations;</pre>
  */
 public class RecommendedLocations {
   private Amadeus client;
@@ -39,7 +39,7 @@ public class RecommendedLocations {
    * </p>
    *
    * <pre>
-   * amadeus.referenceData.locations.recommendedLocations.get(Params
+   * amadeus.referenceData.recommendedLocations.get(Params
    *   .with("cityCodes", "PAR")
    *   .and("travelerCountryCode", "FR"));</pre>
    *
