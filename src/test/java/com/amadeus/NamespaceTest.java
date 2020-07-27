@@ -10,6 +10,7 @@ import com.amadeus.media.files.GeneratedPhotos;
 import com.amadeus.referenceData.Airlines;
 import com.amadeus.referenceData.Location;
 import com.amadeus.referenceData.Locations;
+import com.amadeus.referenceData.RecommendedLocations;
 import com.amadeus.referenceData.locations.Airports;
 import com.amadeus.referenceData.locations.PointsOfInterest;
 import com.amadeus.referenceData.urls.CheckinLinks;
@@ -54,6 +55,7 @@ public class NamespaceTest {
     TestCase.assertNotNull(client.referenceData.locations.pointsOfInterest.bySquare);
     TestCase.assertNotNull(client.referenceData.locations.pointOfInterest("XXX"));
     TestCase.assertNotNull(client.referenceData.location("123"));
+    TestCase.assertNotNull(client.referenceData.recommendedLocations);
     TestCase.assertNotNull(client.referenceData.airlines);
     TestCase.assertNotNull(client.travel.analytics.airTraffic.traveled);
     TestCase.assertNotNull(client.travel.analytics.airTraffic.booked);
@@ -163,6 +165,16 @@ public class NamespaceTest {
     TestCase.assertNotNull(poi.get());
     TestCase.assertNotNull(poi.get(params));
     TestCase.assertEquals(poi.get().length, 2);
+
+    // Testing travel recommendations
+    Mockito.when(client.get("/v1/reference-data/recommended-locations", null))
+        .thenReturn(multiResponse);
+    Mockito.when(client.get("/v1/reference-data/recommended-locations", params))
+        .thenReturn(multiResponse);
+    RecommendedLocations destinations = new RecommendedLocations(client);
+    TestCase.assertNotNull(destinations.get());
+    TestCase.assertNotNull(destinations.get(params));
+    TestCase.assertEquals(destinations.get().length, 2);
 
     // Testing safe place by coordinates
     Mockito.when(client.get("/v1/safety/safety-rated-locations", null))

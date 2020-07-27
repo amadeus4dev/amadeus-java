@@ -351,6 +351,11 @@ Prediction tripPurpose = amadeus.travel.predictions.tripPurpose.get(Params
     .and("destinationLocationCode", "MAD")
     .and("departureDate", "2020-08-01")
     .and("returnDate", "2020-08-12"));
+
+// Travel Recommendations
+Location destinations = amadeus.referenceData.recommendedLocations.get(Params
+    .with("cityCodes", "PAR")
+    .and("travelerCountryCode", "FR"));
 ```
 
 ## Development & Contributing
