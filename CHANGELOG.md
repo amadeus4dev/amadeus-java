@@ -1,4 +1,9 @@
 # Changelog
+## 5.3.0-2020-08-06
+Add support for the [Travel Recommendations API](https://developers.amadeus.com/self-service/category/trip/api-doc/travel-recommendations)
+
+Moved the code examples directory to a dedicated [code examples repository](https://github.com/amadeus4dev/amadeus-code-examples)
+
 ## 5.2.0-2020-06-11
 Add AircraftCabinAmenities to the SeatMap resource
 
