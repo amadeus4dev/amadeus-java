@@ -16,7 +16,7 @@ public class SafePlace extends Resource {
   private @Getter String subType;
   private @Getter String name;
   private @Getter GeoCode geoCode;
-  private @Getter SafetyRating safetyRating;
+  private @Getter SafetyScores safetyScores;
 
 
   /**
@@ -36,8 +36,8 @@ public class SafePlace extends Resource {
    * @see com.amadeus.safety.safety_rated_locations.SafePlace#get()
    */
   @ToString
-  public class SafetyRating {
-    protected SafetyRating() {}
+  public class SafetyScores {
+    protected SafetyScores() {}
 
     private @Getter int women;
     private @Getter int physicalHarm;
