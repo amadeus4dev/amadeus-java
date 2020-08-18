@@ -6,7 +6,6 @@ import com.amadeus.Response;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.Resource;
 import com.amadeus.resources.SafePlace;
-import com.google.gson.Gson;
 
 /**
  * <p>
@@ -42,26 +41,24 @@ public class SafetyRatedLocation {
    * </p>
    *
    * <pre>
-   * amadeus.safety.safetyRatedLocations.get(Params
-   *   .with("longitude", 2.160873)
-   *   .and("latitude", 41.397158));</pre>
+   * amadeus.safety.safetyRatedLocation("Q930402719").get();</pre>
    *
    * @param params the parameters to send to the API
    * @return an API response object
    * @throws ResponseException when an exception occurs
    */
-  public SafePlace get(Params params) throws ResponseException {
+  public SafePlace[] get(Params params) throws ResponseException {
     String path = String.format("/v1/safety/safety-rated-locations/%s", safetyRatedLocationId);
     Response response = client.get(path, params);
-    return (SafePlace) Resource.fromObject(
-      response, com.amadeus.resources.SafePlace.class);
+    return (SafePlace[]) Resource.fromArray(
+      response, SafePlace[].class);
   }
 
   /**
    * Convenience method for calling <code>get</code> without any parameters.
    * @see SafetyRatedLocation#get()
    */
-  public SafePlace get() throws ResponseException {
+  public SafePlace[] get() throws ResponseException {
     return get(null);
   }
 }

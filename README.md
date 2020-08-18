@@ -305,7 +305,7 @@ SafePlace[] safetyScore = amadeus.safety.safetyRatedLocations.bySquare.get(Param
     .and("east", "2.177181"));
 
 // What is the safety information of a location based on it's Id?
-SafePlace safetyScore = amadeus.safety.safetyRatedLocation("Q930400801").get();
+SafePlace[] safetyScore = amadeus.safety.safetyRatedLocation("Q930402719").get();
 
 // What's the likelihood flights from this airport will leave on time?
 Prediction AirportOnTime = amadeus.airport.predictions.onTime.get(Params
