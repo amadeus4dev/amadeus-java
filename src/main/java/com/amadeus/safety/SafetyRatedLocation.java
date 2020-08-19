@@ -6,7 +6,6 @@ import com.amadeus.Response;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.Resource;
 import com.amadeus.resources.SafePlace;
-import com.google.gson.Gson;
 
 /**
  * <p>
@@ -42,9 +41,7 @@ public class SafetyRatedLocation {
    * </p>
    *
    * <pre>
-   * amadeus.safety.safetyRatedLocations.get(Params
-   *   .with("longitude", 2.160873)
-   *   .and("latitude", 41.397158));</pre>
+   * amadeus.safety.safetyRatedLocation("Q930402719").get();</pre>
    *
    * @param params the parameters to send to the API
    * @return an API response object

@@ -35,6 +35,7 @@ public class Safety {
    * @hide
    */
   public Safety(Amadeus client) {
+    this.client = client;
     this.safetyRatedLocations = new SafetyRatedLocations(client);
   }
 
