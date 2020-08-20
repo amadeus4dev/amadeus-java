@@ -1,6 +1,6 @@
 # Changelog
 ## 5.3.1-2020-08-20
-[Bug](https://github.com/amadeus4dev/amadeus-java/issues/85) fix in Safety resource which didn't return the safetyScores - reported by [jvence](https://github.com/jvence), thank you very much!
+[Bug](https://github.com/amadeus4dev/amadeus-java/issues/85) fix in SafePlace resource which didn't return the safetyScores - reported by [jvence](https://github.com/jvence), thank you very much!
 
 ## 5.3.0-2020-08-06
 Add support for the [Travel Recommendations API](https://developers.amadeus.com/self-service/category/trip/api-doc/travel-recommendations)
