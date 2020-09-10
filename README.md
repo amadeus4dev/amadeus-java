@@ -356,6 +356,12 @@ Prediction tripPurpose = amadeus.travel.predictions.tripPurpose.get(Params
 Location destinations = amadeus.referenceData.recommendedLocations.get(Params
     .with("cityCodes", "PAR")
     .and("travelerCountryCode", "FR"));
+
+// On Demand Flight Status
+DatedFlight[] flightStatus = amadeus.schedule.flights.get(Params
+    .with("carrierCode", "AZ")
+    .and("flightNumber", "319")
+    .and("scheduledDepartureDate", "2021-03-13"));
 ```
 
 ## Development & Contributing

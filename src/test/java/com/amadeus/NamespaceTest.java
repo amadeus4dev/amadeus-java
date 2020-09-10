@@ -15,6 +15,7 @@ import com.amadeus.referenceData.locations.Airports;
 import com.amadeus.referenceData.locations.PointsOfInterest;
 import com.amadeus.referenceData.urls.CheckinLinks;
 import com.amadeus.safety.SafetyRatedLocations;
+import com.amadeus.schedule.Flights;
 import com.amadeus.shopping.FlightDates;
 import com.amadeus.shopping.FlightDestinations;
 import com.amadeus.shopping.FlightOffers;
@@ -79,6 +80,7 @@ public class NamespaceTest {
     TestCase.assertNotNull(client.safety.safetyRatedLocations);
     TestCase.assertNotNull(client.safety.safetyRatedLocations.bySquare);
     TestCase.assertNotNull(client.safety.safetyRatedLocation("XXX"));
+    TestCase.assertNotNull(client.schedule.flights);
   }
 
   @Before
@@ -369,6 +371,16 @@ public class NamespaceTest {
     GeneratedPhotos photo = new GeneratedPhotos(client);
     TestCase.assertNotNull(photo.get());
     TestCase.assertNotNull(photo.get(params));
+
+    // Testing on demand flight status
+    Mockito.when(client.get("/v2/schedule/flights", null))
+        .thenReturn(multiResponse);
+    Mockito.when(client.get("/v2/schedule/flights", params))
+        .thenReturn(multiResponse);
+    Flights flightStatus = new Flights(client);
+    TestCase.assertNotNull(flightStatus.get());
+    TestCase.assertNotNull(flightStatus.get(params));
+    TestCase.assertEquals(flightStatus.get().length, 2);
   }
 
   @Test
