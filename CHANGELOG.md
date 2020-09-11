@@ -1,4 +1,8 @@
 # Changelog
+5.4.1 - 2020-09-11
+--------------------
+Add support for the [On-Demand Flight Status API](https://developers.amadeus.com/self-service/category/air/api-doc/on-demand-flight-status/api-reference)
+
 ## 5.3.1-2020-08-20
 [Bug](https://github.com/amadeus4dev/amadeus-java/issues/85) fix in SafePlace resource which didn't return the safetyScores - reported by [jvence](https://github.com/jvence), thank you very much!
 
