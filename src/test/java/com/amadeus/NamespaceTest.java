@@ -16,6 +16,7 @@ import com.amadeus.referenceData.locations.PointsOfInterest;
 import com.amadeus.referenceData.urls.CheckinLinks;
 import com.amadeus.safety.SafetyRatedLocations;
 import com.amadeus.schedule.Flights;
+import com.amadeus.shopping.Activities;
 import com.amadeus.shopping.FlightDates;
 import com.amadeus.shopping.FlightDestinations;
 import com.amadeus.shopping.FlightOffers;
@@ -62,6 +63,9 @@ public class NamespaceTest {
     TestCase.assertNotNull(client.travel.analytics.airTraffic.booked);
     TestCase.assertNotNull(client.travel.predictions.tripPurpose);
     TestCase.assertNotNull(client.travel.predictions.flightDelay);
+    TestCase.assertNotNull(client.shopping.activities);
+    TestCase.assertNotNull(client.shopping.activities.bySquare);
+    TestCase.assertNotNull(client.shopping.activity("XXX"));
     TestCase.assertNotNull(client.shopping.flightDates);
     TestCase.assertNotNull(client.shopping.flightDestinations);
     TestCase.assertNotNull(client.shopping.flightOffers);
@@ -207,6 +211,36 @@ public class NamespaceTest {
     TestCase.assertNotNull(safetyById.get());
     TestCase.assertNotNull(safetyById.get(params));
     TestCase.assertEquals(safetyById.get().length, 2);
+
+    // Testing tours and activities by coordinates
+    Mockito.when(client.get("/v1/shopping/activities", null))
+        .thenReturn(multiResponse);
+    Mockito.when(client.get("/v1/shopping/activities", params))
+        .thenReturn(multiResponse);
+    Activities activities = new Activities(client);
+    TestCase.assertNotNull(activities.get());
+    TestCase.assertNotNull(activities.get(params));
+    TestCase.assertEquals(activities.get().length, 2);
+
+    // Testing tours and activities by square
+    Mockito.when(client.get("/v1/shopping/activities/by-square", null))
+        .thenReturn(multiResponse);
+    Mockito.when(client.get("/v1/shopping/activities/by-square", params))
+        .thenReturn(multiResponse);
+    Activities activitiesBySquare = new Activities(client);
+    TestCase.assertNotNull(activitiesBySquare.get());
+    TestCase.assertNotNull(activitiesBySquare.get(params));
+    TestCase.assertEquals(activitiesBySquare.get().length, 2);
+
+    // Testing retrieving tours and activities
+    Mockito.when(client.get("/v1/shopping/activities/XXX", null))
+        .thenReturn(multiResponse);
+    Mockito.when(client.get("/v1/shopping/activities/XXX", params))
+        .thenReturn(multiResponse);
+    Activities activityById = new Activities(client);
+    TestCase.assertNotNull(activityById.get());
+    TestCase.assertNotNull(activityById.get(params));
+    TestCase.assertEquals(activityById.get().length, 2);
 
     // Testing fetching a single location
     Mockito.when(client.get("/v1/reference-data/locations/ALHR", null))

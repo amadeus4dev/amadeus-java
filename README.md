@@ -307,6 +307,22 @@ SafePlace[] safetyScore = amadeus.safety.safetyRatedLocations.bySquare.get(Param
 // What is the safety information of a location based on it's Id?
 SafePlace safetyScore = amadeus.safety.safetyRatedLocation("Q930400801").get();
 
+// Tours and Activities
+// What are the popular activities in Barcelona (based a geo location and a radius)
+Activity[] activities = amadeus.shopping.activities.get(Params
+   .with("latitude", "41.39715")
+   .and("longitude", "2.160873"));
+
+// What are the popular activities in Barcelona? (based on a square)
+Activity[] activities = amadeus.shopping.activities.bySquare.get(Params
+    .with("north", "41.397158")
+    .and("west", "2.160873")
+    .and("south", "41.394582")
+    .and("east", "2.177181"));
+
+// Returns a single activity from a given id
+Activity activity = amadeus.shopping.activity("4615").get();
+
 // What's the likelihood flights from this airport will leave on time?
 Prediction AirportOnTime = amadeus.airport.predictions.onTime.get(Params
     .with("airportCode", "NCE")

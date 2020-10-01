@@ -8,6 +8,8 @@ import com.amadeus.shopping.HotelOffer;
 import com.amadeus.shopping.HotelOffers;
 import com.amadeus.shopping.HotelOffersByHotel;
 import com.amadeus.shopping.SeatMaps;
+import com.amadeus.shopping.Activity;
+import com.amadeus.shopping.Activities;
 
 /**
  * <p>
@@ -85,6 +87,22 @@ public class Shopping {
   public SeatMaps seatMaps;
 
   /**
+   * <p>
+   *   A namespaced client for the
+   *   <code>/v1/shopping/activities</code> endpoints.
+   * </p>
+   */
+
+  public Activity activity;
+  /**
+   * <p>
+   *   A namespaced client for the
+   *   <code>/v1/shopping/activities</code> endpoints.
+   * </p>
+   */
+  public Activities activities;
+
+  /**
    * Constructor.
    * @hide
    */
@@ -97,6 +115,7 @@ public class Shopping {
     this.hotelOffersByHotel = new HotelOffersByHotel(client);
     this.flightOffersSearch = new FlightOffersSearch(client);
     this.seatMaps = new SeatMaps(client);
+    this.activities = new Activities(client);
   }
 
   /**
@@ -107,5 +126,15 @@ public class Shopping {
    */
   public HotelOffer hotelOffer(String hotelId) {
     return new HotelOffer(client, hotelId);
+  }
+
+  /**
+   * <p>
+   *   A namespaced client for the
+   *   <code>/v1/shopping/activities/:activity_id</code> endpoints.
+   * </p>
+   */
+  public Activity activity(String activityId) {
+    return new Activity(client, activityId);
   }
 }
