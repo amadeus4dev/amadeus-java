@@ -1,5 +1,7 @@
 package com.amadeus;
 
+import com.amadeus.shopping.Activities;
+import com.amadeus.shopping.Activity;
 import com.amadeus.shopping.FlightDates;
 import com.amadeus.shopping.FlightDestinations;
 import com.amadeus.shopping.FlightOffers;
@@ -8,8 +10,6 @@ import com.amadeus.shopping.HotelOffer;
 import com.amadeus.shopping.HotelOffers;
 import com.amadeus.shopping.HotelOffersByHotel;
 import com.amadeus.shopping.SeatMaps;
-import com.amadeus.shopping.Activity;
-import com.amadeus.shopping.Activities;
 
 /**
  * <p>

@@ -4,9 +4,9 @@ import com.amadeus.Amadeus;
 import com.amadeus.Params;
 import com.amadeus.Response;
 import com.amadeus.exceptions.ResponseException;
-import com.amadeus.shopping.activities.BySquare;
 import com.amadeus.resources.Activity;
 import com.amadeus.resources.Resource;
+import com.amadeus.shopping.activities.BySquare;
 
 /**
  * <p>
