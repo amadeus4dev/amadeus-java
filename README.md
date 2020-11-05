@@ -378,6 +378,12 @@ DatedFlight[] flightStatus = amadeus.schedule.flights.get(Params
     .with("carrierCode", "AZ")
     .and("flightNumber", "319")
     .and("scheduledDepartureDate", "2021-03-13"));
+
+// Flight Price Analysis
+ItineraryPriceMetric[] metrics = amadeus.analytics.itineraryPriceMetrics.get(Params
+    .with("originIataCode", "MAD")
+    .and("destinationIataCode", "CDG")
+    .and("departureDate", "2021-03-21"));
 ```
 
 ## Development & Contributing

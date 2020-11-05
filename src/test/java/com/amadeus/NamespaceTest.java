@@ -1,6 +1,7 @@
 package com.amadeus;
 
 import com.amadeus.airport.predictions.AirportOnTime;
+import com.amadeus.analytics.ItineraryPriceMetrics;
 import com.amadeus.booking.FlightOrder;
 import com.amadeus.booking.FlightOrders;
 import com.amadeus.booking.HotelBookings;
@@ -415,6 +416,16 @@ public class NamespaceTest {
     TestCase.assertNotNull(flightStatus.get());
     TestCase.assertNotNull(flightStatus.get(params));
     TestCase.assertEquals(flightStatus.get().length, 2);
+
+    // Testing flight price analysis
+    Mockito.when(client.get("/v1/analytics/itinerary-price-metrics", null))
+        .thenReturn(multiResponse);
+    Mockito.when(client.get("/v1/analytics/itinerary-price-metrics", params))
+        .thenReturn(multiResponse);
+    ItineraryPriceMetrics metrics = new ItineraryPriceMetrics(client);
+    TestCase.assertNotNull(metrics.get());
+    TestCase.assertNotNull(metrics.get(params));
+    TestCase.assertEquals(metrics.get().length, 2);
   }
 
   @Test
