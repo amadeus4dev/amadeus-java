@@ -90,6 +90,13 @@ public class Amadeus extends HTTPClient {
    */
   public Schedule schedule;
 
+  /**
+   * <p>
+   * A namespaced client for the <code>/v1/analytics</code> endpoints.
+   * </p>
+   */
+  public Analytics analytics;
+
   protected Amadeus(Configuration configuration) {
     super(configuration);
     this.referenceData = new ReferenceData(this);
@@ -101,6 +108,7 @@ public class Amadeus extends HTTPClient {
     this.media = new Media(this);
     this.safety = new Safety(this);
     this.schedule = new Schedule(this);
+    this.analytics = new Analytics(this);
 
   }
 
