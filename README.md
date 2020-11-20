@@ -182,8 +182,8 @@ FlightDate[] flightDates = amadeus.shopping.flightDates.get(Params
 FlightOfferSearch[] flightOffersSearches = amadeus.shopping.flightOffersSearch.get(
               Params.with("originLocationCode", "SYD")
                       .and("destinationLocationCode", "BKK")
-                      .and("departureDate", "2020-11-01")
-                      .and("returnDate", "2020-11-08")
+                      .and("departureDate", "2021-04-01")
+                      .and("returnDate", "2021-04-08")
                       .and("adults", 2)
                       .and("max", 3));
 
@@ -209,8 +209,8 @@ FlightPrice[] flightPricing = amadeus.shopping.flightOffersSearch.pricing.post(
 FlightOfferSearch[] flightOffers = amadeus.shopping.flightOffersSearch.get(
               Params.with("originLocationCode", "NYC")
                       .and("destinationLocationCode", "MAD")
-                      .and("departureDate", "2020-11-01")
-                      .and("returnDate", "2020-11-09")
+                      .and("departureDate", "2021-04-01")
+                      .and("returnDate", "2021-04-08")
                       .and("adults", 1));
 
 // Using a JSonObject
@@ -326,7 +326,7 @@ Activity activity = amadeus.shopping.activity("4615").get();
 // What's the likelihood flights from this airport will leave on time?
 Prediction AirportOnTime = amadeus.airport.predictions.onTime.get(Params
     .with("airportCode", "NCE")
-    .and("date", "2020-09-01"));
+    .and("date", "2021-04-01"));
 
 // What's the likelihood of a given flight to be delayed?
 Prediction[] flightDelay = amadeus.travel.predictions.flightDelay.get(Params
@@ -365,8 +365,8 @@ GeneratedPhoto photo = amadeus.media.files.generatedPhotos.get(Params
 Prediction tripPurpose = amadeus.travel.predictions.tripPurpose.get(Params
     .with("originLocationCode", "NYC")
     .and("destinationLocationCode", "MAD")
-    .and("departureDate", "2020-08-01")
-    .and("returnDate", "2020-08-12"));
+    .and("departureDate", "2021-04-01")
+    .and("returnDate", "2021-04-08"));
 
 // Travel Recommendations
 Location destinations = amadeus.referenceData.recommendedLocations.get(Params
