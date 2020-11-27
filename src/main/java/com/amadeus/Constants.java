@@ -38,6 +38,9 @@ public final class Constants {
   public static final String ACCESS_TOKEN = "access_token";
   public static final String EXPIRES_IN = "expires_in";
 
+  // Gradle
+  public static final String GRADLE_PROPERTIES = "gradle.properties";
+  public static final String VERSION_NAME = "VERSION_NAME";
 
   /**
    * The caller references the constants using <tt>Consts.EMPTY_STRING</tt>,

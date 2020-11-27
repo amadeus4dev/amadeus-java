@@ -1,7 +1,12 @@
 package com.amadeus;
 
-import java.util.Map;
 import lombok.NonNull;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Map;
+import java.util.Properties;
 
 /**
  * <p>
@@ -25,7 +30,7 @@ public class Amadeus extends HTTPClient {
   /**
    * The API version.
    */
-  public static final String VERSION = "5.6.0";
+  public static final String VERSION = Amadeus.getSystemProperties(Constants.VERSION_NAME);
 
   /**
    * <p>
@@ -146,5 +151,26 @@ public class Amadeus extends HTTPClient {
     configuration.parseEnvironment(environment);
 
     return configuration;
+  }
+
+  /**
+   * Retrieves property value from grade property file.
+   *
+   * <pre>
+   * String property = Amadeus.getSystemProperties("VERSION");
+   * </pre>
+   *
+   * @param property The required property
+   * @return a property value as a String
+   */
+  public static String getSystemProperties(String property) {
+    try {
+      Properties properties = new Properties();
+      InputStream stream = new FileInputStream(Constants.GRADLE_PROPERTIES);
+      properties.load(stream);
+      return properties.get(property).toString();
+    } catch (IOException e) {
+      return "N/A";
+    }
   }
 }
