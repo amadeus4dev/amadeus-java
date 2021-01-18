@@ -64,7 +64,7 @@ public class Response {
     parseData(client);
   }
 
-  // Detects of any exceptions have occured and throws the appropriate exceptions.
+  // Detects of any exceptions have occurred and throws the appropriate exceptions.
   protected void detectError(HTTPClient client) throws ResponseException {
     ResponseException exception = null;
     if (statusCode >= 500) {
@@ -121,6 +121,11 @@ public class Response {
 
   // Tries to read the body.
   private String readBody() {
+    // Workaround to avoid ParserException when status code is 204
+    if (statusCode == 204) {
+      body = "{ \"data\": { } } ";
+      return body;
+    }
     // Get the connection
     HttpURLConnection connection = getRequest().getConnection();
 
