@@ -173,7 +173,7 @@ public class Response {
   private boolean hasJsonHeader() {
     String contentType = getRequest().getConnection().getHeaderField(Constants.CONTENT_TYPE);
     String[] expectedContentTypes = new String[] {
-            "application/json", "application/vnd.amadeus+json"
+      "application/json", "application/vnd.amadeus+json"
     };
     return Arrays.asList(expectedContentTypes).contains(contentType);
   }
