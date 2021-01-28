@@ -64,9 +64,12 @@ public class Response {
     parseData(client);
   }
 
-  // Detects of any exceptions have occurred and throws the appropriate exceptions.
+  // Detects of any exceptions have occured and throws the appropriate exceptions.
   protected void detectError(HTTPClient client) throws ResponseException {
     ResponseException exception = null;
+    if (statusCode == 204) {
+      return;
+    }
     if (statusCode >= 500) {
       exception = new ServerException(this);
     } else if (statusCode == 404) {
@@ -97,6 +100,9 @@ public class Response {
 
   // Tries to parse the data
   private void parseData(HTTPClient client) {
+    if (this.statusCode == 204) {
+      return;
+    }
     this.parsed = false;
     this.body = readBody();
     this.result = parseJson(client);
@@ -121,11 +127,6 @@ public class Response {
 
   // Tries to read the body.
   private String readBody() {
-    // Workaround to avoid ParserException when status code is 204
-    if (statusCode == 204) {
-      body = "{ \"data\": { } } ";
-      return body;
-    }
     // Get the connection
     HttpURLConnection connection = getRequest().getConnection();
 
@@ -172,7 +173,7 @@ public class Response {
   private boolean hasJsonHeader() {
     String contentType = getRequest().getConnection().getHeaderField(Constants.CONTENT_TYPE);
     String[] expectedContentTypes = new String[] {
-      "application/json", "application/vnd.amadeus+json"
+            "application/json", "application/vnd.amadeus+json"
     };
     return Arrays.asList(expectedContentTypes).contains(contentType);
   }
