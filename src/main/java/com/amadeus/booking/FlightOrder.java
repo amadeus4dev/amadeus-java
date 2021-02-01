@@ -72,7 +72,7 @@ public class FlightOrder {
    * </p>
    *
    * <pre>
-   * FlightOrder order = amadeus.booking.flightOrder.(
+   * Response order = amadeus.booking.flightOrder.(
    * "eJzTd9f3NjIJdzUGAAp%2fAiY=").delete();
    * </pre>
    * @param params the parameters to send to the API

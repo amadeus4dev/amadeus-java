@@ -196,7 +196,7 @@ FlightOfferSearch[] flightOffersSearches = amadeus.shopping.flightOffersSearch.p
 // Retrieve a flight order
 FlightOrder order = amadeus.booking.flightOrder("eJzTd9f3NjIJdzUGAAp%2fAiY=").get();
 // Cancel a flight order
-FlightOrder order = amadeus.booking.flightOrder("eJzTd9f3NjIJdzUGAAp%2fAiY=").delete();
+Response order = amadeus.booking.flightOrder("eJzTd9f3NjIJdzUGAAp%2fAiY=").delete();
 
 // Flight Offers price
 FlightPrice[] flightPricing = amadeus.shopping.flightOffersSearch.pricing.post(

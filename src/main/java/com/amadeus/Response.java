@@ -1,6 +1,5 @@
 package com.amadeus;
 
-import com.amadeus.Constants;
 import com.amadeus.exceptions.AuthenticationException;
 import com.amadeus.exceptions.ClientException;
 import com.amadeus.exceptions.NotFoundException;
