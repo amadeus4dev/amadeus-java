@@ -53,7 +53,7 @@ public class FlightOrder {
     String path = String.format("/v1/booking/flight-orders/%s", flightOfferId);
     Response response = client.get(path, params);
     return (com.amadeus.resources.FlightOrder) Resource.fromObject(
-        response, com.amadeus.resources.FlightOrder.class);
+            response, com.amadeus.resources.FlightOrder.class);
   }
 
   /**
@@ -72,7 +72,7 @@ public class FlightOrder {
    * </p>
    *
    * <pre>
-   * FlightOrder order = amadeus.booking.flightOrder.(
+   * Response order = amadeus.booking.flightOrder.(
    * "eJzTd9f3NjIJdzUGAAp%2fAiY=").delete();
    * </pre>
    * @param params the parameters to send to the API
@@ -80,18 +80,17 @@ public class FlightOrder {
    * @throws ResponseException when an exception occurs
    */
 
-  public com.amadeus.resources.FlightOrder delete(Params params) throws ResponseException {
+  public Response delete(Params params) throws ResponseException {
     String path = String.format("/v1/booking/flight-orders/%s", flightOfferId);
     Response response = client.delete(path, params);
-    return (com.amadeus.resources.FlightOrder) Resource.fromObject(
-        response, com.amadeus.resources.FlightOrder.class);
+    return response;
   }
-  
+
   /**
    * Convenience method for calling <code>delete</code> without any parameters.
    * @see com.amadeus.booking.FlightOrder#delete()
    */
-  public com.amadeus.resources.FlightOrder delete() throws ResponseException {
+  public Response delete() throws ResponseException {
     return delete(null);
   }
 }

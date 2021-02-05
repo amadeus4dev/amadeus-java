@@ -1,6 +1,5 @@
 package com.amadeus;
 
-import com.amadeus.Constants;
 import com.amadeus.exceptions.AuthenticationException;
 import com.amadeus.exceptions.ClientException;
 import com.amadeus.exceptions.NotFoundException;
@@ -61,7 +60,9 @@ public class Response {
   // Tries to parse the raw response from the request.
   protected void parse(HTTPClient client) {
     parseStatusCode();
-    parseData(client);
+    if (this.statusCode != 204) {
+      parseData(client);
+    }
   }
 
   // Detects of any exceptions have occured and throws the appropriate exceptions.
@@ -75,6 +76,8 @@ public class Response {
       exception = new AuthenticationException(this);
     } else if (statusCode >= 400) {
       exception = new ClientException(this);
+    } else if (statusCode == 204) {
+      return;
     } else if (!parsed) {
       exception = new ParserException(this);
     }

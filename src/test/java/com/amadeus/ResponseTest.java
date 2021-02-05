@@ -107,6 +107,22 @@ public class ResponseTest {
     assertNull(response.getData());
   }
 
+  @Test public void testNoContent() throws IOException {
+    when(connection.getResponseCode()).thenReturn(204);
+    when(connection.getHeaderField("Content-Type")).thenReturn(
+            "application/json");
+    when(connection.getInputStream()).thenReturn(
+            new ByteArrayInputStream("".getBytes()));
+
+    response.parse(client);
+
+    assertEquals(response.getStatusCode(), 204);
+    assertEquals(response.getBody(), null);
+    assertFalse(response.isParsed());
+    assertNull(response.getResult());
+    assertNull(response.getData());
+  }
+
   @Test public void testEmptyConnection() throws IOException {
     InputStream stream = mock(ByteArrayInputStream.class);
     when(connection.getResponseCode()).thenThrow(new IOException());
@@ -204,6 +220,16 @@ public class ResponseTest {
 
   @Test public void detectNoException() throws ResponseException, IOException {
     when(connection.getResponseCode()).thenReturn(200);
+    when(connection.getHeaderField("Content-Type")).thenReturn(
+            "application/json");
+    when(connection.getInputStream()).thenReturn(
+            new ByteArrayInputStream("{}".getBytes()));
+    response.parse(client);
+    response.detectError(client);
+  }
+
+  @Test public void detectNoExceptionNoContent() throws ResponseException, IOException {
+    when(connection.getResponseCode()).thenReturn(204);
     when(connection.getHeaderField("Content-Type")).thenReturn(
             "application/json");
     when(connection.getInputStream()).thenReturn(
