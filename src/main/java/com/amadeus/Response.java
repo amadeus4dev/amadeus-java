@@ -60,15 +60,14 @@ public class Response {
   // Tries to parse the raw response from the request.
   protected void parse(HTTPClient client) {
     parseStatusCode();
-    parseData(client);
+    if (this.statusCode != 204) {
+      parseData(client);
+    }
   }
 
   // Detects of any exceptions have occured and throws the appropriate exceptions.
   protected void detectError(HTTPClient client) throws ResponseException {
     ResponseException exception = null;
-    if (statusCode == 204) {
-      return;
-    }
     if (statusCode >= 500) {
       exception = new ServerException(this);
     } else if (statusCode == 404) {
@@ -77,6 +76,8 @@ public class Response {
       exception = new AuthenticationException(this);
     } else if (statusCode >= 400) {
       exception = new ClientException(this);
+    } else if (statusCode == 204) {
+      return;
     } else if (!parsed) {
       exception = new ParserException(this);
     }
@@ -99,9 +100,6 @@ public class Response {
 
   // Tries to parse the data
   private void parseData(HTTPClient client) {
-    if (this.statusCode == 204) {
-      return;
-    }
     this.parsed = false;
     this.body = readBody();
     this.result = parseJson(client);
