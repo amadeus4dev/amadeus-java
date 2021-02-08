@@ -1,5 +1,5 @@
 # Changelog
-5.6.1 - 2020-02-08
+5.6.1 - 2021-02-08
 --------------------
 Fix unwanted exception on `DELETE` method of Flight Order Management API
 
