@@ -1,4 +1,8 @@
 # Changelog
+5.6.1 - 2020-02-08
+--------------------
+Fix unwanted exception on `DELETE` method of Flight Order Management API
+
 5.6.0 - 2020-11-10
 --------------------
 Add support for the [Flight Price Analysis API](https://developers.amadeus.com/self-service/category/air/api-doc/flight-price-analysis/api-reference)
