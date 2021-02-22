@@ -20,6 +20,7 @@ public class SeatMap extends Resource {
   private @Getter Departure departure;
   private @Getter Deck[] decks;
   private @Getter AircraftCabinAmenities aircraftCabinAmenities;
+  private @Getter AvailableSeatsCounter[] availableSeatsCounters;
 
   @ToString
   public class Aircraft {
@@ -79,6 +80,7 @@ public class SeatMap extends Resource {
     private @Getter String spaceUnit;
     private @Getter String tilt;
     private @Getter String amenityType;
+    private @Getter Media medias;
 
   }
 
@@ -146,5 +148,34 @@ public class SeatMap extends Resource {
     private @Getter int startWingsX;
     private @Getter int endWingsX;
 
+  }
+
+  @ToString
+  public class AvailableSeatsCounter {
+    protected AvailableSeatsCounter() {
+    }
+
+    private @Getter int value;
+    private @Getter String travelerId;
+  }
+
+  @ToString
+  public class Media {
+    protected Media() {
+    }
+
+    private @Getter String title;
+    private @Getter String href;
+    private @Getter String mediaType;
+    private @Getter QualifiedFreeText description;
+  }
+
+  @ToString
+  public class QualifiedFreeText {
+    protected QualifiedFreeText() {
+    }
+
+    private @Getter String text;
+    private @Getter String lang;
   }
 }
