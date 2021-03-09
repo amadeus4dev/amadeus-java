@@ -1,4 +1,8 @@
 # Changelog
+5.7.1 - 2021-03-09
+--------------------
+Add media and available seats counter to the SeatMap resource
+
 5.6.1 - 2021-02-08
 --------------------
 Fix unwanted exception on `DELETE` method of Flight Order Management API
