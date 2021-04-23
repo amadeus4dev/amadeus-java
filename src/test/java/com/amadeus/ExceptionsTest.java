@@ -152,4 +152,17 @@ public class ExceptionsTest {
     assertTrue(new ParserException(null) instanceof ResponseException);
     assertTrue(new ServerException(null) instanceof ResponseException);
   }
+
+  @Test public void testForErrorsWithoutDetail() {
+    Response response = mock(Response.class);
+    when(response.getStatusCode()).thenReturn(401);
+    String body = "{\"errors\":[{}]}";
+    JsonObject json = new JsonParser().parse(body).getAsJsonObject();
+    when(response.getResult()).thenReturn(json);
+    when(response.isParsed()).thenReturn(true);
+
+    ResponseException error = new ResponseException(response);
+    assertEquals(error.toString(), "com.amadeus.exceptions.ResponseException: [401]"
+            + "\n");
+  }
 }
