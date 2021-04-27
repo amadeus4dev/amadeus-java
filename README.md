@@ -15,12 +15,12 @@ This library requires Java 1.7+ and the [Gson library](https://github.com/google
 <dependency>
   <groupId>com.amadeus</groupId>
   <artifactId>amadeus-java</artifactId>
-  <version>5.7.1</version>
+  <version>5.7.2</version>
 </dependency>
 ```
 #### Gradle
 ```js
-compile "com.amadeus:amadeus-java:5.7.1"
+compile "com.amadeus:amadeus-java:5.7.2"
 ```
 
 ## Getting Started

@@ -1,4 +1,8 @@
 # Changelog
+5.7.2 - 2021-04-27
+--------------------
+Fix unwanted exception in description of an error. Big thanks to [João Cana Verde](https://github.com/JPCanaverde) for his contribution! :clap:
+
 5.7.1 - 2021-03-09
 --------------------
 Add media and available seats counter to the SeatMap resource
