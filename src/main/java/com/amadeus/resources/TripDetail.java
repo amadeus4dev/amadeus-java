@@ -3,7 +3,10 @@ package com.amadeus.resources;
 import lombok.Getter;
 import lombok.ToString;
 
-
+/**
+ * A TripDetail object as returned by the Trip Parser API.
+ * @see com.amadeus.travel.TripParser#post()
+ */
 @ToString
 public class TripDetail extends Resource {
   protected TripDetail() {}

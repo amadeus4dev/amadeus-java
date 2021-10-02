@@ -28,6 +28,7 @@ import com.amadeus.shopping.HotelOffersByHotel;
 import com.amadeus.shopping.SeatMaps;
 import com.amadeus.shopping.flightOffers.Prediction;
 import com.amadeus.shopping.flightOffers.Pricing;
+import com.amadeus.travel.TripParser;
 import com.amadeus.travel.analytics.airTraffic.Booked;
 import com.amadeus.travel.analytics.airTraffic.BusiestPeriod;
 import com.amadeus.travel.analytics.airTraffic.Traveled;
@@ -86,6 +87,7 @@ public class NamespaceTest {
     TestCase.assertNotNull(client.safety.safetyRatedLocations.bySquare);
     TestCase.assertNotNull(client.safety.safetyRatedLocation("XXX"));
     TestCase.assertNotNull(client.schedule.flights);
+    TestCase.assertNotNull(client.travel.tripParser);
   }
 
   @Before
@@ -493,6 +495,17 @@ public class NamespaceTest {
     HotelBookings hotel = new HotelBookings(client);
     TestCase.assertNotNull(hotel.post());
     TestCase.assertNotNull(hotel.post(body));
+
+    // Test Trip Parser post
+    Mockito.when(client.post("/v3/travel/trip-parser", (String) null))
+            .thenReturn(singleResponse);
+    Mockito.when(client.post("/v3/travel/trip-parser", body))
+            .thenReturn(singleResponse);
+    Mockito.when(client.post("/v3/travel/trip-parser", jsonObject))
+            .thenReturn(singleResponse);
+    TripParser tripParser = new TripParser(client);
+    TestCase.assertNotNull(tripParser.post());
+    TestCase.assertNotNull(tripParser.post(body));
   }
 
   @Test
