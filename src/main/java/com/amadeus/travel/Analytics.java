@@ -13,7 +13,7 @@ import com.amadeus.Amadeus;
  * </p>
  *
  * <pre>
- * Amadeus amadeus = Amadeus.builder("clientId", "secret").build();
+     * Amadeus amadeus = Amadeus.builder("clientId", "secret").build();
  * amadeus.travel.analytics;</pre>
  *
  * @hide
