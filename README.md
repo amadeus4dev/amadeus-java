@@ -182,8 +182,8 @@ FlightDate[] flightDates = amadeus.shopping.flightDates.get(Params
 FlightOfferSearch[] flightOffersSearches = amadeus.shopping.flightOffersSearch.get(
               Params.with("originLocationCode", "SYD")
                       .and("destinationLocationCode", "BKK")
-                      .and("departureDate", "2021-04-01")
-                      .and("returnDate", "2021-04-08")
+                      .and("departureDate", "2022-09-01")
+                      .and("returnDate", "2022-09-08")
                       .and("adults", 2)
                       .and("max", 3));
 
