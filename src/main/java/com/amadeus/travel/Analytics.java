@@ -13,7 +13,7 @@ import com.amadeus.Amadeus;
  * </p>
  *
  * <pre>
-     * Amadeus amadeus = Amadeus.builder("clientId", "secret").build();
+ * Amadeus amadeus = Amadeus.builder("clientId", "secret").build();
  * amadeus.travel.analytics;</pre>
  *
  * @hide
@@ -33,6 +33,6 @@ public class Analytics {
    * @hide
    */
   public Analytics(Amadeus client) {
-    this.airTraffic = new AirTraffic(client);
+    this.airTraffics = new AirTraffic(client);
   }
 }
