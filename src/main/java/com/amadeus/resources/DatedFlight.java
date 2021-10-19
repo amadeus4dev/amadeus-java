@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.ToString;
 
 /**
- * An DatedFlight object as returned by the On Flight Status Demand API.
+ * An DatedFlight object as returned by the On-Demand Flight Status API.
  * @see com.amadeus.schedule.Flights#get()
  */
 @ToString
@@ -45,8 +45,8 @@ public class DatedFlight extends Resource {
     }
 
     private @Getter Timing[] timings;
-    private @Getter Terminal[] terminal;
-    private @Getter Gate[] gate;
+    private @Getter Terminal terminal;
+    private @Getter Gate gate;
   }
 
   @ToString
@@ -55,8 +55,8 @@ public class DatedFlight extends Resource {
     }
 
     private @Getter Timing[] timings;
-    private @Getter Terminal[] terminal;
-    private @Getter Gate[] gate;
+    private @Getter Terminal terminal;
+    private @Getter Gate gate;
   }
 
   @ToString

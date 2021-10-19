@@ -1,4 +1,8 @@
 # Changelog
+5.7.3 - 2021-10-08
+--------------------
+Update gradle version and creation of automated releasing with Gradle plugin.
+
 5.7.2 - 2021-04-27
 --------------------
 Fix unwanted exception in description of an error. Big thanks to [João Cana Verde](https://github.com/JPCanaverde) for his contribution! :clap:
