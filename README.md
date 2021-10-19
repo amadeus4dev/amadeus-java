@@ -384,6 +384,10 @@ ItineraryPriceMetric[] metrics = amadeus.analytics.itineraryPriceMetrics.get(Par
     .with("originIataCode", "MAD")
     .and("destinationIataCode", "CDG")
     .and("departureDate", "2021-03-21"));
+
+// Trip Parser v3 POST
+// body can be a String version of your JSON or a JsonObject or a compatible File object
+TripDetail tripDetail = amadeus.travel.tripParser.post(body);
 ```
 
 ## Development & Contributing
