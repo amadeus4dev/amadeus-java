@@ -1,4 +1,10 @@
 # Changelog
+5.8.0 - 2021-10-20
+--------------------
+Add support for the [Trip Parser API](https://developers.amadeus.com/self-service/category/trip/api-doc/trip-parser/api-reference). Big thanks to [Siddhartha Dutta](https://github.com/siddydutta) for his contribution! :clap:
+
+Bug fix in the DatedFlight resource 
+
 5.7.3 - 2021-10-08
 --------------------
 Update gradle version and creation of automated releasing with Gradle plugin.
