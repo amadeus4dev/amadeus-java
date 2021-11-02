@@ -110,6 +110,12 @@ Response response = amadeus.get("/v2/reference-data/urls/checkin-links", Params.
 response.getResult();
 ```
 
+Or, with POST method:
+
+```java
+Response response = amadeus.post("/v1/shopping/availability/flight-availabilities", body);
+```
+
 ## Response
 
 Every successful API call returns a `Resource` object. The `Resource` object has the raw response body (in string format) available:
