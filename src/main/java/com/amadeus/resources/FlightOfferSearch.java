@@ -88,10 +88,10 @@ public class FlightOfferSearch extends Resource {
     }
 
     private @Getter String currency;
-    private @Getter double total;
-    private @Getter double base;
+    private @Getter String total;
+    private @Getter String base;
     private @Getter Fee[] fees;
-    private @Getter double grandTotal;
+    private @Getter String grandTotal;
   }
 
   @ToString
