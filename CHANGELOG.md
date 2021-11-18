@@ -1,4 +1,8 @@
 # Changelog
+5.8.1 - 2021-11-18
+--------------------
+Bug fix in the FlightOffersSearch resource 
+
 5.8.0 - 2021-10-20
 --------------------
 Add support for the [Trip Parser API](https://developers.amadeus.com/self-service/category/trip/api-doc/trip-parser/api-reference). Big thanks to [Siddhartha Dutta](https://github.com/siddydutta) for his contribution! :clap:
