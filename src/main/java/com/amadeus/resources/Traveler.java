@@ -11,7 +11,7 @@ import lombok.ToString;
 @ToString
 public class Traveler extends Resource {
   public Traveler(String id, String dateOfBirth, String gender, 
-  Name name, Contact contact, Document[] documents) {
+      Name name, Contact contact, Document[] documents) {
     this.name = name;
     this.contact = contact;
   }
