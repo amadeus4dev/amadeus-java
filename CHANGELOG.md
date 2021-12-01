@@ -1,4 +1,8 @@
 # Changelog
+5.8.2 - 2021-12-01
+--------------------
+Bug fix in the Traveler resource
+
 5.8.1 - 2021-11-18
 --------------------
 Bug fix in the FlightOffersSearch resource 

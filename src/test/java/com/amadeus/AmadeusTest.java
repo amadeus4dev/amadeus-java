@@ -52,7 +52,7 @@ public class AmadeusTest {
   }*/
 
   @Test public void testVersion() {
-    assertEquals("should have a version number", Amadeus.VERSION, "5.8.1");
+    assertEquals("should have a version number", Amadeus.VERSION, "5.8.2");
   }
 
 }
