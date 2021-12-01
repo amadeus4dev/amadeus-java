@@ -45,7 +45,7 @@ To make a new release, follow the following steps:
 - [ ] Push the new tag `git push --tags`
 - [ ] Update the [Releases](https://github.com/amadeus4dev/amadeus-java/releases) tab on GitHub with a new release for the tag, copying the description from the `CHANGELOG.md`
 
-GitHub Actions will bow build the library and release it to Maven Central.
+GitHub Actions will now build the library and release it to Maven Central.
 
 ## How to contribute to the Amadeus Java SDK
 
