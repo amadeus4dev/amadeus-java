@@ -40,12 +40,12 @@ To make a new release, follow the following steps:
 
 - [ ] Update the version in `Amadeus.java` using semver rules
 - [ ] Update the `CHANGELOG.md` with the new version
-- [ ] Push all changes and ensure all tests pass on Travis
+- [ ] Push all changes and ensure all tests pass on GitHub actions
 - [ ] Tag your release in git using `git --tag vX.X.X`
 - [ ] Push the new tag `git push --tags`
 - [ ] Update the [Releases](https://github.com/amadeus4dev/amadeus-java/releases) tab on GitHub with a new release for the tag, copying the description from the `CHANGELOG.md`
 
-Travis will bow build the library and release it to BinTray and then to Maven Central.
+GitHub Actions will bow build the library and release it to Maven Central.
 
 ## How to contribute to the Amadeus Java SDK
 
