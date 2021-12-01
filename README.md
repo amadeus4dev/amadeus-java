@@ -1,6 +1,6 @@
 # Amadeus Java SDK
 
-[![Build Status](https://travis-ci.org/amadeus4dev/amadeus-java.svg?branch=master)][travis]
+[![Build](https://github.com/amadeus4dev/amadeus-java/actions/workflows/build_gradle.yml/badge.svg?branch=master)](https://github.com/amadeus4dev/amadeus-java/actions/workflows/build_gradle.yml)
 [![Contact Support](https://github.com/amadeus4dev/amadeus-java/raw/master/.github/images/support.svg?sanitize=true)][support]
 [![Discord](https://img.shields.io/discord/696822960023011329?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/cVrFBqx)
 
