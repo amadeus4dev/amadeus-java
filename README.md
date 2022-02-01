@@ -1,7 +1,6 @@
 # Amadeus Java SDK
 
 [![Build](https://github.com/amadeus4dev/amadeus-java/actions/workflows/build_gradle.yml/badge.svg?branch=master)](https://github.com/amadeus4dev/amadeus-java/actions/workflows/build_gradle.yml)
-[![Contact Support](https://github.com/amadeus4dev/amadeus-java/raw/master/.github/images/support.svg?sanitize=true)][support]
 [![Discord](https://img.shields.io/discord/696822960023011329?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/cVrFBqx)
 
 Amadeus provides a rich set of APIs for the travel industry. For more details, check out the [Amadeus for Developers Portal](https://developers.amadeus.com) or the [SDK class reference](https://amadeus4dev.github.io/amadeus-java/).
@@ -408,10 +407,5 @@ This library is released under the [MIT License](LICENSE).
 
 ## Help
 
-Our [developer support team](https://developers.amadeus.com/support) is here
-to help you. You can find us on
-[StackOverflow](https://stackoverflow.com/questions/tagged/amadeus) and
-[email](mailto:developers@amadeus.com).
-
-[travis]: http://travis-ci.org/amadeus4dev/amadeus-java
-[support]: http://developers.amadeus.com/support
+You can find us on [StackOverflow](https://stackoverflow.com/questions/tagged/amadeus) or join our developer community on
+[Discord](https://discord.gg/cVrFBqx).
