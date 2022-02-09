@@ -29,8 +29,8 @@ public class DirectDestinations {
    * @hide
    */
   public DirectDestinations(Amadeus client) {
-this.client = client;
-}
+    this.client = client;
+  }
 
   /**
    * <p>
