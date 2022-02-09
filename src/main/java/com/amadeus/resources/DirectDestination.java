@@ -11,11 +11,10 @@ import lombok.ToString;
 @ToString
 public class DirectDestination extends Resource {
 
-    protected DirectDestination() {}
+  protected DirectDestination() {}
 
-    private @Getter String type;
-    private @Getter String subtype;
-    private @Getter String name;
-    private @Getter String iataCode;
-
+  private @Getter String type;
+  private @Getter String subtype;
+  private @Getter String name;
+  private @Getter String iataCode;
 }
