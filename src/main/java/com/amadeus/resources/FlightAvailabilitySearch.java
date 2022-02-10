@@ -24,41 +24,41 @@ public class FlightAvailabilitySearch extends Resource {
 
   @ToString
   public class SearchSegment {
-	protected SearchSegment() {}
+    protected SearchSegment() {}
 
-	private @Getter String id;
-	private @Getter int numberOfStops;
-	private @Getter boolean blacklistedInEU;
-	private @Getter AirportInfo departure;
-	private @Getter AirportInfo arrival;
-	private @Getter String carrierCode;
-	private @Getter String number;
-	private @Getter Aircraft aircraft;
-	private @Getter AvailabilityClass[] availabilityClasses;
+    private @Getter String id;
+    private @Getter int numberOfStops;
+    private @Getter boolean blacklistedInEU;
+    private @Getter AirportInfo departure;
+    private @Getter AirportInfo arrival;
+    private @Getter String carrierCode;
+    private @Getter String number;
+    private @Getter Aircraft aircraft;
+    private @Getter AvailabilityClass[] availabilityClasses;
   }
 
   @ToString
   public class AirportInfo {
-	protected AirportInfo() { }
+    protected AirportInfo() { }
 
-	private @Getter String iataCode;
-	private @Getter String terminal;
-	private @Getter String at;
+    private @Getter String iataCode;
+    private @Getter String terminal;
+    private @Getter String at;
   }
 
   @ToString
   public class Aircraft {
-	protected Aircraft() {}
+    protected Aircraft() {}
 
-	private @Getter String code;
+    private @Getter String code;
   }
 
   @ToString
   public class AvailabilityClass {
-	protected AvailabilityClass() {}
+    protected AvailabilityClass() {}
 
-	private @Getter int numberOfBookableSeats;
-	@SerializedName("class")
-	private @Getter String segmentClass;
+    private @Getter int numberOfBookableSeats;
+    @SerializedName("class")
+    private @Getter String segmentClass;
   }
 }

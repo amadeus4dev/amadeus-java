@@ -51,7 +51,8 @@ public class FlightAvailabilitiesSearch {
    */
   public FlightAvailabilitySearch[] get(Params params) throws ResponseException {
     Response response = client.get("/v1/shopping/availability/flight-availabilities", params);
-    return (FlightAvailabilitySearch[]) Resource.fromArray(response, FlightAvailabilitySearch[].class);
+    return
+      (FlightAvailabilitySearch[]) Resource.fromArray(response, FlightAvailabilitySearch[].class);
   }
 
   /**
@@ -79,7 +80,8 @@ public class FlightAvailabilitiesSearch {
    */
   public FlightAvailabilitySearch[] post(JsonObject body) throws ResponseException {
     Response response = client.post("/v1/shopping/availability/flight-availabilities", body);
-    return (FlightAvailabilitySearch[]) Resource.fromArray(response, FlightAvailabilitySearch[].class);
+    return
+      (FlightAvailabilitySearch[]) Resource.fromArray(response, FlightAvailabilitySearch[].class);
   }
 
   /**
@@ -99,7 +101,8 @@ public class FlightAvailabilitiesSearch {
    */
   public FlightAvailabilitySearch[] post(String body) throws ResponseException {
     Response response = client.post("/v1/shopping/availability/flight-availabilities", body);
-    return (FlightAvailabilitySearch[]) Resource.fromArray(response, FlightAvailabilitySearch[].class);
+    return
+      (FlightAvailabilitySearch[]) Resource.fromArray(response, FlightAvailabilitySearch[].class);
   }
 
   /**
