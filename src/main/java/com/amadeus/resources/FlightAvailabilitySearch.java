@@ -10,9 +10,9 @@ import lombok.ToString;
  * @see FlightAvailabilitiesSearch#get()
  */
 @ToString
-public class FlightAvailabilitySearch extends Resource{
+public class FlightAvailabilitySearch extends Resource {
 	protected FlightAvailabilitySearch() {}
-	
+
 	private @Getter String type;
 	private @Getter String id;
 	private @Getter String originalDestinationId;
