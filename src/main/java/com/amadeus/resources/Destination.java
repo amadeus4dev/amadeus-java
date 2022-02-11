@@ -9,9 +9,9 @@ import lombok.ToString;
  */
 
 @ToString
-public class DirectDestination extends Resource {
+public class Destination extends Resource {
 
-  protected DirectDestination() {}
+  protected Destination() {}
 
   private @Getter String type;
   private @Getter String subtype;
