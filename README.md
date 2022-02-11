@@ -393,6 +393,11 @@ ItineraryPriceMetric[] metrics = amadeus.analytics.itineraryPriceMetrics.get(Par
 // Trip Parser v3 POST
 // body can be a String version of your JSON or a JsonObject or a compatible File object
 TripDetail tripDetail = amadeus.travel.tripParser.post(body);
+
+// Airport Routes
+Destination[] directDestinations = amadeus.airport.directDestinations.get(Params
+    .with("departureAirportCode","MAD")
+    .and("max","2"));
 ```
 
 ## Development & Contributing
