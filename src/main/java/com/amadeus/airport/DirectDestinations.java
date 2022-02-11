@@ -38,7 +38,9 @@ public class DirectDestinations {
    * </p>
    *
    * <pre>
-   * amadeus.airport.directDestinations.get(Params.with("departureAirportCode", "MAD").and("max","2"));
+   * amadeus.airport.directDestinations.get(Params
+   *     .with("departureAirportCode", "MAD")
+   *     .and("max","2"));
    * </pre>
    *
    * @param params the parameters to send to the API
