@@ -19,7 +19,7 @@ import com.amadeus.resources.Resource;
  *
  * <pre>
  * Amadeus amadeus = Amadeus.builder("clientId", "secret").build();
- * amadeus.airport.flightDestinations;</pre>
+ * amadeus.airport.directDestinations;</pre>
  */
 public class DirectDestinations {
   private final Amadeus client;
