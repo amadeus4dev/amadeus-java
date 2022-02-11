@@ -433,9 +433,9 @@ public class NamespaceTest {
 
     // Testing airport routes get
     Mockito.when(client.get("/v1/airport/direct-destinations", null))
-    .thenReturn(multiResponse);
+      .thenReturn(multiResponse);
     Mockito.when(client.get("/v1/airport/direct-destinations", params))
-    .thenReturn(multiResponse);
+      .thenReturn(multiResponse);
     DirectDestinations directDestinations = new DirectDestinations(client);
     TestCase.assertNotNull(directDestinations.get());
     TestCase.assertNotNull(directDestinations.get(params));
