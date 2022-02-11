@@ -1,5 +1,6 @@
 package com.amadeus;
 
+import com.amadeus.airport.DirectDestinations;
 import com.amadeus.airport.predictions.AirportOnTime;
 import com.amadeus.analytics.ItineraryPriceMetrics;
 import com.amadeus.booking.FlightOrder;
@@ -88,6 +89,7 @@ public class NamespaceTest {
     TestCase.assertNotNull(client.safety.safetyRatedLocation("XXX"));
     TestCase.assertNotNull(client.schedule.flights);
     TestCase.assertNotNull(client.travel.tripParser);
+    TestCase.assertNotNull(client.airport.directDestinations);
   }
 
   @Before
@@ -428,6 +430,16 @@ public class NamespaceTest {
     TestCase.assertNotNull(metrics.get());
     TestCase.assertNotNull(metrics.get(params));
     TestCase.assertEquals(metrics.get().length, 2);
+
+    // Testing airport routes get
+    Mockito.when(client.get("/v1/airport/direct-destinations", null))
+    .thenReturn(multiResponse);
+    Mockito.when(client.get("/v1/airport/direct-destinations", params))
+    .thenReturn(multiResponse);
+    DirectDestinations directDestinations = new DirectDestinations(client);
+    TestCase.assertNotNull(directDestinations.get());
+    TestCase.assertNotNull(directDestinations.get(params));
+    TestCase.assertEquals(directDestinations.get().length, 2);
   }
 
   @Test
