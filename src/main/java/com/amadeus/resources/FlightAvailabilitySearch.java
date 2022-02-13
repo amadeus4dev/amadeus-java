@@ -20,26 +20,31 @@ public class FlightAvailabilitySearch extends Resource {
   private @Getter Boolean instantTicketingRequired;
   private @Getter Boolean paymentCardRequired;
   private @Getter String duration;
-  private @Getter SearchSegment[] segments;
+  private @Getter ExtendedSegment[] segments;
 
   @ToString
-  public class SearchSegment {
-    protected SearchSegment() {}
+  public class ExtendedSegment {
+    protected ExtendedSegment() {}
 
+    private @Getter String closedStatus;
+    private @Getter AvailabilityClass[] availabilityClasses;
     private @Getter String id;
-    private @Getter int numberOfStops;
-    private @Getter boolean blacklistedInEU;
-    private @Getter AirportInfo departure;
-    private @Getter AirportInfo arrival;
+    private @Getter String numberOfStops;
+    private @Getter Boolean blacklistedInEU;
+    private @Getter Co2Emission[] co2Emissions;
+    private @Getter FlightEndpoint departure;
+    private @Getter FlightEndpoint arrival;
     private @Getter String carrierCode;
     private @Getter String number;
-    private @Getter Aircraft aircraft;
-    private @Getter AvailabilityClass[] availabilityClasses;
+    private @Getter AircraftEquipment aircraft;
+    private @Getter OperatingFlight operating;
+    private @Getter String duration;
+    private @Getter FlightStop[] stops;
   }
 
   @ToString
-  public class AirportInfo {
-    protected AirportInfo() { }
+  public class FlightEndpoint {
+    protected FlightEndpoint() { }
 
     private @Getter String iataCode;
     private @Getter String terminal;
@@ -47,8 +52,8 @@ public class FlightAvailabilitySearch extends Resource {
   }
 
   @ToString
-  public class Aircraft {
-    protected Aircraft() {}
+  public class AircraftEquipment {
+    protected AircraftEquipment() {}
 
     private @Getter String code;
   }
@@ -60,5 +65,44 @@ public class FlightAvailabilitySearch extends Resource {
     private @Getter int numberOfBookableSeats;
     @SerializedName("class")
     private @Getter String segmentClass;
+    private @Getter String closedStatus;
+    private @Getter TourAllotment tourAllotment;
+  }
+
+  @ToString
+  public class FlightStop {
+    protected FlightStop() {}
+
+    private @Getter String iataCode;
+    private @Getter String duration;
+    private @Getter String arrivalAt;
+    private @Getter String departureAt;
+  }
+
+  @ToString
+  public class OperatingFlight {
+    protected OperatingFlight() {}
+
+    private @Getter String carrierCode;
+  }
+
+  @ToString
+  public class TourAllotment {
+    protected TourAllotment() {}
+
+    private @Getter String tourName;
+    private @Getter String tourReference;
+    private @Getter String mode;
+    private @Getter String remainingSeats;
+  }
+
+  @ToString
+  public class Co2Emission {
+    protected Co2Emission() {
+    }
+
+    private @Getter int weight;
+    private @Getter String weightUnit;
+    private @Getter String cabin;
   }
 }
