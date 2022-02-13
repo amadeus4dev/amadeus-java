@@ -393,6 +393,11 @@ ItineraryPriceMetric[] metrics = amadeus.analytics.itineraryPriceMetrics.get(Par
 // Trip Parser v3 POST
 // body can be a String version of your JSON or a JsonObject or a compatible File object
 TripDetail tripDetail = amadeus.travel.tripParser.post(body);
+
+// Flight Availabilites Search POST
+// body can be a String version of your JSON or a JsonObject
+FlightAvailabilitySearch[] flightAvailabilitiesSearch 
+  = amadeus.shopping.flightAvailabilitiesSearch.post(body);
 ```
 
 ## Development & Contributing

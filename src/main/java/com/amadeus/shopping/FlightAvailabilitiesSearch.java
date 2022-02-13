@@ -1,7 +1,6 @@
 package com.amadeus.shopping;
 
 import com.amadeus.Amadeus;
-import com.amadeus.Params;
 import com.amadeus.Response;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.FlightAvailabilitySearch;
@@ -32,35 +31,6 @@ public class FlightAvailabilitiesSearch {
    */
   public FlightAvailabilitiesSearch(Amadeus client) {
     this.client = client;
-  }
-
-  /**
-   * <p>
-   *   The Amadeus Flight Availability API provides a list of flights with seats for sale,
-   *   and the quantity of seats available in different fare classes on a given itinerary.
-   *   Additional information such as carrier and aircraft information,
-   *   the departure and arrival terminals, schedule, and route are also provided.
-   * </p>
-   *
-   * <pre>
-   * amadeus.shopping.flightAvailabilitiesSearch.get(params);</pre>
-   *
-   * @param params the parameters to send to the API
-   * @return an API resource
-   * @throws ResponseException when an exception occurs
-   */
-  public FlightAvailabilitySearch[] get(Params params) throws ResponseException {
-    Response response = client.get("/v1/shopping/availability/flight-availabilities", params);
-    return
-      (FlightAvailabilitySearch[]) Resource.fromArray(response, FlightAvailabilitySearch[].class);
-  }
-
-  /**
-   * Convenience method for calling <code>get</code> without any parameters.
-   * @see FlightAvailabilitiesSearch#get()
-   */
-  public FlightAvailabilitySearch[] get() throws ResponseException {
-    return get(null);
   }
 
   /**
