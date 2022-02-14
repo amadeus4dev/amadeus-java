@@ -22,7 +22,7 @@ import com.amadeus.resources.Resource;
  * amadeus.airport.directDestinations;</pre>
  */
 public class DirectDestinations {
-  private final Amadeus client;
+  private Amadeus client;
 
   /**
    * Constructor.
