@@ -1,5 +1,6 @@
 package com.amadeus;
 
+import com.amadeus.airport.DirectDestinations;
 import com.amadeus.airport.predictions.Predictions;
 
 /**
@@ -28,10 +29,19 @@ public class Airport {
   public Predictions predictions;
 
   /**
+   * <p>
+   *   A namespaced client for the
+   *   <code>/v1/airport/direct-destinations</code> endpoints.
+   * </p>
+   */
+  public DirectDestinations directDestinations;
+
+  /**
    * Constructor.
    * @hide
    */
   public Airport(Amadeus client) {
     this.predictions = new Predictions(client);
+    this.directDestinations = new DirectDestinations(client);
   }
 }
