@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.ToString;
 
 /**
- * An DirectDestination object as returned by the DirectDestinations API.
+ * A Destination object as returned by the Airport Routes API.
  * @see com.amadeus.airport.DirectDestinations#get()
  */
 
