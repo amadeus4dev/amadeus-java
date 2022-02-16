@@ -19,6 +19,7 @@ import com.amadeus.referenceData.urls.CheckinLinks;
 import com.amadeus.safety.SafetyRatedLocations;
 import com.amadeus.schedule.Flights;
 import com.amadeus.shopping.Activities;
+import com.amadeus.shopping.FlightAvailabilitiesSearch;
 import com.amadeus.shopping.FlightDates;
 import com.amadeus.shopping.FlightDestinations;
 import com.amadeus.shopping.FlightOffers;
@@ -90,6 +91,7 @@ public class NamespaceTest {
     TestCase.assertNotNull(client.schedule.flights);
     TestCase.assertNotNull(client.travel.tripParser);
     TestCase.assertNotNull(client.airport.directDestinations);
+    TestCase.assertNotNull(client.shopping.flightAvailabilitiesSearch);
   }
 
   @Before
@@ -518,6 +520,18 @@ public class NamespaceTest {
     TripParser tripParser = new TripParser(client);
     TestCase.assertNotNull(tripParser.post());
     TestCase.assertNotNull(tripParser.post(body));
+
+    // Test flight availabilities search post
+    Mockito.when(client.post("/v1/shopping/availability/flight-availabilities", (String) null))
+      .thenReturn(multiResponse);
+    Mockito.when(client.post("/v1/shopping/availability/flight-availabilities", body))
+      .thenReturn(multiResponse);
+    Mockito.when(client.post("/v1/shopping/availability/flight-availabilities", jsonObject))
+      .thenReturn(multiResponse);
+    FlightAvailabilitiesSearch flightAvailabilitiesSearch = new FlightAvailabilitiesSearch(client);
+    TestCase.assertNotNull(flightAvailabilitiesSearch.post());
+    TestCase.assertNotNull(flightAvailabilitiesSearch.post(body));
+    TestCase.assertEquals(flightAvailabilitiesSearch.post().length, 2);
   }
 
   @Test
