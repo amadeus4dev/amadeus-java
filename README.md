@@ -401,8 +401,8 @@ Destination[] directDestinations = amadeus.airport.directDestinations.get(Params
 
 // Flight Availabilites Search POST
 // body can be a String version of your JSON or a JsonObject
-FlightAvailabilitySearch[] flightAvailabilitiesSearch
-  = amadeus.shopping.flightAvailabilitiesSearch.post(body);
+FlightAvailability[] flightAvailabilities
+  = amadeus.shopping.flightAvailabilities.post(body);
 ```
 
 ## Development & Contributing

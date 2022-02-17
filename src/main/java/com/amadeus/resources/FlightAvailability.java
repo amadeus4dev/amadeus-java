@@ -1,21 +1,21 @@
 package com.amadeus.resources;
 
-import com.amadeus.shopping.FlightAvailabilitiesSearch;
+import com.amadeus.shopping.availability.FlightAvailabilities;
 import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
 import lombok.ToString;
 
 /**
  * A FlightAvailabilitySearch object as returned by the FlightAvailabilitiesSearch API.
- * @see FlightAvailabilitiesSearch#get()
+ * @see FlightAvailabilities#post()
  */
 @ToString
-public class FlightAvailabilitySearch extends Resource {
-  protected FlightAvailabilitySearch() {}
+public class FlightAvailability extends Resource {
+  protected FlightAvailability() {}
 
   private @Getter String type;
   private @Getter String id;
-  private @Getter String originalDestinationId;
+  private @Getter String originDestinationId;
   private @Getter String source;
   private @Getter Boolean instantTicketingRequired;
   private @Getter Boolean paymentCardRequired;

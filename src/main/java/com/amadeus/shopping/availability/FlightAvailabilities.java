@@ -1,9 +1,9 @@
-package com.amadeus.shopping;
+package com.amadeus.shopping.availability;
 
 import com.amadeus.Amadeus;
 import com.amadeus.Response;
 import com.amadeus.exceptions.ResponseException;
-import com.amadeus.resources.FlightAvailabilitySearch;
+import com.amadeus.resources.FlightAvailability;
 import com.amadeus.resources.Resource;
 import com.google.gson.JsonObject;
 
@@ -19,9 +19,9 @@ import com.google.gson.JsonObject;
  *
  * <pre>
  * Amadeus amadeus = Amadeus.builder(API_KEY, API_SECRET).build();
- * amadeus.shopping.flightAvailabilitiesSearch;</pre>
+ * amadeus.shopping.availability.flightAvailabilities;</pre>
  */
-public class FlightAvailabilitiesSearch {
+public class FlightAvailabilities {
   private Amadeus client;
 
   /**
@@ -29,7 +29,7 @@ public class FlightAvailabilitiesSearch {
    *
    * @hide
    */
-  public FlightAvailabilitiesSearch(Amadeus client) {
+  public FlightAvailabilities(Amadeus client) {
     this.client = client;
   }
 
@@ -42,16 +42,16 @@ public class FlightAvailabilitiesSearch {
    * </p>
    *
    * <pre>
-   * amadeus.shopping.flightAvailabilitiesSearch.post(body);</pre>
+   * amadeus.shopping.availability.flightAvailabilities.post(body);</pre>
    *
    * @param body the parameters to send to the API as a JsonObject
    * @return an API resource
    * @throws ResponseException when an exception occurs
    */
-  public FlightAvailabilitySearch[] post(JsonObject body) throws ResponseException {
+  public FlightAvailability[] post(JsonObject body) throws ResponseException {
     Response response = client.post("/v1/shopping/availability/flight-availabilities", body);
     return
-      (FlightAvailabilitySearch[]) Resource.fromArray(response, FlightAvailabilitySearch[].class);
+      (FlightAvailability[]) Resource.fromArray(response, FlightAvailability[].class);
   }
 
   /**
@@ -63,24 +63,24 @@ public class FlightAvailabilitiesSearch {
    * </p>
    *
    * <pre>
-   * amadeus.shopping.flightAvailabilitiesSearch.post(body);</pre>
+   * amadeus.shopping.availability.flightAvailabilities.post(body);</pre>
    *
    * @param body the parameters to send to the API as a String
    * @return an API resource
    * @throws ResponseException when an exception occurs
    */
-  public FlightAvailabilitySearch[] post(String body) throws ResponseException {
+  public FlightAvailability[] post(String body) throws ResponseException {
     Response response = client.post("/v1/shopping/availability/flight-availabilities", body);
     return
-      (FlightAvailabilitySearch[]) Resource.fromArray(response, FlightAvailabilitySearch[].class);
+      (FlightAvailability[]) Resource.fromArray(response, FlightAvailability[].class);
   }
 
   /**
   * Convenience method for calling <code>post</code> without any parameters.
   *
-  * @see FlightAvailabilitiesSearch#post()
+  * @see FlightAvailabilities#post()
   */
-  public FlightAvailabilitySearch[] post() throws ResponseException {
+  public FlightAvailability[] post() throws ResponseException {
     return post((String) null);
   }
 }
