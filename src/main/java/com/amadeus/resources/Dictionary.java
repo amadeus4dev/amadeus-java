@@ -1,14 +1,12 @@
 package com.amadeus.resources;
 
 import com.amadeus.Response;
+import java.util.Map;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
- * A Dictionary Object which is mapped from the
+ * A Dictionary Object which is mapping.
  * @see Response#getDictionaries()
  */
 @ToString

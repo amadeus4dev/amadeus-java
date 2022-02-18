@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.ToString;
 
 /**
- * A CollectionMeta Object which is mapped from the
+ * A CollectionMeta Object Mapping.
  * @see Response#getMeta()
  */
 @ToString
