@@ -20,6 +20,14 @@ public class Resource {
    * @hide as only used internally
    */
   private transient @Getter Class deSerializationClass;
+  /**
+   * The original meta that this object is populated from.
+   */
+  private transient @Getter CollectionMeta meta;
+  /**
+   * The original dictionaries that this object is populated from.
+   */
+  private transient @Getter Dictionary dictionaries;
 
   /**
    * Turns a response into a Gson deserialized array of resources,
@@ -32,6 +40,8 @@ public class Resource {
     for (Resource resource : resources) {
       resource.response = response;
       resource.deSerializationClass = klass;
+      resource.meta = gson.fromJson(response.getMeta(), CollectionMeta.class);
+      resource.dictionaries = gson.fromJson(response.getDictionaries(), Dictionary.class);
     }
     return resources;
   }
@@ -46,6 +56,8 @@ public class Resource {
     Resource resource = (Resource) gson.fromJson(response.getData(), klass);
     resource.response = response;
     resource.deSerializationClass = klass;
+    resource.meta = gson.fromJson(response.getMeta(), CollectionMeta.class);
+    resource.dictionaries = gson.fromJson(response.getDictionaries(), Dictionary.class);
     return resource;
   }
 }

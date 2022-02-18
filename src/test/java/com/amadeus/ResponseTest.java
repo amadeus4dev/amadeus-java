@@ -47,15 +47,17 @@ public class ResponseTest {
     when(connection.getHeaderField("Content-Type")).thenReturn(
             "application/json");
     when(connection.getInputStream()).thenReturn(
-            new ByteArrayInputStream("{ \"data\": []}".getBytes()));
+            new ByteArrayInputStream("{ \"meta\":{},\"data\": [], \"dictionaries\":{}}".getBytes()));
 
     response.parse(client);
 
     assertEquals(response.getStatusCode(), 200);
-    assertEquals(response.getBody(), "{ \"data\": []}");
+    assertEquals(response.getBody(), "{ \"meta\":{},\"data\": [], \"dictionaries\":{}}");
     assertTrue(response.isParsed());
     assertNotNull(response.getResult());
     assertNotNull(response.getData());
+    assertNotNull(response.getMeta());
+    assertNotNull(response.getDictionaries());
   }
 
   @Test public void testParseObjectData() throws IOException {
@@ -63,15 +65,19 @@ public class ResponseTest {
     when(connection.getHeaderField("Content-Type")).thenReturn(
             "application/json");
     when(connection.getInputStream()).thenReturn(
-            new ByteArrayInputStream("{ \"data\": { \"foo\": \"bar\"}}".getBytes()));
+            new ByteArrayInputStream(
+            ("{ \"meta\": { \"count\": 1}, \"data\": { \"foo\": \"bar\"}, \"dictionaries\": { \"locations\": { \"city\" : { \"code\": \"xxx\"}}}}").getBytes()));
 
     response.parse(client);
 
     assertEquals(response.getStatusCode(), 200);
-    assertEquals(response.getBody(), "{ \"data\": { \"foo\": \"bar\"}}");
+    assertEquals(response.getBody(),
+    "{ \"meta\": { \"count\": 1}, \"data\": { \"foo\": \"bar\"}, \"dictionaries\": { \"locations\": { \"city\" : { \"code\": \"xxx\"}}}}");
     assertTrue(response.isParsed());
     assertNotNull(response.getResult());
     assertNotNull(response.getData());
+    assertNotNull(response.getMeta());
+    assertNotNull(response.getDictionaries());
   }
 
 
@@ -89,6 +95,8 @@ public class ResponseTest {
     assertTrue(response.isParsed());
     assertNotNull(response.getResult());
     assertNull(response.getData());
+    assertNull(response.getMeta());
+    assertNull(response.getDictionaries());
   }
 
   @Test public void testEmptyBody() throws IOException {
@@ -105,6 +113,8 @@ public class ResponseTest {
     assertFalse(response.isParsed());
     assertNull(response.getResult());
     assertNull(response.getData());
+    assertNull(response.getMeta());
+    assertNull(response.getDictionaries());
   }
 
   @Test public void testNoContent() throws IOException {
@@ -121,6 +131,8 @@ public class ResponseTest {
     assertFalse(response.isParsed());
     assertNull(response.getResult());
     assertNull(response.getData());
+    assertNull(response.getMeta());
+    assertNull(response.getDictionaries());
   }
 
   @Test public void testEmptyConnection() throws IOException {
@@ -136,6 +148,8 @@ public class ResponseTest {
     assertFalse(response.isParsed());
     assertNull(response.getResult());
     assertNull(response.getData());
+    assertNull(response.getMeta());
+    assertNull(response.getDictionaries());
   }
 
   @Test public void testEmptyConnectionWithStatusCode() throws IOException {
@@ -154,6 +168,8 @@ public class ResponseTest {
     assertFalse(response.isParsed());
     assertNull(response.getResult());
     assertNull(response.getData());
+    assertNull(response.getMeta());
+    assertNull(response.getDictionaries());
   }
 
   @Test public void testErrorResponse() throws IOException {
@@ -162,15 +178,17 @@ public class ResponseTest {
             "application/json");
     when(connection.getInputStream()).thenThrow(new IOException());
     when(connection.getErrorStream()).thenReturn(
-            new ByteArrayInputStream("{ \"data\": []}".getBytes()));
+            new ByteArrayInputStream("{ \"meta\": {}, \"data\": [], \"dictionaries\": {}}".getBytes()));
 
     response.parse(client);
 
     assertEquals(response.getStatusCode(), 400);
-    assertEquals(response.getBody(), "{ \"data\": []}");
+    assertEquals(response.getBody(), "{ \"meta\": {}, \"data\": [], \"dictionaries\": {}}");
     assertTrue(response.isParsed());
     assertNotNull(response.getResult());
     assertNotNull(response.getData());
+    assertNotNull(response.getMeta());
+    assertNotNull(response.getDictionaries());
   }
 
   @Test (expected = ServerException.class)

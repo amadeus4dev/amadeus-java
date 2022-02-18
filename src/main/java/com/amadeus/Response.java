@@ -6,6 +6,7 @@ import com.amadeus.exceptions.NotFoundException;
 import com.amadeus.exceptions.ParserException;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.exceptions.ServerException;
+import com.amadeus.resources.Dictionary;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -52,6 +53,14 @@ public class Response {
    * The actual Request object used to make this API call.
    */
   private @Getter Request request;
+  /**
+   * The meta extracted from the JSON data - if the body contained JSON.
+   */
+  private @Getter JsonElement meta;
+  /**
+   * The dictionaries extracted from the JSON data - if the body contained JSON.
+   */
+  private @Getter JsonElement dictionaries;
 
   protected Response(Request request) {
     this.request = request;
@@ -118,6 +127,22 @@ public class Response {
       }
       if (result.get("warnings").isJsonObject()) {
         this.warnings = result.get("warnings").getAsJsonObject();
+      }
+    }
+    if (parsed && result.has("meta")) {
+      if (result.get("meta").isJsonArray()) {
+        this.meta = result.get("meta").getAsJsonArray();
+      }
+      if (result.get("meta").isJsonObject()) {
+        this.meta = result.get("meta").getAsJsonObject();
+      }
+    }
+    if (parsed && result.has("dictionaries")) {
+      if (result.get("dictionaries").isJsonArray()) {
+        this.dictionaries = result.get("dictionaries").getAsJsonArray();
+      }
+      if (result.get("dictionaries").isJsonObject()) {
+        this.dictionaries = result.get("dictionaries").getAsJsonObject();
       }
     }
   }

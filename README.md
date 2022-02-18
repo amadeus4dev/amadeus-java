@@ -398,6 +398,31 @@ TripDetail tripDetail = amadeus.travel.tripParser.post(body);
 Destination[] directDestinations = amadeus.airport.directDestinations.get(Params
     .with("departureAirportCode","MAD")
     .and("max","2"));
+
+// Add objet mapping for meta and dictionaries
+// eg. for dictionaries - Take Flight Offers Search as an example
+FlightOfferSearch[] flightOffers = amadeus.shopping.flightOffers.post(body);
+Dictionary flightOffersDic = flightOffers[0].getDictionaries();
+// get locations in dictionaries 
+Map<String, Dictionary.LocationValue> locations = flightOffersDic.getLocations();
+// get cityCode in the location (same for CountryCode) 
+String cityCode = flightOffersDic.getLocations().get("MAD").getCityCode();
+// get aircraft in dictionaries
+Map<String, String> aircraft = flightOffersDic.getAircraft();
+// get currencies in dictionaries
+Map<String, String> currencies = flightOffersDic.getCurrencies();
+// get carriers in dictionaries
+Map<String, String> carriers = flightOffersDic.getCarriers();
+
+// eg. for meta - Take Airport Routes as an example
+Destination[] directDestinations = amadeus.airport.directDestinations.get(Params
+  .with("departureAirportCode","MAD")
+  .and("max","5"));
+CollectionMeta meta = directDestinations[0].getMeta();
+// get count in meta
+int metaCount = meta.getCount();
+// get links in meta
+String selfLink = meta.getLinks().getSelf();
 ```
 
 ## Development & Contributing
