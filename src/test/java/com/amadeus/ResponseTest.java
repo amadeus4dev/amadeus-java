@@ -46,8 +46,8 @@ public class ResponseTest {
     when(connection.getResponseCode()).thenReturn(200);
     when(connection.getHeaderField("Content-Type")).thenReturn(
             "application/json");
-    when(connection.getInputStream()).thenReturn(
-            new ByteArrayInputStream("{ \"meta\":{},\"data\": [], \"dictionaries\":{}}".getBytes()));
+    when(connection.getInputStream()).thenReturn(new ByteArrayInputStream(
+            "{ \"meta\":{},\"data\": [], \"dictionaries\":{}}".getBytes()));
 
     response.parse(client);
 
@@ -64,22 +64,26 @@ public class ResponseTest {
     when(connection.getResponseCode()).thenReturn(200);
     when(connection.getHeaderField("Content-Type")).thenReturn(
             "application/json");
-    when(connection.getInputStream()).thenReturn(
-            new ByteArrayInputStream(
-            ("{ \"meta\": { \"count\": 1}, \"data\": { \"foo\": \"bar\"}, \"dictionaries\": { \"locations\": { \"city\" : { \"code\": \"xxx\"}}}}").getBytes()));
+    when(connection.getInputStream()).thenReturn(new ByteArrayInputStream(
+            ("{ \"meta\": { \"count\": 1}, " +
+            "\"data\": { \"foo\": \"bar\"}, " +
+            "\"dictionaries\": { " +
+            "\"locations\": { \"city\" : { \"code\": \"xxx\"}}}}").getBytes()));
 
     response.parse(client);
 
     assertEquals(response.getStatusCode(), 200);
     assertEquals(response.getBody(),
-    "{ \"meta\": { \"count\": 1}, \"data\": { \"foo\": \"bar\"}, \"dictionaries\": { \"locations\": { \"city\" : { \"code\": \"xxx\"}}}}");
+      "{ \"meta\": { \"count\": 1}, " +
+      "\"data\": { \"foo\": \"bar\"}, " +
+      "\"dictionaries\": { " +
+      "\"locations\": { \"city\" : { \"code\": \"xxx\"}}}}");
     assertTrue(response.isParsed());
     assertNotNull(response.getResult());
     assertNotNull(response.getData());
     assertNotNull(response.getMeta());
     assertNotNull(response.getDictionaries());
   }
-
 
   @Test public void testNoData() throws IOException {
     when(connection.getResponseCode()).thenReturn(200);
@@ -177,8 +181,8 @@ public class ResponseTest {
     when(connection.getHeaderField("Content-Type")).thenReturn(
             "application/json");
     when(connection.getInputStream()).thenThrow(new IOException());
-    when(connection.getErrorStream()).thenReturn(
-            new ByteArrayInputStream("{ \"meta\": {}, \"data\": [], \"dictionaries\": {}}".getBytes()));
+    when(connection.getErrorStream()).thenReturn(new ByteArrayInputStream(
+            "{ \"meta\": {}, \"data\": [], \"dictionaries\": {}}".getBytes()));
 
     response.parse(client);
 
