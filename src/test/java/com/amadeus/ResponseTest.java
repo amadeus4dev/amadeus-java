@@ -65,19 +65,19 @@ public class ResponseTest {
     when(connection.getHeaderField("Content-Type")).thenReturn(
             "application/json");
     when(connection.getInputStream()).thenReturn(new ByteArrayInputStream(
-            ("{ \"meta\": { \"count\": 1}, " +
-            "\"data\": { \"foo\": \"bar\"}, " +
-            "\"dictionaries\": { " +
-            "\"locations\": { \"city\" : { \"code\": \"xxx\"}}}}").getBytes()));
+            ("{ \"meta\": { \"count\": 1}, "
+            + "\"data\": { \"foo\": \"bar\"}, "
+            + "\"dictionaries\": { "
+            + "\"locations\": { \"city\" : { \"code\": \"xxx\"}}}}").getBytes()));
 
     response.parse(client);
 
     assertEquals(response.getStatusCode(), 200);
     assertEquals(response.getBody(),
-      "{ \"meta\": { \"count\": 1}, " +
-      "\"data\": { \"foo\": \"bar\"}, " +
-      "\"dictionaries\": { " +
-      "\"locations\": { \"city\" : { \"code\": \"xxx\"}}}}");
+      "{ \"meta\": { \"count\": 1}, "
+        + "\"data\": { \"foo\": \"bar\"}, "
+        + "\"dictionaries\": { "
+        + "\"locations\": { \"city\" : { \"code\": \"xxx\"}}}}");
     assertTrue(response.isParsed());
     assertNotNull(response.getResult());
     assertNotNull(response.getData());
