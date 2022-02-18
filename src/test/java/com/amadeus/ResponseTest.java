@@ -74,7 +74,7 @@ public class ResponseTest {
 
     assertEquals(response.getStatusCode(), 200);
     assertEquals(response.getBody(),
-      "{ \"meta\": { \"count\": 1}, "
+        "{ \"meta\": { \"count\": 1}, "
         + "\"data\": { \"foo\": \"bar\"}, "
         + "\"dictionaries\": { "
         + "\"locations\": { \"city\" : { \"code\": \"xxx\"}}}}");
