@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.ToString;
 
 /**
- * A FlightAvailabilitySearch object as returned by the FlightAvailabilitiesSearch API.
+ * A FlightAvailability object as returned by the Flight Availabilities Search API.
  * @see FlightAvailabilities#post()
  */
 @ToString
