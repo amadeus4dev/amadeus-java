@@ -91,7 +91,7 @@ public class NamespaceTest {
     TestCase.assertNotNull(client.schedule.flights);
     TestCase.assertNotNull(client.travel.tripParser);
     TestCase.assertNotNull(client.airport.directDestinations);
-    TestCase.assertNotNull(client.shopping.flightAvailabilities);
+    TestCase.assertNotNull(client.shopping.availability.flightAvailabilities);
   }
 
   @Before

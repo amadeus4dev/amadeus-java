@@ -2,6 +2,7 @@ package com.amadeus;
 
 import com.amadeus.shopping.Activities;
 import com.amadeus.shopping.Activity;
+import com.amadeus.shopping.Availability;
 import com.amadeus.shopping.FlightDates;
 import com.amadeus.shopping.FlightDestinations;
 import com.amadeus.shopping.FlightOffers;
@@ -10,7 +11,7 @@ import com.amadeus.shopping.HotelOffer;
 import com.amadeus.shopping.HotelOffers;
 import com.amadeus.shopping.HotelOffersByHotel;
 import com.amadeus.shopping.SeatMaps;
-import com.amadeus.shopping.availability.FlightAvailabilities;
+
 
 /**
  * <p>
@@ -62,14 +63,6 @@ public class Shopping {
    * </p>
    */
   public FlightOffersSearch flightOffersSearch;
-  
-  /**
-   * <p>
-   * A namespaced client for the
-   * <code>/v1/shopping/availability/flight-availabilities</code> endpoints.
-   * </p>
-   */
-  public FlightAvailabilities flightAvailabilities;
 
   /**
    * <p>
@@ -112,6 +105,14 @@ public class Shopping {
   public Activities activities;
 
   /**
+   * <p>
+   *   A namespaced client for the
+   *   <code>/v1/shopping/availability</code> endpoints.
+   * </p>
+   */
+  public Availability availability;
+
+  /**
    * Constructor.
    * @hide
    */
@@ -125,7 +126,7 @@ public class Shopping {
     this.flightOffersSearch = new FlightOffersSearch(client);
     this.seatMaps = new SeatMaps(client);
     this.activities = new Activities(client);
-    this.flightAvailabilities = new FlightAvailabilities(client);
+    this.availability = new Availability(client);
   }
 
   /**
