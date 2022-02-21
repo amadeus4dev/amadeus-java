@@ -398,6 +398,11 @@ TripDetail tripDetail = amadeus.travel.tripParser.post(body);
 Destination[] directDestinations = amadeus.airport.directDestinations.get(Params
     .with("departureAirportCode","MAD")
     .and("max","2"));
+
+// Flight Availabilites Search POST
+// body can be a String version of your JSON or a JsonObject
+FlightAvailability[] flightAvailabilities
+  = amadeus.shopping.availability.flightAvailabilities.post(body);
 ```
 
 ## Development & Contributing
