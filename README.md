@@ -399,6 +399,11 @@ Destination[] directDestinations = amadeus.airport.directDestinations.get(Params
     .with("departureAirportCode","MAD")
     .and("max","2"));
 
+// Flight Availabilites Search POST
+// body can be a String version of your JSON or a JsonObject
+FlightAvailability[] flightAvailabilities
+  = amadeus.shopping.availability.flightAvailabilities.post(body);
+
 // Add objet mapping for meta and dictionaries
 // eg. for dictionaries - Take Flight Offers Search as an example
 FlightOfferSearch[] flightOffers = amadeus.shopping.flightOffers.post(body);
