@@ -182,7 +182,7 @@ public class DiseaseAreaReport extends Resource {
 
   @ToString
   public class DatedQuarantineRestriction {
-    protected DatedQuarantineRestriction () {}
+    protected DatedQuarantineRestriction() {}
 
     private @Getter String date;
     private @Getter String text;
@@ -196,7 +196,7 @@ public class DiseaseAreaReport extends Resource {
 
   @ToString
   public class MaskRestriction {
-    protected MaskRestriction () {}
+    protected MaskRestriction() {}
 
     private @Getter String date;
     private @Getter String text;
@@ -205,7 +205,7 @@ public class DiseaseAreaReport extends Resource {
 
   @ToString
   public class ExitRestriction {
-    protected ExitRestriction () {}
+    protected ExitRestriction() {}
 
     private @Getter String date;
     private @Getter String text;

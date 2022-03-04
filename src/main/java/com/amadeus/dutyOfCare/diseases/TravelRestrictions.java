@@ -10,7 +10,7 @@ import com.amadeus.resources.Resource;
 /**
  * <p>
  * A namespaced client for the
- * <code>/v1/duty-of-care/diseases/covid19-area-report<code> endpoints.
+ * <code>/v1/duty-of-care/diseases/covid19-area-report</code> endpoints.
  * </p>
  *
  * <p>

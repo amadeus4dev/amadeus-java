@@ -17,6 +17,6 @@ public class Diseases {
    * @hide
    */
   public Diseases(Amadeus client) {
-    this.travelRestrictions= new TravelRestrictions(client);
+    this.travelRestrictions = new TravelRestrictions(client);
   }
 }
