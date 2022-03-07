@@ -403,6 +403,10 @@ Destination[] directDestinations = amadeus.airport.directDestinations.get(Params
 // body can be a String version of your JSON or a JsonObject
 FlightAvailability[] flightAvailabilities
   = amadeus.shopping.availability.flightAvailabilities.post(body);
+
+// Travel Restrictions GET
+DiseaseAreaReport diseaseAreaReports 
+  = amadeus.dutyOfCare.diseases.covid19AreaReport.get(Params.with("countryCode","US"));
 ```
 
 ## Development & Contributing
