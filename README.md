@@ -406,7 +406,7 @@ FlightAvailability[] flightAvailabilities
 
 // Travel Restrictions GET
 DiseaseAreaReport diseaseAreaReports 
-  = amadeus.dutyOfCare.diseases.travelRestrictions.get(Params.with("countryCode","US"));
+  = amadeus.dutyOfCare.diseases.covid19AreaReport.get(Params.with("countryCode","US"));
 ```
 
 ## Development & Contributing

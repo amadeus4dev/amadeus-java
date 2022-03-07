@@ -1,12 +1,12 @@
 package com.amadeus.resources;
 
-import com.amadeus.dutyOfCare.diseases.TravelRestrictions;
+import com.amadeus.dutyOfCare.diseases.Covid19AreaReport;
 import lombok.Getter;
 import lombok.ToString;
 
 /**
  * A DiseaseAreaReport object as returned by the Travel Restrictions API.
- * @see TravelRestrictions#get()
+ * @see Covid19AreaReport#get()
  */
 @ToString
 public class DiseaseAreaReport extends Resource {

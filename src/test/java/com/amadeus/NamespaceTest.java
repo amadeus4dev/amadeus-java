@@ -6,7 +6,7 @@ import com.amadeus.analytics.ItineraryPriceMetrics;
 import com.amadeus.booking.FlightOrder;
 import com.amadeus.booking.FlightOrders;
 import com.amadeus.booking.HotelBookings;
-import com.amadeus.dutyOfCare.diseases.TravelRestrictions;
+import com.amadeus.dutyOfCare.diseases.Covid19AreaReport;
 import com.amadeus.ereputation.HotelSentiments;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.media.files.GeneratedPhotos;
@@ -22,7 +22,6 @@ import com.amadeus.schedule.Flights;
 import com.amadeus.shopping.Activities;
 import com.amadeus.shopping.FlightDates;
 import com.amadeus.shopping.FlightDestinations;
-import com.amadeus.shopping.FlightOffers;
 import com.amadeus.shopping.FlightOffersSearch;
 import com.amadeus.shopping.HotelOffer;
 import com.amadeus.shopping.HotelOffers;
@@ -94,7 +93,7 @@ public class NamespaceTest {
     TestCase.assertNotNull(client.airport.directDestinations);
     TestCase.assertNotNull(client.shopping.availability.flightAvailabilities);
     TestCase.assertNotNull(client.dutyOfCare.diseases);
-    TestCase.assertNotNull(client.dutyOfCare.diseases.travelRestrictions);
+    TestCase.assertNotNull(client.dutyOfCare.diseases.covid19AreaReport);
   }
 
   @Before
@@ -451,9 +450,9 @@ public class NamespaceTest {
       .thenReturn(singleResponse);
     Mockito.when(client.get("/v1/duty-of-care/diseases/covid19-area-report", params))
       .thenReturn(singleResponse);
-    TravelRestrictions travelRestrictions = new TravelRestrictions(client);
-    TestCase.assertNotNull(travelRestrictions.get());
-    TestCase.assertNotNull(travelRestrictions.get(params));
+    Covid19AreaReport covid19AreaReport = new Covid19AreaReport(client);
+    TestCase.assertNotNull(covid19AreaReport.get());
+    TestCase.assertNotNull(covid19AreaReport.get(params));
   }
 
   @Test

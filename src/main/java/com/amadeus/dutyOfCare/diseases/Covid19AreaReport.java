@@ -19,16 +19,16 @@ import com.amadeus.resources.Resource;
  *
  * <pre>
  * Amadeus amadeus = Amadeus.builder(API_KEY, API_SECRET).build();
- * amadeus.dutyOfCare.diseases.travelRestrictions;</pre>
+ * amadeus.dutyOfCare.diseases.covid19AreaReport;</pre>
  */
-public class TravelRestrictions {
+public class Covid19AreaReport {
   private Amadeus client;
 
   /**
    * Constructor.
    * @hide
    */
-  public TravelRestrictions(Amadeus client) {
+  public Covid19AreaReport(Amadeus client) {
     this.client = client;
   }
 
@@ -39,7 +39,7 @@ public class TravelRestrictions {
    * </p>
    *
    * <pre>
-   * amadeus.dutyOfCare.diseases.travelRestrictions.get(Params
+   * amadeus.dutyOfCare.diseases.covid19AreaReport.get(Params
    *     .with("countryCode", "US"));
    * </pre>
    *
@@ -54,7 +54,7 @@ public class TravelRestrictions {
 
   /**
    * Convenience method for calling <code>get</code> without any parameters.
-   * @see TravelRestrictions#get()
+   * @see Covid19AreaReport#get()
    */
   public DiseaseAreaReport get() throws ResponseException {
     return get(null);

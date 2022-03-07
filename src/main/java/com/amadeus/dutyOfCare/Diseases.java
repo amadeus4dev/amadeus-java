@@ -1,7 +1,7 @@
 package com.amadeus.dutyOfCare;
 
 import com.amadeus.Amadeus;
-import com.amadeus.dutyOfCare.diseases.TravelRestrictions;
+import com.amadeus.dutyOfCare.diseases.Covid19AreaReport;
 
 public class Diseases {
   /**
@@ -10,13 +10,13 @@ public class Diseases {
    *   <code>/v1/duty-of-care/diseases/covid19-area-report</code> endpoints.
    * </p>
    */
-  public TravelRestrictions travelRestrictions;
+  public Covid19AreaReport covid19AreaReport;
 
   /**
    * Constructor.
    * @hide
    */
   public Diseases(Amadeus client) {
-    this.travelRestrictions = new TravelRestrictions(client);
+    this.covid19AreaReport = new Covid19AreaReport(client);
   }
 }
