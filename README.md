@@ -405,8 +405,14 @@ FlightAvailability[] flightAvailabilities
   = amadeus.shopping.availability.flightAvailabilities.post(body);
 
 // Travel Restrictions GET
-DiseaseAreaReport diseaseAreaReports 
+DiseaseAreaReport diseaseAreaReport 
   = amadeus.dutyOfCare.diseases.covid19AreaReport.get(Params.with("countryCode","US"));
+
+// Location Score GET
+ScoredLocation[] scoredLocations 
+  = amadeus.location.analytics.categoryRatedAreas.get(Params
+      .with("latitude", "41.397158")
+      .and("longitude", "2.160873"));
 ```
 
 ## Development & Contributing

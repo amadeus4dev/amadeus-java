@@ -9,6 +9,7 @@ import com.amadeus.booking.HotelBookings;
 import com.amadeus.dutyOfCare.diseases.Covid19AreaReport;
 import com.amadeus.ereputation.HotelSentiments;
 import com.amadeus.exceptions.ResponseException;
+import com.amadeus.location.analytics.CategoryRatedAreas;
 import com.amadeus.media.files.GeneratedPhotos;
 import com.amadeus.referenceData.Airlines;
 import com.amadeus.referenceData.Location;
@@ -94,6 +95,8 @@ public class NamespaceTest {
     TestCase.assertNotNull(client.shopping.availability.flightAvailabilities);
     TestCase.assertNotNull(client.dutyOfCare.diseases);
     TestCase.assertNotNull(client.dutyOfCare.diseases.covid19AreaReport);
+    TestCase.assertNotNull(client.location.analytics);
+    TestCase.assertNotNull(client.location.analytics.categoryRatedAreas);
   }
 
   @Before
@@ -453,6 +456,16 @@ public class NamespaceTest {
     Covid19AreaReport covid19AreaReport = new Covid19AreaReport(client);
     TestCase.assertNotNull(covid19AreaReport.get());
     TestCase.assertNotNull(covid19AreaReport.get(params));
+
+    // Testing location score get
+    Mockito.when(client.get("/v1/location/analytics/category-rated-areas", null))
+    .thenReturn(multiResponse);
+    Mockito.when(client.get("/v1/location/analytics/category-rated-areas", params))
+    .thenReturn(multiResponse);
+    CategoryRatedAreas categoryRatedAreas = new CategoryRatedAreas(client);
+    TestCase.assertNotNull(categoryRatedAreas.get());
+    TestCase.assertNotNull(categoryRatedAreas.get(params));
+    TestCase.assertEquals(categoryRatedAreas.get().length, 2);
   }
 
   @Test
