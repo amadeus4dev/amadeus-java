@@ -459,9 +459,9 @@ public class NamespaceTest {
 
     // Testing location score get
     Mockito.when(client.get("/v1/location/analytics/category-rated-areas", null))
-    .thenReturn(multiResponse);
+      .thenReturn(multiResponse);
     Mockito.when(client.get("/v1/location/analytics/category-rated-areas", params))
-    .thenReturn(multiResponse);
+      .thenReturn(multiResponse);
     CategoryRatedAreas categoryRatedAreas = new CategoryRatedAreas(client);
     TestCase.assertNotNull(categoryRatedAreas.get());
     TestCase.assertNotNull(categoryRatedAreas.get(params));
