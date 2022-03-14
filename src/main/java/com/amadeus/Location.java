@@ -1,11 +1,11 @@
 package com.amadeus;
 
-import com.amadeus.dutyOfCare.Diseases;
+import com.amadeus.location.Analytics;
 
 /**
  * <p>
  *   A namespaced client for the
- *   <code>/v1/duty-of-care</code> endpoints.
+ *   <code>/v1/location</code> endpoints.
  * </p>
  *
  * <p>
@@ -14,27 +14,27 @@ import com.amadeus.dutyOfCare.Diseases;
  *
  * <pre>
  * Amadeus amadeus = Amadeus.builder("clientId", "secret").build();
- * amadeus.dutyOfCare;</pre>
+ * amadeus.location;</pre>
  *
  * @hide
  */
-public class DutyOfCare {
+public class Location {
   private Amadeus client;
 
   /**
    * <p>
    *   A namespaced client for the
-   *   <code>/v1/duty-of-care/diseases</code> endpoints.
+   *   <code>/v1/location/analytics</code> endpoints.
    * </p>
    */
-  public Diseases diseases;
+  public Analytics analytics;
 
   /**
    * Constructor.
    * @hide
    */
-  public DutyOfCare(Amadeus client) {
+  public Location(Amadeus client) {
     this.client = client;
-    this.diseases = new Diseases(client);
+    this.analytics = new Analytics(client);
   }
 }

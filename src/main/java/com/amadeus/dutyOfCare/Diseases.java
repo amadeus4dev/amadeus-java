@@ -3,6 +3,12 @@ package com.amadeus.dutyOfCare;
 import com.amadeus.Amadeus;
 import com.amadeus.dutyOfCare.diseases.Covid19AreaReport;
 
+/**
+ * <p>
+ *   A namespaced client for the
+ *   <code>/v1/duty-of-care/diseases</code> endpoints.
+ * </p>
+ */
 public class Diseases {
   /**
    * <p>
