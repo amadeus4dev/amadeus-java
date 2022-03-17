@@ -1,4 +1,11 @@
 # Changelog
+5.9.0 - 2022-03-17
+--------------------
+Add support for the [Flight Availablities Search API](https://developers.amadeus.com/self-service/category/air/api-doc/flight-availabilities-search/api-reference) 
+Add support for the [Travel Restrictions API](https://developers.amadeus.com/self-service/category/covid-19-and-travel-safety/api-doc/travel-restrictions/api-reference) 
+Add support for the [Location Score API](https://developers.amadeus.com/self-service/category/destination-content/api-doc/location-score/api-reference) 
+Add support for the [Airport Routes API](https://developers.amadeus.com/self-service/category/air/api-doc/airport-routes/api-reference)
+
 5.8.2 - 2021-12-01
 --------------------
 Bug fix in the Traveler resource
