@@ -8,6 +8,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import lombok.Getter;
 import lombok.ToString;
@@ -141,7 +142,13 @@ public class Request {
       headers.put(Constants.AUTHORIZATION, bearerToken);
       headers.put(Constants.CONTENT_TYPE, "application/vnd.amadeus+json");
 
+      // Check the path of where the request from the API need an X-Http-Method-Override header
+      if (Constants.APIS_WITH_EXTRA_HEADER.contains(path) && Objects.equals(verb, Constants.POST)) {
+        headers.put(Constants.X_HTTP_METHOD_OVERRIDE, Constants.GET);
+      }
+
     }
+
   }
 
   // Determines the User-Agent header, based on the client version, language version, and custom
