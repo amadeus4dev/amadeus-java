@@ -110,7 +110,7 @@ public class RequestTest {
 
   @Test public void testRequestWithHttpOverrideHeader() {
     Amadeus amadeus = Amadeus.builder("123", "234").build();
-    for(String path : Constants.APIS_WITH_EXTRA_HEADER) {
+    for (String path : Constants.APIS_WITH_EXTRA_HEADER) {
       Request request = new Request("POST", path, null, null,"token", amadeus);
       assertEquals(request.getHeaders().get(Constants.X_HTTP_METHOD_OVERRIDE), "GET");
     }
