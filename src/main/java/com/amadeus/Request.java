@@ -142,7 +142,7 @@ public class Request {
       headers.put(Constants.AUTHORIZATION, bearerToken);
       headers.put(Constants.CONTENT_TYPE, "application/vnd.amadeus+json");
 
-      // Check the path of where the request from the API need an X-Http-Method-Override header
+      // Checks if the request needs an X-Http-Method-Override header
       if (Constants.APIS_WITH_EXTRA_HEADER.contains(path) && Objects.equals(verb, Constants.POST)) {
         headers.put(Constants.X_HTTP_METHOD_OVERRIDE, Constants.GET);
       }
