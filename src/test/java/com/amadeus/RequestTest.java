@@ -2,6 +2,7 @@ package com.amadeus;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
@@ -99,5 +100,19 @@ public class RequestTest {
     Request request = new Request("POST", "/v1/security/oauth2/token", null, null,null, amadeus);
     request.establishConnection();
     assertNotNull(request.getConnection());
+  }
+
+  @Test public void testRequestWithoutHttpOverrideHeader() {
+    Amadeus amadeus = Amadeus.builder("123", "234").build();
+    Request request = new Request("GET", "/foo/bar", null, null,"token", amadeus);
+    assertNull(request.getHeaders().get(Constants.X_HTTP_METHOD_OVERRIDE));
+  }
+
+  @Test public void testRequestWithHttpOverrideHeader() {
+    Amadeus amadeus = Amadeus.builder("123", "234").build();
+    for (String path : Constants.APIS_WITH_EXTRA_HEADER) {
+      Request request = new Request("POST", path, null, null,"token", amadeus);
+      assertEquals(request.getHeaders().get(Constants.X_HTTP_METHOD_OVERRIDE), "GET");
+    }
   }
 }

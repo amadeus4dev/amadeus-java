@@ -1,5 +1,8 @@
 package com.amadeus;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A class for constant variables.
  *
@@ -22,6 +25,7 @@ public final class Constants {
   public static final String ACCEPT = "Accept";
   public static final String AUTHORIZATION = "Authorization";
   public static final String CONTENT_TYPE = "Content-Type";
+  public static final String X_HTTP_METHOD_OVERRIDE = "X-HTTP-Method-Override";
 
   // Pagination
   public static final String FIRST = "first";
@@ -38,6 +42,16 @@ public final class Constants {
   public static final String ACCESS_TOKEN = "access_token";
   public static final String EXPIRES_IN = "expires_in";
 
+  // APIs which need an X-HTTP-Method-Override GET HEADER
+  public static final List<String> APIS_WITH_EXTRA_HEADER = new ArrayList<String>() {
+    {
+      add("/v2/shopping/flight-offers");
+      add("/v1/shopping/seatmaps");
+      add("/v1/shopping/availability/flight-availabilities");
+      add("/v2/shopping/flight-offers/prediction");
+      add("/v1/shopping/flight-offers/pricing");
+    }
+  };
 
   /**
    * The caller references the constants using <tt>Consts.EMPTY_STRING</tt>,
