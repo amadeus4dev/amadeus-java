@@ -413,6 +413,11 @@ ScoredLocation[] scoredLocations
   = amadeus.location.analytics.categoryRatedAreas.get(Params
       .with("latitude", "41.397158")
       .and("longitude", "2.160873"));
+
+// Branded Fares Upsell Post
+// body can be a String version of your JSON or a JsonObject
+FlightOfferSearch[] upsellFlightOffers 
+  = amadeus.shopping.flightOffers.upselling.post(body);
 ```
 
 ## Development & Contributing
