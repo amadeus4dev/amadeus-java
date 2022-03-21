@@ -71,7 +71,7 @@ cobertura {
 }
 
 test {
-    useJUnitPlatform()
+    useJUnit()
 }
 
 signing {
