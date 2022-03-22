@@ -1,10 +1,11 @@
 package com.amadeus;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -18,8 +19,8 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class ResponseTest {
   Amadeus client;
@@ -27,7 +28,10 @@ public class ResponseTest {
   Response response;
   HttpURLConnection connection;
 
-  @Before public void setup() {
+  /**
+   * Response Test.
+   */
+  @BeforeEach public void setup() {
     request = mock(Request.class);
     response = new Response(request);
     connection = mock(HttpURLConnection.class);
@@ -117,7 +121,7 @@ public class ResponseTest {
     response.parse(client);
 
     assertEquals(response.getStatusCode(), 204);
-    assertEquals(response.getBody(), null);
+    assertNull(response.getBody());
     assertFalse(response.isParsed());
     assertNull(response.getResult());
     assertNull(response.getData());
@@ -132,7 +136,7 @@ public class ResponseTest {
     response.parse(client);
 
     assertEquals(response.getStatusCode(), 0);
-    assertEquals(response.getBody(), null);
+    assertNull(response.getBody());
     assertFalse(response.isParsed());
     assertNull(response.getResult());
     assertNull(response.getData());
@@ -149,7 +153,7 @@ public class ResponseTest {
     response.parse(client);
 
     assertEquals(response.getStatusCode(), 200);
-    assertEquals(response.getBody(), null);
+    assertNull(response.getBody());
 
     assertFalse(response.isParsed());
     assertNull(response.getResult());
@@ -173,49 +177,44 @@ public class ResponseTest {
     assertNotNull(response.getData());
   }
 
-  @Test (expected = ServerException.class)
-  public void detectServerException() throws ResponseException, IOException {
+  @Test public void detectServerException() throws IOException {
     when(connection.getResponseCode()).thenReturn(500);
     when(connection.getInputStream()).thenReturn(
-            new ByteArrayInputStream("".getBytes()));
+        new ByteArrayInputStream("".getBytes()));
     response.parse(client);
-    response.detectError(client);
+    assertThrows(ServerException.class, () -> response.detectError(client));
   }
 
-  @Test (expected = NotFoundException.class)
-  public void detectNotFoundException() throws ResponseException, IOException {
+  @Test public void detectNotFoundException() throws IOException {
     when(connection.getResponseCode()).thenReturn(404);
     when(connection.getInputStream()).thenReturn(
             new ByteArrayInputStream("".getBytes()));
     response.parse(client);
-    response.detectError(client);
+    assertThrows(NotFoundException.class, () -> response.detectError(client));
   }
 
-  @Test (expected = AuthenticationException.class)
-  public void detectAuthenticationException() throws ResponseException, IOException {
+  @Test public void detectAuthenticationException() throws IOException {
     when(connection.getResponseCode()).thenReturn(401);
     when(connection.getInputStream()).thenReturn(
-            new ByteArrayInputStream("".getBytes()));
+        new ByteArrayInputStream("".getBytes()));
     response.parse(client);
-    response.detectError(client);
+    assertThrows(AuthenticationException.class, () -> response.detectError(client));
   }
 
-  @Test (expected = ClientException.class)
-  public void detectClientException() throws ResponseException, IOException {
+  @Test public void detectClientException() throws IOException {
     when(connection.getResponseCode()).thenReturn(400);
     when(connection.getInputStream()).thenReturn(
             new ByteArrayInputStream("".getBytes()));
     response.parse(client);
-    response.detectError(client);
+    assertThrows(ClientException.class, () -> response.detectError(client));
   }
 
-  @Test (expected = ParserException.class)
-  public void detectParserException() throws ResponseException, IOException {
+  @Test public void detectParserException() throws IOException {
     when(connection.getResponseCode()).thenReturn(200);
     when(connection.getInputStream()).thenReturn(
             new ByteArrayInputStream("{".getBytes()));
     response.parse(client);
-    response.detectError(client);
+    assertThrows(ParserException.class, () -> response.detectError(client));
   }
 
   @Test public void detectNoException() throws ResponseException, IOException {

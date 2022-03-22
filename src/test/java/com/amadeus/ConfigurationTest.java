@@ -1,40 +1,39 @@
 package com.amadeus;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-
-import com.amadeus.Amadeus;
-import com.amadeus.Configuration;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.logging.Logger;
-import org.junit.Test;
-
+import org.junit.jupiter.api.Test;
 
 public class ConfigurationTest {
+  /**
+   * Configuration Test.
+   */
   @Test public void testInitialize() {
     Configuration configuration = new Configuration("id", "secret");
-    assertTrue("should return a Configuration object",
-               configuration instanceof Configuration);
+    assertTrue(configuration instanceof Configuration, "should return a Configuration object");
   }
 
   @Test public void testBuild() {
     Configuration configuration = new Configuration("123", "234");
 
-    assertTrue("should return a Amadeus object",
-               configuration.build() instanceof Amadeus);
-    assertEquals("should set the com.amadeus.client ID",
-                 configuration.getClientId(),
-                 "123");
-    assertEquals("should set the com.amadeus.client secret",
-                configuration.getClientSecret(),
-                "234");
+    assertNotNull(configuration.build(), "should return a Amadeus object");
+    assertEquals(configuration.getClientId(),
+                 "123",
+               "should set the com.amadeus.client ID");
+    assertEquals(configuration.getClientSecret(),
+                "234",
+              "should set the com.amadeus.client secret");
   }
 
   @Test public void testBuildDefaults() {
     Configuration configuration = new Configuration("id", "secret");
-    assertTrue(configuration.getLogger() instanceof Logger);
+    assertNotNull(configuration.getLogger());
     assertEquals(configuration.getLogLevel(), "silent");
     assertEquals(configuration.getHostname(), "test");
     assertEquals(configuration.getHost(), "test.api.amadeus.com");
@@ -60,9 +59,9 @@ public class ConfigurationTest {
     assertEquals(configuration.getHost(), "api.amadeus.com");
   }
 
-  @Test (expected = IllegalArgumentException.class)
-  public void testBuildInvalidHostname() {
-    new Configuration("id", "secret").setHostname("foo");
+  @Test public void testBuildInvalidHostname() {
+    assertThrows(IllegalArgumentException.class, () ->
+        new Configuration("id", "secret").setHostname("foo"));
   }
 
   @Test public void testBuildCustomHost() {
