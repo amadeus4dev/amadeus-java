@@ -1,15 +1,17 @@
 package com.amadeus;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
-
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class RequestTest {
+  /**
+   * Request Test.
+   */
   @Test public void testInitializer() {
     Amadeus amadeus = Amadeus.builder("123", "234").build();
     Params params = Params.with("foo", "bar");
@@ -22,10 +24,10 @@ public class RequestTest {
     assertEquals(request.getBearerToken(), "token");
     assertEquals(request.getLanguageVersion(), System.getProperty("java.version"));
     assertEquals(request.getClientVersion(), Amadeus.VERSION);
-    assertEquals(request.getAppId(), null);
-    assertEquals(request.getAppVersion(), null);
+    assertNull(request.getAppId());
+    assertNull(request.getAppVersion());
     assertEquals(request.getPort(), 443);
-    assertEquals(request.isSsl(), true);
+    assertTrue(request.isSsl());
     assertEquals(request.getScheme(), "https");
     assertEquals(request.getHeaders().size(), 4);
     assertEquals(request.getHeaders()
@@ -42,7 +44,7 @@ public class RequestTest {
     Request request = new Request("GET", "/foo/bar", params, null, null, amadeus);
 
     assertEquals(request.getHeaders().size(), 2);
-    assertEquals(request.getHeaders().get("Authorization"), null);
+    assertNull(request.getHeaders().get("Authorization"));
   }
 
   @Test public void testInitializerWithCustomAppInfo() {

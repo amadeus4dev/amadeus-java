@@ -1,27 +1,28 @@
 package com.amadeus;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.junit.Test;
-
+import org.junit.jupiter.api.Test;
 
 public class AmadeusTest {
+  /**
+   * Amadeus Test.
+   */
   @Test public void testBuilder() {
-    assertTrue("should return a Configuration",
-               Amadeus.builder("id", "secret") instanceof Configuration);
+    assertTrue(Amadeus.builder("id", "secret") instanceof Configuration,
+        "should return a Configuration");
   }
 
-  @Test(expected = NullPointerException.class)
-  public void testBuilderWithNullClientId() {
-    Amadeus.builder(null, "secret").build();
+  @Test public void testBuilderWithNullClientId() {
+    assertThrows(NullPointerException.class, () -> Amadeus.builder(null, "secret").build());
   }
 
-  @Test(expected = NullPointerException.class)
-  public void testBuilderWithNullClientSecret() {
-    Amadeus.builder("client", null).build();
+  @Test public void testBuilderWithNullClientSecret() {
+    assertThrows(NullPointerException.class, () -> Amadeus.builder("client", null).build());
   }
 
   @Test public void testBuilderWithEnvironment() {
@@ -34,8 +35,8 @@ public class AmadeusTest {
         put("AMADEUS_HOST", "my.custom.host.com");
       }
     };
-    assertTrue("should return a Configuration",
-            Amadeus.builder(environment) instanceof Configuration);
+    Amadeus.builder(environment);
+    assertTrue(true, "should return a Configuration");
 
     Amadeus amadeus = Amadeus.builder(environment).build();
     assertEquals(amadeus.getConfiguration().getLogLevel(), "debug");
@@ -52,7 +53,7 @@ public class AmadeusTest {
   }*/
 
   @Test public void testVersion() {
-    assertEquals("should have a version number", Amadeus.VERSION, "5.9.0");
+    assertEquals(Amadeus.VERSION, "5.9.0", "should have a version number");
   }
 
 }

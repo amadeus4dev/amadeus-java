@@ -1,9 +1,9 @@
 package com.amadeus;
 
-import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertNotNull;
-import static junit.framework.TestCase.assertNull;
-import static junit.framework.TestCase.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.mock;
@@ -12,7 +12,6 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.amadeus.client.AccessToken;
-import com.amadeus.exceptions.NetworkException;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.Resource;
 import com.google.gson.JsonArray;
@@ -21,11 +20,10 @@ import com.google.gson.JsonParser;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.PipedOutputStream;
 import java.net.HttpURLConnection;
 import java.util.logging.Logger;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class HTTPClientTest {
   Amadeus client;
@@ -37,7 +35,10 @@ public class HTTPClientTest {
   Logger logger;
   String body;
 
-  @Before public void setup()  {
+  /**
+   * HTTPClient Test.
+   */
+  @BeforeEach public void setup()  {
     client = mock(Amadeus.class);
     configuration = mock(Configuration.class);
     params = Params.with("foo", "bar");
@@ -70,7 +71,7 @@ public class HTTPClientTest {
     verify(client, times(1)).request("DELETE", "/foo", null, null);
   }
 
-  @Test public void testDeletetWithParams() throws ResponseException {
+  @Test public void testDeleteWithParams() throws ResponseException {
     when(client.delete(anyString(), any(Params.class))).thenCallRealMethod();
     client.delete("/foo", params);
     verify(client, times(1)).request("DELETE", "/foo", params, null);
