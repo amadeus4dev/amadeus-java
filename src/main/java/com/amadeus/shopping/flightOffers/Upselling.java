@@ -10,7 +10,7 @@ import com.google.gson.JsonObject;
 /**
  * <p>
  * A namespaced client for the
- * <code>/v1/shopping/availability/flight-availabilities</code> endpoints.
+ * <code>/v1/shopping/flight-offers/upselling</code> endpoints.
  * </p>
  *
  * <p>
