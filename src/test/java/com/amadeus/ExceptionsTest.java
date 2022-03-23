@@ -1,7 +1,7 @@
 package com.amadeus;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -17,10 +17,12 @@ import com.amadeus.exceptions.ServerException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import java.util.logging.Logger;
-import org.junit.Test;
-
+import org.junit.jupiter.api.Test;
 
 public class ExceptionsTest {
+  /**
+   * Exception Test.
+   */
   @Test public void testNilResponse() {
     ResponseException error = new ResponseException(null);
     assertEquals(error.toString(), "com.amadeus.exceptions.ResponseException: [---]");

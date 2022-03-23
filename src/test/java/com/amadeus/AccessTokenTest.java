@@ -1,6 +1,6 @@
 package com.amadeus;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.isNull;
@@ -12,8 +12,8 @@ import static org.mockito.Mockito.when;
 import com.amadeus.client.AccessToken;
 import com.amadeus.exceptions.ResponseException;
 import com.google.gson.JsonObject;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class AccessTokenTest {
   Amadeus client;
@@ -21,7 +21,10 @@ public class AccessTokenTest {
   Response response;
   JsonObject json;
 
-  @Before public void setupClientAndResponses() throws ResponseException {
+  /**
+   * Access Token Test.
+   */
+  @BeforeEach public void setupClientAndResponses() throws ResponseException {
     client = mock(Amadeus.class);
     configuration = new Configuration("client_id", "client_secret");
     when(client.getConfiguration()).thenReturn(configuration);
@@ -51,7 +54,7 @@ public class AccessTokenTest {
 
     verify(client, times(1))
         .unauthenticatedRequest(anyString(), anyString(),
-            any(Params.class), (String) isNull(), (String) isNull());
+            any(Params.class), isNull(), isNull());
   }
 
   @Test public void testExpiredToken() throws ResponseException {
@@ -63,6 +66,6 @@ public class AccessTokenTest {
 
     verify(client, times(2))
             .unauthenticatedRequest(anyString(), anyString(),
-                any(Params.class), (String) isNull(), (String) isNull());
+                any(Params.class), isNull(), isNull());
   }
 }
