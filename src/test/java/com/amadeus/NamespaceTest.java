@@ -34,6 +34,7 @@ import com.amadeus.shopping.SeatMaps;
 import com.amadeus.shopping.availability.FlightAvailabilities;
 import com.amadeus.shopping.flightOffers.Prediction;
 import com.amadeus.shopping.flightOffers.Pricing;
+import com.amadeus.shopping.flightOffers.Upselling;
 import com.amadeus.travel.TripParser;
 import com.amadeus.travel.analytics.airTraffic.Booked;
 import com.amadeus.travel.analytics.airTraffic.BusiestPeriod;
@@ -81,6 +82,7 @@ public class NamespaceTest {
     assertNotNull(client.shopping.flightOffersSearch);
     assertNotNull(client.shopping.flightOffersSearch.pricing);
     assertNotNull(client.shopping.flightOffers.prediction);
+    assertNotNull(client.shopping.flightOffers.upselling);
     assertNotNull(client.shopping.hotelOffers);
     assertNotNull(client.shopping.hotelOffersByHotel);
     assertNotNull(client.shopping.seatMaps);
@@ -563,6 +565,16 @@ public class NamespaceTest {
     assertNotNull(flightAvailabilities.post());
     assertNotNull(flightAvailabilities.post(body));
     assertEquals(flightAvailabilities.post().length, 2);
+
+    // Test branded fares upsell post
+    Mockito.when(client.post("/v1/shopping/flight-offers/upselling", (String) null))
+      .thenReturn(multiResponse);
+    Mockito.when(client.post("/v1/shopping/flight-offers/upselling", body))
+      .thenReturn(multiResponse);
+    Upselling upsellFlightOffers = new Upselling(client);
+    assertNotNull(upsellFlightOffers.post());
+    assertNotNull(upsellFlightOffers.post(body));
+    assertEquals(upsellFlightOffers.post().length, 2);
   }
 
   @Test

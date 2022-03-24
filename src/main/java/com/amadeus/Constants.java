@@ -50,6 +50,7 @@ public final class Constants {
       add("/v1/shopping/availability/flight-availabilities");
       add("/v2/shopping/flight-offers/prediction");
       add("/v1/shopping/flight-offers/pricing");
+      add("/v1/shopping/flight-offers/upselling");
     }
   };
 

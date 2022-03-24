@@ -2,6 +2,7 @@ package com.amadeus.shopping;
 
 import com.amadeus.Amadeus;
 import com.amadeus.shopping.flightOffers.Prediction;
+import com.amadeus.shopping.flightOffers.Upselling;
 
 /**
  * <p>
@@ -20,6 +21,7 @@ import com.amadeus.shopping.flightOffers.Prediction;
 public class FlightOffers {
   private Amadeus client;
   public Prediction prediction;
+  public Upselling upselling;
 
   /**
    * Constructor.
@@ -28,6 +30,7 @@ public class FlightOffers {
   public FlightOffers(Amadeus client) {
     this.client = client;
     this.prediction = new Prediction(client);
+    this.upselling = new Upselling(client);
   }
 
 }
