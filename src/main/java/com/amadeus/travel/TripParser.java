@@ -89,7 +89,6 @@ public class TripParser {
    */
   public TripDetail post(File file) throws ResponseException, IOException {
     // Base64 encode file and create request body
-    //String b64Encoded = Base64.encode(Files.readAllBytes(file.toPath()));
     String b64Encoded = DatatypeConverter.printBase64Binary(Files.readAllBytes(file.toPath()));
     JsonObject body = new JsonObject();
     body.addProperty("payload", b64Encoded);
