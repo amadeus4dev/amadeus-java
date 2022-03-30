@@ -35,7 +35,6 @@ dependencies {
     testRuntimeOnly "org.slf4j:slf4j-api:1.7.10"
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-    doclava 'com.google.doclava:doclava:1.0.6'
 }
 
 checkstyle {
@@ -59,9 +58,6 @@ javadoc {
     source = delombok.outputDir
     failOnError = false
     options.memberLevel = JavadocMemberLevel.PUBLIC
-    title = null
-    options.doclet = "com.google.doclava.Doclava"
-    options.docletpath = configurations.doclava.files.asType(List)
 }
 
 cobertura {
