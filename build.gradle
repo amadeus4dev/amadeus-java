@@ -1,9 +1,9 @@
 plugins {
 	id 'java'
     id 'io.franzbecker.gradle-lombok' version '4.0.0'
-    id 'net.saliman.cobertura' version '4.0.0'
     id 'checkstyle'
-    id "com.vanniktech.maven.publish" version '0.18.0'
+    id 'com.vanniktech.maven.publish' version '0.18.0'
+    id 'jacoco'
 }
 
 compileJava {
@@ -55,11 +55,11 @@ javadoc {
     options.memberLevel = JavadocMemberLevel.PUBLIC
 }
 
-cobertura {
-    coverageFormats = ['html', 'xml']
-    coverageIgnores = [ 'java.io.UnsupportedEncodingException', 'com.amadeus.resources.*' ]
-    coverageIgnoreTrivial = true
+jacoco {
+    toolVersion = "0.8.7"
 }
+
+test.finalizedBy jacocoTestReport
 
 test {
     useJUnitPlatform()
