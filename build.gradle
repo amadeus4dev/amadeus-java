@@ -20,10 +20,6 @@ tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
-configurations {
-    doclava
-}
-
 repositories {
     mavenCentral()
 }
@@ -53,7 +49,6 @@ task delombok(type: DelombokTask, dependsOn: compileJava) {
 }
 
 javadoc {
-    dependsOn project.configurations.doclava
     dependsOn delombok
     source = delombok.outputDir
     failOnError = false
