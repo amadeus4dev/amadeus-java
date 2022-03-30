@@ -26,6 +26,14 @@ We are trying to keep 100% coverage, so keep an eye on the `coverage` folder for
 
 To build the jar run `./gradlew clean build`
 
+### Code Coverage
+
+It is necessary to review the Code Coverage
+
+```
+./gradlew clean build jacocoTestReport
+```
+
 ### Using a library locally
 
 To use a library locally as a dependency, simply link to this library in your Gradle project by path:
