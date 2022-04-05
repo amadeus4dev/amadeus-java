@@ -1,23 +1,21 @@
-package com.amadeus.shopping.activities;
+package com.amadeus.shopping;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.assertj.core.api.Java6BDDAssertions.then;
 
 import com.amadeus.Amadeus;
-import com.amadeus.Params;
-import com.amadeus.exceptions.ClientException;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.Activity;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-public class BySquareIT {
+public class ActivityIT {
 
   WireMockServer wireMockServer;
 
@@ -53,49 +51,26 @@ public class BySquareIT {
     wireMockServer.stop();
   }
 
+  @Disabled
   @Test
-  public void given_client_when_call_shopping_activities_by_square_with_params_then_ok()
+  public void given_client_when_call_activities_by_id_with_params_then_ok()
       throws ResponseException {
 
     //Given
+    String id = "4615";
+
     //https://developers.amadeus.com/self-service/category/destination-content/api-doc/points-of-interest/api-reference
-    String address = "/v1/shopping/activities/by-square"
-        + "?east=2.177181&south=41.394582&north=41.397158&west=2.160873";
+    String address = "/v1/shopping/activities/" + id;
     wireMockServer.stubFor(get(urlEqualTo(address))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
         .withStatus(200)
-        .withBodyFile("activities_response_by_square_ok.json")));
-
-    Params params = Params
-        .with("north", "41.397158")
-        .and("west", "2.160873")
-        .and("south", "41.394582")
-        .and("east", "2.177181");
+        .withBodyFile("activities_response_by_id_ok.json")));
 
     //When
-    Activity[] result = amadeus.shopping.activities.bySquare.get(params);
+    Activity result = amadeus.shopping.activity(id).get();
 
     //Then
     then(result).isNotNull();
-  }
-
-  //TODO Review with the team to upgrade the behaviour.
-  @Test
-  public void given_client_when_call_points_of_interest_by_square_without_params_then_ok()
-      throws ResponseException {
-
-    //Given
-    String address = "/v1/shopping/activities/by-square";
-    wireMockServer.stubFor(get(urlEqualTo(address))
-        .willReturn(aResponse().withHeader("Content-Type", "application/json")
-        .withStatus(400)
-        .withBody("")));
-
-    //When
-    //Then
-    assertThatThrownBy(() -> {
-      amadeus.shopping.activities.bySquare.get();
-    }).isInstanceOf(ClientException.class);
   }
 
 }
