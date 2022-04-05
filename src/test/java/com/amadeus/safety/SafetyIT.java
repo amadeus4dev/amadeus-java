@@ -62,7 +62,7 @@ public class SafetyIT {
     wireMockServer.stubFor(get(urlEqualTo(address))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
         .withStatus(200)
-        .withBodyFile("safety_rate_location_by_square_ok.json")));
+        .withBodyFile("safety_rate_location_by_square_response_ok.json")));
 
     Params params = Params
         .with("north", "41.397158")
@@ -85,7 +85,7 @@ public class SafetyIT {
     wireMockServer.stubFor(get(urlEqualTo("/v1/safety/safety-rated-locations/by-square"))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
         .withStatus(200)
-        .withBodyFile("safety_rate_location_by_square_ok.json")));
+        .withBodyFile("safety_rate_location_by_square_response_ok.json")));
 
     //When
     SafePlace[] result = client.safety.safetyRatedLocations.bySquare.get();
@@ -103,7 +103,7 @@ public class SafetyIT {
         + "?latitude=41.39715&longitude=2.160873"))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
         .withStatus(200)
-        .withBodyFile("safety_rate_location_by_square_ok.json")));
+        .withBodyFile("safety_rate_location_by_square_response_ok.json")));
 
     Params params = Params
         .with("latitude", "41.39715")
@@ -124,7 +124,7 @@ public class SafetyIT {
     wireMockServer.stubFor(get(urlEqualTo("/v1/safety/safety-rated-locations/Q930402719"))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
         .withStatus(200)
-        .withBodyFile("safety_rated_location_id_ok.json")));
+        .withBodyFile("safety_rated_location_id_response_ok.json")));
 
     String id = "Q930402719";
 

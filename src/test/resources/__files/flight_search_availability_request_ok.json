@@ -1,0 +1,21 @@
+{
+  "originDestinations": [
+    {
+      "id": "1",
+      "originLocationCode": "MIA",
+      "destinationLocationCode": "ATL",
+      "departureDateTime": {
+        "date": "2021-11-01"
+      }
+    }
+  ],
+  "travelers": [
+    {
+      "id": "1",
+      "travelerType": "ADULT"
+    }
+  ],
+  "sources": [
+    "GDS"
+  ]
+}

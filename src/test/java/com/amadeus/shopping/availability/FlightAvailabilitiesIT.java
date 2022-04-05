@@ -1,4 +1,4 @@
-package com.amadeus.travel;
+package com.amadeus.shopping.availability;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
@@ -8,17 +8,24 @@ import static org.assertj.core.api.Java6BDDAssertions.then;
 
 import com.amadeus.Amadeus;
 import com.amadeus.exceptions.ResponseException;
-import com.amadeus.resources.Prediction;
+import com.amadeus.resources.FlightAvailability;
 import com.github.tomakehurst.wiremock.WireMockServer;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class TripPurposeIT {
+
+
+public class FlightAvailabilitiesIT {
 
   WireMockServer wireMockServer;
 
-  private Amadeus client;
+  private Amadeus amadeus;
 
   /**
    * In every tests, we will authenticate.
@@ -36,7 +43,7 @@ public class TripPurposeIT {
         .withStatus(200)
         .withBodyFile("auth_ok.json")));
 
-    client = Amadeus
+    amadeus = Amadeus
       .builder("DEMO", "DEMO")
       .setHost("localhost")
       .setPort(8080)
@@ -51,22 +58,35 @@ public class TripPurposeIT {
   }
 
   @Test
-  public void given_client_when_call_predictions_trip_purpose_without_params_then_ok()
-      throws ResponseException {
+  public void given_client_when_call_shopping_availabiltiy_flight_with_params_then_ok()
+      throws ResponseException, IOException {
 
     //Given
-    //https://developers.amadeus.com/self-service/category/trip/api-doc/trip-purpose-prediction/api-reference
-    String address = "/v1/travel/predictions/trip-purpose";
-    wireMockServer.stubFor(get(urlEqualTo(address))
+    //https://developers.amadeus.com/blog/check-flight-seat-availability-amadeus-api
+    String address = "/v1/shopping/availability/flight-availabilities";
+    wireMockServer.stubFor(post(urlEqualTo(address))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
         .withStatus(200)
-        .withBodyFile("trip_purpose_response_ok.json")));
+        .withBodyFile("flight_search_availability_response_ok.json")));
+
+    JsonObject request = getRequestFromResources("flight_search_availability_request_ok.json");
 
     //When
-    Prediction result = client.travel.predictions.tripPurpose.get();
+    FlightAvailability[] result = amadeus.shopping.availability.flightAvailabilities.post(request);
 
     //Then
     then(result).isNotNull();
+  }
+
+  private JsonObject getRequestFromResources(String jsonFile) throws IOException {
+
+    final String folder = "__files/";
+
+    ClassLoader classLoader = getClass().getClassLoader();
+    File file = new File(classLoader.getResource(folder + jsonFile).getFile());
+    String jsonString = new String(Files.readAllBytes(file.toPath()));
+
+    return new JsonParser().parse(jsonString).getAsJsonObject();
   }
 
 }
