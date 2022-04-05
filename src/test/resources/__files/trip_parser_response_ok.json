@@ -1,0 +1,65 @@
+{
+  "data": {
+    "trip": {
+      "reference": "JUPDRM",
+      "stakeholders": [
+        {
+          "name": {
+            "firstName": "MIGUEL",
+            "lastName": "TORRES"
+          }
+        }
+      ],
+      "products": [
+        {
+          "air": {
+            "departure": {
+              "localDateTime": "2021-06-16T08:36:00"
+            },
+            "arrival": {
+              "localDateTime": "2021-06-17T00:00:00"
+            },
+            "marketing": {
+              "flightDesignator": {
+                "carrierCode": "CM",
+                "flightNumber": "644"
+              }
+            }
+          }
+        },
+        {
+          "air": {
+            "departure": {
+              "localDateTime": "2021-06-16T11:21:00"
+            },
+            "arrival": {
+              "localDateTime": "2021-06-17T00:00:00"
+            },
+            "marketing": {
+              "flightDesignator": {
+                "carrierCode": "CM",
+                "flightNumber": "426"
+              }
+            }
+          }
+        },
+        {
+          "air": {
+            "departure": {
+              "localDateTime": "2021-06-20T18:56:00"
+            },
+            "arrival": {
+              "localDateTime": "2021-06-21T00:00:00"
+            },
+            "marketing": {
+              "flightDesignator": {
+                "carrierCode": "CM",
+                "flightNumber": "645"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
