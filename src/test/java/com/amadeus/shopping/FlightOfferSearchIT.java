@@ -10,7 +10,7 @@ import static org.assertj.core.api.Java6BDDAssertions.then;
 import com.amadeus.Amadeus;
 import com.amadeus.exceptions.ClientException;
 import com.amadeus.exceptions.ResponseException;
-import com.amadeus.resources.SeatMap;
+import com.amadeus.resources.FlightOfferSearch;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -21,8 +21,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-//https://developers.amadeus.com/self-service/category/air/api-doc/seatmap-display/api-reference
-public class SeatMapsIT {
+//https://developers.amadeus.com/self-service/category/air/api-doc/flight-offers-search/api-reference
+public class FlightOfferSearchIT {
 
   WireMockServer wireMockServer;
 
@@ -59,20 +59,20 @@ public class SeatMapsIT {
   }
 
   @Test
-  public void given_client_when_call_shopping_seatmaps_with_params_then_ok()
+  public void given_client_when_call_shopping_flight_search_with_params_then_ok()
       throws ResponseException, IOException {
 
     //Given
-    String address = "/v1/shopping/seatmaps";
+    String address = "/v2/shopping/flight-offers";
     wireMockServer.stubFor(post(urlEqualTo(address))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
         .withStatus(200)
-        .withBodyFile("seatmap_response_ok.json")));
+        .withBodyFile("flight_search_offer_response_ok.json")));
 
-    JsonObject request = getRequestFromResources("seatmap_request_ok.json");
+    JsonObject request = getRequestFromResources("flight_search_offer_request_ok.json");
 
     //When
-    SeatMap[] result = amadeus.shopping.seatMaps.post(request);
+    FlightOfferSearch[] result = amadeus.shopping.flightOffersSearch.post(request);
 
     //Then
     then(result).isNotNull();
@@ -80,11 +80,11 @@ public class SeatMapsIT {
 
   //TODO Review with the team to upgrade the behaviour.
   @Test
-  public void given_client_when_call_shopping_seatmaps_without_params_then_ok()
+  public void given_client_when_call_shopping_flight_search_without_params_then_ok()
       throws ResponseException {
 
     //Given
-    String address = "/v1/shopping/seatmaps";
+    String address = "/v2/shopping/flight-offers";
     wireMockServer.stubFor(get(urlEqualTo(address))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
         .withStatus(400)
@@ -93,7 +93,7 @@ public class SeatMapsIT {
     //When
     //Then
     assertThatThrownBy(() -> {
-      amadeus.shopping.seatMaps.get();
+      amadeus.shopping.flightOffersSearch.get();
     }).isInstanceOf(ClientException.class);
   }
 
