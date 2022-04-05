@@ -80,6 +80,7 @@ public class BySquareIT {
     then(result.length).isNotEqualTo(0);
   }
 
+  //TODO Review with the team to upgrade the behaviour.
   @Test
   public void given_client_when_call_points_of_interest_by_square_without_params_then_ok()
       throws ResponseException {
