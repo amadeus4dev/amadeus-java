@@ -19,7 +19,7 @@ public class SafetyIT {
 
   WireMockServer wireMockServer;
 
-  private Amadeus client;
+  private Amadeus amadeus;
 
   /**
    * In every tests, we will authenticate.
@@ -37,7 +37,7 @@ public class SafetyIT {
         .withStatus(200)
         .withBodyFile("auth_ok.json")));
 
-    client = Amadeus
+    amadeus = Amadeus
       .builder("DEMO", "DEMO")
       .setHost("localhost")
       .setPort(8080)
@@ -71,7 +71,7 @@ public class SafetyIT {
         .and("east", "2.177181");
 
     //When
-    SafePlace[] result = client.safety.safetyRatedLocations.bySquare.get(params);
+    SafePlace[] result = amadeus.safety.safetyRatedLocations.bySquare.get(params);
 
     //Then
     then(result.length).isNotEqualTo(0);
@@ -88,7 +88,7 @@ public class SafetyIT {
         .withBodyFile("safety_rate_location_by_square_response_ok.json")));
 
     //When
-    SafePlace[] result = client.safety.safetyRatedLocations.bySquare.get();
+    SafePlace[] result = amadeus.safety.safetyRatedLocations.bySquare.get();
 
     //Then
     then(result.length).isNotEqualTo(0);
@@ -110,7 +110,7 @@ public class SafetyIT {
         .and("longitude", "2.160873");
 
     //When
-    SafePlace[] result = client.safety.safetyRatedLocations.get(params);
+    SafePlace[] result = amadeus.safety.safetyRatedLocations.get(params);
 
     //Then
     then(result.length).isNotEqualTo(0);
@@ -129,7 +129,7 @@ public class SafetyIT {
     String id = "Q930402719";
 
     //When
-    SafePlace result = client.safety.safetyRatedLocation(id).get();
+    SafePlace result = amadeus.safety.safetyRatedLocation(id).get();
 
     //Then
     then(result).isNotNull();
