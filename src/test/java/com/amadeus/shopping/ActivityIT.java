@@ -15,6 +15,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+//https://developers.amadeus.com/self-service/category/destination-content/api-doc/tours-and-activities/api-reference
 public class ActivityIT {
 
   WireMockServer wireMockServer;
@@ -51,7 +52,6 @@ public class ActivityIT {
     wireMockServer.stop();
   }
 
-  @Disabled
   @Test
   public void given_client_when_call_activities_by_id_with_params_then_ok()
       throws ResponseException {
@@ -59,7 +59,6 @@ public class ActivityIT {
     //Given
     String id = "4615";
 
-    //https://developers.amadeus.com/self-service/category/destination-content/api-doc/points-of-interest/api-reference
     String address = "/v1/shopping/activities/" + id;
     wireMockServer.stubFor(get(urlEqualTo(address))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
