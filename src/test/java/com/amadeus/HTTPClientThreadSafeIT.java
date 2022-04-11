@@ -1,13 +1,14 @@
 package com.amadeus;
 
+import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
+import static com.github.tomakehurst.wiremock.client.WireMock.get;
+import static com.github.tomakehurst.wiremock.client.WireMock.post;
+import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
+import static java.util.concurrent.CompletableFuture.runAsync;
+import static org.assertj.core.api.BDDAssertions.then;
+
 import com.amadeus.exceptions.ResponseException;
 import com.github.tomakehurst.wiremock.WireMockServer;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -16,13 +17,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
-import static com.github.tomakehurst.wiremock.client.WireMock.get;
-import static com.github.tomakehurst.wiremock.client.WireMock.post;
-import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
-import static java.util.concurrent.CompletableFuture.runAsync;
-import static org.assertj.core.api.BDDAssertions.then;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class HTTPClientThreadSafeIT {
 
@@ -71,14 +70,14 @@ public class HTTPClientThreadSafeIT {
     private final Amadeus amadeus;
     private final Integer color;
 
-    Task(Amadeus amadeus, Integer color){
+    Task(Amadeus amadeus, Integer color) {
       this.amadeus = amadeus;
       this.color = color;
     }
 
     private void process() {
       try {
-        if(esPar(this.color)) {
+        if (esPar(this.color)) {
           Params params = new Params().and("id", "blue");
           Response response = amadeus.get(this.endpoint, params);
           then(response.getResult().get("result").getAsString()).isEqualTo("blue");
@@ -111,13 +110,12 @@ public class HTTPClientThreadSafeIT {
   /**
    * Define a test to prove that in a concurrent scenario,
    * Amadeus object doesn´t suffer a concurrency issue in terms of Shared Mutability
-   *
    * For that purpose, we define 2 fake endpoints where in a deterministic way we expose a response
    * and we define multiple tasks to run un parallel.
    * Every tasks will consume the different endpoints and the idea is to probe that
    * when you call in the same time, different endpoints, data is not shared between Threads.
    *
-   * @throws InterruptedException
+   * @throws InterruptedException A possible error with the Executor
    */
   @Test
   public void given_client_when_call_in_parallel_multiple_times_then_thread_safety()
@@ -145,11 +143,11 @@ public class HTTPClientThreadSafeIT {
     //Then
     AtomicInteger counter = new AtomicInteger(0);
     for (int i = 1; i < 10_000; i++) {
-        List<Task> taskList = new ArrayList<>();
-        taskList.add(new Task(amadeus, counter.incrementAndGet()));
-        taskList.add(new Task(amadeus, counter.incrementAndGet()));
+      List<Task> taskList = new ArrayList<>();
+      taskList.add(new Task(amadeus, counter.incrementAndGet()));
+      taskList.add(new Task(amadeus, counter.incrementAndGet()));
 
-        service.invokeAll(taskList);
+      service.invokeAll(taskList);
     }
 
     service.shutdown();
@@ -159,17 +157,16 @@ public class HTTPClientThreadSafeIT {
   /**
    * Define a test to prove that in a concurrent scenario,
    * Amadeus object doesn´t suffer a concurrency issue in terms of Shared Mutability
-   *
    * For that purpose, we define 2 fake endpoints where in a deterministic way we expose a response
    * and we define multiple tasks to run un parallel.
    * Every tasks will consume the different endpoints and the idea is to probe that
    * when you call in the same time, different endpoints, data is not shared between Threads.
    *
-   * @throws InterruptedException
+   * @throws InterruptedException A possible error with CompletableFuture
    */
   @Test
   public void given_client_when_call_in_parallel_multiple_times_then_thread_safety2()
-    throws InterruptedException {
+      throws InterruptedException {
 
     //Given
 
