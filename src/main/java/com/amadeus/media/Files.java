@@ -1,7 +1,6 @@
 package com.amadeus.media;
 
 import com.amadeus.Amadeus;
-import com.amadeus.media.files.GeneratedPhotos;
 
 /**
  * <p>
@@ -21,19 +20,10 @@ import com.amadeus.media.files.GeneratedPhotos;
  */
 public class Files {
   /**
-   * <p>
-   * A namespaced client for the
-   * <code>/v2/media/files/generated-photos</code> endpoints.
-   * </p>
-   */
-  public GeneratedPhotos generatedPhotos;
-
-  /**
    * Constructor.
    *
    * @hide
    */
   public Files(Amadeus client) {
-    this.generatedPhotos = new GeneratedPhotos(client);
   }
 }
