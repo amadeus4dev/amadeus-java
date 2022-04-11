@@ -13,7 +13,6 @@ import com.amadeus.dutyOfCare.diseases.Covid19AreaReport;
 import com.amadeus.ereputation.HotelSentiments;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.location.analytics.CategoryRatedAreas;
-import com.amadeus.media.files.GeneratedPhotos;
 import com.amadeus.referenceData.Airlines;
 import com.amadeus.referenceData.Location;
 import com.amadeus.referenceData.Locations;
@@ -91,7 +90,6 @@ public class NamespaceTest {
     assertNotNull(client.airport.predictions.onTime);
     assertNotNull(client.booking.flightOrder("XXX"));
     assertNotNull(client.booking.hotelBookings);
-    assertNotNull(client.media.files.generatedPhotos);
     assertNotNull(client.safety.safetyRatedLocations);
     assertNotNull(client.safety.safetyRatedLocations.bySquare);
     assertNotNull(client.safety.safetyRatedLocation("XXX"));
@@ -417,15 +415,6 @@ public class NamespaceTest {
     FlightOrder flightOrder = new FlightOrder(client, "XXX");
     assertNotNull(flightOrder.get());
     assertNotNull(flightOrder.get(params));
-
-    // Testing AI-generated photos
-    Mockito.when(client.get("/v2/media/files/generated-photos", null))
-        .thenReturn(singleResponse);
-    Mockito.when(client.get("/v2/media/files/generated-photos", params))
-        .thenReturn(singleResponse);
-    GeneratedPhotos photo = new GeneratedPhotos(client);
-    assertNotNull(photo.get());
-    assertNotNull(photo.get(params));
 
     // Testing on demand flight status
     Mockito.when(client.get("/v2/schedule/flights", null))
