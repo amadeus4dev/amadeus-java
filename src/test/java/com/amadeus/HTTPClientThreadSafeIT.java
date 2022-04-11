@@ -62,7 +62,7 @@ public class HTTPClientThreadSafeIT {
   }
 
   /**
-   * To avoid duplication, we crate a class that implements both interfaces.
+   * To avoid duplication, we create a class that implements both interfaces.
    */
   public class Task implements Callable<String>, Runnable {
 
