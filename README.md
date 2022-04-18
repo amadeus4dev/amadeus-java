@@ -362,10 +362,6 @@ SeatMap[] seatmap = amadeus.shopping.seatMaps.get(Params
 // The body can be a String version of your JSON or a JsonObject
 SeatMap[] seatmap = amadeus.shopping.seatMaps.post(body);
 
-// AI-Generated Photos
-GeneratedPhoto photo = amadeus.media.files.generatedPhotos.get(Params
-    .with("category", "BEACH"));
-
 // Trip Purpose Prediction
 Prediction tripPurpose = amadeus.travel.predictions.tripPurpose.get(Params
     .with("originLocationCode", "NYC")
