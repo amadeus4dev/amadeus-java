@@ -3,7 +3,7 @@ package com.amadeus.booking;
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
-import static org.assertj.core.api.Java6BDDAssertions.then;
+import static org.assertj.core.api.BDDAssertions.then;
 
 import com.amadeus.Amadeus;
 import com.amadeus.exceptions.ResponseException;
@@ -19,7 +19,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 //https://developers.amadeus.com/self-service/category/air/api-doc/flight-create-orders/api-reference
@@ -59,24 +58,48 @@ public class FlightOrdersIT {
     wireMockServer.stop();
   }
 
-  @Disabled
   @Test
   public void given_client_when_call_predictions_trip_purpose_without_params_then_ok2()
       throws ResponseException, IOException {
 
     //Given
-    String address = "/v2/shopping/flight-offers";
+    String address = "/v2/shopping/flight-offers"; //"/v1/shopping/flight-offers/pricing"; //
     wireMockServer.stubFor(post(urlEqualTo(address))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
         .withStatus(200)
         .withBodyFile("flight_search_offer_response_ok.json")));
 
-    String address2 = "/v1/booking/flight-orders";
+    String address2 = "/v1/shopping/flight-offers/pricing";
     wireMockServer.stubFor(post(urlEqualTo(address2))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
         .withStatus(200)
-        .withBodyFile("trip_purpose_response_ok.json")));
+        .withBodyFile("flight_search_offer_pricing_response_ok.json")));
 
+    String address3 = "/v1/booking/flight-orders";
+    wireMockServer.stubFor(post(urlEqualTo(address3))
+        .willReturn(aResponse().withHeader("Content-Type", "application/json")
+        .withStatus(200)
+        .withBodyFile("flight_create_order_response.json")));
+
+    Traveler[] travelerArray = getTravelerData();
+
+    JsonObject request = getRequestFromResources("flight_search_offer_request_ok.json");
+
+    FlightOfferSearch[] flightOffersSearches = amadeus.shopping.flightOffersSearch.post(request);
+
+    // We price the 2nd flight of the list to confirm the price and the availability
+    FlightPrice flightPricing = amadeus.shopping.flightOffersSearch.pricing.post(
+        flightOffersSearches[1]);
+
+    //When
+    // We book the flight previously priced
+    FlightOrder result = amadeus.booking.flightOrders.post(flightPricing, travelerArray);
+
+    //Then
+    then(result).isNotNull();
+  }
+
+  private Traveler[] getTravelerData() {
     Traveler traveler = new Traveler();
 
     traveler.setId("1");
@@ -104,18 +127,66 @@ public class FlightOrdersIT {
     traveler.setDocuments(document);
 
     Traveler[] travelerArray = new Traveler[1];
+    return  travelerArray;
+  }
+
+  @Test
+  public void given_client_when_call_predictions_trip_purpose_without_params_then_ok3()
+      throws ResponseException, IOException {
+
+    //Given
+    String address = "/v2/shopping/flight-offers"; //"/v1/shopping/flight-offers/pricing"; //
+    wireMockServer.stubFor(post(urlEqualTo(address))
+        .willReturn(aResponse().withHeader("Content-Type", "application/json")
+        .withStatus(200)
+        .withBodyFile("flight_search_offer_response_ok.json")));
+
+    String address3 = "/v1/booking/flight-orders";
+    wireMockServer.stubFor(post(urlEqualTo(address3))
+        .willReturn(aResponse().withHeader("Content-Type", "application/json")
+        .withStatus(200)
+        .withBodyFile("flight_create_order_response.json")));
+
+    Traveler[] travelerArray = getTravelerData();
 
     JsonObject request = getRequestFromResources("flight_search_offer_request_ok.json");
 
     FlightOfferSearch[] flightOffersSearches = amadeus.shopping.flightOffersSearch.post(request);
 
-    // We price the 2nd flight of the list to confirm the price and the availability
-    FlightPrice flightPricing = amadeus.shopping.flightOffersSearch.pricing.post(
-        flightOffersSearches[1]);
+    //When
+    // We book the flight previously priced
+    FlightOrder result = amadeus.booking.flightOrders.post(flightOffersSearches, travelerArray);
+
+    //Then
+    then(result).isNotNull();
+  }
+
+  @Test
+  public void given_client_when_call_predictions_trip_purpose_without_params_then_ok4()
+      throws ResponseException, IOException {
+
+    //Given
+    String address = "/v2/shopping/flight-offers"; //"/v1/shopping/flight-offers/pricing"; //
+    wireMockServer.stubFor(post(urlEqualTo(address))
+        .willReturn(aResponse().withHeader("Content-Type", "application/json")
+        .withStatus(200)
+        .withBodyFile("flight_search_offer_response_ok.json")));
+
+    String address3 = "/v1/booking/flight-orders";
+    wireMockServer.stubFor(post(urlEqualTo(address3))
+        .willReturn(aResponse().withHeader("Content-Type", "application/json")
+        .withStatus(200)
+        .withBodyFile("flight_create_order_response.json")));
+
+    Traveler[] travelerArray = getTravelerData();
+
+    JsonObject request = getRequestFromResources("flight_search_offer_request_ok.json");
+
+    FlightOfferSearch[] flightOffersSearches = amadeus.shopping.flightOffersSearch.post(request);
 
     //When
     // We book the flight previously priced
-    FlightOrder result = amadeus.booking.flightOrders.post(flightPricing, travelerArray);
+    FlightOrder result = amadeus.booking.flightOrders.post(flightOffersSearches[0], travelerArray);
 
     //Then
     then(result).isNotNull();
