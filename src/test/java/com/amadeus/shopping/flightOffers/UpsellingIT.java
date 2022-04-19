@@ -9,17 +9,14 @@ import com.amadeus.Amadeus;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.FlightOfferSearch;
 import com.github.tomakehurst.wiremock.WireMockServer;
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 public class UpsellingIT {
@@ -59,7 +56,7 @@ public class UpsellingIT {
   }
 
   @Test
-  public void given_client_when_call_create_flight_order_with_params_then_ok()
+  public void given_client_when_call_create_flight_order_upselling_with_params_then_ok()
       throws ResponseException, IOException {
 
     //Given
@@ -87,11 +84,6 @@ public class UpsellingIT {
     String jsonString = new String(Files.readAllBytes(file.toPath()));
 
     return new JsonParser().parse(jsonString).getAsJsonObject();
-  }
-
-  private void saveJSON(Object object, String fileName) throws IOException {
-    Gson gson = new Gson();
-    gson.toJson(object, new FileWriter(fileName));
   }
 
 }

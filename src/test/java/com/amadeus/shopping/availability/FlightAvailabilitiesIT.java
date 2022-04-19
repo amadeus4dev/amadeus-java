@@ -1,10 +1,9 @@
 package com.amadeus.shopping.availability;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
-import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
-import static org.assertj.core.api.Java6BDDAssertions.then;
+import static org.assertj.core.api.BDDAssertions.then;
 
 import com.amadeus.Amadeus;
 import com.amadeus.exceptions.ResponseException;
@@ -19,8 +18,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
-
+//https://developers.amadeus.com/blog/check-flight-seat-availability-amadeus-api
 public class FlightAvailabilitiesIT {
 
   WireMockServer wireMockServer;
@@ -62,7 +60,6 @@ public class FlightAvailabilitiesIT {
       throws ResponseException, IOException {
 
     //Given
-    //https://developers.amadeus.com/blog/check-flight-seat-availability-amadeus-api
     String address = "/v1/shopping/availability/flight-availabilities";
     wireMockServer.stubFor(post(urlEqualTo(address))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")

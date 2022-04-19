@@ -3,7 +3,7 @@ package com.amadeus.travel;
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
-import static org.assertj.core.api.Java6BDDAssertions.then;
+import static org.assertj.core.api.BDDAssertions.then;
 
 import com.amadeus.Amadeus;
 import com.amadeus.exceptions.ResponseException;
@@ -18,6 +18,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+//https://developers.amadeus.com/self-service/category/trip/api-doc/trip-parser
 public class TripParserIT {
 
   WireMockServer wireMockServer;
@@ -55,11 +56,10 @@ public class TripParserIT {
   }
 
   @Test
-  public void given_client_when_call_predictions_trip_purpose_without_params_then_ok()
+  public void given_client_when_call_trip_parser_with_params_then_ok()
       throws ResponseException, IOException {
 
     //Given
-    //https://developers.amadeus.com/self-service/category/trip/api-doc/trip-parser
     String address = "/v3/travel/trip-parser";
     wireMockServer.stubFor(post(urlEqualTo(address))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
@@ -76,11 +76,10 @@ public class TripParserIT {
   }
 
   @Test
-  public void given_client_when_call_predictions_trip_purpose_without__then_ok()
+  public void given_client_when_call_trip_parser_with_params_alternative_1_then_ok()
       throws ResponseException, IOException {
 
     //Given
-    //https://developers.amadeus.com/self-service/category/trip/api-doc/trip-parser
     String address = "/v3/travel/trip-parser";
     wireMockServer.stubFor(post(urlEqualTo(address))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")

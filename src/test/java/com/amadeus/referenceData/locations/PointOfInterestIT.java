@@ -4,7 +4,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
-import static org.assertj.core.api.Java6BDDAssertions.then;
+import static org.assertj.core.api.BDDAssertions.then;
 
 import com.amadeus.Amadeus;
 import com.amadeus.exceptions.ResponseException;
@@ -14,6 +14,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+//https://developers.amadeus.com/self-service/category/destination-content/api-doc/points-of-interest/api-reference
 public class PointOfInterestIT {
 
   WireMockServer wireMockServer;
@@ -51,13 +52,12 @@ public class PointOfInterestIT {
   }
 
   @Test
-  public void given_client_when_call_point_of_interest_by_id_without_params_then_ok()
+  public void given_client_when_call_point_of_interest_by_id_then_ok()
       throws ResponseException {
 
     //Given
     String id = "9CB40CB5D0";
 
-    //https://developers.amadeus.com/self-service/category/destination-content/api-doc/points-of-interest/api-reference
     String address = "/v1/reference-data/locations/pois/" + id;
     wireMockServer.stubFor(get(urlEqualTo(address))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")

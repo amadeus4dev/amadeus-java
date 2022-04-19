@@ -4,7 +4,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
-import static org.assertj.core.api.Java6BDDAssertions.then;
+import static org.assertj.core.api.BDDAssertions.then;
 
 import com.amadeus.Amadeus;
 import com.amadeus.exceptions.ResponseException;
@@ -14,6 +14,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+//https://developers.amadeus.com/self-service/category/trip/api-doc/trip-purpose-prediction/api-reference
 public class TripPurposeIT {
 
   WireMockServer wireMockServer;
@@ -55,7 +56,6 @@ public class TripPurposeIT {
       throws ResponseException {
 
     //Given
-    //https://developers.amadeus.com/self-service/category/trip/api-doc/trip-purpose-prediction/api-reference
     String address = "/v1/travel/predictions/trip-purpose";
     wireMockServer.stubFor(get(urlEqualTo(address))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")

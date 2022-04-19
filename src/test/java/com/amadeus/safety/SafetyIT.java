@@ -4,7 +4,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
-import static org.assertj.core.api.Java6BDDAssertions.then;
+import static org.assertj.core.api.BDDAssertions.then;
 
 import com.amadeus.Amadeus;
 import com.amadeus.Params;
@@ -15,6 +15,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+//https://developers.amadeus.com/blog/announcing-safe-place-api-geosure
 public class SafetyIT {
 
   WireMockServer wireMockServer;
@@ -56,7 +57,6 @@ public class SafetyIT {
       throws ResponseException {
 
     //Given
-    //https://developers.amadeus.com/blog/announcing-safe-place-api-geosure
     String address = "/v1/safety/safety-rated-locations/by-square"
         + "?east=2.177181&south=41.394582&north=41.397158&west=2.160873";
     wireMockServer.stubFor(get(urlEqualTo(address))
@@ -98,7 +98,6 @@ public class SafetyIT {
   public void given_client_when_call_safety_rate_location_then_ok() throws ResponseException {
 
     //Given
-    //https://developers.amadeus.com/blog/announcing-safe-place-api-geosure
     wireMockServer.stubFor(get(urlEqualTo("/v1/safety/safety-rated-locations"
         + "?latitude=41.39715&longitude=2.160873"))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
@@ -120,7 +119,6 @@ public class SafetyIT {
   public void given_client_when_call_safety_rate_location_by_id_then_ok() throws ResponseException {
 
     //Given
-    //https://developers.amadeus.com/blog/announcing-safe-place-api-geosure
     wireMockServer.stubFor(get(urlEqualTo("/v1/safety/safety-rated-locations/Q930402719"))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
         .withStatus(200)

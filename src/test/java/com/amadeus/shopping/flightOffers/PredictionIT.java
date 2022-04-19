@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 //https://developers.amadeus.com/self-service/category/air/api-doc/flight-offers-search/api-reference
@@ -57,7 +56,7 @@ public class PredictionIT {
   }
 
   @Test
-  public void given_client_when_call_create_flight_order_with_params_then_ok()
+  public void given_client_when_call_flight_order_prediction_then_ok()
       throws ResponseException, IOException {
 
     //Given

@@ -59,7 +59,7 @@ public class FlightOrdersIT {
   }
 
   @Test
-  public void given_client_when_call_predictions_trip_purpose_without_params_then_ok2()
+  public void given_client_when_call_flight_offers_with_params_then_ok()
       throws ResponseException, IOException {
 
     //Given
@@ -92,7 +92,6 @@ public class FlightOrdersIT {
         flightOffersSearches[1]);
 
     //When
-    // We book the flight previously priced
     FlightOrder result = amadeus.booking.flightOrders.post(flightPricing, travelerArray);
 
     //Then
@@ -131,7 +130,7 @@ public class FlightOrdersIT {
   }
 
   @Test
-  public void given_client_when_call_predictions_trip_purpose_without_params_then_ok3()
+  public void given_client_when_call_flight_offers_with_params_alternative_2_then_ok()
       throws ResponseException, IOException {
 
     //Given
@@ -147,22 +146,21 @@ public class FlightOrdersIT {
         .withStatus(200)
         .withBodyFile("flight_create_order_response.json")));
 
-    Traveler[] travelerArray = getTravelerData();
+    Traveler[] travellers = getTravelerData();
 
     JsonObject request = getRequestFromResources("flight_search_offer_request_ok.json");
 
     FlightOfferSearch[] flightOffersSearches = amadeus.shopping.flightOffersSearch.post(request);
 
     //When
-    // We book the flight previously priced
-    FlightOrder result = amadeus.booking.flightOrders.post(flightOffersSearches, travelerArray);
+    FlightOrder result = amadeus.booking.flightOrders.post(flightOffersSearches, travellers);
 
     //Then
     then(result).isNotNull();
   }
 
   @Test
-  public void given_client_when_call_predictions_trip_purpose_without_params_then_ok4()
+  public void given_client_when_call_flight_offers_with_params_alternative_3_then_ok()
       throws ResponseException, IOException {
 
     //Given
@@ -178,22 +176,21 @@ public class FlightOrdersIT {
         .withStatus(200)
         .withBodyFile("flight_create_order_response.json")));
 
-    Traveler[] travelerArray = getTravelerData();
+    Traveler[] travellers = getTravelerData();
 
     JsonObject request = getRequestFromResources("flight_search_offer_request_ok.json");
 
     FlightOfferSearch[] flightOffersSearches = amadeus.shopping.flightOffersSearch.post(request);
 
     //When
-    // We book the flight previously priced
-    FlightOrder result = amadeus.booking.flightOrders.post(flightOffersSearches[0], travelerArray);
+    FlightOrder result = amadeus.booking.flightOrders.post(flightOffersSearches[0], travellers);
 
     //Then
     then(result).isNotNull();
   }
 
   @Test
-  public void given_client_when_call_create_flight_order_with_params_then_ok()
+  public void given_client_when_call_flight_offers_with_params_alternative_4_then_ok()
       throws ResponseException, IOException {
 
     //Given

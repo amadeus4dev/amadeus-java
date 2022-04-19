@@ -5,7 +5,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.assertj.core.api.Java6BDDAssertions.then;
+import static org.assertj.core.api.BDDAssertions.then;
 
 import com.amadeus.Amadeus;
 import com.amadeus.Params;
@@ -17,6 +17,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+//https://developers.amadeus.com/self-service/category/destination-content/api-doc/points-of-interest/api-reference
 public class BySquareIT {
 
   WireMockServer wireMockServer;
@@ -58,7 +59,6 @@ public class BySquareIT {
       throws ResponseException {
 
     //Given
-    //https://developers.amadeus.com/self-service/category/destination-content/api-doc/points-of-interest/api-reference
     String address = "/v1/shopping/activities/by-square"
         + "?east=2.177181&south=41.394582&north=41.397158&west=2.160873";
     wireMockServer.stubFor(get(urlEqualTo(address))

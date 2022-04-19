@@ -23,6 +23,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+//https://developers.amadeus.com/self-service/category/air/api-doc/branded-fares-upsell/api-reference
 public class PricingIT {
 
   WireMockServer wireMockServer;
@@ -60,7 +61,7 @@ public class PricingIT {
   }
 
   @Test
-  public void given_client_when_call_create_flight_order_with_params_then_ok()
+  public void given_client_when_call_create_flight_order_pricing_with_params_then_ok()
       throws ResponseException, IOException {
 
     //Given
@@ -86,7 +87,7 @@ public class PricingIT {
   }
 
   @Test
-  public void given_client_when_call_create_flight_order_with_params_then_ok5()
+  public void given_client_when_call_create_flight_order_pricing_with_params_alternative_2_then_ok()
       throws ResponseException, IOException {
 
     //Given
@@ -114,7 +115,7 @@ public class PricingIT {
   }
 
   @Test
-  public void given_client_when_call_create_flight_order_with_params_then_ok2()
+  public void given_client_when_call_create_flight_order_pricing_with_params_alternative_3_then_ok()
       throws ResponseException, IOException {
 
     //Given
@@ -134,7 +135,7 @@ public class PricingIT {
   }
 
   @Test
-  public void given_client_when_call_create_flight_order_with_params_then_ok3()
+  public void given_client_when_call_create_flight_order_pricing_with_params_alternative_4_then_ok()
       throws ResponseException, IOException {
 
     //Given
@@ -155,7 +156,7 @@ public class PricingIT {
   }
 
   @Test
-  public void given_client_when_call_create_flight_order_with_params_then_ok4()
+  public void given_client_when_call_create_flight_order_pricing_with_params_alternative_5_then_ok()
       throws ResponseException, IOException {
 
     //Given
@@ -177,7 +178,7 @@ public class PricingIT {
   }
 
   @Test
-  public void given_client_when_call_create_flight_order_with_params_then_ok6()
+  public void given_client_when_call_create_flight_order_pricing_with_params_alternative_6_then_ok()
       throws ResponseException, IOException {
 
     //Given
@@ -209,7 +210,7 @@ public class PricingIT {
   }
 
   @Test
-  public void given_client_when_call_create_flight_order_with_params_then_ok7()
+  public void given_client_when_call_create_flight_order_pricing_with_params_alternative_7_then_ok()
       throws ResponseException, IOException {
 
     //Given
