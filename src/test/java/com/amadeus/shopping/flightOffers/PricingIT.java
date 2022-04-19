@@ -9,6 +9,7 @@ import com.amadeus.Amadeus;
 import com.amadeus.Params;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.FlightOfferSearch;
+import com.amadeus.resources.FlightPayment;
 import com.amadeus.resources.FlightPrice;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.google.gson.Gson;
@@ -74,14 +75,164 @@ public class PricingIT {
     Gson gson = new Gson();
     FlightOfferSearch flightOffersSearches = gson.fromJson(request.toString(),
         FlightOfferSearch.class);
+    Params params = Params.with("include", "detailed-fare-rules");
 
     //When
-
-    // We price the 2nd flight of the list to confirm the price and the availability
     FlightPrice result = amadeus.shopping.flightOffersSearch.pricing.post(
-        flightOffersSearches,
-        Params.with("include", "detailed-fare-rules")
-    );
+        flightOffersSearches, params);
+
+    //Then
+    then(result).isNotNull();
+  }
+
+  @Test
+  public void given_client_when_call_create_flight_order_with_params_then_ok5()
+      throws ResponseException, IOException {
+
+    //Given
+    String address = "/v1/shopping/flight-offers/pricing?include=detailed-fare-rules";
+    wireMockServer.stubFor(post(urlEqualTo(address))
+        .willReturn(aResponse().withHeader("Content-Type", "application/json")
+        .withStatus(200)
+        .withBodyFile("flight_search_offer_pricing_response_ok.json")));
+
+    JsonObject request = getRequestFromResources("flight_search_offer_response_ok.json");
+
+    Gson gson = new Gson();
+    FlightOfferSearch flightOffersSearches = gson.fromJson(request.toString(),
+        FlightOfferSearch.class);
+    Params params = Params.with("include", "detailed-fare-rules");
+    FlightOfferSearch[] array = new FlightOfferSearch[1];
+    array[0] = flightOffersSearches;
+
+    //When
+    FlightPrice result = amadeus.shopping.flightOffersSearch.pricing.post(
+        array, params);
+
+    //Then
+    then(result).isNotNull();
+  }
+
+  @Test
+  public void given_client_when_call_create_flight_order_with_params_then_ok2()
+      throws ResponseException, IOException {
+
+    //Given
+    String address = "/v1/shopping/flight-offers/pricing";
+    wireMockServer.stubFor(post(urlEqualTo(address))
+        .willReturn(aResponse().withHeader("Content-Type", "application/json")
+        .withStatus(200)
+        .withBodyFile("flight_search_offer_pricing_response_ok.json")));
+
+    JsonObject request = getRequestFromResources("flight_search_offer_response_ok.json");
+
+    //When
+    FlightPrice result = amadeus.shopping.flightOffersSearch.pricing.post(request);
+
+    //Then
+    then(result).isNotNull();
+  }
+
+  @Test
+  public void given_client_when_call_create_flight_order_with_params_then_ok3()
+      throws ResponseException, IOException {
+
+    //Given
+    String address = "/v1/shopping/flight-offers/pricing?include=detailed-fare-rules";
+    wireMockServer.stubFor(post(urlEqualTo(address))
+        .willReturn(aResponse().withHeader("Content-Type", "application/json")
+        .withStatus(200)
+        .withBodyFile("flight_search_offer_pricing_response_ok.json")));
+
+    JsonObject request = getRequestFromResources("flight_search_offer_response_ok.json");
+    Params params = Params.with("include", "detailed-fare-rules");
+
+    //When
+    FlightPrice result = amadeus.shopping.flightOffersSearch.pricing.post(request, params);
+
+    //Then
+    then(result).isNotNull();
+  }
+
+  @Test
+  public void given_client_when_call_create_flight_order_with_params_then_ok4()
+      throws ResponseException, IOException {
+
+    //Given
+    String address = "/v1/shopping/flight-offers/pricing?include=detailed-fare-rules";
+    wireMockServer.stubFor(post(urlEqualTo(address))
+        .willReturn(aResponse().withHeader("Content-Type", "application/json")
+        .withStatus(200)
+        .withBodyFile("flight_search_offer_pricing_response_ok.json")));
+
+    JsonObject request = getRequestFromResources("flight_search_offer_response_ok.json");
+    Params params = Params.with("include", "detailed-fare-rules");
+
+    //When
+    FlightPrice result = amadeus.shopping.flightOffersSearch.pricing.post(
+        request.toString(), params);
+
+    //Then
+    then(result).isNotNull();
+  }
+
+  @Test
+  public void given_client_when_call_create_flight_order_with_params_then_ok6()
+      throws ResponseException, IOException {
+
+    //Given
+    String address = "/v1/shopping/flight-offers/pricing";
+    wireMockServer.stubFor(post(urlEqualTo(address))
+        .willReturn(aResponse().withHeader("Content-Type", "application/json")
+        .withStatus(200)
+        .withBodyFile("flight_search_offer_pricing_response_ok.json")));
+
+    JsonObject request = getRequestFromResources("flight_search_offer_response_ok.json");
+
+    Gson gson = new Gson();
+    FlightOfferSearch flightOffersSearches = gson.fromJson(request.toString(),
+        FlightOfferSearch.class);
+    FlightOfferSearch[] array = new FlightOfferSearch[1];
+    array[0] = flightOffersSearches;
+
+    //TODO: This object has a design issue
+    JsonObject request2 = getRequestFromResources("flightPayment_ok.json");
+    FlightPayment flightPayment = gson.fromJson(request2.toString(),
+        FlightPayment.class);
+
+    //When
+    FlightPrice result = amadeus.shopping.flightOffersSearch.pricing.post(
+        array, flightPayment);
+
+    //Then
+    then(result).isNotNull();
+  }
+
+  @Test
+  public void given_client_when_call_create_flight_order_with_params_then_ok7()
+      throws ResponseException, IOException {
+
+    //Given
+    String address = "/v1/shopping/flight-offers/pricing";
+    wireMockServer.stubFor(post(urlEqualTo(address))
+        .willReturn(aResponse().withHeader("Content-Type", "application/json")
+        .withStatus(200)
+        .withBodyFile("flight_search_offer_pricing_response_ok.json")));
+
+    JsonObject request = getRequestFromResources("flight_search_offer_response_ok.json");
+
+    Gson gson = new Gson();
+    FlightOfferSearch flightOffersSearch = gson.fromJson(request.toString(),
+        FlightOfferSearch.class);
+
+    //TODO: This object has a design issue
+    JsonObject request2 = getRequestFromResources("flightPayment_ok.json");
+    FlightPayment flightPayment = gson.fromJson(request2.toString(),
+        FlightPayment.class);
+
+    //When
+    FlightPrice result = amadeus.shopping.flightOffersSearch.pricing.post(
+        flightOffersSearch, flightPayment);
 
     //Then
     then(result).isNotNull();

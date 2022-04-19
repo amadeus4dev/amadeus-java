@@ -58,7 +58,6 @@ public class UpsellingIT {
     wireMockServer.stop();
   }
 
-  @Disabled
   @Test
   public void given_client_when_call_create_flight_order_with_params_then_ok()
       throws ResponseException, IOException {
