@@ -49,7 +49,7 @@ public class Upselling {
    */
   public FlightOfferSearch[] post(JsonObject body) throws ResponseException {
     Response response = client.post("/v1/shopping/flight-offers/upselling", body);
-    return (FlightOfferSearch[]) Resource.fromArray(response, FlightOfferSearch.class);
+    return (FlightOfferSearch[]) Resource.fromArray(response, FlightOfferSearch[].class);
   }
 
   /**
