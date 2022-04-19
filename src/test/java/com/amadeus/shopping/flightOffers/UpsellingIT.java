@@ -9,18 +9,20 @@ import com.amadeus.Amadeus;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.FlightOfferSearch;
 import com.github.tomakehurst.wiremock.WireMockServer;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-//https://developers.amadeus.com/self-service/category/air/api-doc/flight-offers-search/api-reference
-public class PredictionIT {
+public class UpsellingIT {
 
   WireMockServer wireMockServer;
 
@@ -56,21 +58,22 @@ public class PredictionIT {
     wireMockServer.stop();
   }
 
+  @Disabled
   @Test
   public void given_client_when_call_create_flight_order_with_params_then_ok()
       throws ResponseException, IOException {
 
     //Given
-    String address = "/v2/shopping/flight-offers/prediction";
+    String address = "/v1/shopping/flight-offers/upselling";
     wireMockServer.stubFor(post(urlEqualTo(address))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
         .withStatus(200)
-        .withBodyFile("flight_search_offer_response_ok.json")));
+        .withBodyFile("flight_search_offer_upselling_response_ok.json")));
 
-    JsonObject request = getRequestFromResources("flight_search_offer_request_ok.json");
+    JsonObject request = getRequestFromResources("flight_search_offer_upselling_request_ok.json");
 
     //When
-    FlightOfferSearch[] result = amadeus.shopping.flightOffers.prediction.post(request);
+    FlightOfferSearch[] result = amadeus.shopping.flightOffers.upselling.post(request);
 
     //Then
     then(result).isNotNull();
@@ -85,6 +88,11 @@ public class PredictionIT {
     String jsonString = new String(Files.readAllBytes(file.toPath()));
 
     return new JsonParser().parse(jsonString).getAsJsonObject();
+  }
+
+  private void saveJSON(Object object, String fileName) throws IOException {
+    Gson gson = new Gson();
+    gson.toJson(object, new FileWriter(fileName));
   }
 
 }

@@ -6,21 +6,23 @@ import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 import static org.assertj.core.api.BDDAssertions.then;
 
 import com.amadeus.Amadeus;
+import com.amadeus.Params;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.FlightOfferSearch;
+import com.amadeus.resources.FlightPrice;
 import com.github.tomakehurst.wiremock.WireMockServer;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-//https://developers.amadeus.com/self-service/category/air/api-doc/flight-offers-search/api-reference
-public class PredictionIT {
+public class PricingIT {
 
   WireMockServer wireMockServer;
 
@@ -61,16 +63,25 @@ public class PredictionIT {
       throws ResponseException, IOException {
 
     //Given
-    String address = "/v2/shopping/flight-offers/prediction";
+    String address = "/v1/shopping/flight-offers/pricing?include=detailed-fare-rules";
     wireMockServer.stubFor(post(urlEqualTo(address))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
         .withStatus(200)
-        .withBodyFile("flight_search_offer_response_ok.json")));
+        .withBodyFile("flight_search_offer_pricing_response_ok.json")));
 
-    JsonObject request = getRequestFromResources("flight_search_offer_request_ok.json");
+    JsonObject request = getRequestFromResources("flight_search_offer_response_ok.json");
+
+    Gson gson = new Gson();
+    FlightOfferSearch flightOffersSearches = gson.fromJson(request.toString(),
+        FlightOfferSearch.class);
 
     //When
-    FlightOfferSearch[] result = amadeus.shopping.flightOffers.prediction.post(request);
+
+    // We price the 2nd flight of the list to confirm the price and the availability
+    FlightPrice result = amadeus.shopping.flightOffersSearch.pricing.post(
+        flightOffersSearches,
+        Params.with("include", "detailed-fare-rules")
+    );
 
     //Then
     then(result).isNotNull();
