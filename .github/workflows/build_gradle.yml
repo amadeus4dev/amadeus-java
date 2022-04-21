@@ -26,3 +26,8 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
+    - name: OAS Validation
+      shell: bash
+      run: |
+        curl -Ls https://sh.jbang.dev | bash -s - app setup
+        ~/.jbang/bin/jbang .github/VersionLibraryVerifier.java    
