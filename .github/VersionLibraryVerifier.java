@@ -20,13 +20,17 @@ import java.util.List;
  * - /src/main/java/com/amadeus/Amadeus.java
  *
  * The versions of the library continues with the same value.
+ *
+ * How to run in local:
+ * jbang VersionLibraryVerifier.java ./
  */
 public class VersionLibraryVerifier {
 
     public static void main(String[] args) throws IOException {
 
+        String specDir = args[0];
         File userDirPath = new File(System.getProperty("user.dir"));
-        String specPath = userDirPath.getParent() + "/";
+        String specPath = userDirPath.getParent() + "/" + specDir;
 
         try {
             List<String> allLines = Files.readAllLines(Paths.get(specPath + "/src/main/java/com/amadeus/Amadeus.java"));

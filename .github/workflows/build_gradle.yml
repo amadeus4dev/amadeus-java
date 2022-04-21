@@ -30,4 +30,4 @@ jobs:
       shell: bash
       run: |
         curl -Ls https://sh.jbang.dev | bash -s - app setup
-        ~/.jbang/bin/jbang .github/VersionLibraryVerifier.java    
+        ~/.jbang/bin/jbang .github/VersionLibraryVerifier.java amadeus-java/
