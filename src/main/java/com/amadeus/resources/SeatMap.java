@@ -80,7 +80,7 @@ public class SeatMap extends Resource {
     private @Getter String spaceUnit;
     private @Getter String tilt;
     private @Getter String amenityType;
-    private @Getter Media medias;
+    private @Getter Media[] medias;
 
   }
 

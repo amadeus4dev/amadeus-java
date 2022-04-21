@@ -78,6 +78,26 @@ public class SeatMapsIT {
     then(result).isNotNull();
   }
 
+  @Test
+  public void given_client_when_call_shopping_seatmaps_with_params_then_deserialize_medias_ok()
+      throws ResponseException, IOException {
+
+    //Given
+    String address = "/v1/shopping/seatmaps";
+    wireMockServer.stubFor(post(urlEqualTo(address))
+        .willReturn(aResponse().withHeader("Content-Type", "application/json")
+        .withStatus(200)
+        .withBodyFile("seatmap_response_ok2.json")));
+
+    JsonObject request = getRequestFromResources("seatmap_request_ok.json");
+
+    //When
+    SeatMap[] result = amadeus.shopping.seatMaps.post(request);
+
+    //Then
+    then(result).isNotNull();
+  }
+
   //TODO Review with the team to upgrade the behaviour.
   @Test
   public void given_client_when_call_shopping_seatmaps_without_params_then_ok()
