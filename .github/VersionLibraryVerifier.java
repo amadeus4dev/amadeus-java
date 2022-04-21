@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.FileReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import static java.util.function.Predicate.not;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -26,8 +25,8 @@ public class VersionLibraryVerifier {
 
     public static void main(String[] args) throws IOException {
 
-        var userDirPath = new File(System.getProperty("user.dir"));
-        var specPath = userDirPath.getParent() + "/";
+        File userDirPath = new File(System.getProperty("user.dir"));
+        String specPath = userDirPath.getParent() + "/";
 
         try {
             List<String> allLines = Files.readAllLines(Paths.get(specPath + "/src/main/java/com/amadeus/Amadeus.java"));
