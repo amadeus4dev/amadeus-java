@@ -45,13 +45,20 @@ public class AmadeusTest {
     assertEquals(amadeus.getConfiguration().getHost(), "my.custom.host.com");
   }
 
-  /*
-  @Test(expected = NullPointerException.class)
+  @Test
   public void testBuilderWithInvalidEnvironment() {
-    Map<String,String> environment = System.getenv();
-    assertTrue("should return a Configuration",
-            Amadeus.builder(environment).build() instanceof Amadeus);
-  }*/
+
+    //Given
+    Map<String,String> environment = new HashMap<>(); //System.getenv();
+    environment.put("AMADEUS_CLIENT_ID", "MY_CLIENT_ID");
+    environment.put("AMADEUS_CLIENT_SECRET", "MY_CLIENT_SECRET");
+
+    //When
+    boolean result = Amadeus.builder(environment).build() instanceof Amadeus;
+
+    //Then
+    assertTrue(result, "should return a Configuration");
+  }
 
   @Test public void testVersion() {
     assertEquals(Amadeus.VERSION, "5.9.0", "should have a version number");
