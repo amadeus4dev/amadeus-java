@@ -1,0 +1,135 @@
+{
+  "data": {
+    "type": "flight-offers-upselling",
+    "flightOffers": [
+      {
+        "type": "flight-offer",
+        "id": "1",
+        "source": "GDS",
+        "instantTicketingRequired": false,
+        "nonHomogeneous": false,
+        "oneWay": false,
+        "lastTicketingDate": "2022-06-12",
+        "numberOfBookableSeats": 3,
+        "itineraries": [
+          {
+            "duration": "PT6H10M",
+            "segments": [
+              {
+                "departure": {
+                  "iataCode": "MAD",
+                  "terminal": "1",
+                  "at": "2022-06-22T17:40:00"
+                },
+                "arrival": {
+                  "iataCode": "FCO",
+                  "terminal": "1",
+                  "at": "2022-06-22T20:05:00"
+                },
+                "carrierCode": "AZ",
+                "number": "63",
+                "aircraft": {
+                  "code": "32S"
+                },
+                "operating": {
+                  "carrierCode": "AZ"
+                },
+                "duration": "PT2H25M",
+                "id": "15",
+                "numberOfStops": 0,
+                "blacklistedInEU": false
+              },
+              {
+                "departure": {
+                  "iataCode": "FCO",
+                  "terminal": "1",
+                  "at": "2022-06-22T21:50:00"
+                },
+                "arrival": {
+                  "iataCode": "ATH",
+                  "at": "2022-06-23T00:50:00"
+                },
+                "carrierCode": "AZ",
+                "number": "722",
+                "aircraft": {
+                  "code": "32S"
+                },
+                "operating": {
+                  "carrierCode": "AZ"
+                },
+                "duration": "PT2H",
+                "id": "16",
+                "numberOfStops": 0,
+                "blacklistedInEU": false
+              }
+            ]
+          }
+        ],
+        "price": {
+          "currency": "EUR",
+          "total": "88.90",
+          "base": "18.00",
+          "fees": [
+            {
+              "amount": "0.00",
+              "type": "SUPPLIER"
+            },
+            {
+              "amount": "0.00",
+              "type": "TICKETING"
+            }
+          ],
+          "grandTotal": "88.90",
+          "additionalServices": [
+            {
+              "amount": "40.00",
+              "type": "CHECKED_BAGS"
+            }
+          ]
+        },
+        "pricingOptions": {
+          "fareType": [
+            "PUBLISHED"
+          ],
+          "includedCheckedBagsOnly": false
+        },
+        "validatingAirlineCodes": [
+          "AZ"
+        ],
+        "travelerPricings": [
+          {
+            "travelerId": "1",
+            "fareOption": "STANDARD",
+            "travelerType": "ADULT",
+            "price": {
+              "currency": "EUR",
+              "total": "88.90",
+              "base": "18.00"
+            },
+            "fareDetailsBySegment": [
+              {
+                "segmentId": "15",
+                "cabin": "ECONOMY",
+                "fareBasis": "OOLGEU1",
+                "class": "O",
+                "includedCheckedBags": {
+                  "quantity": 0
+                }
+              },
+              {
+                "segmentId": "16",
+                "cabin": "ECONOMY",
+                "fareBasis": "OOLGEU1",
+                "brandedFare": "ECOLIGHT",
+                "class": "O",
+                "includedCheckedBags": {
+                  "quantity": 0
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

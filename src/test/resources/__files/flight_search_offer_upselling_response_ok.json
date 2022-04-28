@@ -1,0 +1,1103 @@
+{
+  "meta": {
+    "count": 4
+  },
+  "data": [
+    {
+      "type": "flight-offer",
+      "id": "2",
+      "source": "GDS",
+      "instantTicketingRequired": false,
+      "paymentCardRequired": false,
+      "lastTicketingDate": "2022-06-22",
+      "itineraries": [
+        {
+          "segments": [
+            {
+              "departure": {
+                "iataCode": "MAD",
+                "terminal": "1",
+                "at": "2022-06-22T17:40:00"
+              },
+              "arrival": {
+                "iataCode": "FCO",
+                "at": "2022-06-22T20:05:00"
+              },
+              "carrierCode": "AZ",
+              "number": "63",
+              "aircraft": {
+                "code": "32S"
+              },
+              "operating": {
+                "carrierCode": "AZ"
+              },
+              "duration": "PT2H25M",
+              "id": "15",
+              "numberOfStops": 0,
+              "blacklistedInEU": false
+            },
+            {
+              "departure": {
+                "iataCode": "FCO",
+                "terminal": "1",
+                "at": "2022-06-22T21:50:00"
+              },
+              "arrival": {
+                "iataCode": "ATH",
+                "at": "2022-06-23T00:50:00"
+              },
+              "carrierCode": "AZ",
+              "number": "722",
+              "aircraft": {
+                "code": "32S"
+              },
+              "operating": {
+                "carrierCode": "AZ"
+              },
+              "duration": "PT2H",
+              "id": "16",
+              "numberOfStops": 0,
+              "blacklistedInEU": false
+            }
+          ]
+        }
+      ],
+      "price": {
+        "currency": "EUR",
+        "total": "169.90",
+        "base": "56.00",
+        "fees": [
+          {
+            "amount": "0.00",
+            "type": "TICKETING"
+          }
+        ],
+        "grandTotal": "169.90"
+      },
+      "pricingOptions": {
+        "fareType": [
+          "PUBLISHED"
+        ],
+        "includedCheckedBagsOnly": false,
+        "refundableFare": false,
+        "noRestrictionFare": false,
+        "noPenaltyFare": false
+      },
+      "validatingAirlineCodes": [
+        "AZ"
+      ],
+      "travelerPricings": [
+        {
+          "travelerId": "1",
+          "fareOption": "STANDARD",
+          "travelerType": "ADULT",
+          "price": {
+            "currency": "EUR",
+            "total": "169.90",
+            "base": "56.00",
+            "taxes": [
+              {
+                "amount": "3.27",
+                "code": "QV"
+              },
+              {
+                "amount": "16.95",
+                "code": "YQ"
+              },
+              {
+                "amount": "0.63",
+                "code": "OG"
+              },
+              {
+                "amount": "64.00",
+                "code": "YR"
+              },
+              {
+                "amount": "14.48",
+                "code": "JD"
+              },
+              {
+                "amount": "7.50",
+                "code": "HB"
+              },
+              {
+                "amount": "5.60",
+                "code": "IT"
+              },
+              {
+                "amount": "1.47",
+                "code": "MJ"
+              }
+            ]
+          },
+          "fareDetailsBySegment": [
+            {
+              "segmentId": "15",
+              "cabin": "ECONOMY",
+              "fareBasis": "QOLGEU1",
+              "brandedFare": "ECOLIGHT",
+              "class": "Q",
+              "includedCheckedBags": {
+                "quantity": 0
+              },
+              "amenities": [
+                {
+                  "code": "057",
+                  "description": "MILEAGE ACCRUAL",
+                  "isChargeable": false,
+                  "amenityType": "BRANDED_FARES"
+                },
+                {
+                  "code": "0MQ",
+                  "description": "CARRY8KG 18LB UPTO 45LI 115LCM",
+                  "isChargeable": false,
+                  "amenityType": "BAGGAGE"
+                },
+                {
+                  "code": "0AT",
+                  "description": "SNACK",
+                  "isChargeable": false,
+                  "amenityType": "MEAL"
+                },
+                {
+                  "code": "0FA",
+                  "description": "UP TO 50LB23KG62LI158LCM",
+                  "isChargeable": true,
+                  "amenityType": "BAGGAGE"
+                },
+                {
+                  "code": "0BX",
+                  "description": "LOUNGE ACCESS",
+                  "isChargeable": true,
+                  "amenityType": "LOUNGE"
+                },
+                {
+                  "code": "0LW",
+                  "description": "FAST TRACK",
+                  "isChargeable": true,
+                  "amenityType": "TRAVEL_SERVICES"
+                },
+                {
+                  "code": "0B5",
+                  "description": "ADVANCE SEAT RESERVATION",
+                  "isChargeable": true,
+                  "amenityType": "PRE_RESERVED_SEAT"
+                }
+              ]
+            },
+            {
+              "segmentId": "16",
+              "cabin": "ECONOMY",
+              "fareBasis": "QOLGEU1",
+              "brandedFare": "ECOLIGHT",
+              "class": "Q",
+              "includedCheckedBags": {
+                "quantity": 0
+              },
+              "amenities": [
+                {
+                  "code": "057",
+                  "description": "MILEAGE ACCRUAL",
+                  "isChargeable": false,
+                  "amenityType": "BRANDED_FARES"
+                },
+                {
+                  "code": "0MQ",
+                  "description": "CARRY8KG 18LB UPTO 45LI 115LCM",
+                  "isChargeable": false,
+                  "amenityType": "BAGGAGE"
+                },
+                {
+                  "code": "0AT",
+                  "description": "SNACK",
+                  "isChargeable": false,
+                  "amenityType": "MEAL"
+                },
+                {
+                  "code": "0FA",
+                  "description": "UP TO 50LB23KG62LI158LCM",
+                  "isChargeable": true,
+                  "amenityType": "BAGGAGE"
+                },
+                {
+                  "code": "0BX",
+                  "description": "LOUNGE ACCESS",
+                  "isChargeable": true,
+                  "amenityType": "LOUNGE"
+                },
+                {
+                  "code": "0LW",
+                  "description": "FAST TRACK",
+                  "isChargeable": true,
+                  "amenityType": "TRAVEL_SERVICES"
+                },
+                {
+                  "code": "0B5",
+                  "description": "ADVANCE SEAT RESERVATION",
+                  "isChargeable": true,
+                  "amenityType": "PRE_RESERVED_SEAT"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "flight-offer",
+      "id": "3",
+      "source": "GDS",
+      "instantTicketingRequired": false,
+      "paymentCardRequired": false,
+      "lastTicketingDate": "2022-06-22",
+      "itineraries": [
+        {
+          "segments": [
+            {
+              "departure": {
+                "iataCode": "MAD",
+                "terminal": "1",
+                "at": "2022-06-22T17:40:00"
+              },
+              "arrival": {
+                "iataCode": "FCO",
+                "at": "2022-06-22T20:05:00"
+              },
+              "carrierCode": "AZ",
+              "number": "63",
+              "aircraft": {
+                "code": "32S"
+              },
+              "operating": {
+                "carrierCode": "AZ"
+              },
+              "duration": "PT2H25M",
+              "id": "15",
+              "numberOfStops": 0,
+              "blacklistedInEU": false
+            },
+            {
+              "departure": {
+                "iataCode": "FCO",
+                "terminal": "1",
+                "at": "2022-06-22T21:50:00"
+              },
+              "arrival": {
+                "iataCode": "ATH",
+                "at": "2022-06-23T00:50:00"
+              },
+              "carrierCode": "AZ",
+              "number": "722",
+              "aircraft": {
+                "code": "32S"
+              },
+              "operating": {
+                "carrierCode": "AZ"
+              },
+              "duration": "PT2H",
+              "id": "16",
+              "numberOfStops": 0,
+              "blacklistedInEU": false
+            }
+          ]
+        }
+      ],
+      "price": {
+        "currency": "EUR",
+        "total": "194.90",
+        "base": "81.00",
+        "fees": [
+          {
+            "amount": "0.00",
+            "type": "TICKETING"
+          }
+        ],
+        "grandTotal": "194.90"
+      },
+      "pricingOptions": {
+        "fareType": [
+          "PUBLISHED"
+        ],
+        "includedCheckedBagsOnly": false,
+        "refundableFare": false,
+        "noRestrictionFare": false,
+        "noPenaltyFare": false
+      },
+      "validatingAirlineCodes": [
+        "AZ"
+      ],
+      "travelerPricings": [
+        {
+          "travelerId": "1",
+          "fareOption": "STANDARD",
+          "travelerType": "ADULT",
+          "price": {
+            "currency": "EUR",
+            "total": "194.90",
+            "base": "81.00",
+            "taxes": [
+              {
+                "amount": "3.27",
+                "code": "QV"
+              },
+              {
+                "amount": "16.95",
+                "code": "YQ"
+              },
+              {
+                "amount": "0.63",
+                "code": "OG"
+              },
+              {
+                "amount": "64.00",
+                "code": "YR"
+              },
+              {
+                "amount": "14.48",
+                "code": "JD"
+              },
+              {
+                "amount": "7.50",
+                "code": "HB"
+              },
+              {
+                "amount": "5.60",
+                "code": "IT"
+              },
+              {
+                "amount": "1.47",
+                "code": "MJ"
+              }
+            ]
+          },
+          "fareDetailsBySegment": [
+            {
+              "segmentId": "15",
+              "cabin": "ECONOMY",
+              "fareBasis": "QOCLEU1",
+              "brandedFare": "ECOCLASSIC",
+              "class": "Q",
+              "includedCheckedBags": {
+                "quantity": 1
+              },
+              "amenities": [
+                {
+                  "code": "0FA",
+                  "description": "UP TO 50LB23KG62LI158LCM",
+                  "isChargeable": false,
+                  "amenityType": "BAGGAGE"
+                },
+                {
+                  "code": "06I",
+                  "description": "CHANGE BEFORE DEPARTURE",
+                  "isChargeable": false,
+                  "amenityType": "BRANDED_FARES"
+                },
+                {
+                  "code": "06J",
+                  "description": "CHANGE AFTER DEPARTURE",
+                  "isChargeable": false,
+                  "amenityType": "BRANDED_FARES"
+                },
+                {
+                  "code": "057",
+                  "description": "MILEAGE ACCRUAL",
+                  "isChargeable": false,
+                  "amenityType": "BRANDED_FARES"
+                },
+                {
+                  "code": "0MQ",
+                  "description": "CARRY8KG 18LB UPTO 45LI 115LCM",
+                  "isChargeable": false,
+                  "amenityType": "BAGGAGE"
+                },
+                {
+                  "code": "0AT",
+                  "description": "SNACK",
+                  "isChargeable": false,
+                  "amenityType": "MEAL"
+                },
+                {
+                  "code": "0BX",
+                  "description": "LOUNGE ACCESS",
+                  "isChargeable": true,
+                  "amenityType": "LOUNGE"
+                },
+                {
+                  "code": "0LW",
+                  "description": "FAST TRACK",
+                  "isChargeable": true,
+                  "amenityType": "TRAVEL_SERVICES"
+                },
+                {
+                  "code": "0B5",
+                  "description": "ADVANCE SEAT RESERVATION",
+                  "isChargeable": true,
+                  "amenityType": "PRE_RESERVED_SEAT"
+                }
+              ]
+            },
+            {
+              "segmentId": "16",
+              "cabin": "ECONOMY",
+              "fareBasis": "QOCLEU1",
+              "brandedFare": "ECOCLASSIC",
+              "class": "Q",
+              "includedCheckedBags": {
+                "quantity": 1
+              },
+              "amenities": [
+                {
+                  "code": "0FA",
+                  "description": "UP TO 50LB23KG62LI158LCM",
+                  "isChargeable": false,
+                  "amenityType": "BAGGAGE"
+                },
+                {
+                  "code": "06I",
+                  "description": "CHANGE BEFORE DEPARTURE",
+                  "isChargeable": false,
+                  "amenityType": "BRANDED_FARES"
+                },
+                {
+                  "code": "06J",
+                  "description": "CHANGE AFTER DEPARTURE",
+                  "isChargeable": false,
+                  "amenityType": "BRANDED_FARES"
+                },
+                {
+                  "code": "057",
+                  "description": "MILEAGE ACCRUAL",
+                  "isChargeable": false,
+                  "amenityType": "BRANDED_FARES"
+                },
+                {
+                  "code": "0MQ",
+                  "description": "CARRY8KG 18LB UPTO 45LI 115LCM",
+                  "isChargeable": false,
+                  "amenityType": "BAGGAGE"
+                },
+                {
+                  "code": "0AT",
+                  "description": "SNACK",
+                  "isChargeable": false,
+                  "amenityType": "MEAL"
+                },
+                {
+                  "code": "0BX",
+                  "description": "LOUNGE ACCESS",
+                  "isChargeable": true,
+                  "amenityType": "LOUNGE"
+                },
+                {
+                  "code": "0LW",
+                  "description": "FAST TRACK",
+                  "isChargeable": true,
+                  "amenityType": "TRAVEL_SERVICES"
+                },
+                {
+                  "code": "0B5",
+                  "description": "ADVANCE SEAT RESERVATION",
+                  "isChargeable": true,
+                  "amenityType": "PRE_RESERVED_SEAT"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "flight-offer",
+      "id": "4",
+      "source": "GDS",
+      "instantTicketingRequired": false,
+      "paymentCardRequired": false,
+      "lastTicketingDate": "2022-06-22",
+      "itineraries": [
+        {
+          "segments": [
+            {
+              "departure": {
+                "iataCode": "MAD",
+                "terminal": "1",
+                "at": "2022-06-22T17:40:00"
+              },
+              "arrival": {
+                "iataCode": "FCO",
+                "at": "2022-06-22T20:05:00"
+              },
+              "carrierCode": "AZ",
+              "number": "63",
+              "aircraft": {
+                "code": "32S"
+              },
+              "operating": {
+                "carrierCode": "AZ"
+              },
+              "duration": "PT2H25M",
+              "id": "15",
+              "numberOfStops": 0,
+              "blacklistedInEU": false
+            },
+            {
+              "departure": {
+                "iataCode": "FCO",
+                "terminal": "1",
+                "at": "2022-06-22T21:50:00"
+              },
+              "arrival": {
+                "iataCode": "ATH",
+                "at": "2022-06-23T00:50:00"
+              },
+              "carrierCode": "AZ",
+              "number": "722",
+              "aircraft": {
+                "code": "32S"
+              },
+              "operating": {
+                "carrierCode": "AZ"
+              },
+              "duration": "PT2H",
+              "id": "16",
+              "numberOfStops": 0,
+              "blacklistedInEU": false
+            }
+          ]
+        }
+      ],
+      "price": {
+        "currency": "EUR",
+        "total": "244.90",
+        "base": "131.00",
+        "fees": [
+          {
+            "amount": "0.00",
+            "type": "TICKETING"
+          }
+        ],
+        "grandTotal": "244.90"
+      },
+      "pricingOptions": {
+        "fareType": [
+          "PUBLISHED"
+        ],
+        "includedCheckedBagsOnly": false,
+        "refundableFare": false,
+        "noRestrictionFare": false,
+        "noPenaltyFare": false
+      },
+      "validatingAirlineCodes": [
+        "AZ"
+      ],
+      "travelerPricings": [
+        {
+          "travelerId": "1",
+          "fareOption": "STANDARD",
+          "travelerType": "ADULT",
+          "price": {
+            "currency": "EUR",
+            "total": "244.90",
+            "base": "131.00",
+            "taxes": [
+              {
+                "amount": "3.27",
+                "code": "QV"
+              },
+              {
+                "amount": "16.95",
+                "code": "YQ"
+              },
+              {
+                "amount": "0.63",
+                "code": "OG"
+              },
+              {
+                "amount": "64.00",
+                "code": "YR"
+              },
+              {
+                "amount": "14.48",
+                "code": "JD"
+              },
+              {
+                "amount": "7.50",
+                "code": "HB"
+              },
+              {
+                "amount": "5.60",
+                "code": "IT"
+              },
+              {
+                "amount": "1.47",
+                "code": "MJ"
+              }
+            ]
+          },
+          "fareDetailsBySegment": [
+            {
+              "segmentId": "15",
+              "cabin": "ECONOMY",
+              "fareBasis": "QOFLEU1",
+              "brandedFare": "ECOFLEX",
+              "class": "Q",
+              "includedCheckedBags": {
+                "quantity": 1
+              },
+              "amenities": [
+                {
+                  "code": "0FA",
+                  "description": "UP TO 50LB23KG62LI158LCM",
+                  "isChargeable": false,
+                  "amenityType": "BAGGAGE"
+                },
+                {
+                  "code": "0B5",
+                  "description": "ADVANCE SEAT RESERVATION",
+                  "isChargeable": false,
+                  "amenityType": "PRE_RESERVED_SEAT"
+                },
+                {
+                  "code": "06I",
+                  "description": "CHANGE BEFORE DEPARTURE",
+                  "isChargeable": false,
+                  "amenityType": "BRANDED_FARES"
+                },
+                {
+                  "code": "06J",
+                  "description": "CHANGE AFTER DEPARTURE",
+                  "isChargeable": false,
+                  "amenityType": "BRANDED_FARES"
+                },
+                {
+                  "code": "056",
+                  "description": "REFUNDABLE TICKET",
+                  "isChargeable": false,
+                  "amenityType": "BRANDED_FARES"
+                },
+                {
+                  "code": "057",
+                  "description": "MILEAGE ACCRUAL",
+                  "isChargeable": false,
+                  "amenityType": "BRANDED_FARES"
+                },
+                {
+                  "code": "0MQ",
+                  "description": "CARRY8KG 18LB UPTO 45LI 115LCM",
+                  "isChargeable": false,
+                  "amenityType": "BAGGAGE"
+                },
+                {
+                  "code": "0AT",
+                  "description": "SNACK",
+                  "isChargeable": false,
+                  "amenityType": "MEAL"
+                },
+                {
+                  "code": "0BX",
+                  "description": "LOUNGE ACCESS",
+                  "isChargeable": true,
+                  "amenityType": "LOUNGE"
+                },
+                {
+                  "code": "0LW",
+                  "description": "FAST TRACK",
+                  "isChargeable": true,
+                  "amenityType": "TRAVEL_SERVICES"
+                }
+              ]
+            },
+            {
+              "segmentId": "16",
+              "cabin": "ECONOMY",
+              "fareBasis": "QOFLEU1",
+              "brandedFare": "ECOFLEX",
+              "class": "Q",
+              "includedCheckedBags": {
+                "quantity": 1
+              },
+              "amenities": [
+                {
+                  "code": "0FA",
+                  "description": "UP TO 50LB23KG62LI158LCM",
+                  "isChargeable": false,
+                  "amenityType": "BAGGAGE"
+                },
+                {
+                  "code": "0B5",
+                  "description": "ADVANCE SEAT RESERVATION",
+                  "isChargeable": false,
+                  "amenityType": "PRE_RESERVED_SEAT"
+                },
+                {
+                  "code": "06I",
+                  "description": "CHANGE BEFORE DEPARTURE",
+                  "isChargeable": false,
+                  "amenityType": "BRANDED_FARES"
+                },
+                {
+                  "code": "06J",
+                  "description": "CHANGE AFTER DEPARTURE",
+                  "isChargeable": false,
+                  "amenityType": "BRANDED_FARES"
+                },
+                {
+                  "code": "056",
+                  "description": "REFUNDABLE TICKET",
+                  "isChargeable": false,
+                  "amenityType": "BRANDED_FARES"
+                },
+                {
+                  "code": "057",
+                  "description": "MILEAGE ACCRUAL",
+                  "isChargeable": false,
+                  "amenityType": "BRANDED_FARES"
+                },
+                {
+                  "code": "0MQ",
+                  "description": "CARRY8KG 18LB UPTO 45LI 115LCM",
+                  "isChargeable": false,
+                  "amenityType": "BAGGAGE"
+                },
+                {
+                  "code": "0AT",
+                  "description": "SNACK",
+                  "isChargeable": false,
+                  "amenityType": "MEAL"
+                },
+                {
+                  "code": "0BX",
+                  "description": "LOUNGE ACCESS",
+                  "isChargeable": true,
+                  "amenityType": "LOUNGE"
+                },
+                {
+                  "code": "0LW",
+                  "description": "FAST TRACK",
+                  "isChargeable": true,
+                  "amenityType": "TRAVEL_SERVICES"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "flight-offer",
+      "id": "5",
+      "source": "GDS",
+      "instantTicketingRequired": false,
+      "paymentCardRequired": false,
+      "lastTicketingDate": "2022-06-15",
+      "itineraries": [
+        {
+          "segments": [
+            {
+              "departure": {
+                "iataCode": "MAD",
+                "terminal": "1",
+                "at": "2022-06-22T17:40:00"
+              },
+              "arrival": {
+                "iataCode": "FCO",
+                "at": "2022-06-22T20:05:00"
+              },
+              "carrierCode": "AZ",
+              "number": "63",
+              "aircraft": {
+                "code": "32S"
+              },
+              "operating": {
+                "carrierCode": "AZ"
+              },
+              "duration": "PT2H25M",
+              "id": "15",
+              "numberOfStops": 0,
+              "blacklistedInEU": false
+            },
+            {
+              "departure": {
+                "iataCode": "FCO",
+                "terminal": "1",
+                "at": "2022-06-22T21:50:00"
+              },
+              "arrival": {
+                "iataCode": "ATH",
+                "at": "2022-06-23T00:50:00"
+              },
+              "carrierCode": "AZ",
+              "number": "722",
+              "aircraft": {
+                "code": "32S"
+              },
+              "operating": {
+                "carrierCode": "AZ"
+              },
+              "duration": "PT2H",
+              "id": "16",
+              "numberOfStops": 0,
+              "blacklistedInEU": false
+            }
+          ]
+        }
+      ],
+      "price": {
+        "currency": "EUR",
+        "total": "366.90",
+        "base": "252.00",
+        "fees": [
+          {
+            "amount": "0.00",
+            "type": "TICKETING"
+          }
+        ],
+        "grandTotal": "366.90"
+      },
+      "pricingOptions": {
+        "fareType": [
+          "PUBLISHED"
+        ],
+        "includedCheckedBagsOnly": false,
+        "refundableFare": false,
+        "noRestrictionFare": false,
+        "noPenaltyFare": false
+      },
+      "validatingAirlineCodes": [
+        "AZ"
+      ],
+      "travelerPricings": [
+        {
+          "travelerId": "1",
+          "fareOption": "STANDARD",
+          "travelerType": "ADULT",
+          "price": {
+            "currency": "EUR",
+            "total": "366.90",
+            "base": "252.00",
+            "taxes": [
+              {
+                "amount": "3.27",
+                "code": "QV"
+              },
+              {
+                "amount": "16.95",
+                "code": "YQ"
+              },
+              {
+                "amount": "0.63",
+                "code": "OG"
+              },
+              {
+                "amount": "65.00",
+                "code": "YR"
+              },
+              {
+                "amount": "14.48",
+                "code": "JD"
+              },
+              {
+                "amount": "7.50",
+                "code": "HB"
+              },
+              {
+                "amount": "5.60",
+                "code": "IT"
+              },
+              {
+                "amount": "1.47",
+                "code": "MJ"
+              }
+            ]
+          },
+          "fareDetailsBySegment": [
+            {
+              "segmentId": "15",
+              "cabin": "BUSINESS",
+              "fareBasis": "DOFLEU1",
+              "brandedFare": "BIZFLEX",
+              "class": "D",
+              "includedCheckedBags": {
+                "quantity": 2
+              },
+              "amenities": [
+                {
+                  "code": "0FA",
+                  "description": "UP TO 50LB23KG62LI158LCM",
+                  "isChargeable": false,
+                  "amenityType": "BAGGAGE"
+                },
+                {
+                  "code": "0FM",
+                  "description": "UPTO70LB 32KG AND62LI 158LCM",
+                  "isChargeable": false,
+                  "amenityType": "BAGGAGE"
+                },
+                {
+                  "code": "0BX",
+                  "description": "LOUNGE ACCESS",
+                  "isChargeable": false,
+                  "amenityType": "LOUNGE"
+                },
+                {
+                  "code": "0LW",
+                  "description": "FAST TRACK",
+                  "isChargeable": false,
+                  "amenityType": "TRAVEL_SERVICES"
+                },
+                {
+                  "code": "0B5",
+                  "description": "ADVANCE SEAT RESERVATION",
+                  "isChargeable": false,
+                  "amenityType": "PRE_RESERVED_SEAT"
+                },
+                {
+                  "code": "06I",
+                  "description": "CHANGE BEFORE DEPARTURE",
+                  "isChargeable": false,
+                  "amenityType": "BRANDED_FARES"
+                },
+                {
+                  "code": "06J",
+                  "description": "CHANGE AFTER DEPARTURE",
+                  "isChargeable": false,
+                  "amenityType": "BRANDED_FARES"
+                },
+                {
+                  "code": "056",
+                  "description": "REFUNDABLE TICKET",
+                  "isChargeable": false,
+                  "amenityType": "BRANDED_FARES"
+                },
+                {
+                  "code": "03P",
+                  "description": "PRIORITY CHECK IN",
+                  "isChargeable": false,
+                  "amenityType": "TRAVEL_SERVICES"
+                },
+                {
+                  "code": "057",
+                  "description": "MILEAGE ACCRUAL",
+                  "isChargeable": false,
+                  "amenityType": "BRANDED_FARES"
+                },
+                {
+                  "code": "0MQ",
+                  "description": "CARRY8KG 18LB UPTO 45LI 115LCM",
+                  "isChargeable": false,
+                  "amenityType": "BAGGAGE"
+                },
+                {
+                  "code": "0AT",
+                  "description": "SNACK",
+                  "isChargeable": false,
+                  "amenityType": "MEAL"
+                }
+              ]
+            },
+            {
+              "segmentId": "16",
+              "cabin": "BUSINESS",
+              "fareBasis": "DOFLEU1",
+              "brandedFare": "BIZFLEX",
+              "class": "D",
+              "includedCheckedBags": {
+                "quantity": 2
+              },
+              "amenities": [
+                {
+                  "code": "0FA",
+                  "description": "UP TO 50LB23KG62LI158LCM",
+                  "isChargeable": false,
+                  "amenityType": "BAGGAGE"
+                },
+                {
+                  "code": "0FM",
+                  "description": "UPTO70LB 32KG AND62LI 158LCM",
+                  "isChargeable": false,
+                  "amenityType": "BAGGAGE"
+                },
+                {
+                  "code": "0BX",
+                  "description": "LOUNGE ACCESS",
+                  "isChargeable": false,
+                  "amenityType": "LOUNGE"
+                },
+                {
+                  "code": "0LW",
+                  "description": "FAST TRACK",
+                  "isChargeable": false,
+                  "amenityType": "TRAVEL_SERVICES"
+                },
+                {
+                  "code": "0B5",
+                  "description": "ADVANCE SEAT RESERVATION",
+                  "isChargeable": false,
+                  "amenityType": "PRE_RESERVED_SEAT"
+                },
+                {
+                  "code": "06I",
+                  "description": "CHANGE BEFORE DEPARTURE",
+                  "isChargeable": false,
+                  "amenityType": "BRANDED_FARES"
+                },
+                {
+                  "code": "06J",
+                  "description": "CHANGE AFTER DEPARTURE",
+                  "isChargeable": false,
+                  "amenityType": "BRANDED_FARES"
+                },
+                {
+                  "code": "056",
+                  "description": "REFUNDABLE TICKET",
+                  "isChargeable": false,
+                  "amenityType": "BRANDED_FARES"
+                },
+                {
+                  "code": "03P",
+                  "description": "PRIORITY CHECK IN",
+                  "isChargeable": false,
+                  "amenityType": "TRAVEL_SERVICES"
+                },
+                {
+                  "code": "057",
+                  "description": "MILEAGE ACCRUAL",
+                  "isChargeable": false,
+                  "amenityType": "BRANDED_FARES"
+                },
+                {
+                  "code": "0MQ",
+                  "description": "CARRY8KG 18LB UPTO 45LI 115LCM",
+                  "isChargeable": false,
+                  "amenityType": "BAGGAGE"
+                },
+                {
+                  "code": "0AT",
+                  "description": "SNACK",
+                  "isChargeable": false,
+                  "amenityType": "MEAL"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "dictionaries": {
+    "locations": {
+      "MAD": {
+        "cityCode": "MAD",
+        "countryCode": "ES"
+      },
+      "FCO": {
+        "cityCode": "ROM",
+        "countryCode": "IT"
+      },
+      "ATH": {
+        "cityCode": "ATH",
+        "countryCode": "GR"
+      }
+    }
+  }
+}
