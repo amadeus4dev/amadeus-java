@@ -5,8 +5,8 @@ import lombok.ToString;
 
 /**
  * An SeatMap object as returned by the SeatMap API.
- * @see com.amadeus.booking.SeatMaps#get()
- * @see com.amadeus.booking.SeatMaps#post() */
+ * @see com.amadeus.shopping.SeatMaps#get()
+ * @see com.amadeus.shopping.SeatMaps#post() */
 @ToString
 public class SeatMap extends Resource {
   protected SeatMap() {}
@@ -91,6 +91,7 @@ public class SeatMap extends Resource {
 
     private @Getter boolean isChargeable;
     private @Getter String powerType;
+    private @Getter String usbType;
 
   }
 
