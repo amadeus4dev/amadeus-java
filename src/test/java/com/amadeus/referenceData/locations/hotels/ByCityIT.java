@@ -1,5 +1,12 @@
 package com.amadeus.referenceData.locations.hotels;
 
+import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
+import static com.github.tomakehurst.wiremock.client.WireMock.get;
+import static com.github.tomakehurst.wiremock.client.WireMock.post;
+import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.assertj.core.api.BDDAssertions.then;
+
 import com.amadeus.Amadeus;
 import com.amadeus.Params;
 import com.amadeus.exceptions.ClientException;
@@ -9,10 +16,6 @@ import com.github.tomakehurst.wiremock.WireMockServer;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static com.github.tomakehurst.wiremock.client.WireMock.*;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.assertj.core.api.BDDAssertions.then;
 
 // https://developers.amadeus.com/self-service/category/hotel/api-doc/hotel-list/api-reference
 public class ByCityIT {
@@ -30,9 +33,9 @@ public class ByCityIT {
 
     //https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
     String address = "/v1/security/oauth2/token"
-      + "?grant_type=client_credentials&client_secret=DEMO&client_id=DEMO";
+        + "?grant_type=client_credentials&client_secret=DEMO&client_id=DEMO";
     wireMockServer.stubFor(post(urlEqualTo(address))
-      .willReturn(aResponse().withHeader("Content-Type", "application/json")
+        .willReturn(aResponse().withHeader("Content-Type", "application/json")
         .withStatus(200)
         .withBodyFile("auth_ok.json")));
 
@@ -52,22 +55,20 @@ public class ByCityIT {
 
   @Test
   public void given_client_when_call_hotels_by_city_with_params_then_ok()
-    throws ResponseException {
+      throws ResponseException {
 
     //Given
     String address = "/v1/reference-data/locations/hotels/by-city"
-      +"?cityCode=PAR";
+        + "?cityCode=PAR";
     wireMockServer.stubFor(get(urlEqualTo(address))
-      .willReturn(aResponse().withHeader("Content-Type", "application/json")
+        .willReturn(aResponse().withHeader("Content-Type", "application/json")
         .withStatus(200)
         .withBodyFile("hotels_by_city_response_ok.json")));
 
-    Params params = Params
-      .with("cityCode", "PAR");
+    Params params = Params.with("cityCode", "PAR");
 
     //When
-    Hotel[] result = amadeus.referenceData.locations
-      .hotels.byCity.get(params);
+    Hotel[] result = amadeus.referenceData.locations.hotels.byCity.get(params);
 
     //Then
     then(result.length).isNotEqualTo(0);
@@ -76,12 +77,12 @@ public class ByCityIT {
   //TODO Review with the team to upgrade the behaviour.
   @Test
   public void given_client_when_call_hotels_by_city_without_params_then_ok()
-    throws ResponseException {
+      throws ResponseException {
 
     //Given
     String address = "/v1/reference-data/locations/hotels/by-city";
     wireMockServer.stubFor(get(urlEqualTo(address))
-      .willReturn(aResponse().withHeader("Content-Type", "application/json")
+        .willReturn(aResponse().withHeader("Content-Type", "application/json")
         .withStatus(400)
         .withBody("")));
 
