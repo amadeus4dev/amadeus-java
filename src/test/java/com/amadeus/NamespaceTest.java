@@ -19,6 +19,9 @@ import com.amadeus.referenceData.Locations;
 import com.amadeus.referenceData.RecommendedLocations;
 import com.amadeus.referenceData.locations.Airports;
 import com.amadeus.referenceData.locations.PointsOfInterest;
+import com.amadeus.referenceData.locations.hotels.ByCity;
+import com.amadeus.referenceData.locations.hotels.ByGeocode;
+import com.amadeus.referenceData.locations.hotels.ByHotels;
 import com.amadeus.referenceData.urls.CheckinLinks;
 import com.amadeus.safety.SafetyRatedLocations;
 import com.amadeus.schedule.Flights;
@@ -101,6 +104,10 @@ public class NamespaceTest {
     assertNotNull(client.dutyOfCare.diseases.covid19AreaReport);
     assertNotNull(client.location.analytics);
     assertNotNull(client.location.analytics.categoryRatedAreas);
+    assertNotNull(client.referenceData.locations.hotels);
+    assertNotNull(client.referenceData.locations.hotels.byHotels);
+    assertNotNull(client.referenceData.locations.hotels.byCity);
+    assertNotNull(client.referenceData.locations.hotels.byGeocode);
   }
 
   /**
@@ -464,6 +471,36 @@ public class NamespaceTest {
     assertNotNull(categoryRatedAreas.get());
     assertNotNull(categoryRatedAreas.get(params));
     assertEquals(categoryRatedAreas.get().length, 2);
+
+    // Testing hotel list by hotels get
+    Mockito.when(client.get("/v1/reference-data/locations/hotels/by-hotels", null))
+      .thenReturn(multiResponse);
+    Mockito.when(client.get("/v1/reference-data/locations/hotels/by-hotels", params))
+      .thenReturn(multiResponse);
+    ByHotels hotelsByHotelIds = new ByHotels(client);
+    assertNotNull(hotelsByHotelIds.get());
+    assertNotNull(hotelsByHotelIds.get(params));
+    assertEquals(hotelsByHotelIds.get().length, 2);
+
+    // Testing hotel list by city get
+    Mockito.when(client.get("/v1/reference-data/locations/hotels/by-city", null))
+      .thenReturn(multiResponse);
+    Mockito.when(client.get("/v1/reference-data/locations/hotels/by-city", params))
+      .thenReturn(multiResponse);
+    ByCity hotelsByCity = new ByCity(client);
+    assertNotNull(hotelsByCity.get());
+    assertNotNull(hotelsByCity.get(params));
+    assertEquals(hotelsByCity.get().length, 2);
+
+    // Testing hotel list by geocode get
+    Mockito.when(client.get("/v1/reference-data/locations/hotels/by-geocode", null))
+      .thenReturn(multiResponse);
+    Mockito.when(client.get("/v1/reference-data/locations/hotels/by-geocode", params))
+      .thenReturn(multiResponse);
+    ByGeocode hotelsByGeocode = new ByGeocode(client);
+    assertNotNull(hotelsByGeocode.get());
+    assertNotNull(hotelsByGeocode.get(params));
+    assertEquals(hotelsByGeocode.get().length, 2);
   }
 
   @Test
