@@ -2,19 +2,28 @@
 6.0.0 - 2022-05-19
 --------------------
 Add support for the [Hotel List API](https://developers.amadeus.com/self-service/category/hotel/api-doc/hotel-list/api-reference)
+
 Add support for the [Branded Fares Upsell API](https://developers.amadeus.com/self-service/category/air/api-doc/branded-fares-upsell/api-reference)
 
+
 Add usbType to the SeatMap resource
+
 Improve Test Coverage until 75%
+
 Remove the AI-Generated Photos API
+
 Bug fix in the generating Javadocs
-Add support for APIs need X-HTTP-Method-Override Header
+
+Add support for APIs that need X-HTTP-Method-Override Header
 
 5.9.0 - 2022-03-17
 --------------------
 Add support for the [Flight Availablities Search API](https://developers.amadeus.com/self-service/category/air/api-doc/flight-availabilities-search/api-reference)
+
 Add support for the [Travel Restrictions API](https://developers.amadeus.com/self-service/category/covid-19-and-travel-safety/api-doc/travel-restrictions/api-reference)
+
 Add support for the [Location Score API](https://developers.amadeus.com/self-service/category/destination-content/api-doc/location-score/api-reference)
+
 Add support for the [Airport Routes API](https://developers.amadeus.com/self-service/category/air/api-doc/airport-routes/api-reference)
 
 5.8.2 - 2021-12-01
