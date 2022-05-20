@@ -426,6 +426,18 @@ Hotel[] hotels = amadeus.referenceData.locations.hotels.byCity.get(Params
 Hotel[] hotels = amadeus.referenceData.locations.hotels.byGeocode.get(Params
   .with("longitude", 2.160873)
   .and("latitude", 41.397158));
+
+// Hotel Offers Search API v3
+// Get multiple hotel offers
+HotelOfferSearch[] offers = amadeus.shopping.hotelOffersSearch.get(Params
+  .with("hotelIds", "MCLONGHM")
+  .and("adults", 1)
+  .and("checkInDate", "2022-11-22")
+  .and("roomQuantity", 1)
+  .and("paymentPolicy", "NONE")
+  .and("bestRateOnly", true));
+// Get hotel offer pricing by offer id
+HotelOfferSearch offer = amadeus.shopping.hotelOfferSearch("QF3MNOBDQ8").get();
 ```
 
 ## Development & Contributing
