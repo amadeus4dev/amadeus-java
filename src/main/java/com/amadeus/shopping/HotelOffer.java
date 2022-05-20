@@ -9,7 +9,7 @@ import com.amadeus.resources.Resource;
 /**
  * <p>
  *   A namespaced client for the
- *   <code>/v2/shopping/hotel-offers/:offer_id</code> endpoints.
+ *   <code>/v3/shopping/hotel-offers/:offer_id</code> endpoints.
  * </p>
  *
  * <p>
@@ -48,7 +48,7 @@ public class HotelOffer {
    * @throws ResponseException when an exception occurs
    */
   public com.amadeus.resources.HotelOffer get(Params params) throws ResponseException {
-    String path = String.format("/v2/shopping/hotel-offers/%s", offerId);
+    String path = String.format("/v3/shopping/hotel-offers/%s", offerId);
     Response response = client.get(path, params);
     return (com.amadeus.resources.HotelOffer) Resource.fromObject(
         response, com.amadeus.resources.HotelOffer.class);
@@ -56,7 +56,7 @@ public class HotelOffer {
 
   /**
    * Convenience method for calling <code>get</code> without any parameters.
-   * @see com.amadeus.resources.HotelOffer#get()
+   * @see HotelOffer#get()
    */
   public com.amadeus.resources.HotelOffer get() throws ResponseException {
     return get(null);

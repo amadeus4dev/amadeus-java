@@ -15,6 +15,7 @@ public class HotelOffer extends Resource {
   private @Getter Hotel hotel;
   private @Getter boolean available;
   private @Getter Offer[] offers;
+  private @Getter String self;
 
   /**
    * An HotelOffer-related object as returned by the HotelOffers API.
@@ -24,22 +25,12 @@ public class HotelOffer extends Resource {
   public class Hotel {
     protected Hotel() {}
 
-    private @Getter String type;
     private @Getter String hotelId;
     private @Getter String chainCode;
     private @Getter String brandCode;
     private @Getter String dupeId;
     private @Getter String name;
-    private @Getter Integer rating;
-    private @Getter TextWithLanguageType description;
-    private @Getter String[] amenities;
-    private @Getter MediaURI[] media;
     private @Getter String cityCode;
-    private @Getter double latitude;
-    private @Getter double longitude;
-    private @Getter HotelDistance hotelDistance;
-    private @Getter AddressType address;
-    private @Getter HotelContact contact;
   }
 
   /**
@@ -52,30 +43,20 @@ public class HotelOffer extends Resource {
 
     private @Getter String type;
     private @Getter String id;
+    private @Getter String checkInDate;
+    private @Getter String checkOutDate;
     private @Getter Integer roomQuantity;
     private @Getter String rateCode;
     private @Getter RateFamily rateFamilyEstimated;
     private @Getter String category;
-    private @Getter TextWithLanguageType description;
+    private @Getter QualifiedFreeText description;
     private @Getter Commission commission;
     private @Getter String boardType;
     private @Getter RoomDetails room;
     private @Getter Guests guests;
     private @Getter HotelPrice price;
     private @Getter PolicyDetails policies;
-  }
-
-  /**
-   * An HotelOffer-related object as returned by the HotelOffers API.
-   * @see com.amadeus.shopping.HotelOffers#get()
-   */
-  @ToString
-  public class HotelDistance {
-    protected HotelDistance() {}
-
-    private @Getter String description;
-    private @Getter double distance;
-    private @Getter String distanceUnit;
+    private @Getter String self;
   }
 
   /**
@@ -100,7 +81,7 @@ public class HotelOffer extends Resource {
 
     private @Getter String percentage;
     private @Getter String amount;
-    private @Getter TextWithLanguageType description;
+    private @Getter QualifiedFreeText description;
   }
 
   /**
@@ -113,7 +94,7 @@ public class HotelOffer extends Resource {
 
     private @Getter String type;
     private @Getter EstimatedRoomType typeEstimated;
-    private @Getter TextWithLanguageType description;
+    private @Getter QualifiedFreeText description;
   }
 
   /**
@@ -138,9 +119,11 @@ public class HotelOffer extends Resource {
     protected HotelPrice() {}
 
     private @Getter String currency;
+    private @Getter String sellingTotal;
     private @Getter String total;
     private @Getter String base;
     private @Getter HotelTax[] taxes;
+    private @Getter Markup[] markups;
     private @Getter PriceVariations variations;
   }
 
@@ -170,7 +153,7 @@ public class HotelOffer extends Resource {
   public class PriceVariations {
     protected PriceVariations() {}
 
-    private @Getter BaseTotalAmount average;
+    private @Getter Price average;
     private @Getter PriceVariation[] changes;
   }
 
@@ -184,8 +167,11 @@ public class HotelOffer extends Resource {
 
     private @Getter String startDate;
     private @Getter String endDate;
+    private @Getter String currency;
+    private @Getter String sellingTotal;
     private @Getter String base;
     private @Getter String total;
+    private @Getter Markup[] markups;
   }
 
   /**
@@ -193,11 +179,14 @@ public class HotelOffer extends Resource {
    * @see com.amadeus.shopping.HotelOffers#get()
    */
   @ToString
-  public class BaseTotalAmount {
-    protected BaseTotalAmount() {}
+  public class Price {
+    protected Price() {}
 
+    private @Getter String currency;
+    private @Getter String sellingTotal;
     private @Getter String base;
     private @Getter String total;
+    private @Getter Markup[] markups;
   }
 
   /**
@@ -217,8 +206,8 @@ public class HotelOffer extends Resource {
    * @see com.amadeus.shopping.HotelOffers#get()
    */
   @ToString
-  public class TextWithLanguageType {
-    protected TextWithLanguageType() {}
+  public class QualifiedFreeText {
+    protected QualifiedFreeText() {}
 
     private @Getter String lang;
     private @Getter String text;
@@ -229,54 +218,41 @@ public class HotelOffer extends Resource {
    * @see com.amadeus.shopping.HotelOffers#get()
    */
   @ToString
-  public class MediaURI {
-    protected MediaURI() {}
-
-    private @Getter String uri;
-    private @Getter String category;
-  }
-
-  /**
-   * An HotelOffer-related object as returned by the HotelOffers API.
-   * @see com.amadeus.shopping.HotelOffers#get()
-   */
-  @ToString
-  public class AddressType {
-    protected AddressType() {}
-
-    private @Getter String[] lines;
-    private @Getter String postalCode;
-    private @Getter String cityName;
-    private @Getter String countryCode;
-    private @Getter String stateCode;
-  }
-
-  /**
-   * An HotelOffer-related object as returned by the HotelOffers API.
-   * @see com.amadeus.shopping.HotelOffers#get()
-   */
-  @ToString
-  public class HotelContact {
-    protected HotelContact() {}
-
-    private @Getter String phone;
-    private @Getter String fax;
-  }
-
-  /**
-   * An HotelOffer-related object as returned by the HotelOffers API.
-   * @see com.amadeus.shopping.HotelOffers#get()
-   */
-  @ToString
   public class PolicyDetails {
     protected PolicyDetails() {}
 
+    private @Getter String paymentType;
     private @Getter GuaranteePolicy guarantee;
-    private @Getter GuaranteePolicy deposit;
-    private @Getter GuaranteePolicy prepay;
-    private @Getter GuaranteePolicy holdTime;
+    private @Getter DepositPolicy deposit;
+    private @Getter DepositPolicy prepay;
+    private @Getter HoldPolicy holdTime;
     private @Getter CancellationPolicy cancellation;
     private @Getter CheckInOutPolicy checkInOut;
+  }
+
+  /**
+   * An HotelOffer-related object as returned by the HotelOffers API.
+   * @see com.amadeus.shopping.HotelOffers#get()
+   */
+  @ToString
+  public class DepositPolicy {
+    protected DepositPolicy() {}
+
+    private @Getter String amount;
+    private @Getter String deadline;
+    private @Getter QualifiedFreeText description;
+    private @Getter PaymentPolicy acceptedPayments;
+  }
+
+  /**
+   * An HotelOffer-related object as returned by the HotelOffers API.
+   * @see com.amadeus.shopping.HotelOffers#get()
+   */
+  @ToString
+  public class HoldPolicy {
+    protected HoldPolicy() {}
+
+    private @Getter String deadline;
   }
 
   /**
@@ -289,9 +265,9 @@ public class HotelOffer extends Resource {
     protected CheckInOutPolicy() {}
 
     private @Getter String checkIn;
-    private @Getter TextWithLanguageType checkInDescription;
+    private @Getter QualifiedFreeText checkInDescription;
     private @Getter String checkOut;
-    private @Getter TextWithLanguageType checkOutDescription;
+    private @Getter QualifiedFreeText checkOutDescription;
   }
 
   /**
@@ -302,9 +278,7 @@ public class HotelOffer extends Resource {
   public class GuaranteePolicy {
     protected GuaranteePolicy() {}
 
-    private @Getter String amount;
-    private @Getter String deadline;
-    private @Getter TextWithLanguageType description;
+    private @Getter QualifiedFreeText description;
     private @Getter PaymentPolicy acceptedPayments;
   }
 
@@ -321,7 +295,7 @@ public class HotelOffer extends Resource {
     private @Getter Integer numberOfNights;
     private @Getter String percentage;
     private @Getter String deadline;
-    private @Getter TextWithLanguageType description;
+    private @Getter QualifiedFreeText description;
   }
 
   /**
@@ -333,6 +307,17 @@ public class HotelOffer extends Resource {
     protected PaymentPolicy() {}
 
     private @Getter String[] creditCards;
-    private @Getter String method;
+    private @Getter String[] method;
+  }
+
+  /**
+   * An HotelOffer-related object as returned by the HotelOffers API.
+   * @see com.amadeus.shopping.HotelOffers#get()
+   */
+  @ToString
+  public class Markup {
+    protected Markup() {}
+
+    private @Getter String amount;
   }
 }

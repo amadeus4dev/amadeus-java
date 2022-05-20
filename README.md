@@ -264,14 +264,16 @@ Period[] busiestPeriods = amadeus.travel.analytics.airTraffic.busiestPeriod.get(
   .and("period", "2017")
   .and("direction", BusiestPeriod.ARRIVING));
 
-// Hotel Search API
-// Get list of hotels by city code
-HotelOffer[] offers = amadeus.shopping.hotelOffers.get(Params
-  .with("cityCode", "MAD"));
-// Get list of offers for a specific hotel
-HotelOffer hotelOffer = amadeus.shopping.hotelOffersByHotel.get(Params.with("hotelId", "BGLONBGB"));
-// Confirm the availability of a specific offer
-HotelOffer offer = amadeus.shopping.hotelOffer("4BA070CE929E135B3268A9F2D0C51E9D4A6CF318BA10485322FA2C7E78C7852E").get();
+// Hotel Offers Search API
+// Get multiple hotel offers
+HotelOffer[] offers = amadeus.shopping.hotelOffers.get(Params.with("hotelIds", "MCLONGHM")
+  .and("adults", 1)
+  .and("checkInDate", "2022-11-22")
+  .and("roomQuantity", 1)
+  .and("paymentPolicy", "NONE")
+  .and("bestRateOnly", true));
+// Get hotel offer pricing by offer id
+HotelOffer offer = amadeus.shopping.hotelOffer("QF3MNOBDQ8").get();
 
 // Hotel Booking
 // The body can be a String version of your JSON or a JsonObject

@@ -11,7 +11,7 @@ import com.google.gson.Gson;
 /**
  * <p>
  *   A namespaced client for the
- *   <code>/v1/shopping/hotel-offers</code> endpoints.
+ *   <code>/v3/shopping/hotel-offers</code> endpoints.
  * </p>
  *
  * <p>
@@ -47,7 +47,7 @@ public class HotelOffers {
    * @throws ResponseException when an exception occurs
    */
   public HotelOffer[] get(Params params) throws ResponseException {
-    Response response = client.get("/v2/shopping/hotel-offers", params);
+    Response response = client.get("/v3/shopping/hotel-offers", params);
     return (HotelOffer[]) Resource.fromArray(response, HotelOffer[].class);
   }
 
