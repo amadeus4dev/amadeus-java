@@ -26,12 +26,17 @@ import com.amadeus.referenceData.urls.CheckinLinks;
 import com.amadeus.safety.SafetyRatedLocations;
 import com.amadeus.schedule.Flights;
 import com.amadeus.shopping.Activities;
+import com.amadeus.shopping.Activity;
+import com.amadeus.shopping.Availability;
 import com.amadeus.shopping.FlightDates;
 import com.amadeus.shopping.FlightDestinations;
+import com.amadeus.shopping.FlightOffers;
 import com.amadeus.shopping.FlightOffersSearch;
 import com.amadeus.shopping.HotelOffer;
+import com.amadeus.shopping.HotelOfferSearch;
 import com.amadeus.shopping.HotelOffers;
 import com.amadeus.shopping.HotelOffersByHotel;
+import com.amadeus.shopping.HotelOffersSearch;
 import com.amadeus.shopping.SeatMaps;
 import com.amadeus.shopping.availability.FlightAvailabilities;
 import com.amadeus.shopping.flightOffers.Prediction;
@@ -86,6 +91,7 @@ public class NamespaceTest {
     assertNotNull(client.shopping.flightOffers.prediction);
     assertNotNull(client.shopping.flightOffers.upselling);
     assertNotNull(client.shopping.hotelOffers);
+    assertNotNull(client.shopping.hotelOffersSearch);
     assertNotNull(client.shopping.hotelOffersByHotel);
     assertNotNull(client.shopping.seatMaps);
     assertNotNull(client.ereputation.hotelSentiments);
@@ -347,6 +353,16 @@ public class NamespaceTest {
     assertNotNull(hotelOffers.get(params));
     assertEquals(hotelOffers.get().length, 2);
 
+    // Testing hotel offer search v3
+    Mockito.when(client.get("/v3/shopping/hotel-offers", null))
+        .thenReturn(multiResponse);
+    Mockito.when(client.get("/v3/shopping/hotel-offers", params))
+        .thenReturn(multiResponse);
+    HotelOffersSearch hotelOffersSearch = new HotelOffersSearch(client);
+    assertNotNull(hotelOffersSearch.get());
+    assertNotNull(hotelOffersSearch.get(params));
+    assertEquals(hotelOffersSearch.get().length, 2);
+
     // Testing hotel offer search for a hotel
     Mockito.when(client.get("/v2/shopping/hotel-offers/by-hotel", null))
         .thenReturn(singleResponse);
@@ -362,6 +378,15 @@ public class NamespaceTest {
     Mockito.when(client.get("/v2/shopping/hotel-offers/XXX", params))
         .thenReturn(singleResponse);
     HotelOffer hotelOffer = new HotelOffer(client, "XXX");
+    assertNotNull(hotelOffer.get());
+    assertNotNull(hotelOffer.get(params));
+
+    // Test fetching a specific offer v2
+    Mockito.when(client.get("/v3/shopping/hotel-offers/XXX", null))
+        .thenReturn(singleResponse);
+    Mockito.when(client.get("/v3/shopping/hotel-offers/XXX", params))
+        .thenReturn(singleResponse);
+    HotelOfferSearch hotelOfferSearch = new HotelOfferSearch(client, "XXX");
     assertNotNull(hotelOffer.get());
     assertNotNull(hotelOffer.get(params));
 
