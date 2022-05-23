@@ -1,4 +1,8 @@
 # Changelog
+6.1.0 - 2022-05-23
+--------------------
+Add support for the [Hotel Search API v3](https://developers.amadeus.com/self-service/category/hotel/api-doc/hotel-search/api-reference)
+
 6.0.0 - 2022-05-19
 --------------------
 Add support for the [Hotel List API](https://developers.amadeus.com/self-service/category/hotel/api-doc/hotel-list/api-reference)
