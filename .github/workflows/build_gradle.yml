@@ -25,3 +25,8 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
+    - name: Version Library Verifier
+      shell: bash
+      run: |
+        curl -Ls https://sh.jbang.dev | bash -s - app setup
+        ~/.jbang/bin/jbang .github/VersionLibraryVerifier.java amadeus-java/
