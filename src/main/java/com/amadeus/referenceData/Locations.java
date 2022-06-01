@@ -5,6 +5,7 @@ import com.amadeus.Params;
 import com.amadeus.Response;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.referenceData.locations.Airports;
+import com.amadeus.referenceData.locations.Hotel;
 import com.amadeus.referenceData.locations.Hotels;
 import com.amadeus.referenceData.locations.PointOfInterest;
 import com.amadeus.referenceData.locations.PointsOfInterest;
@@ -67,6 +68,14 @@ public class Locations {
   public Hotels hotels;
 
   /**
+   * <p>
+   *   A namespaced client for the
+   *   <code>/v1/reference-data/locations/hotel</code> endpoints.
+   * </p>
+   */
+  public Hotel hotel;
+
+  /**
    * Constructor.
    * @hide
    */
@@ -75,6 +84,7 @@ public class Locations {
     this.airports = new Airports(client);
     this.pointsOfInterest = new PointsOfInterest(client);
     this.hotels = new Hotels(client);
+    this.hotel = new Hotel(client);
   }
 
   /**
