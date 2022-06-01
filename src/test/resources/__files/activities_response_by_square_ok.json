@@ -1,0 +1,29 @@
+{
+  "data": [
+    {
+      "id": "23642",
+      "type": "activity",
+      "self": {
+        "href": "https://test.api.amadeus.com/v1/shopping/activities/23642",
+        "methods": [
+          "GET"
+        ]
+      },
+      "name": "Skip-the-line tickets to the Prado Museum",
+      "shortDescription": "Book your tickets for the Prado Museum in Madrid, discover masterpieces by Velázquez, Goya, Mantegna, Raphael, Tintoretto and access all temporary exhibitions.",
+      "geoCode": {
+        "latitude": "40.414000",
+        "longitude": "-3.691000"
+      },
+      "rating": "4.500000",
+      "pictures": [
+        "https://images.musement.com/cover/0001/07/prado-museum-tickets_header-6456.jpeg?w=500"
+      ],
+      "bookingLink": "https://b2c.mla.cloud/c/QCejqyor?c=2WxbgL36",
+      "price": {
+        "currencyCode": "EUR",
+        "amount": "16.00"
+      }
+    }
+  ]
+}

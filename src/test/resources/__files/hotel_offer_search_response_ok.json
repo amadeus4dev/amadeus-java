@@ -1,0 +1,75 @@
+{
+  "data": {
+    "type": "hotel-offers",
+    "hotel": {
+      "type": "hotel",
+      "hotelId": "MCLONGHM",
+      "chainCode": "MC",
+      "name": "JW MARRIOTT GROSVENOR HOUSE",
+      "cityCode": "LON",
+      "address": {
+        "countryCode": "GB"
+      },
+      "amenities": [
+        "CRIBS_AVAILABLE"
+      ]
+    },
+    "available": true,
+    "offers": [
+      {
+        "id": "QF3MNOBDQ8",
+        "checkInDate": "2022-11-22",
+        "checkOutDate": "2022-11-23",
+        "rateCode": "RAC",
+        "rateFamilyEstimated": {
+          "code": "PRO",
+          "type": "P"
+        },
+        "description": {
+          "text": "Deluxe Queen Room, 1 Queen(s), 20sqm/215sqft-29 sqm/312sqft, Wireless internet, for a fee, Wire d internet, for a fee, Coffee/tea maker, 49in/1 A credit card is required for payment to guarantee the Prepay Non-refundable Non-changeable rate. Prepay rates will be charged the full cost of the reservation within 24 hours of making the reservation. If payment is unsuccessful within 48 hours of making the reservation, the hotel reserves the right to cancel the reservation. Date changes to the reservation are not allowed. Cancellation will result in forfeiture of the prepayment. The credit card used at the time of making the reservation must be valid for the entire stay.",
+          "lang": "EN"
+        },
+        "room": {
+          "type": "AP7",
+          "typeEstimated": {
+            "beds": 1,
+            "bedType": "DOUBLE"
+          },
+          "description": {
+            "text": "Prepay Non-refundable Non-changeable, prepay in full",
+            "lang": "EN"
+          }
+        },
+        "guests": {
+          "adults": 1
+        },
+        "price": {
+          "currency": "GBP",
+          "base": "352.00",
+          "total": "352.00",
+          "variations": {
+            "changes": [
+              {
+                "startDate": "2022-11-22",
+                "endDate": "2022-11-23",
+                "base": "352.00"
+              }
+            ]
+          }
+        },
+        "policies": {
+          "paymentType": "deposit",
+          "cancellation": {
+            "description": {
+              "text": "NON-REFUNDABLE RATE"
+            },
+            "type": "FULL_STAY"
+          }
+        }
+      }
+    ]
+  },
+  "meta": {
+    "lang": "EN"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "brand": "brand 1",
+  "binNumber": 1010101,
+  "flightOfferIds": [
+    "demo 1",
+    "demo 2",
+    "demo 3"
+  ]
+}

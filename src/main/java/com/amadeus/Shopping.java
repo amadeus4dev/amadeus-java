@@ -8,8 +8,10 @@ import com.amadeus.shopping.FlightDestinations;
 import com.amadeus.shopping.FlightOffers;
 import com.amadeus.shopping.FlightOffersSearch;
 import com.amadeus.shopping.HotelOffer;
+import com.amadeus.shopping.HotelOfferSearch;
 import com.amadeus.shopping.HotelOffers;
 import com.amadeus.shopping.HotelOffersByHotel;
+import com.amadeus.shopping.HotelOffersSearch;
 import com.amadeus.shopping.SeatMaps;
 
 
@@ -75,6 +77,14 @@ public class Shopping {
   /**
    * <p>
    *   A namespaced client for the
+   *   <code>/v3/shopping/hotel-offers</code> endpoints.
+   * </p>
+   */
+  public HotelOffersSearch hotelOffersSearch;
+
+  /**
+   * <p>
+   *   A namespaced client for the
    *   <code>/v2/shopping/hotel-offers/by-hotel</code> endpoints.
    * </p>
    */
@@ -122,6 +132,7 @@ public class Shopping {
     this.flightDestinations = new FlightDestinations(client);
     this.flightOffers = new FlightOffers(client);
     this.hotelOffers = new HotelOffers(client);
+    this.hotelOffersSearch = new HotelOffersSearch(client);
     this.hotelOffersByHotel = new HotelOffersByHotel(client);
     this.flightOffersSearch = new FlightOffersSearch(client);
     this.seatMaps = new SeatMaps(client);
@@ -137,6 +148,16 @@ public class Shopping {
    */
   public HotelOffer hotelOffer(String hotelId) {
     return new HotelOffer(client, hotelId);
+  }
+
+  /**
+   * <p>
+   *   A namespaced client for the
+   *   <code>/v3/shopping/hotel/:hotel_id</code> endpoints.
+   * </p>
+   */
+  public HotelOfferSearch hotelOfferSearch(String offerId) {
+    return new HotelOfferSearch(client, offerId);
   }
 
   /**

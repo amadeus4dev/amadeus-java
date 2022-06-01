@@ -1,9 +1,33 @@
 # Changelog
+6.1.0 - 2022-05-23
+--------------------
+Add support for the [Hotel Search API v3](https://developers.amadeus.com/self-service/category/hotel/api-doc/hotel-search/api-reference)
+
+6.0.0 - 2022-05-19
+--------------------
+Add support for the [Hotel List API](https://developers.amadeus.com/self-service/category/hotel/api-doc/hotel-list/api-reference)
+
+Add support for the [Branded Fares Upsell API](https://developers.amadeus.com/self-service/category/air/api-doc/branded-fares-upsell/api-reference)
+
+
+Add usbType to the SeatMap resource
+
+Improve Test Coverage until 75%
+
+Remove the AI-Generated Photos API
+
+Bug fix in the generating Javadocs
+
+Add support for APIs that need X-HTTP-Method-Override Header
+
 5.9.0 - 2022-03-17
 --------------------
-Add support for the [Flight Availablities Search API](https://developers.amadeus.com/self-service/category/air/api-doc/flight-availabilities-search/api-reference) 
-Add support for the [Travel Restrictions API](https://developers.amadeus.com/self-service/category/covid-19-and-travel-safety/api-doc/travel-restrictions/api-reference) 
-Add support for the [Location Score API](https://developers.amadeus.com/self-service/category/destination-content/api-doc/location-score/api-reference) 
+Add support for the [Flight Availablities Search API](https://developers.amadeus.com/self-service/category/air/api-doc/flight-availabilities-search/api-reference)
+
+Add support for the [Travel Restrictions API](https://developers.amadeus.com/self-service/category/covid-19-and-travel-safety/api-doc/travel-restrictions/api-reference)
+
+Add support for the [Location Score API](https://developers.amadeus.com/self-service/category/destination-content/api-doc/location-score/api-reference)
+
 Add support for the [Airport Routes API](https://developers.amadeus.com/self-service/category/air/api-doc/airport-routes/api-reference)
 
 5.8.2 - 2021-12-01
@@ -12,13 +36,13 @@ Bug fix in the Traveler resource
 
 5.8.1 - 2021-11-18
 --------------------
-Bug fix in the FlightOffersSearch resource 
+Bug fix in the FlightOffersSearch resource
 
 5.8.0 - 2021-10-20
 --------------------
 Add support for the [Trip Parser API](https://developers.amadeus.com/self-service/category/trip/api-doc/trip-parser/api-reference). Big thanks to [Siddhartha Dutta](https://github.com/siddydutta) for his contribution! :clap:
 
-Bug fix in the DatedFlight resource 
+Bug fix in the DatedFlight resource
 
 5.7.3 - 2021-10-08
 --------------------
@@ -104,8 +128,7 @@ Add support for the [Hotel Booking API](https://developers.amadeus.com/self-serv
 
 > The Amadeus Hotel Booking API lets you complete bookings at over 150,000 hotels and accommodations around the world. To complete bookings, you must first use the Amadeus Hotel Search API to search for hotel deals, select the desired offer and confirm the final price and availability. You can then use the Hotel Booking API to complete the reservation by providing an offer id, guest information and payment information.
 
-Add support for the [AI-Generated Photos API](https://developers.amadeus.com/self-service/category/trip/api-doc/ai-generated-photos)
-
+Add support for the AI-Generated Photos API
 > The AI-Generated Photos API returns a link to download a rendered image of a landscape. The image size is 512x512 pixels and the currently available image categories are BEACH and MOUNTAIN. The link to download the AI-generated picture is valid for 24 hours. This API is an experimental project created by the Amadeus AI Lab using the Nvidia StyleGAN framework. This API is free to use and we welcome any feedback you may have about improvements.
 
 Add support for the [SeatMap Display API](https://developers.amadeus.com/self-service/category/air/api-doc/seatmap-display)
@@ -114,7 +137,7 @@ Add support for the [SeatMap Display API](https://developers.amadeus.com/self-se
 
 Remove support for Most Searched Destinations
 
-Add support for Points of Interest Retrieve endpoint 
+Add support for Points of Interest Retrieve endpoint
 
 Add support for the [Airport on Time API](https://developers.amadeus.com/self-service/category/air/api-doc/airport-on-time-performance)
 
@@ -126,7 +149,7 @@ Add support for the [Flight Delay Prediction API](https://developers.amadeus.com
 
 ##3.3.0-2019-10-18
 Big thanks to [Spiros Batziopoulos](https://github.com/SealSoft) for his contributions! The 2 APIs below were added to the SDK by him! :clap:
- 
+
 
 Add support for the [Hotel Ratings API](https://developers.amadeus.com/self-service/category/hotel/api-doc/hotel-ratings)
 

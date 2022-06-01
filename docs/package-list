@@ -13,6 +13,7 @@ com.amadeus.location.analytics
 com.amadeus.media
 com.amadeus.referenceData
 com.amadeus.referenceData.locations
+com.amadeus.referenceData.locations.hotels
 com.amadeus.referenceData.locations.pointsOfInterest
 com.amadeus.referenceData.urls
 com.amadeus.resources

@@ -1,0 +1,30 @@
+{
+  "meta": {
+    "self": "https://test.api.amadeus.com/v1/shopping/activities/4615"
+  },
+  "data": {
+    "id": "4615",
+    "type": "activity",
+    "self": {
+      "href": "https://test.api.amadeus.com/v1/shopping/activities/4615",
+      "methods": [
+        "GET"
+      ]
+    },
+    "name": "Skip the Line: Gaudi’s La Pedrera Audio Tour in Barcelona",
+    "shortDescription": "Explore La Pedrera — otherwise known as Casa Milà — one of Gaudi’s most iconic Barcelona buildings, on this 1.5-hour skip-the-line audio tour. Walk through the entrance reserved for skip-the-line ticket holders, and view the interior of this early 20th-century masterpiece at leisure, as an audio guide chronicles the architect’s vision and building’s construction. View the spiraling chimneys of the Warrior Rooftop and enjoy the best panoramic views of Barcelona; learn about Gaudi’s life at the Gaudi Space in the amazing Whale Attic; see a recreated Gaudi-designed apartment; visit the courtyards, a true spectacle of light, shapes and colours.",
+    "geoCode": {
+      "latitude": "41.395037",
+      "longitude": "2.161683"
+    },
+    "rating": "4.600000",
+    "pictures": [
+      "https://media.tacdn.com/media/attractions-splice-spp-674x446/07/99/57/de.jpg"
+    ],
+    "bookingLink": "https://b2c.mla.cloud/c/PeEBOhSM?c=2WxbgL36",
+    "price": {
+      "currencyCode": "EUR",
+      "amount": "22.00"
+    }
+  }
+}

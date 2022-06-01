@@ -19,16 +19,24 @@ import com.amadeus.referenceData.Locations;
 import com.amadeus.referenceData.RecommendedLocations;
 import com.amadeus.referenceData.locations.Airports;
 import com.amadeus.referenceData.locations.PointsOfInterest;
+import com.amadeus.referenceData.locations.hotels.ByCity;
+import com.amadeus.referenceData.locations.hotels.ByGeocode;
+import com.amadeus.referenceData.locations.hotels.ByHotels;
 import com.amadeus.referenceData.urls.CheckinLinks;
 import com.amadeus.safety.SafetyRatedLocations;
 import com.amadeus.schedule.Flights;
 import com.amadeus.shopping.Activities;
+import com.amadeus.shopping.Activity;
+import com.amadeus.shopping.Availability;
 import com.amadeus.shopping.FlightDates;
 import com.amadeus.shopping.FlightDestinations;
+import com.amadeus.shopping.FlightOffers;
 import com.amadeus.shopping.FlightOffersSearch;
 import com.amadeus.shopping.HotelOffer;
+import com.amadeus.shopping.HotelOfferSearch;
 import com.amadeus.shopping.HotelOffers;
 import com.amadeus.shopping.HotelOffersByHotel;
+import com.amadeus.shopping.HotelOffersSearch;
 import com.amadeus.shopping.SeatMaps;
 import com.amadeus.shopping.availability.FlightAvailabilities;
 import com.amadeus.shopping.flightOffers.Prediction;
@@ -83,6 +91,7 @@ public class NamespaceTest {
     assertNotNull(client.shopping.flightOffers.prediction);
     assertNotNull(client.shopping.flightOffers.upselling);
     assertNotNull(client.shopping.hotelOffers);
+    assertNotNull(client.shopping.hotelOffersSearch);
     assertNotNull(client.shopping.hotelOffersByHotel);
     assertNotNull(client.shopping.seatMaps);
     assertNotNull(client.ereputation.hotelSentiments);
@@ -101,6 +110,10 @@ public class NamespaceTest {
     assertNotNull(client.dutyOfCare.diseases.covid19AreaReport);
     assertNotNull(client.location.analytics);
     assertNotNull(client.location.analytics.categoryRatedAreas);
+    assertNotNull(client.referenceData.locations.hotels);
+    assertNotNull(client.referenceData.locations.hotels.byHotels);
+    assertNotNull(client.referenceData.locations.hotels.byCity);
+    assertNotNull(client.referenceData.locations.hotels.byGeocode);
   }
 
   /**
@@ -340,6 +353,16 @@ public class NamespaceTest {
     assertNotNull(hotelOffers.get(params));
     assertEquals(hotelOffers.get().length, 2);
 
+    // Testing hotel offer search v3
+    Mockito.when(client.get("/v3/shopping/hotel-offers", null))
+        .thenReturn(multiResponse);
+    Mockito.when(client.get("/v3/shopping/hotel-offers", params))
+        .thenReturn(multiResponse);
+    HotelOffersSearch hotelOffersSearch = new HotelOffersSearch(client);
+    assertNotNull(hotelOffersSearch.get());
+    assertNotNull(hotelOffersSearch.get(params));
+    assertEquals(hotelOffersSearch.get().length, 2);
+
     // Testing hotel offer search for a hotel
     Mockito.when(client.get("/v2/shopping/hotel-offers/by-hotel", null))
         .thenReturn(singleResponse);
@@ -355,6 +378,15 @@ public class NamespaceTest {
     Mockito.when(client.get("/v2/shopping/hotel-offers/XXX", params))
         .thenReturn(singleResponse);
     HotelOffer hotelOffer = new HotelOffer(client, "XXX");
+    assertNotNull(hotelOffer.get());
+    assertNotNull(hotelOffer.get(params));
+
+    // Test fetching a specific offer v2
+    Mockito.when(client.get("/v3/shopping/hotel-offers/XXX", null))
+        .thenReturn(singleResponse);
+    Mockito.when(client.get("/v3/shopping/hotel-offers/XXX", params))
+        .thenReturn(singleResponse);
+    HotelOfferSearch hotelOfferSearch = new HotelOfferSearch(client, "XXX");
     assertNotNull(hotelOffer.get());
     assertNotNull(hotelOffer.get(params));
 
@@ -464,6 +496,36 @@ public class NamespaceTest {
     assertNotNull(categoryRatedAreas.get());
     assertNotNull(categoryRatedAreas.get(params));
     assertEquals(categoryRatedAreas.get().length, 2);
+
+    // Testing hotel list by hotels get
+    Mockito.when(client.get("/v1/reference-data/locations/hotels/by-hotels", null))
+      .thenReturn(multiResponse);
+    Mockito.when(client.get("/v1/reference-data/locations/hotels/by-hotels", params))
+      .thenReturn(multiResponse);
+    ByHotels hotelsByHotelIds = new ByHotels(client);
+    assertNotNull(hotelsByHotelIds.get());
+    assertNotNull(hotelsByHotelIds.get(params));
+    assertEquals(hotelsByHotelIds.get().length, 2);
+
+    // Testing hotel list by city get
+    Mockito.when(client.get("/v1/reference-data/locations/hotels/by-city", null))
+      .thenReturn(multiResponse);
+    Mockito.when(client.get("/v1/reference-data/locations/hotels/by-city", params))
+      .thenReturn(multiResponse);
+    ByCity hotelsByCity = new ByCity(client);
+    assertNotNull(hotelsByCity.get());
+    assertNotNull(hotelsByCity.get(params));
+    assertEquals(hotelsByCity.get().length, 2);
+
+    // Testing hotel list by geocode get
+    Mockito.when(client.get("/v1/reference-data/locations/hotels/by-geocode", null))
+      .thenReturn(multiResponse);
+    Mockito.when(client.get("/v1/reference-data/locations/hotels/by-geocode", params))
+      .thenReturn(multiResponse);
+    ByGeocode hotelsByGeocode = new ByGeocode(client);
+    assertNotNull(hotelsByGeocode.get());
+    assertNotNull(hotelsByGeocode.get(params));
+    assertEquals(hotelsByGeocode.get().length, 2);
   }
 
   @Test

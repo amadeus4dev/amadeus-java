@@ -14,12 +14,12 @@ This library requires Java 1.7+ and the [Gson library](https://github.com/google
 <dependency>
   <groupId>com.amadeus</groupId>
   <artifactId>amadeus-java</artifactId>
-  <version>5.9.0</version>
+  <version>6.1.0</version>
 </dependency>
 ```
 #### Gradle
 ```js
-compile "com.amadeus:amadeus-java:5.9.0"
+compile "com.amadeus:amadeus-java:6.1.0"
 ```
 
 ## Getting Started
@@ -401,19 +401,43 @@ FlightAvailability[] flightAvailabilities
   = amadeus.shopping.availability.flightAvailabilities.post(body);
 
 // Travel Restrictions GET
-DiseaseAreaReport diseaseAreaReport 
+DiseaseAreaReport diseaseAreaReport
   = amadeus.dutyOfCare.diseases.covid19AreaReport.get(Params.with("countryCode","US"));
 
 // Location Score GET
-ScoredLocation[] scoredLocations 
+ScoredLocation[] scoredLocations
   = amadeus.location.analytics.categoryRatedAreas.get(Params
       .with("latitude", "41.397158")
       .and("longitude", "2.160873"));
 
 // Branded Fares Upsell Post
 // body can be a String version of your JSON or a JsonObject
-FlightOfferSearch[] upsellFlightOffers 
+FlightOfferSearch[] upsellFlightOffers
   = amadeus.shopping.flightOffers.upselling.post(body);
+
+// Hotel List
+// Get list of hotels by hotel id
+Hotel[] hotels = amadeus.referenceData.locations.hotels.byHotels.get(Params
+  .with("hotelIds", "ADPAR001"));
+// Get list of hotels by city code
+Hotel[] hotels = amadeus.referenceData.locations.hotels.byCity.get(Params
+  .with("cityCode", "PAR"));
+// Get list of hotels by a geocode
+Hotel[] hotels = amadeus.referenceData.locations.hotels.byGeocode.get(Params
+  .with("longitude", 2.160873)
+  .and("latitude", 41.397158));
+
+// Hotel Offers Search API v3
+// Get multiple hotel offers
+HotelOfferSearch[] offers = amadeus.shopping.hotelOffersSearch.get(Params
+  .with("hotelIds", "MCLONGHM")
+  .and("adults", 1)
+  .and("checkInDate", "2022-11-22")
+  .and("roomQuantity", 1)
+  .and("paymentPolicy", "NONE")
+  .and("bestRateOnly", true));
+// Get hotel offer pricing by offer id
+HotelOfferSearch offer = amadeus.shopping.hotelOfferSearch("QF3MNOBDQ8").get();
 ```
 
 ## Development & Contributing

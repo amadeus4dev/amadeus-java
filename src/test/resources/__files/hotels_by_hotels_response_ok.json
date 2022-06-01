@@ -1,0 +1,24 @@
+{
+  "data": [
+    {
+      "chainCode": "AC",
+      "iataCode": "PAR",
+      "dupeId": 700060076,
+      "name": "MAYET",
+      "hotelId": "ACPARF58",
+      "geoCode": {
+        "latitude": 48.84724,
+        "longitude": 2.31836
+      },
+      "address": {
+        "countryCode": "FR"
+      }
+    }
+  ],
+  "meta": {
+    "count": 1,
+    "links": {
+      "self": "http://test.api.amadeus.com/reference-data/locations/hotels/by-hotels?hotelIds=ACPARF58"
+    }
+  }
+}
