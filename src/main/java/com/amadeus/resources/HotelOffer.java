@@ -261,6 +261,7 @@ public class HotelOffer extends Resource {
 
     private @Getter String phone;
     private @Getter String fax;
+    private @Getter String email;
   }
 
   /**
