@@ -248,6 +248,10 @@ Location[] locations = amadeus.referenceData.locations.airports.get(Params
   .with("latitude", 0.1278)
   .and("longitude", 51.5074));
 
+// City Search
+City[] cities = amadeus.referenceData.locations.cities.get(Params
+  .with("keyword","PARIS"));
+
 // Flight Most Booked Destinations
 AirTraffic[] airTraffics = amadeus.travel.analytics.airTraffic.booked.get(Params
   .with("originCityCode", "MAD")

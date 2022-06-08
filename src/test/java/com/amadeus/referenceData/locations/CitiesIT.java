@@ -4,18 +4,21 @@ import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.assertj.core.api.BDDAssertions.then;
 
 import com.amadeus.Amadeus;
+import com.amadeus.Params;
+import com.amadeus.exceptions.ClientException;
 import com.amadeus.exceptions.ResponseException;
-import com.amadeus.resources.PointOfInterest;
+import com.amadeus.resources.City;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-//https://developers.amadeus.com/self-service/category/destination-content/api-doc/points-of-interest/api-reference
-public class PointOfInterestIT {
+// https://developers.amadeus.com/self-service/category/trip/api-doc/city-search/api-reference
+public class CitiesIT {
   WireMockServer wireMockServer;
 
   private Amadeus amadeus;
@@ -51,23 +54,40 @@ public class PointOfInterestIT {
   }
 
   @Test
-  public void given_client_when_call_point_of_interest_by_id_then_ok()
+  public void given_client_when_call_city_search_with_params_then_ok()
       throws ResponseException {
 
     //Given
-    String id = "9CB40CB5D0";
-
-    String address = "/v1/reference-data/locations/pois/" + id;
+    String address = "/v1/reference-data/locations/cities?keyword=PARIS";
     wireMockServer.stubFor(get(urlEqualTo(address))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
         .withStatus(200)
-        .withBodyFile("poi_by_id_response.json")));
+        .withBodyFile("city_search_response_ok.json")));
+
+    Params params = Params.with("keyword", "PARIS");
 
     //When
-    PointOfInterest result = amadeus.referenceData.locations.pointOfInterest(id).get();
+    City[] result = amadeus.referenceData.locations.cities.get(params);
 
     //Then
-    then(result).isNotNull();
+    then(result.length).isNotEqualTo(0);
   }
 
+  @Test
+  public void given_client_when_call_city_search_without_params_then_ok()
+      throws ResponseException {
+
+    //Given
+    String address = "/v1/reference-data/locations/cities";
+    wireMockServer.stubFor(get(urlEqualTo(address))
+        .willReturn(aResponse().withHeader("Content-Type", "application/json")
+        .withStatus(400)
+        .withBody("")));
+
+    //When
+    //Then
+    assertThatThrownBy(() -> {
+      amadeus.referenceData.locations.cities.get();
+    }).isInstanceOf(ClientException.class);
+  }
 }
