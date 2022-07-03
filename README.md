@@ -442,6 +442,12 @@ HotelOfferSearch[] offers = amadeus.shopping.hotelOffersSearch.get(Params
   .and("bestRateOnly", true));
 // Get hotel offer pricing by offer id
 HotelOfferSearch offer = amadeus.shopping.hotelOfferSearch("QF3MNOBDQ8").get();
+
+// Airline Routes
+// Get airline destinations
+Destination[] destinations = amadeus.airline.destinations.get(Params
+  .with("airlineCode", "BA")
+  .and("max", 2));
 ```
 
 ## Development & Contributing

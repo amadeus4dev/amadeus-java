@@ -6,6 +6,7 @@ import lombok.ToString;
 /**
  * A Destination object as returned by the Airport Routes API.
  * @see com.amadeus.airport.DirectDestinations#get()
+ * @see com.amadeus.airline.Destinations#get()
  */
 
 @ToString
