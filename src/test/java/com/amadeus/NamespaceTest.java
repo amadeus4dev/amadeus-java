@@ -3,6 +3,7 @@ package com.amadeus;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import com.amadeus.airline.Destinations;
 import com.amadeus.airport.DirectDestinations;
 import com.amadeus.airport.predictions.AirportOnTime;
 import com.amadeus.analytics.ItineraryPriceMetrics;
@@ -116,6 +117,7 @@ public class NamespaceTest {
     assertNotNull(client.referenceData.locations.hotels.byCity);
     assertNotNull(client.referenceData.locations.hotels.byGeocode);
     assertNotNull(client.referenceData.locations.cities);
+    assertNotNull(client.airline.destinations);
   }
 
   /**
@@ -538,6 +540,16 @@ public class NamespaceTest {
     assertNotNull(cities.get());
     assertNotNull(cities.get(params));
     assertEquals(cities.get().length, 2);
+
+    // Testing airline routes get
+    Mockito.when(client.get("/v1/airline/destinations", null))
+      .thenReturn(multiResponse);
+    Mockito.when(client.get("/v1/airline/destinations", params))
+      .thenReturn(multiResponse);
+    Destinations airlineDestinations = new Destinations(client);
+    assertNotNull(airlineDestinations.get());
+    assertNotNull(airlineDestinations.get(params));
+    assertEquals(airlineDestinations.get().length, 2);
   }
 
   @Test
