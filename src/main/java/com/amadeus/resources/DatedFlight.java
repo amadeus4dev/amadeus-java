@@ -66,7 +66,7 @@ public class DatedFlight extends Resource {
 
     private @Getter String qualifier;
     private @Getter String value;
-    private @Getter Delay delays;
+    private @Getter Delay[] delays;
   }
 
   @ToString
