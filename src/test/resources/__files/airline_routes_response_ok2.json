@@ -1,0 +1,22 @@
+{
+  "meta": {
+    "count": 2,
+    "links": {
+      "self": "https://test.api.amadeus.com/v1/airline/destinations?airlineCode=BA&max=2"
+    }
+  },
+  "data": [
+    {
+      "type": "location",
+      "subtype": "city",
+      "name": "ANAPA",
+      "iataCode": "AAQ"
+    },
+    {
+      "type": "location",
+      "subtype": "city",
+      "name": "ABIDJAN",
+      "iataCode": "ABJ"
+    }
+  ]
+}

@@ -248,6 +248,10 @@ Location[] locations = amadeus.referenceData.locations.airports.get(Params
   .with("latitude", 0.1278)
   .and("longitude", 51.5074));
 
+// City Search
+City[] cities = amadeus.referenceData.locations.cities.get(Params
+  .with("keyword","PARIS"));
+
 // Flight Most Booked Destinations
 AirTraffic[] airTraffics = amadeus.travel.analytics.airTraffic.booked.get(Params
   .with("originCityCode", "MAD")
@@ -438,6 +442,12 @@ HotelOfferSearch[] offers = amadeus.shopping.hotelOffersSearch.get(Params
   .and("bestRateOnly", true));
 // Get hotel offer pricing by offer id
 HotelOfferSearch offer = amadeus.shopping.hotelOfferSearch("QF3MNOBDQ8").get();
+
+// Airline Routes
+// Get airline destinations
+Destination[] destinations = amadeus.airline.destinations.get(Params
+  .with("airlineCode", "BA")
+  .and("max", 2));
 ```
 
 ## Development & Contributing

@@ -3,6 +3,7 @@ package com.amadeus;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import com.amadeus.airline.Destinations;
 import com.amadeus.airport.DirectDestinations;
 import com.amadeus.airport.predictions.AirportOnTime;
 import com.amadeus.analytics.ItineraryPriceMetrics;
@@ -19,6 +20,7 @@ import com.amadeus.referenceData.Locations;
 import com.amadeus.referenceData.RecommendedLocations;
 import com.amadeus.referenceData.locations.Airports;
 import com.amadeus.referenceData.locations.Hotel;
+import com.amadeus.referenceData.locations.Cities;
 import com.amadeus.referenceData.locations.PointsOfInterest;
 import com.amadeus.referenceData.locations.hotels.ByCity;
 import com.amadeus.referenceData.locations.hotels.ByGeocode;
@@ -116,6 +118,8 @@ public class NamespaceTest {
     assertNotNull(client.referenceData.locations.hotels.byHotels);
     assertNotNull(client.referenceData.locations.hotels.byCity);
     assertNotNull(client.referenceData.locations.hotels.byGeocode);
+    assertNotNull(client.referenceData.locations.cities);
+    assertNotNull(client.airline.destinations);
   }
 
   /**
@@ -534,6 +538,26 @@ public class NamespaceTest {
     Mockito.when(client.get("/v1/reference-data/locations/hotel", params))
       .thenReturn(multiResponse);
     assertNotNull(hotel.get(params));
+    
+    // Testing city search get
+    Mockito.when(client.get("/v1/reference-data/locations/cities", null))
+      .thenReturn(multiResponse);
+    Mockito.when(client.get("/v1/reference-data/locations/cities", params))
+      .thenReturn(multiResponse);
+    Cities cities = new Cities(client);
+    assertNotNull(cities.get());
+    assertNotNull(cities.get(params));
+    assertEquals(cities.get().length, 2);
+
+    // Testing airline routes get
+    Mockito.when(client.get("/v1/airline/destinations", null))
+      .thenReturn(multiResponse);
+    Mockito.when(client.get("/v1/airline/destinations", params))
+      .thenReturn(multiResponse);
+    Destinations airlineDestinations = new Destinations(client);
+    assertNotNull(airlineDestinations.get());
+    assertNotNull(airlineDestinations.get(params));
+    assertEquals(airlineDestinations.get().length, 2);
   }
 
   @Test
