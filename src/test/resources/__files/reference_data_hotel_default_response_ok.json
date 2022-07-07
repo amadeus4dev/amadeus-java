@@ -1,0 +1,386 @@
+{
+  "data": [
+    {
+      "id": 3445495,
+      "name": "PARIS PARA",
+      "iataCode": "ABL",
+      "subType": "HOTEL_GDS",
+      "relevance": 70,
+      "type": "location",
+      "hotelIds": [
+        "OIABLIAD"
+      ],
+      "address": {
+        "cityName": "AMBLER",
+        "countryCode": "US",
+        "stateCode": "AK"
+      },
+      "geoCode": {
+        "latitude": 67.0862,
+        "longitude": -157.85701
+      }
+    },
+    {
+      "id": 3422865,
+      "name": "CITADINES BASTILLE MARAIS PARI",
+      "iataCode": "PAR",
+      "subType": "HOTEL_GDS",
+      "relevance": 70,
+      "type": "location",
+      "hotelIds": [
+        "AZPAROBA"
+      ],
+      "address": {
+        "cityName": "PARIS",
+        "countryCode": "FR"
+      },
+      "geoCode": {
+        "latitude": 48.8581,
+        "longitude": 2.37113
+      }
+    },
+    {
+      "id": 3408849,
+      "name": "CONCORDE OPERA PARIS OPERA PARIS",
+      "iataCode": "MIA",
+      "subType": "HOTEL_GDS",
+      "relevance": 40,
+      "type": "location",
+      "hotelIds": [
+        "EAMIAMAP"
+      ],
+      "address": {
+        "cityName": "PARIS",
+        "countryCode": "FR"
+      },
+      "geoCode": {
+        "latitude": 25.77775,
+        "longitude": -80.30379
+      }
+    },
+    {
+      "id": 3408846,
+      "name": "CONCORDE OPERA PARIS OPERA PARIS",
+      "iataCode": "MIA",
+      "subType": "HOTEL_GDS",
+      "relevance": 40,
+      "type": "location",
+      "hotelIds": [
+        "EAMIA276"
+      ],
+      "address": {
+        "cityName": "MIAMI",
+        "countryCode": "US",
+        "stateCode": "FL"
+      },
+      "geoCode": {
+        "latitude": 25.79686,
+        "longitude": -80.31452
+      }
+    },
+    {
+      "id": 3408848,
+      "name": "CONCORDE OPERA PARIS OPERA PARIS",
+      "iataCode": "MIA",
+      "subType": "HOTEL_GDS",
+      "relevance": 40,
+      "type": "location",
+      "hotelIds": [
+        "EAMIACCT"
+      ],
+      "address": {
+        "cityName": "PARIS",
+        "countryCode": "FR"
+      },
+      "geoCode": {
+        "latitude": 48.85721,
+        "longitude": 2.34144
+      }
+    },
+    {
+      "id": 1643792,
+      "name": "CONCORDE OPERA PARIS OPERA PARIS",
+      "iataCode": "LON",
+      "subType": "HOTEL_GDS",
+      "relevance": 40,
+      "type": "location",
+      "hotelIds": [
+        "HILONF17"
+      ],
+      "address": {
+        "cityName": "HARLOW",
+        "countryCode": "GB"
+      },
+      "geoCode": {
+        "latitude": 51.76906,
+        "longitude": 0.09654
+      }
+    },
+    {
+      "id": 3451863,
+      "name": "IBIS PARIS CDG PARIS NORD 2",
+      "iataCode": "CDG",
+      "subType": "HOTEL_GDS",
+      "relevance": 40,
+      "type": "location",
+      "hotelIds": [
+        "RTCDGPND"
+      ],
+      "address": {
+        "cityName": "ROISSY EN FRANCE",
+        "countryCode": "FR"
+      },
+      "geoCode": {
+        "latitude": 48.98904,
+        "longitude": 2.51303
+      }
+    },
+    {
+      "id": 3544748,
+      "name": "CONCORDE OPERA PARIS OPERA PARIS",
+      "iataCode": "JEG",
+      "subType": "HOTEL_GDS",
+      "relevance": 40,
+      "type": "location",
+      "hotelIds": [
+        "ZZJEG119"
+      ],
+      "address": {
+        "cityName": "PARIS",
+        "countryCode": "FR"
+      },
+      "geoCode": {
+        "latitude": 48.8569,
+        "longitude": 2.35085
+      }
+    },
+    {
+      "id": 1247838,
+      "name": "CONCORDE OPERA PARIS OPERA PARIS",
+      "iataCode": "LON",
+      "subType": "HOTEL_GDS",
+      "relevance": 40,
+      "type": "location",
+      "hotelIds": [
+        "HILON638"
+      ],
+      "address": {
+        "cityName": "LONDON",
+        "countryCode": "GB"
+      },
+      "geoCode": {
+        "latitude": 51.54846,
+        "longitude": -0.18098
+      }
+    },
+    {
+      "id": 3562479,
+      "name": "CONCORDE OPERA PARIS OPERA PARIS",
+      "iataCode": "JEG",
+      "subType": "HOTEL_GDS",
+      "relevance": 40,
+      "type": "location",
+      "hotelIds": [
+        "GTJEG119"
+      ],
+      "address": {
+        "cityName": "AASIAAT",
+        "countryCode": "GL"
+      },
+      "geoCode": {
+        "latitude": 69.29362,
+        "longitude": 80.27399
+      }
+    },
+    {
+      "id": 3234104,
+      "name": "KYRIAD PARIS 10 GARE DU NORD",
+      "iataCode": "PAR",
+      "subType": "HOTEL_GDS",
+      "relevance": 37,
+      "type": "location",
+      "hotelIds": [
+        "NNPAR585"
+      ],
+      "address": {
+        "cityName": "PARIS",
+        "countryCode": "FR"
+      },
+      "geoCode": {
+        "latitude": 48.87967,
+        "longitude": 2.35594
+      }
+    },
+    {
+      "id": 1137534,
+      "name": "IBIS PARIS LE BOURGET",
+      "iataCode": "LBG",
+      "subType": "HOTEL_GDS",
+      "relevance": 37,
+      "type": "location",
+      "hotelIds": [
+        "RTLBGIBI"
+      ],
+      "address": {
+        "cityName": "LA COURNEUVE",
+        "countryCode": "FR"
+      },
+      "geoCode": {
+        "latitude": 48.93255,
+        "longitude": 2.41023
+      }
+    },
+    {
+      "id": 1525855,
+      "name": "RELAIS HOTEL DU VIEUX PARIS",
+      "iataCode": "PAR",
+      "subType": "HOTEL_GDS",
+      "relevance": 37,
+      "type": "location",
+      "hotelIds": [
+        "ACPARC06"
+      ],
+      "address": {
+        "cityName": "PARIS",
+        "countryCode": "FR"
+      },
+      "geoCode": {
+        "latitude": 48.89656,
+        "longitude": 2.34371
+      }
+    },
+    {
+      "id": 1346610,
+      "name": "LE CHAPLAIN PARIS RIVE GAUCHE",
+      "iataCode": "PAR",
+      "subType": "HOTEL_GDS",
+      "relevance": 37,
+      "type": "location",
+      "hotelIds": [
+        "ACPARCHA"
+      ],
+      "address": {
+        "cityName": "PARIS",
+        "countryCode": "FR"
+      },
+      "geoCode": {
+        "latitude": 48.84292,
+        "longitude": 2.33037
+      }
+    },
+    {
+      "id": 1454060,
+      "name": "VILLA MAZARIN PARIS",
+      "iataCode": "PAR",
+      "subType": "HOTEL_GDS",
+      "relevance": 37,
+      "type": "location",
+      "hotelIds": [
+        "ACPARB25"
+      ],
+      "address": {
+        "cityName": "PARIS",
+        "countryCode": "FR"
+      },
+      "geoCode": {
+        "latitude": 48.87105,
+        "longitude": 2.32037
+      }
+    },
+    {
+      "id": 3061349,
+      "name": "LYRIC HOTEL PARIS",
+      "iataCode": "PAR",
+      "subType": "HOTEL_GDS",
+      "relevance": 37,
+      "type": "location",
+      "hotelIds": [
+        "DHPARCCL"
+      ],
+      "address": {
+        "cityName": "PARIS",
+        "countryCode": "FR"
+      },
+      "geoCode": {
+        "latitude": 48.86859,
+        "longitude": 2.33316
+      }
+    },
+    {
+      "id": 2183927,
+      "name": "HIPOTEL PARIS MARNE LA VALLEE",
+      "iataCode": "PAR",
+      "subType": "HOTEL_GDS",
+      "relevance": 37,
+      "type": "location",
+      "hotelIds": [
+        "HSPARBJC"
+      ],
+      "address": {
+        "cityName": "NOISIEL",
+        "countryCode": "FR"
+      },
+      "geoCode": {
+        "latitude": 48.84364,
+        "longitude": 2.61496
+      }
+    },
+    {
+      "id": 1289838,
+      "name": "BEST WESTERN HOTEL DE PARIS",
+      "iataCode": "LVA",
+      "subType": "HOTEL_GDS",
+      "relevance": 37,
+      "type": "location",
+      "hotelIds": [
+        "BWLVA613"
+      ],
+      "address": {
+        "cityName": "LAVAL",
+        "countryCode": "FR"
+      },
+      "geoCode": {
+        "latitude": 48.06113,
+        "longitude": -0.76575
+      }
+    },
+    {
+      "id": 2039491,
+      "name": "HOTEL DE PARIS",
+      "iataCode": "DIJ",
+      "subType": "HOTEL_GDS",
+      "relevance": 37,
+      "type": "location",
+      "hotelIds": [
+        "HSDIJAAG"
+      ],
+      "address": {
+        "cityName": "DIJON",
+        "countryCode": "FR"
+      },
+      "geoCode": {
+        "latitude": 47.32337,
+        "longitude": 5.03019
+      }
+    },
+    {
+      "id": 2923847,
+      "name": "INTER HOTEL PARISIANA",
+      "iataCode": "PAR",
+      "subType": "HOTEL_GDS",
+      "relevance": 37,
+      "type": "location",
+      "hotelIds": [
+        "YXPARHPR"
+      ],
+      "address": {
+        "cityName": "PARIS",
+        "countryCode": "FR"
+      },
+      "geoCode": {
+        "latitude": 48.87668,
+        "longitude": 2.35439
+      }
+    }
+  ]
+}

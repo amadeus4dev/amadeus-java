@@ -1,0 +1,99 @@
+{
+  "data": [
+    {
+      "id": 3422865,
+      "name": "CITADINES BASTILLE MARAIS PARI",
+      "iataCode": "PAR",
+      "subType": "HOTEL_GDS",
+      "relevance": 70,
+      "type": "location",
+      "hotelIds": [
+        "AZPAROBA"
+      ],
+      "address": {
+        "cityName": "PARIS",
+        "countryCode": "FR"
+      },
+      "geoCode": {
+        "latitude": 48.8581,
+        "longitude": 2.37113
+      }
+    },
+    {
+      "id": 3408848,
+      "name": "CONCORDE OPERA PARIS OPERA PARIS",
+      "iataCode": "MIA",
+      "subType": "HOTEL_GDS",
+      "relevance": 40,
+      "type": "location",
+      "hotelIds": [
+        "EAMIACCT"
+      ],
+      "address": {
+        "cityName": "PARIS",
+        "countryCode": "FR"
+      },
+      "geoCode": {
+        "latitude": 48.85721,
+        "longitude": 2.34144
+      }
+    },
+    {
+      "id": 3544748,
+      "name": "CONCORDE OPERA PARIS OPERA PARIS",
+      "iataCode": "JEG",
+      "subType": "HOTEL_GDS",
+      "relevance": 40,
+      "type": "location",
+      "hotelIds": [
+        "ZZJEG119"
+      ],
+      "address": {
+        "cityName": "PARIS",
+        "countryCode": "FR"
+      },
+      "geoCode": {
+        "latitude": 48.8569,
+        "longitude": 2.35085
+      }
+    },
+    {
+      "id": 3451863,
+      "name": "IBIS PARIS CDG PARIS NORD 2",
+      "iataCode": "CDG",
+      "subType": "HOTEL_GDS",
+      "relevance": 40,
+      "type": "location",
+      "hotelIds": [
+        "RTCDGPND"
+      ],
+      "address": {
+        "cityName": "ROISSY EN FRANCE",
+        "countryCode": "FR"
+      },
+      "geoCode": {
+        "latitude": 48.98904,
+        "longitude": 2.51303
+      }
+    },
+    {
+      "id": 3408849,
+      "name": "CONCORDE OPERA PARIS OPERA PARIS",
+      "iataCode": "MIA",
+      "subType": "HOTEL_GDS",
+      "relevance": 40,
+      "type": "location",
+      "hotelIds": [
+        "EAMIAMAP"
+      ],
+      "address": {
+        "cityName": "PARIS",
+        "countryCode": "FR"
+      },
+      "geoCode": {
+        "latitude": 25.77775,
+        "longitude": -80.30379
+      }
+    }
+  ]
+}

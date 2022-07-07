@@ -1,0 +1,23 @@
+{
+  "data": [
+    {
+      "id": 3422865,
+      "name": "CITADINES BASTILLE MARAIS PARI",
+      "iataCode": "PAR",
+      "subType": "HOTEL_GDS",
+      "relevance": 70,
+      "type": "location",
+      "hotelIds": [
+        "AZPAROBA"
+      ],
+      "address": {
+        "cityName": "PARIS",
+        "countryCode": "FR"
+      },
+      "geoCode": {
+        "latitude": 48.8581,
+        "longitude": 2.37113
+      }
+    }
+  ]
+}
