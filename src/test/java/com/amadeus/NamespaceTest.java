@@ -19,8 +19,8 @@ import com.amadeus.referenceData.Location;
 import com.amadeus.referenceData.Locations;
 import com.amadeus.referenceData.RecommendedLocations;
 import com.amadeus.referenceData.locations.Airports;
-import com.amadeus.referenceData.locations.Hotel;
 import com.amadeus.referenceData.locations.Cities;
+import com.amadeus.referenceData.locations.Hotel;
 import com.amadeus.referenceData.locations.PointsOfInterest;
 import com.amadeus.referenceData.locations.hotels.ByCity;
 import com.amadeus.referenceData.locations.hotels.ByGeocode;
@@ -538,7 +538,7 @@ public class NamespaceTest {
     Mockito.when(client.get("/v1/reference-data/locations/hotel", params))
       .thenReturn(multiResponse);
     assertNotNull(hotel.get(params));
-    
+
     // Testing city search get
     Mockito.when(client.get("/v1/reference-data/locations/cities", null))
       .thenReturn(multiResponse);
