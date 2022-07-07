@@ -75,6 +75,9 @@ public class Locations {
    * </p>
    */
   public Hotel hotel;
+  /**
+   * <p>
+   *   A namespaced client for the
    *   <code>/v1/reference-data/locations/cities</code> endpoints.
    * </p>
    */

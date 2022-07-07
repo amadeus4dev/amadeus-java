@@ -431,6 +431,14 @@ Hotel[] hotels = amadeus.referenceData.locations.hotels.byGeocode.get(Params
   .with("longitude", 2.160873)
   .and("latitude", 41.397158));
 
+// Hotel autocomplete names
+Hotel[] result = amadeus.referenceData.locations.hotel.get(Params
+  .with("keyword", "PARI")
+  .and("subType", "HOTEL_GDS")
+  .and("countryCode", "FR")
+  .and("lang", "EN")
+  .and("max", "20"));
+
 // Hotel Offers Search API v3
 // Get multiple hotel offers
 HotelOfferSearch[] offers = amadeus.shopping.hotelOffersSearch.get(Params
