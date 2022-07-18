@@ -1,4 +1,18 @@
 # Changelog
+6.2.0 - 2022-07-18
+--------------------
+Add support for the [Airline Routes API](https://developers.amadeus.com/self-service/category/air/api-doc/airline-routes/api-reference). Big thanks to [Siddhartha Dutta](https://github.com/siddydutta) for his contribution! :clap:
+
+Add support for the [Hotel Name Autocomplete API](https://developers.amadeus.com/self-service/category/hotel/api-doc/hotel-name-autocomplete/api-reference)
+
+Add support for the [City Search API](https://developers.amadeus.com/self-service/category/trip/api-doc/city-search/api-reference)
+
+Bug fix in the DatedFlight.Timing resource. Big thanks to [Frank Koornstra](https://github.com/frankkoornstra) for his contribution! :clap:
+
+Add email to the HotelOffer.HotelContact resource
+
+Update GSON dependency
+
 6.1.0 - 2022-05-23
 --------------------
 Add support for the [Hotel Search API v3](https://developers.amadeus.com/self-service/category/hotel/api-doc/hotel-search/api-reference)
