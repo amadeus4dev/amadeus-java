@@ -1,4 +1,10 @@
 # Changelog
+6.2.1 - 2022-07-22
+--------------------
+Removed unnecessary toString() on a String. Big thanks to [Steve Donovan](https://github.com/steve-donovan) for his contribution! :clap:
+
+Fixed property type name in the FlightOffersSearch resource
+
 6.2.0 - 2022-07-18
 --------------------
 Add support for the [Airline Routes API](https://developers.amadeus.com/self-service/category/air/api-doc/airline-routes/api-reference). Big thanks to [Siddhartha Dutta](https://github.com/siddydutta) for his contribution! :clap:
