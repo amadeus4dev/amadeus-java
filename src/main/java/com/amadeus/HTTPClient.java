@@ -236,7 +236,7 @@ public class HTTPClient {
    * @return a Response object containing the status code, body, and parsed data.
    */
   public Response post(String path, Params params, String body) throws ResponseException {
-    return request(Constants.POST, path, params, body.toString());
+    return request(Constants.POST, path, params, body);
   }
 
   /**
