@@ -147,7 +147,7 @@ public class FlightOfferSearch extends Resource {
     }
 
     private @Getter String amount;
-    private @Getter String additionalServiceType;
+    private @Getter String type;
   }
 
   @ToString
