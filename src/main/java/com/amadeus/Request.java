@@ -1,8 +1,5 @@
 package com.amadeus;
 
-import com.amadeus.Constants;
-
-import com.google.gson.JsonElement;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
