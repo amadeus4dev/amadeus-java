@@ -1,6 +1,6 @@
 plugins {
 	id 'java'
-    id 'io.franzbecker.gradle-lombok' version '4.0.0'
+    id 'io.franzbecker.gradle-lombok' version '5.0.0'
     id 'checkstyle'
     id 'com.vanniktech.maven.publish' version '0.18.0'
     id 'jacoco'
@@ -26,14 +26,15 @@ repositories {
 
 dependencies {
     implementation 'com.google.code.gson:gson:2.9.0'
-    implementation "org.projectlombok:lombok:1.16.16"
-    testImplementation "org.mockito:mockito-core:2.12.0"
-    testRuntimeOnly "org.slf4j:slf4j-api:1.7.10"
+    compileOnly "org.projectlombok:lombok:1.18.24"
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    testCompileOnly 'org.projectlombok:lombok:1.18.24'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
+    testImplementation 'org.mockito:mockito-core:4.6.1'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
     testImplementation 'org.assertj:assertj-core:3.22.0'
     testImplementation 'com.github.tomakehurst:wiremock:2.27.2'
-    testImplementation 'io.rest-assured:rest-assured:5.0.0'
     testImplementation 'org.slf4j:slf4j-api:1.7.36'
     testImplementation 'org.slf4j:slf4j-simple:1.7.36'
 }
