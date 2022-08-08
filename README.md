@@ -404,7 +404,7 @@ Destination[] directDestinations = amadeus.airport.directDestinations.get(Params
 FlightAvailability[] flightAvailabilities
   = amadeus.shopping.availability.flightAvailabilities.post(body);
 
-// Travel Restrictions GET
+// Travel Restrictions GET V1
 DiseaseAreaReport diseaseAreaReport
   = amadeus.dutyOfCare.diseases.covid19AreaReport.get(Params.with("countryCode","US"));
 // Travel Restrictions GET V2
