@@ -48,7 +48,7 @@ public class Covid19AreaReport {
    * @throws ResponseException when an exception occurs
    */
   public DiseaseAreaReport get(Params params) throws ResponseException {
-    Response response = client.get("/v1/duty-of-care/diseases/covid19-area-report", params);
+    Response response = client.get("/v2/duty-of-care/diseases/covid19-area-report", params);
     return (DiseaseAreaReport) Resource.fromObject(response, DiseaseAreaReport.class);
   }
 

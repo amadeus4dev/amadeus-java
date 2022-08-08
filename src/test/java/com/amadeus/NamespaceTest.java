@@ -485,9 +485,9 @@ public class NamespaceTest {
     assertEquals(directDestinations.get().length, 2);
 
     // Testing travel restrictions get
-    Mockito.when(client.get("/v1/duty-of-care/diseases/covid19-area-report", null))
+    Mockito.when(client.get("/v2/duty-of-care/diseases/covid19-area-report", null))
       .thenReturn(singleResponse);
-    Mockito.when(client.get("/v1/duty-of-care/diseases/covid19-area-report", params))
+    Mockito.when(client.get("/v2/duty-of-care/diseases/covid19-area-report", params))
       .thenReturn(singleResponse);
     Covid19AreaReport covid19AreaReport = new Covid19AreaReport(client);
     assertNotNull(covid19AreaReport.get());
