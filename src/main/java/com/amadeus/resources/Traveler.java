@@ -10,7 +10,7 @@ import lombok.ToString;
  */
 @ToString
 public class Traveler extends Resource {
-  public Traveler(String id, String dateOfBirth, String gender, 
+  public Traveler(String id, String dateOfBirth, String gender,
       Name name, Contact contact, Document[] documents) {
     this.name = name;
     this.contact = contact;
@@ -44,7 +44,9 @@ public class Traveler extends Resource {
     public Contact() {
     }
 
-    public Contact(Phone phones, String emailAddress) {
+    public Contact(Phone[] phones, String emailAddress) {
+      this.phones = phones;
+      this.emailAddress = emailAddress;
     }
 
     private @Getter @Setter Phone[] phones;
@@ -56,11 +58,11 @@ public class Traveler extends Resource {
     public Document() {
     }
 
-    public Document(String documentType, String number, String expiryDate, 
+    public Document(String documentType, String number, String expiryDate,
         String issuanceCountry, String nationality, boolean holder) {
 
     }
-    
+
     private @Getter @Setter String documentType;
     private @Getter @Setter String number;
     private @Getter @Setter String expiryDate;
@@ -74,7 +76,7 @@ public class Traveler extends Resource {
 
     public Phone() {
     }
-    
+
     public Phone(String countryCallingCode, String number) {
     }
 
