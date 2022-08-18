@@ -10,7 +10,7 @@ import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.FlightOfferSearch;
 import com.amadeus.resources.FlightOrder;
 import com.amadeus.resources.FlightPrice;
-import com.amadeus.resources.Traveler;
+import com.amadeus.resources.FlightOrder.Traveler;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
