@@ -7,7 +7,7 @@ import com.amadeus.resources.FlightOfferSearch;
 import com.amadeus.resources.FlightOrder;
 import com.amadeus.resources.FlightPrice;
 import com.amadeus.resources.Resource;
-import com.amadeus.resources.Traveler;
+import com.amadeus.resources.FlightOrder.Traveler;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;

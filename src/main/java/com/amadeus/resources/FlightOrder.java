@@ -1,7 +1,9 @@
 package com.amadeus.resources;
 
 import java.util.Date;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 /**
@@ -30,27 +32,30 @@ public class FlightOrder extends Resource {
     private @Getter String flightOfferId;
   }
 
+  @AllArgsConstructor
   @ToString
   public class Traveler {
     protected Traveler() {
     }
 
-    private @Getter String id;
-    private @Getter Date dateOfBirth;
-    private @Getter Name name;
-    private @Getter Contact contact;
-    private @Getter Document[] documents;
+    private @Getter @Setter String id;
+    private @Getter @Setter Date dateOfBirth;
+    private @Getter @Setter Name name;
+    private @Getter @Setter Contact contact;
+    private @Getter @Setter Document[] documents;
   }
-
+  
+  @AllArgsConstructor
   @ToString
   public class Name {
     protected Name() {
     }
 
-    private @Getter String firstName;
-    private @Getter String lastName;
+    private @Getter @Setter String firstName;
+    private @Getter @Setter String lastName;
   }
 
+  @AllArgsConstructor
   @ToString
   public class Contact {
     protected Contact() {
@@ -59,27 +64,29 @@ public class FlightOrder extends Resource {
     private @Getter Phone[] phones;
   }
 
+  @AllArgsConstructor
   @ToString
   public class Document {
     protected Document() {
     }
 
-    private @Getter String documentType;
-    private @Getter String number;
-    private @Getter Date expiryDate;
-    private @Getter String issuanceCountry;
-    private @Getter String nationality;
-    private @Getter boolean holder;
+    private @Getter @Setter String documentType;
+    private @Getter @Setter String number;
+    private @Getter @Setter Date expiryDate;
+    private @Getter @Setter String issuanceCountry;
+    private @Getter @Setter String nationality;
+    private @Getter @Setter boolean holder;
   }
 
+  @AllArgsConstructor 
   @ToString
   public class Phone {
 
     protected Phone() {
     }
     
-    private @Getter String countryCallingCode;
-    private @Getter String number;
+    private @Getter @Setter String countryCallingCode;
+    private @Getter @Setter String number;
   }
 
 }
