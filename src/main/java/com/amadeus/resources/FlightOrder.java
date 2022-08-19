@@ -1,7 +1,9 @@
 package com.amadeus.resources;
 
-import java.util.Date;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 /**
@@ -30,56 +32,56 @@ public class FlightOrder extends Resource {
     private @Getter String flightOfferId;
   }
 
+  @AllArgsConstructor
+  @NoArgsConstructor
   @ToString
-  public class Traveler {
-    protected Traveler() {
-    }
+  public static class Traveler {
 
-    private @Getter String id;
-    private @Getter Date dateOfBirth;
-    private @Getter Name name;
-    private @Getter Contact contact;
-    private @Getter Document[] documents;
+    private @Getter @Setter String id;
+    private @Getter @Setter String dateOfBirth;
+    private @Getter @Setter Name name;
+    private @Getter @Setter Contact contact;
+    private @Getter @Setter Document[] documents;
   }
 
+  @AllArgsConstructor
+  @NoArgsConstructor
   @ToString
-  public class Name {
-    protected Name() {
-    }
+  public static class Name {
 
-    private @Getter String firstName;
-    private @Getter String lastName;
+    private @Getter @Setter String firstName;
+    private @Getter @Setter String lastName;
   }
 
+  @AllArgsConstructor
+  @NoArgsConstructor
   @ToString
-  public class Contact {
-    protected Contact() {
-    }
+  public static class Contact {
 
-    private @Getter Phone[] phones;
+    private @Getter @Setter Phone[] phones;
+    private @Getter @Setter String deviceType;
   }
 
+  @AllArgsConstructor
+  @NoArgsConstructor
   @ToString
-  public class Document {
-    protected Document() {
-    }
+  public static class Document {
 
-    private @Getter String documentType;
-    private @Getter String number;
-    private @Getter Date expiryDate;
-    private @Getter String issuanceCountry;
-    private @Getter String nationality;
-    private @Getter boolean holder;
+    private @Getter @Setter String documentType;
+    private @Getter @Setter String number;
+    public @Getter @Setter String expiryDate;
+    private @Getter @Setter String issuanceCountry;
+    private @Getter @Setter String nationality;
+    private @Getter @Setter boolean holder;
   }
 
+  @AllArgsConstructor
+  @NoArgsConstructor
   @ToString
-  public class Phone {
+  public static class Phone {
 
-    protected Phone() {
-    }
-    
-    private @Getter String countryCallingCode;
-    private @Getter String number;
+    private @Getter @Setter String countryCallingCode;
+    private @Getter @Setter String number;
   }
 
 }
