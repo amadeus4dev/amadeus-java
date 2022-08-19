@@ -2,6 +2,7 @@ package com.amadeus.resources;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -32,6 +33,7 @@ public class FlightOrder extends Resource {
   }
 
   @AllArgsConstructor
+  @NoArgsConstructor
   @ToString
   public static class Traveler {
 
@@ -43,6 +45,7 @@ public class FlightOrder extends Resource {
   }
 
   @AllArgsConstructor
+  @NoArgsConstructor
   @ToString
   public static class Name {
 
@@ -51,6 +54,7 @@ public class FlightOrder extends Resource {
   }
 
   @AllArgsConstructor
+  @NoArgsConstructor
   @ToString
   public static class Contact {
 
@@ -59,6 +63,7 @@ public class FlightOrder extends Resource {
   }
 
   @AllArgsConstructor
+  @NoArgsConstructor
   @ToString
   public static class Document {
 
@@ -71,6 +76,7 @@ public class FlightOrder extends Resource {
   }
 
   @AllArgsConstructor
+  @NoArgsConstructor
   @ToString
   public static class Phone {
 
