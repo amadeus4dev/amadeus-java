@@ -34,21 +34,21 @@ public class FlightOrder extends Resource {
 
   @AllArgsConstructor
   @ToString
-  public class Traveler {
-    protected Traveler() {
+  public static class Traveler {
+    public Traveler() {
     }
 
     private @Getter @Setter String id;
-    private @Getter @Setter Date dateOfBirth;
+    private @Getter @Setter String dateOfBirth;
     private @Getter @Setter Name name;
     private @Getter @Setter Contact contact;
     private @Getter @Setter Document[] documents;
   }
-  
+
   @AllArgsConstructor
   @ToString
-  public class Name {
-    protected Name() {
+  public static class Name {
+    public Name() {
     }
 
     private @Getter @Setter String firstName;
@@ -57,34 +57,35 @@ public class FlightOrder extends Resource {
 
   @AllArgsConstructor
   @ToString
-  public class Contact {
-    protected Contact() {
+  public static class Contact {
+    public Contact() {
     }
 
-    private @Getter Phone[] phones;
+    private @Getter @Setter Phone[] phones;
+    private @Getter @Setter String deviceType;
   }
 
   @AllArgsConstructor
   @ToString
-  public class Document {
-    protected Document() {
+  public static class Document {
+    public Document() {
     }
 
     private @Getter @Setter String documentType;
     private @Getter @Setter String number;
-    private @Getter @Setter Date expiryDate;
+    public @Getter @Setter String expiryDate;
     private @Getter @Setter String issuanceCountry;
     private @Getter @Setter String nationality;
     private @Getter @Setter boolean holder;
   }
 
-  @AllArgsConstructor 
+  @AllArgsConstructor
   @ToString
-  public class Phone {
+  public static class Phone {
 
-    protected Phone() {
+    public Phone() {
     }
-    
+
     private @Getter @Setter String countryCallingCode;
     private @Getter @Setter String number;
   }
