@@ -1,6 +1,5 @@
 package com.amadeus.resources;
 
-import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -35,8 +34,6 @@ public class FlightOrder extends Resource {
   @AllArgsConstructor
   @ToString
   public static class Traveler {
-    public Traveler() {
-    }
 
     private @Getter @Setter String id;
     private @Getter @Setter String dateOfBirth;
@@ -48,8 +45,6 @@ public class FlightOrder extends Resource {
   @AllArgsConstructor
   @ToString
   public static class Name {
-    public Name() {
-    }
 
     private @Getter @Setter String firstName;
     private @Getter @Setter String lastName;
@@ -58,8 +53,6 @@ public class FlightOrder extends Resource {
   @AllArgsConstructor
   @ToString
   public static class Contact {
-    public Contact() {
-    }
 
     private @Getter @Setter Phone[] phones;
     private @Getter @Setter String deviceType;
@@ -68,8 +61,6 @@ public class FlightOrder extends Resource {
   @AllArgsConstructor
   @ToString
   public static class Document {
-    public Document() {
-    }
 
     private @Getter @Setter String documentType;
     private @Getter @Setter String number;
@@ -82,9 +73,6 @@ public class FlightOrder extends Resource {
   @AllArgsConstructor
   @ToString
   public static class Phone {
-
-    public Phone() {
-    }
 
     private @Getter @Setter String countryCallingCode;
     private @Getter @Setter String number;
