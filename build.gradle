@@ -4,6 +4,7 @@ plugins {
     id 'checkstyle'
     id 'com.vanniktech.maven.publish' version '0.18.0'
     id 'jacoco'
+    id "org.sonarqube" version "3.4.0.2513"
 }
 
 compileJava {
@@ -79,4 +80,12 @@ signing {
     if (project.hasProperty('SIGNING_PRIVATE_KEY') && project.hasProperty('SIGNING_PASSWORD')) {
         useInMemoryPgpKeys(project.getProperty('SIGNING_PRIVATE_KEY'), project.getProperty('SIGNING_PASSWORD'))
     }
+}
+
+sonarqube {
+  properties {
+    property "sonar.projectKey", "amadeus4dev_amadeus-java"
+    property "sonar.organization", "amadeus4dev"
+    property "sonar.host.url", "https://sonarcloud.io"
+  }
 }

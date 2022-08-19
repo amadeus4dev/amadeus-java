@@ -9,8 +9,12 @@ import com.amadeus.Amadeus;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.FlightOfferSearch;
 import com.amadeus.resources.FlightOrder;
+import com.amadeus.resources.FlightOrder.Contact;
+import com.amadeus.resources.FlightOrder.Document;
+import com.amadeus.resources.FlightOrder.Name;
+import com.amadeus.resources.FlightOrder.Phone;
+import com.amadeus.resources.FlightOrder.Traveler;
 import com.amadeus.resources.FlightPrice;
-import com.amadeus.resources.Traveler;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -103,20 +107,19 @@ public class FlightOrdersIT {
 
     traveler.setId("1");
     traveler.setDateOfBirth("2000-04-14");
-    traveler.setName(traveler.new Name("JORGE", "GONZALES"));
+    traveler.setName(new Name("JORGE", "GONZALES"));
 
-    Traveler.Phone[] phone = new Traveler.Phone[1];
-    phone[0] = traveler.new Phone();
+    Phone[] phone = new Phone[1];
+    phone[0] = new Phone();
     phone[0].setCountryCallingCode("33");
     phone[0].setNumber("675426222");
-    phone[0].setDeviceType("MOBILE");
 
-    Traveler.Contact contact = traveler.new Contact();
+    Contact contact = new Contact();
     contact.setPhones(phone);
     traveler.setContact(contact);
 
-    Traveler.Document[] document = new Traveler.Document[1];
-    document[0] = traveler.new Document();
+    Document[] document = new Document[1];
+    document[0] = new Document();
     document[0].setDocumentType("PASSPORT");
     document[0].setNumber("480080076");
     document[0].setExpiryDate("2022-10-11");
