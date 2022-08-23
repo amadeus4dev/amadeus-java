@@ -1,4 +1,15 @@
 # Changelog
+
+6.3.0 - 2022-08-23
+--------------------
+Add support for the [Travel Restrictions v2](https://developers.amadeus.com/self-service/category/covid-19-and-travel-safety/api-doc/travel-restrictions/api-reference)
+
+Add support for JDK 8 and 11, Big thanks to [Steve Donovan](https://github.com/steve-donovan) for his contribution! :clap:
+
+Update Traveler resource model, Big thanks to [Steve Donovan](https://github.com/steve-donovan) for his contribution! :clap:
+
+Add [SonarCloud](https://sonarcloud.io/summary/overall?id=amadeus4dev_amadeus-java) in GitHub Action
+
 6.2.1 - 2022-07-22
 --------------------
 Removed unnecessary toString() on a String. Big thanks to [Steve Donovan](https://github.com/steve-donovan) for his contribution! :clap:
