@@ -8,7 +8,7 @@ import lombok.ToString;
 
 /**
  * An Airline object as returned by the Airline Code LookUp API.
- * @see com.amadeus.booking.flightOrder#get()
+ * @see com.amadeus.booking.FlightOrder#get()
  */
 @ToString
 public class FlightOrder extends Resource {
