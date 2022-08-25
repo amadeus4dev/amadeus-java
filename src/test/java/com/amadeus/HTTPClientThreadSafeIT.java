@@ -52,7 +52,6 @@ public class HTTPClientThreadSafeIT {
       .setHost("localhost")
       .setPort(8080)
       .setSsl(false)
-      .setLogLevel("debug")
       .build();
   }
 
