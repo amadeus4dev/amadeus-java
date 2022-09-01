@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+
 /**
  * An Airline object as returned by the Airline Code LookUp API.
  * @see com.amadeus.booking.FlightOrder#get()
