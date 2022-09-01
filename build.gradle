@@ -8,8 +8,8 @@ plugins {
 }
 
 compileJava {
-    sourceCompatibility = "1.8"
-    targetCompatibility = "1.8"
+    sourceCompatibility = "1.7"
+    targetCompatibility = "1.7"
 }
 
 compileTestJava {
@@ -87,6 +87,5 @@ sonarqube {
     property "sonar.projectKey", "amadeus4dev_amadeus-java"
     property "sonar.organization", "amadeus4dev"
     property "sonar.host.url", "https://sonarcloud.io"
-    property "sonar.verbose", "true"
   }
 }
