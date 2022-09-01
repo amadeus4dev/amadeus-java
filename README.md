@@ -475,3 +475,4 @@ This library is released under the [MIT License](LICENSE).
 
 You can find us on [StackOverflow](https://stackoverflow.com/questions/tagged/amadeus) or join our developer community on
 [Discord](https://discord.gg/cVrFBqx).
+
