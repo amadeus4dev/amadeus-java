@@ -59,7 +59,13 @@ public class FlightOrder extends Resource {
   public static class Contact {
 
     private @Getter @Setter Phone[] phones;
-    private @Getter @Setter String deviceType;
+    private @Getter @Setter DeviceType deviceType;
+
+    public enum DeviceType {
+      MOBILE,
+      LANDLINE,
+      FAX
+    }
   }
 
   @AllArgsConstructor
@@ -67,12 +73,20 @@ public class FlightOrder extends Resource {
   @ToString
   public static class Document {
 
-    private @Getter @Setter String documentType;
+    private @Getter @Setter DocumentType documentType;
     private @Getter @Setter String number;
     public @Getter @Setter String expiryDate;
     private @Getter @Setter String issuanceCountry;
     private @Getter @Setter String nationality;
     private @Getter @Setter boolean holder;
+
+    public enum DocumentType {
+      VISA,
+      PASSPORT,
+      IDENTITY_CARD,
+      KNOWN_TRAVELER,
+      REDRESS
+    }
   }
 
   @AllArgsConstructor

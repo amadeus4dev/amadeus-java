@@ -116,12 +116,12 @@ public class FlightOrdersIT {
 
     Contact contact = new Contact();
     contact.setPhones(phone);
-    contact.setDeviceType("MOBILE");
+    contact.setDeviceType(Contact.DeviceType.MOBILE);
     traveler.setContact(contact);
 
     Document[] document = new Document[1];
     document[0] = new Document();
-    document[0].setDocumentType("PASSPORT");
+    document[0].setDocumentType(Document.DocumentType.PASSPORT);
     document[0].setNumber("480080076");
     document[0].setExpiryDate("2022-10-11");
     document[0].setIssuanceCountry("ES");
