@@ -110,7 +110,7 @@ public class Request {
     this.connection = (HttpURLConnection) new URL(uri).openConnection();
     connection.setRequestMethod(verb);
     connection.setDoInput(true);
-    if (verb == Constants.POST || verb == Constants.PUT) {
+    if (verb.equals(Constants.POST) || verb.equals(Constants.PUT)) {
       connection.setDoOutput(true);
     }
     for (Map.Entry<String, String> entry : headers.entrySet()) {
