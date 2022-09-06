@@ -44,7 +44,7 @@ public final class Constants {
   public static final String EXPIRES_IN = "expires_in";
 
   // APIs which need an X-HTTP-Method-Override GET HEADER
-  public static final List<String> APIS_WITH_EXTRA_HEADER = new ArrayList<String>(Arrays.asList(
+  protected static final List<String> APIS_WITH_EXTRA_HEADER = new ArrayList<String>(Arrays.asList(
       "/v2/shopping/flight-offers",
       "/v1/shopping/seatmaps",
       "/v1/shopping/availability/flight-availabilities",
