@@ -137,7 +137,7 @@ public class HTTPClientTest {
             new ByteArrayInputStream("{ \"data\": [{}]}".getBytes()));
 
     when(client.buildRequest(HttpVerbs.DELETE, "/foo", params, null,null)).thenReturn(request);
-    when(client.unauthenticatedRequest(HttpVerbs.DELETE, "/foo", params, null,null)).thenCallRealMethod();
+    when(client.unauthenticatedRequest(HttpVerbs.DELETE, "/foo", params, null, null)).thenCallRealMethod();
 
     Response response = client.unauthenticatedRequest(HttpVerbs.DELETE, "/foo", params, null, null);
 
@@ -222,7 +222,8 @@ public class HTTPClientTest {
             new ByteArrayInputStream("{ \"data\": [{}]}".getBytes()));
 
     when(client.buildRequest(HttpVerbs.GET, "/foo", null, null,null)).thenReturn(request);
-    when(client.unauthenticatedRequest(HttpVerbs.GET, "/foo", null, null,null)).thenCallRealMethod();
+    when(client.unauthenticatedRequest(HttpVerbs.GET, "/foo", null, null,null))
+      .thenCallRealMethod();
 
     client.unauthenticatedRequest(HttpVerbs.GET, "/foo", null, null,null);
 
@@ -241,7 +242,8 @@ public class HTTPClientTest {
             new ByteArrayInputStream("{ \"data\": [{}]}".getBytes()));
 
     when(client.buildRequest(HttpVerbs.GET, "/foo", null, null,null)).thenReturn(request);
-    when(client.unauthenticatedRequest(HttpVerbs.GET, "/foo", null, null,null)).thenCallRealMethod();
+    when(client.unauthenticatedRequest(HttpVerbs.GET, "/foo", null, null,null))
+      .thenCallRealMethod();
 
     client.unauthenticatedRequest(HttpVerbs.GET, "/foo", null, null,null);
 
@@ -261,7 +263,8 @@ public class HTTPClientTest {
             new ByteArrayInputStream("{ \"data\": [{}]}".getBytes()));
 
     when(client.buildRequest(HttpVerbs.GET, "/foo", null, null,null)).thenReturn(request);
-    when(client.unauthenticatedRequest(HttpVerbs.GET, "/foo", null, null,null)).thenCallRealMethod();
+    when(client.unauthenticatedRequest(HttpVerbs.GET, "/foo", null, null,null))
+      .thenCallRealMethod();
 
     client.unauthenticatedRequest(HttpVerbs.GET, "/foo", null, null,null);
 

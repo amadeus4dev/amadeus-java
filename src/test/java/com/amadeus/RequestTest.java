@@ -99,7 +99,8 @@ public class RequestTest {
 
   @Test public void testEstablishConnection() throws IOException {
     Amadeus amadeus = Amadeus.builder("123", "234").build();
-    Request request = new Request(HttpVerbs.POST, "/v1/security/oauth2/token", null, null,null, amadeus);
+    Request request = new Request(HttpVerbs.POST, "/v1/security/oauth2/token", null, null,null,
+      amadeus);
     request.establishConnection();
     assertNotNull(request.getConnection());
   }
