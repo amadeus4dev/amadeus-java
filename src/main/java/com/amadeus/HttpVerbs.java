@@ -6,4 +6,4 @@ public enum HttpVerbs {
   POST,
   PUT,
   DELETE
-  }
+}
