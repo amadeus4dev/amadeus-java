@@ -37,7 +37,7 @@ public class HTTPClient {
    * @see Amadeus#get(String, Params)
    */
   public Response get(String path) throws ResponseException {
-    return request(Constants.GET, path, null,null);
+    return request(HttpVerbs.GET, path, null,null);
   }
 
   /**
@@ -64,7 +64,7 @@ public class HTTPClient {
    * @return a Response object containing the status code, body, and parsed data.
    */
   public Response get(String path, Params params) throws ResponseException {
-    return request(Constants.GET, path, params, null);
+    return request(HttpVerbs.GET, path, params, null);
   }
 
   /**
@@ -91,7 +91,7 @@ public class HTTPClient {
    * @return a Response object containing the status code, body, and parsed data.
    */
   public Response delete(String path, Params params) throws ResponseException {
-    return request(Constants.DELETE, path, params, null);
+    return request(HttpVerbs.DELETE, path, params, null);
   }
 
   /**
@@ -101,7 +101,7 @@ public class HTTPClient {
    * @see Amadeus#delete(String, Params)
    */
   public Response delete(String path) throws ResponseException {
-    return request(Constants.DELETE, path, null,null);
+    return request(HttpVerbs.DELETE, path, null,null);
   }
 
   /**
@@ -111,7 +111,7 @@ public class HTTPClient {
    * @see Amadeus#post(String, Params)
    */
   public Response post(String path) throws ResponseException {
-    return request(Constants.POST, path, null, null);
+    return request(HttpVerbs.POST, path, null, null);
   }
 
   /**
@@ -138,7 +138,7 @@ public class HTTPClient {
    * @return a Response object containing the status code, body, and parsed data.
    */
   public Response post(String path, Params params) throws ResponseException {
-    return request(Constants.POST, path, params, null);
+    return request(HttpVerbs.POST, path, params, null);
   }
 
   /**
@@ -165,7 +165,7 @@ public class HTTPClient {
    * @return a Response object containing the status code, body, and parsed data.
    */
   public Response post(String path, String body) throws ResponseException {
-    return request(Constants.POST, path, null, body);
+    return request(HttpVerbs.POST, path, null, body);
   }
 
   /**
@@ -188,7 +188,7 @@ public class HTTPClient {
    * @return a Response object containing the status code, body, and parsed data.
    */
   public Response post(String path, JsonObject body) throws ResponseException {
-    return request(Constants.POST, path, null, body.toString());
+    return request(HttpVerbs.POST, path, null, body.toString());
   }
 
   /**
@@ -212,7 +212,7 @@ public class HTTPClient {
    * @return a Response object containing the status code, body, and parsed data.
    */
   public Response post(String path, Params params, JsonObject body) throws ResponseException {
-    return request(Constants.POST, path, params, body.toString());
+    return request(HttpVerbs.POST, path, params, body.toString());
   }
 
   /**
@@ -236,7 +236,7 @@ public class HTTPClient {
    * @return a Response object containing the status code, body, and parsed data.
    */
   public Response post(String path, Params params, String body) throws ResponseException {
-    return request(Constants.POST, path, params, body);
+    return request(HttpVerbs.POST, path, params, body);
   }
 
   /**
@@ -246,7 +246,7 @@ public class HTTPClient {
    *
    * @hides as only used internally
    */
-  public Response unauthenticatedRequest(String verb, String path, Params params, String body,
+  public Response unauthenticatedRequest(HttpVerbs verb, String path, Params params, String body,
       String bearerToken) throws ResponseException {
     Request request = buildRequest(verb, path, params, body, bearerToken);
     log(request);
@@ -334,13 +334,13 @@ public class HTTPClient {
   }
 
   // A generic method for making requests of any verb.
-  protected Response request(String verb, String path, Params params, String body)
+  protected Response request(HttpVerbs verb, String path, Params params, String body)
       throws ResponseException {
     return unauthenticatedRequest(verb, path, params, body, accessToken.getBearerToken());
   }
 
   // Builds a request
-  protected Request buildRequest(String verb, String path, Params params, String body,
+  protected Request buildRequest(HttpVerbs verb, String path, Params params, String body,
       String bearerToken) {
     return new Request(verb, path, params, body, bearerToken, this);
   }
@@ -378,7 +378,7 @@ public class HTTPClient {
   private void write(Request request) throws IOException {
 
     // POST with access token + body + URL parameters
-    if (request.getVerb() == Constants.POST && request.getParams() != null
+    if (request.getVerb() == HttpVerbs.POST && request.getParams() != null
             && request.getBearerToken() != null) {
       OutputStream os = request.getConnection().getOutputStream();
       BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
@@ -392,7 +392,7 @@ public class HTTPClient {
     }
 
     // POST with access without token (authentication call)
-    if (request.getVerb() == Constants.POST && request.getParams() != null
+    if (request.getVerb() == HttpVerbs.POST && request.getParams() != null
             && request.getBearerToken() == null) {
       OutputStream os = request.getConnection().getOutputStream();
       BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
@@ -403,7 +403,7 @@ public class HTTPClient {
     }
 
     // POST with access token + body
-    if (request.getVerb() == Constants.POST && request.getParams() == null) {
+    if (request.getVerb() == HttpVerbs.POST && request.getParams() == null) {
       OutputStream os = request.getConnection().getOutputStream();
       BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
       if (request.getBody() != null) {
