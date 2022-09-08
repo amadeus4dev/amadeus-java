@@ -22,7 +22,7 @@ public class Request {
   /**
    * The HTTPClient verb to use for API calls.
    */
-  private @Getter String verb;
+  private @Getter HttpVerbs verb;
   /**
    * The scheme to use for API calls.
    */
@@ -83,7 +83,7 @@ public class Request {
   // The connection used to make the API call.
   private @Getter HttpURLConnection connection;
 
-  protected Request(String verb, String path, Params params, String body, String bearerToken,
+  protected Request(HttpVerbs verb, String path, Params params, String body, String bearerToken,
                  HTTPClient client) {
     Configuration config = client.getConfiguration();
 
@@ -108,9 +108,9 @@ public class Request {
   // Builds a HttpURLConnection using all the data for this request.
   protected void establishConnection() throws IOException {
     this.connection = (HttpURLConnection) new URL(uri).openConnection();
-    connection.setRequestMethod(verb);
+    connection.setRequestMethod(verb.name());
     connection.setDoInput(true);
-    if (verb.equals(Constants.POST) || verb.equals(Constants.PUT)) {
+    if (verb == HttpVerbs.POST || verb == HttpVerbs.PUT) {
       connection.setDoOutput(true);
     }
     for (Map.Entry<String, String> entry : headers.entrySet()) {
@@ -140,8 +140,8 @@ public class Request {
       headers.put(Constants.CONTENT_TYPE, "application/vnd.amadeus+json");
 
       // Checks if the request needs an X-Http-Method-Override header
-      if (Constants.APIS_WITH_EXTRA_HEADER.contains(path) && Objects.equals(verb, Constants.POST)) {
-        headers.put(Constants.X_HTTP_METHOD_OVERRIDE, Constants.GET);
+      if (Constants.APIS_WITH_EXTRA_HEADER.contains(path) && verb == HttpVerbs.POST) {
+        headers.put(Constants.X_HTTP_METHOD_OVERRIDE, HttpVerbs.GET.name());
       }
 
     }

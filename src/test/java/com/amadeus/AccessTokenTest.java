@@ -35,7 +35,7 @@ public class AccessTokenTest {
     json.addProperty("expires_in", 600);
     when(response.getResult()).thenReturn(json);
 
-    when(client.unauthenticatedRequest("POST",
+    when(client.unauthenticatedRequest(HttpVerbs.POST,
             "/v1/security/oauth2/token", Params
                     .with("grant_type", "client_credentials")
                     .and("client_id", "client_id")
@@ -53,7 +53,7 @@ public class AccessTokenTest {
     accessToken.getBearerToken();
 
     verify(client, times(1))
-        .unauthenticatedRequest(anyString(), anyString(),
+        .unauthenticatedRequest(any(HttpVerbs.class), anyString(),
             any(Params.class), isNull(), isNull());
   }
 
@@ -65,7 +65,7 @@ public class AccessTokenTest {
     accessToken.getBearerToken();
 
     verify(client, times(2))
-            .unauthenticatedRequest(anyString(), anyString(),
+            .unauthenticatedRequest(any(HttpVerbs.class), anyString(),
                 any(Params.class), isNull(), isNull());
   }
 }
