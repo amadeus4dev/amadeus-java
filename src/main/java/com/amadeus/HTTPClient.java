@@ -422,9 +422,10 @@ public class HTTPClient {
   protected Response page(String pageName, Response response) throws ResponseException {
     try {
       String[] parts = response.getResult().get("meta").getAsJsonObject()
-              .get("links").getAsJsonObject().get(pageName).getAsString().split("=");
+              .get("links").getAsJsonObject().get(pageName).getAsString()
+              .split("page%5Boffset%5D=");
 
-      String pageNumber = parts[parts.length - 1];
+      String pageNumber = parts[1].split("&")[0];
 
       Request request = response.getRequest();
       Params params = (Params) request.getParams().clone();
