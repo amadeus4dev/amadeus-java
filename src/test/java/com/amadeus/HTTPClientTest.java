@@ -348,7 +348,7 @@ public class HTTPClientTest {
     Request request = mock(Request.class);
 
     JsonObject jsonObject = new JsonParser().parse("{ \"meta\": { "
-            + "\"links\" : {\"next\": \"http://foobar.com?page=10\" } } }").getAsJsonObject();
+            + "\"links\" : {\"next\": \"http://foobar.com?page%5Boffset%5D=10\" } } }").getAsJsonObject();
 
     when(response.getResult()).thenReturn(jsonObject);
     when(response.getRequest()).thenReturn(request);
