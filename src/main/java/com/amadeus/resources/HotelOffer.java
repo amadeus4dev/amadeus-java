@@ -272,10 +272,11 @@ public class HotelOffer extends Resource {
   public class PolicyDetails {
     protected PolicyDetails() {}
 
+    private @Getter String paymentType;
     private @Getter GuaranteePolicy guarantee;
-    private @Getter GuaranteePolicy deposit;
-    private @Getter GuaranteePolicy prepay;
-    private @Getter GuaranteePolicy holdTime;
+    private @Getter DepositPolicy deposit;
+    private @Getter DepositPolicy prepay;
+    private @Getter HoldPolicy holdTime;
     private @Getter CancellationPolicy cancellation;
     private @Getter CheckInOutPolicy checkInOut;
   }
@@ -307,6 +308,31 @@ public class HotelOffer extends Resource {
     private @Getter String deadline;
     private @Getter TextWithLanguageType description;
     private @Getter PaymentPolicy acceptedPayments;
+  }
+
+  /**
+   * An HotelOffer-related object as returned by the HotelOffers API.
+   * @see com.amadeus.shopping.HotelOffers#get()
+   */
+  @ToString
+  public class DepositPolicy {
+    protected DepositPolicy() {}
+
+    private @Getter String amount;
+    private @Getter String deadline;
+    private @Getter TextWithLanguageType description;
+    private @Getter PaymentPolicy acceptedPayments;
+  }
+
+  /**
+   * An HotelOffer-related object as returned by the HotelOffers API.
+   * @see com.amadeus.shopping.HotelOffers#get()
+   */
+  @ToString
+  public class HoldPolicy {
+    protected HoldPolicy() {}
+
+    private @Getter String deadline;
   }
 
   /**
