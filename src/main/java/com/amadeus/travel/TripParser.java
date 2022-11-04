@@ -6,11 +6,10 @@ import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.Resource;
 import com.amadeus.resources.TripDetail;
 import com.google.gson.JsonObject;
-import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
-
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.file.Files;
+import java.util.Base64;
 
 /**
  * <p>
@@ -89,9 +88,12 @@ public class TripParser {
    */
   public TripDetail post(File file) throws ResponseException, IOException {
     // Base64 encode file and create request body
-    String b64Encoded = Base64.encode(Files.readAllBytes(file.toPath()));
+    FileInputStream fileInputStreamReader = new FileInputStream(file);
+    byte[] bytes = new byte[(int)file.length()];
+    fileInputStreamReader.read(bytes);
+    String encodedFile = Base64.getEncoder().encodeToString(bytes);
     JsonObject body = new JsonObject();
-    body.addProperty("payload", b64Encoded);
+    body.addProperty("payload", encodedFile);
 
     Response response = client.post("/v3/travel/trip-parser", body);
     return (TripDetail) Resource.fromObject(response, TripDetail.class);
