@@ -88,15 +88,16 @@ public class TripParser {
    */
   public TripDetail post(File file) throws ResponseException, IOException {
     // Base64 encode file and create request body
-    FileInputStream fileInputStreamReader = new FileInputStream(file);
-    byte[] bytes = new byte[(int)file.length()];
-    fileInputStreamReader.read(bytes);
-    String encodedFile = Base64.getEncoder().encodeToString(bytes);
-    JsonObject body = new JsonObject();
-    body.addProperty("payload", encodedFile);
+    try (FileInputStream fileInputStreamReader = new FileInputStream(file)) {
+      byte[] bytes = new byte[(int)file.length()];
+      fileInputStreamReader.read(bytes);
+      String encodedFile = Base64.getEncoder().encodeToString(bytes);
+      JsonObject body = new JsonObject();
+      body.addProperty("payload", encodedFile);
 
-    Response response = client.post("/v3/travel/trip-parser", body);
-    return (TripDetail) Resource.fromObject(response, TripDetail.class);
+      Response response = client.post("/v3/travel/trip-parser", body);
+      return (TripDetail) Resource.fromObject(response, TripDetail.class);
+    }
   }
 
   /**
