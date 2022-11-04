@@ -90,14 +90,19 @@ public class TripParser {
     // Base64 encode file and create request body
     try (FileInputStream fileInputStreamReader = new FileInputStream(file)) {
       byte[] bytes = new byte[(int)file.length()];
-      fileInputStreamReader.read(bytes);
-      String encodedFile = Base64.getEncoder().encodeToString(bytes);
-      JsonObject body = new JsonObject();
-      body.addProperty("payload", encodedFile);
+      int count = 0;
+      if (fileInputStreamReader.read(bytes) > 0) {
+        String encodedFile;
+        encodedFile = Base64.getEncoder().encodeToString(bytes);
+        JsonObject body = new JsonObject();
+        body.addProperty("payload", encodedFile);
+        count = count + fileInputStreamReader.read(bytes);
 
-      Response response = client.post("/v3/travel/trip-parser", body);
-      return (TripDetail) Resource.fromObject(response, TripDetail.class);
+        Response response = client.post("/v3/travel/trip-parser", body);
+        return (TripDetail) Resource.fromObject(response, TripDetail.class);
+      }
     }
+    return null;
   }
 
   /**
