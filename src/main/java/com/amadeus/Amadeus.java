@@ -25,7 +25,7 @@ public class Amadeus extends HTTPClient {
   /**
    * The API version.
    */
-  public static final String VERSION = "6.3.0";
+  public static final String VERSION = "6.4.0";
 
   /**
    * <p>
