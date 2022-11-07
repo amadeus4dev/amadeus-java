@@ -1,5 +1,15 @@
 # Changelog
 
+6.4.0 - 2022-11-07
+--------------------
+Library compilation upgrade to Java 8
+
+Verbs to enum updates accross several classes - big thanks to [Steve Donovan](https://github.com/steve-donovan) for his contribution! :clap:
+
+Updates to FlightOrder resource model - big thanks to [Steve Donovan](https://github.com/steve-donovan) for his contribution! :clap:
+
+Provided fix to a few SonarCloud warnings
+
 6.3.0 - 2022-08-23
 --------------------
 Add support for the [Travel Restrictions v2](https://developers.amadeus.com/self-service/category/covid-19-and-travel-safety/api-doc/travel-restrictions/api-reference)
