@@ -40,6 +40,7 @@ public class FlightOrder extends Resource {
 
     private @Getter @Setter String id;
     private @Getter @Setter String dateOfBirth;
+    private @Getter @Setter String gender;
     private @Getter @Setter Name name;
     private @Getter @Setter Contact contact;
     private @Getter @Setter Document[] documents;
@@ -60,13 +61,6 @@ public class FlightOrder extends Resource {
   public static class Contact {
 
     private @Getter @Setter Phone[] phones;
-    private @Getter @Setter DeviceType deviceType;
-
-    public enum DeviceType {
-      MOBILE,
-      LANDLINE,
-      FAX
-    }
   }
 
   @AllArgsConstructor
@@ -97,6 +91,13 @@ public class FlightOrder extends Resource {
 
     private @Getter @Setter String countryCallingCode;
     private @Getter @Setter String number;
+    private @Getter @Setter DeviceType deviceType;
+
+    public enum DeviceType {
+      MOBILE,
+      LANDLINE,
+      FAX
+    }
   }
 
 }
