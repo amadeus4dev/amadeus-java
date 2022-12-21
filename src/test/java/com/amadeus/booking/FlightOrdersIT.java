@@ -14,6 +14,7 @@ import com.amadeus.resources.FlightOrder.Document;
 import com.amadeus.resources.FlightOrder.Name;
 import com.amadeus.resources.FlightOrder.Phone;
 import com.amadeus.resources.FlightOrder.Traveler;
+import com.amadeus.resources.FlightOrder.Phone.DeviceType;
 import com.amadeus.resources.FlightPrice;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.google.gson.JsonObject;
@@ -113,10 +114,10 @@ public class FlightOrdersIT {
     phone[0] = new Phone();
     phone[0].setCountryCallingCode("33");
     phone[0].setNumber("675426222");
+    phone[0].setDeviceType(DeviceType.MOBILE);
 
     Contact contact = new Contact();
     contact.setPhones(phone);
-    contact.setDeviceType(Contact.DeviceType.MOBILE);
     traveler.setContact(contact);
 
     Document[] document = new Document[1];
