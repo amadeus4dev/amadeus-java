@@ -1,5 +1,9 @@
 # Changelog
 
+6.4.1 - 2022-12-21
+--------------------
+Fixed deviceType in the FlightOrder resource
+
 6.4.0 - 2022-11-07
 --------------------
 Library compilation upgrade to Java 8
