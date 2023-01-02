@@ -421,7 +421,8 @@ public class HTTPClient {
    * @hide as ony used internally
    */
   protected Response page(String pageName, Response response) throws ResponseException {
-    JsonObject metaLinks = response.getResult().get("meta").getAsJsonObject().get("links").getAsJsonObject();
+    JsonObject metaLinks = response.getResult().get("meta")
+        .getAsJsonObject().get("links").getAsJsonObject();
     JsonElement pageElement = metaLinks.get(pageName);
 
     if (pageElement == null) {
@@ -436,7 +437,7 @@ public class HTTPClient {
     params.put("page[offset]", pageNumber);
 
     return request(request.getVerb(), request.getPath(), params, "emptyBody");
-}
+  }
 
 
   /**
