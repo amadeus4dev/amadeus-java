@@ -5,6 +5,7 @@ import com.amadeus.client.AccessToken;
 import com.amadeus.exceptions.NetworkException;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.Resource;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -420,22 +421,23 @@ public class HTTPClient {
    * @hide as ony used internally
    */
   protected Response page(String pageName, Response response) throws ResponseException {
-    try {
-      String[] parts = response.getResult().get("meta").getAsJsonObject()
-              .get("links").getAsJsonObject().get(pageName).getAsString()
-              .split("page%5Boffset%5D=");
+    JsonObject metaLinks = response.getResult().get("meta").getAsJsonObject().get("links").getAsJsonObject();
+    JsonElement pageElement = metaLinks.get(pageName);
 
-      String pageNumber = parts[1].split("&")[0];
-
-      Request request = response.getRequest();
-      Params params = (Params) request.getParams().clone();
-      params.put("page[offset]", pageNumber);
-
-      return request(request.getVerb(), request.getPath(), params, "emptyBody");
-    } catch (NullPointerException e) {
+    if (pageElement == null) {
       return null;
     }
-  }
+
+    String[] parts = pageElement.getAsString().split("page%5Boffset%5D=");
+    String pageNumber = parts[1].split("&")[0];
+
+    Request request = response.getRequest();
+    Params params = (Params) request.getParams().clone();
+    params.put("page[offset]", pageNumber);
+
+    return request(request.getVerb(), request.getPath(), params, "emptyBody");
+}
+
 
   /**
    * Fetches the response for another page.
