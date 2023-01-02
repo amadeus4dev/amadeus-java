@@ -184,8 +184,6 @@ public class FlightOrders {
     JsonObject typeObject = new JsonObject();
     typeObject.addProperty("type", "flight-order");
 
-    Gson gson = new GsonBuilder().create();
-
     JsonArray flightOffersArray = buildFlightOffersJSON(flightPrice.getFlightOffers());
     typeObject.add("flightOffers", flightOffersArray);
 

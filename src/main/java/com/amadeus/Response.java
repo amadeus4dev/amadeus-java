@@ -61,7 +61,7 @@ public class Response {
   protected void parse(HTTPClient client) {
     parseStatusCode();
     if (this.statusCode != 204) {
-      parseData(client);
+      parseData();
     }
   }
 
@@ -99,10 +99,10 @@ public class Response {
   }
 
   // Tries to parse the data
-  private void parseData(HTTPClient client) {
+  private void parseData() {
     this.parsed = false;
     this.body = readBody();
-    this.result = parseJson(client);
+    this.result = parseJson();
     this.parsed = this.result != null;
     if (parsed && result.has("data")) {
       if (result.get("data").isJsonArray()) {
@@ -154,7 +154,7 @@ public class Response {
   }
 
   // Ties to parse the response body into a JSON Object
-  private JsonObject parseJson(HTTPClient client) {
+  private JsonObject parseJson() {
     if (isJson()) {
       return new JsonParser().parse(getBody()).getAsJsonObject();
     }

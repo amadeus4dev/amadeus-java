@@ -3,6 +3,10 @@ package com.amadeus;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.amadeus.airline.Destinations;
 import com.amadeus.airport.DirectDestinations;
 import com.amadeus.airport.predictions.AirportOnTime;
@@ -395,8 +399,8 @@ public class NamespaceTest {
     Mockito.when(client.get("/v3/shopping/hotel-offers/XXX", params))
         .thenReturn(singleResponse);
     HotelOfferSearch hotelOfferSearch = new HotelOfferSearch(client, "XXX");
-    assertNotNull(hotelOffer.get());
-    assertNotNull(hotelOffer.get(params));
+    assertNotNull(hotelOfferSearch.get());
+    assertNotNull(hotelOfferSearch.get(params));
 
     // Test flight offers search get
     Mockito.when(client.get("/v2/shopping/flight-offers", null))
@@ -683,4 +687,5 @@ public class NamespaceTest {
     assertNotNull(flightOrder.delete(params));
 
   }
+
 }
