@@ -551,7 +551,7 @@ public class NamespaceTest {
   }
 
   @Test
-  public void testFlightOrders() throws ResponseException {
+  public void testFlightOrdersGet() throws ResponseException {
     // Testing Flight Create Orders
     Mockito.when(client.get("/v1/booking/flight-orders/XXX", null))
         .thenReturn(singleResponse);
@@ -711,11 +711,10 @@ public class NamespaceTest {
     assertNotNull(airlineDestinations.get(params));
     assertEquals(airlineDestinations.get().length, 2);
   }
-  
 
   @Test
-  public void testPostMethods() throws ResponseException {
-    // Testing flight choice prediction
+  public void testPrediction() throws ResponseException {
+    // Testing Flight Choice Prediction
     Mockito.when(client.post("/v2/shopping/flight-offers/prediction", (String) null))
         .thenReturn(multiResponse);
     Mockito.when(client.post("/v2/shopping/flight-offers/prediction", body))
@@ -724,8 +723,11 @@ public class NamespaceTest {
     assertNotNull(flightOffersPrediction.post());
     assertNotNull(flightOffersPrediction.post(body));
     assertEquals(flightOffersPrediction.post().length, 2);
+  }
 
-    // Test flight offers search post
+  @Test
+  public void testFlightOffers() throws ResponseException {
+    // Testing Flight Offers Search POST
     Mockito.when(client.post("/v2/shopping/flight-offers", (String) null))
             .thenReturn(multiResponse);
     Mockito.when(client.post("/v2/shopping/flight-offers", body))
@@ -736,8 +738,11 @@ public class NamespaceTest {
     assertNotNull(flightOfferSearch.post());
     assertNotNull(flightOfferSearch.post(body));
     assertEquals(flightOfferSearch.post().length, 2);
+  }
 
-    // Test flight price
+  @Test
+  public void testPricing() throws ResponseException {
+    // Testing Flight Offers Price
     Mockito.when(client.post("/v1/shopping/flight-offers/pricing", (String) null))
             .thenReturn(singleResponse);
     Mockito.when(client.post("/v1/shopping/flight-offers/pricing", body))
@@ -747,8 +752,11 @@ public class NamespaceTest {
     Pricing pricing = new Pricing(client);
     assertNotNull(pricing.post());
     assertNotNull(pricing.post(body));
+  }
 
-    // Test flight create orders
+  @Test
+  public void testFlightOrders() throws ResponseException {
+    // Testing Flight Create Orders
     Mockito.when(client.post("/v1/booking/flight-orders", (String) null))
             .thenReturn(singleResponse);
     Mockito.when(client.post("/v1/booking/flight-orders", body))
@@ -756,8 +764,11 @@ public class NamespaceTest {
     FlightOrders order = new FlightOrders(client);
     assertNotNull(order.post());
     assertNotNull(order.post(body));
+  }
 
-    // Test SeatMaps post
+  @Test
+  public void testSeatmapsPost() throws ResponseException {
+    // Testing SeatMap Display POST
     Mockito.when(client.post("/v1/shopping/seatmaps", (String) null))
             .thenReturn(multiResponse);
     Mockito.when(client.post("/v1/shopping/seatmaps", body))
@@ -767,8 +778,11 @@ public class NamespaceTest {
     SeatMaps seatmap = new SeatMaps(client);
     assertNotNull(seatmap.post());
     assertNotNull(seatmap.post(body));
+  }
 
-    // Test Hotel Booking post
+  @Test
+  public void testHotelBookings() throws ResponseException {
+    // Test Hotel Booking POST
     Mockito.when(client.post("/v1/booking/hotel-bookings", (String) null))
             .thenReturn(multiResponse);
     Mockito.when(client.post("/v1/booking/hotel-bookings", body))
@@ -778,8 +792,11 @@ public class NamespaceTest {
     HotelBookings hotel = new HotelBookings(client);
     assertNotNull(hotel.post());
     assertNotNull(hotel.post(body));
+  }
 
-    // Test Trip Parser post
+  @Test
+  public void testTripParser() throws ResponseException {
+    // Test Trip Parser
     Mockito.when(client.post("/v3/travel/trip-parser", (String) null))
             .thenReturn(singleResponse);
     Mockito.when(client.post("/v3/travel/trip-parser", body))
@@ -789,8 +806,11 @@ public class NamespaceTest {
     TripParser tripParser = new TripParser(client);
     assertNotNull(tripParser.post());
     assertNotNull(tripParser.post(body));
+  }
 
-    // Test flight availabilities search post
+  @Test
+  public void testFlightAvailabilities() throws ResponseException {
+    // Testing Flight Availabilities Search
     Mockito.when(client.post("/v1/shopping/availability/flight-availabilities", (String) null))
       .thenReturn(multiResponse);
     Mockito.when(client.post("/v1/shopping/availability/flight-availabilities", body))
@@ -801,8 +821,11 @@ public class NamespaceTest {
     assertNotNull(flightAvailabilities.post());
     assertNotNull(flightAvailabilities.post(body));
     assertEquals(flightAvailabilities.post().length, 2);
+  }
 
-    // Test branded fares upsell post
+  @Test
+  public void testUpselling() throws ResponseException {
+    // Testing Branded Fares Upsell
     Mockito.when(client.post("/v1/shopping/flight-offers/upselling", (String) null))
       .thenReturn(multiResponse);
     Mockito.when(client.post("/v1/shopping/flight-offers/upselling", body))
@@ -814,8 +837,8 @@ public class NamespaceTest {
   }
 
   @Test
-  public void testDeleteMethods() throws ResponseException {
-    // Test deleting a specific offer
+  public void testFlightOrdersbyId() throws ResponseException {
+    // Testing Flight Order Management DELETE
     Mockito.when(client.delete("/v1/booking/flight-orders/XXX", null))
         .thenReturn(singleResponse);
     Mockito.when(client.delete("/v1/booking/flight-orders/XXX", params))
