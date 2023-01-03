@@ -147,6 +147,7 @@ public class NamespaceTest {
     Mockito.when(singleResponse.isParsed()).thenReturn(true);
     Mockito.when(singleResponse.getData()).thenReturn(jsonObject);
   }
+  
   @Test
   public void testCheckinLinks() throws ResponseException {
     // Testing Checkin Links
@@ -204,9 +205,9 @@ public class NamespaceTest {
   public void testPOIsBySquare() throws ResponseException {
     // Testing Points of Interest by square
     Mockito.when(client.get("/v1/reference-data/locations/pois", null))
-    .thenReturn(multiResponse);
+        .thenReturn(multiResponse);
     Mockito.when(client.get("/v1/reference-data/locations/pois", params))
-    .thenReturn(multiResponse);
+        .thenReturn(multiResponse);
     Mockito.when(client.get("/v1/reference-data/locations/pois/by-square", null))
         .thenReturn(multiResponse);
     Mockito.when(client.get("/v1/reference-data/locations/pois/by-square", params))
@@ -221,9 +222,9 @@ public class NamespaceTest {
   public void testPOIsById() throws ResponseException {
     // Testing Points of Interest by Id
     Mockito.when(client.get("/v1/reference-data/locations/pois", null))
-    .thenReturn(multiResponse);
+        .thenReturn(multiResponse);
     Mockito.when(client.get("/v1/reference-data/locations/pois", params))
-    .thenReturn(multiResponse);   
+        .thenReturn(multiResponse);   
     Mockito.when(client.get("/v1/reference-data/locations/pois/XXX", null))
         .thenReturn(multiResponse);
     Mockito.when(client.get("/v1/reference-data/locations/pois/XXX", params))
