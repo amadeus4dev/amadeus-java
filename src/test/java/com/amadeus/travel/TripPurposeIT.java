@@ -52,7 +52,7 @@ public class TripPurposeIT {
   }
 
   @Test
-  public void given_client_when_call_predictions_trip_purpose_without_params_then_ok()
+  public void givenClientWhenCallPredictionsTripPurposeWithoutParamsThenOK()
       throws ResponseException {
 
     //Given

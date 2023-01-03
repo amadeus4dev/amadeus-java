@@ -6,11 +6,18 @@ import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 import static org.assertj.core.api.BDDAssertions.then;
 
+import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.amadeus.Amadeus;
 import com.amadeus.Params;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.Hotel;
-
+import com.amadeus.resources.HotelOfferSearch;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -54,7 +61,7 @@ public class HotelIT {
   }
 
   @Test
-  public void given_client_when_call_hotel_with_mandatory_parameters_then_returns_ok()
+  public void givenClientWhenCallHotelWithMandatoryParametersThenReturnsOK()
       throws ResponseException {
 
     //Given
@@ -78,7 +85,7 @@ public class HotelIT {
   }
 
   @Test
-  public void given_client_when_call_hotel_then_returns_single_hotel_response_ok()
+  public void givenClientWhenCallHotelThenReturnsSingleHotelResponseOK()
       throws ResponseException {
 
     //Given
@@ -103,7 +110,7 @@ public class HotelIT {
   }
 
   @Test
-  public void given_client_when_call_hotel_then_returns_multiple_hotel_response_ok()
+  public void givenClientWhenCallHotelThenReturnsMultipleHotelResponseOK()
       throws ResponseException {
 
     //Given
@@ -128,7 +135,7 @@ public class HotelIT {
   }
 
   @Test
-  public void given_client_when_call_hotel_with_all_parameters_then_response_ok()
+  public void givenClientWhenCallHotelWithAllParametersThenResponseOK()
       throws ResponseException {
 
     //Given
@@ -152,5 +159,44 @@ public class HotelIT {
     //Then
     then(result).isNotNull();
     then(result.length).isGreaterThan(1);
+  }
+
+  @Test
+  public void givenClientWhenCallHotelOffersSearchWithParamsThenOK()
+      throws ResponseException, IOException {
+
+    //Given
+    String input = URLEncoder.encode("MCLONGHM,WIMAD079", "UTF-8");
+    String address = "/v3/shopping/hotel-offers"
+        + "?hotelIds=" + input
+        + "&roomQuantity=1"
+        + "&adults=1"
+        + "&checkInDate=2022-11-22"
+        + "&paymentPolicy=NONE"
+        + "&bestRateOnly=true";
+    wireMockServer.stubFor(get(urlEqualTo(address))
+        .willReturn(aResponse().withHeader("Content-Type", "application/json")
+        .withStatus(200)
+        .withBodyFile("hotel_offers_search_response_ok.json")));
+
+    // ***** HERE *****
+    List<String> ids = new ArrayList<String>();
+    ids.add("MCLONGHM");
+    ids.add("WIMAD079");
+    String idsToStr1 = String.join(",", ids);
+    // String idsToStr2 = ids.stream().map(String::valueOf).collect(Collectors.joining(","));
+
+    //When
+    HotelOfferSearch[] result = amadeus.shopping.hotelOffersSearch.get(
+      Params.with("hotelIds", idsToStr1) // ***** HERE *****
+        .and("adults", 1)
+        .and("checkInDate", "2022-11-22")
+        .and("roomQuantity", 1)
+        .and("paymentPolicy", "NONE")
+        .and("bestRateOnly", true)
+    );
+
+    //Then
+    then(result.length).isNotEqualTo(0);
   }
 }

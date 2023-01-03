@@ -56,7 +56,7 @@ public class FlightAvailabilitiesIT {
   }
 
   @Test
-  public void given_client_when_call_shopping_availabiltiy_flight_with_params_then_ok()
+  public void givenClientWhenCallShoppingAvailabiltiyFlightWithParamsThenOK()
       throws ResponseException, IOException {
 
     //Given

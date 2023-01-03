@@ -53,7 +53,7 @@ public class SafetyIT {
   }
 
   @Test
-  public void given_client_when_call_safety_rate_location_by_square_with_params_then_ok()
+  public void givenClientWhenCallSafetyRateLocationBySquareWithParamsThenOK()
       throws ResponseException {
 
     //Given
@@ -78,7 +78,7 @@ public class SafetyIT {
   }
 
   @Test
-  public void given_client_when_call_safety_rate_location_by_square_without_params_then_ok()
+  public void givenClientWhenCallSafetyRateLocationBySquareWithoutParamsThenOK()
       throws ResponseException {
 
     //Given
@@ -95,7 +95,7 @@ public class SafetyIT {
   }
 
   @Test
-  public void given_client_when_call_safety_rate_location_then_ok() throws ResponseException {
+  public void givenClientWhenCallSafetyRateLocationThenOK() throws ResponseException {
 
     //Given
     wireMockServer.stubFor(get(urlEqualTo("/v1/safety/safety-rated-locations"
@@ -116,7 +116,7 @@ public class SafetyIT {
   }
 
   @Test
-  public void given_client_when_call_safety_rate_location_by_id_then_ok() throws ResponseException {
+  public void givenClientWhenCallSafetyRateLocationByIdThenOK() throws ResponseException {
 
     //Given
     wireMockServer.stubFor(get(urlEqualTo("/v1/safety/safety-rated-locations/Q930402719"))

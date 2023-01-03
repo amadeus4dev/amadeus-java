@@ -54,7 +54,7 @@ public class ByHotelsIT {
   }
 
   @Test
-  public void given_client_when_call_hotels_by_hotels_with_params_then_ok()
+  public void givenClientWhenCallHotelsByHotelsWithParamsThenOK()
       throws ResponseException {
 
     //Given
@@ -78,7 +78,7 @@ public class ByHotelsIT {
 
   //TODO Review with the team to upgrade the behaviour.
   @Test
-  public void given_client_when_call_hotels_by_hotels_without_params_then_ok()
+  public void givenClientWhenCallHotelsByHotelsWithoutParamsThenOK()
       throws ResponseException {
 
     //Given
