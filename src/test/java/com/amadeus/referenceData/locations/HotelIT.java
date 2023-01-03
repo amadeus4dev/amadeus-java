@@ -12,6 +12,11 @@ import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.Hotel;
 
 import com.github.tomakehurst.wiremock.WireMockServer;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -73,8 +78,8 @@ public class HotelIT {
     Hotel[] result = amadeus.referenceData.locations.hotel.get(params);
 
     //Then
-    then(result).isNotNull();
-    then(result.length).isGreaterThan(1);
+    assertNotNull(result);
+    assertTrue(result.length > 1);
   }
 
   @Test
@@ -98,8 +103,8 @@ public class HotelIT {
     Hotel[] result = amadeus.referenceData.locations.hotel.get(params);
 
     //Then
-    then(result).isNotNull();
-    then(result.length).isEqualTo(1);
+    assertNotNull(result);
+    assertEquals(1, result.length);
   }
 
   @Test
@@ -123,8 +128,8 @@ public class HotelIT {
     Hotel[] result = amadeus.referenceData.locations.hotel.get(params);
 
     //Then
-    then(result).isNotNull();
-    then(result.length).isEqualTo(5);
+    assertNotNull(result);
+    assertEquals(5, result.length);
   }
 
   @Test
@@ -150,7 +155,6 @@ public class HotelIT {
     Hotel[] result = amadeus.referenceData.locations.hotel.get(params);
 
     //Then
-    then(result).isNotNull();
-    then(result.length).isGreaterThan(1);
+    assertTrue(result.length > 1);
   }
 }

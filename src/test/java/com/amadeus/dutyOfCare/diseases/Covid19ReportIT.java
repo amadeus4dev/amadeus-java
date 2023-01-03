@@ -13,6 +13,9 @@ import com.amadeus.exceptions.ClientException;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.DiseaseReport;
 import com.github.tomakehurst.wiremock.WireMockServer;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -71,7 +74,7 @@ public class Covid19ReportIT {
     );
 
     //Then
-    then(result).isNotNull();
+    assertNotNull(result);
   }
 
   //TODO Review with the team to upgrade the behaviour.

@@ -6,6 +6,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.assertj.core.api.BDDAssertions.then;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import com.amadeus.Amadeus;
 import com.amadeus.Params;
@@ -83,7 +84,7 @@ public class HotelOffersSearchIT {
     );
 
     //Then
-    then(result.length).isNotEqualTo(0);
+    assertNotEquals(0, result.length);
   }
 
   //TODO Review with the team to upgrade the behaviour.
