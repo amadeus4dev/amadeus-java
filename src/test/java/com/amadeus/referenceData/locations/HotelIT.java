@@ -1,26 +1,24 @@
 package com.amadeus.referenceData.locations;
 
-import java.io.IOException;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
-
-import com.amadeus.Amadeus;
-import com.amadeus.Params;
-import com.amadeus.exceptions.ResponseException;
-import com.amadeus.resources.Hotel;
-import com.amadeus.resources.HotelOfferSearch;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 import static org.assertj.core.api.BDDAssertions.then;
 
+import com.amadeus.Amadeus;
+import com.amadeus.Params;
+import com.amadeus.exceptions.ResponseException;
+import com.amadeus.resources.Hotel;
+import com.amadeus.resources.HotelOfferSearch;
 import com.github.tomakehurst.wiremock.WireMockServer;
+import java.io.IOException;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class HotelIT {
 
