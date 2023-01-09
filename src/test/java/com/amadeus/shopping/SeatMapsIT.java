@@ -59,7 +59,7 @@ public class SeatMapsIT {
   }
 
   @Test
-  public void given_client_when_call_shopping_seatmaps_with_params_then_ok()
+  public void givenClientWhenCallShoppingSeatmapsWithParamsThenOK()
       throws ResponseException, IOException {
 
     //Given
@@ -79,7 +79,7 @@ public class SeatMapsIT {
   }
 
   @Test
-  public void given_client_when_call_shopping_seatmaps_with_params_then_deserialize_medias_ok()
+  public void givenClientWhenCallShoppingSeatmapsWithParamsThenDeserializeMediasOK()
       throws ResponseException, IOException {
 
     //Given
@@ -100,7 +100,7 @@ public class SeatMapsIT {
 
   //TODO Review with the team to upgrade the behaviour.
   @Test
-  public void given_client_when_call_shopping_seatmaps_without_params_then_ok()
+  public void givenClientWhenCallShoppingSeatmapsWithoutParamsThenOK()
       throws ResponseException {
 
     //Given

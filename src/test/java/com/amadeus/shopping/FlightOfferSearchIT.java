@@ -59,7 +59,7 @@ public class FlightOfferSearchIT {
   }
 
   @Test
-  public void given_client_when_call_shopping_flight_search_with_params_then_ok()
+  public void givenClientWhenCallShoppingFlightSearchWithParamsThenOK()
       throws ResponseException, IOException {
 
     //Given
@@ -80,7 +80,7 @@ public class FlightOfferSearchIT {
 
   //TODO Review with the team to upgrade the behaviour.
   @Test
-  public void given_client_when_call_shopping_flight_search_without_params_then_ok()
+  public void givenClientWhenCallShoppingFlightSearchWithoutParamsThenOK()
       throws ResponseException {
 
     //Given
