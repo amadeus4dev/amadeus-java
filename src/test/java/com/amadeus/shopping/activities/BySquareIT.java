@@ -14,6 +14,10 @@ import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.Activity;
 import com.github.tomakehurst.wiremock.WireMockServer;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 //https://developers.amadeus.com/self-service/category/destination-content/api-doc/points-of-interest/api-reference
 public class BySquareIT {
 
