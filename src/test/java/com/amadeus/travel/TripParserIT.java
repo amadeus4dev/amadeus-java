@@ -3,7 +3,7 @@ package com.amadeus.travel;
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
-import static org.assertj.core.api.BDDAssertions.then;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import com.amadeus.Amadeus;
 import com.amadeus.exceptions.ResponseException;
@@ -72,7 +72,7 @@ public class TripParserIT {
     TripDetail result = amadeus.travel.tripParser.post(request);
 
     //Then
-    then(result).isNotNull();
+    assertNotNull(result);
   }
 
   @Test
@@ -92,7 +92,7 @@ public class TripParserIT {
     TripDetail result = amadeus.travel.tripParser.post(request);
 
     //Then
-    then(result).isNotNull();
+    assertNotNull(result);
   }
 
   private JsonObject getRequestFromResources(String jsonFile) throws IOException {
