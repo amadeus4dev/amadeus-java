@@ -1,6 +1,7 @@
 package com.amadeus;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -13,8 +14,8 @@ public class AmadeusTest {
    * Amadeus Test.
    */
   @Test public void testBuilder() {
-    Amadeus.builder("id", "secret");
-    assertTrue(true,
+    Configuration config = Amadeus.builder("id", "secret");
+    assertNotNull(config,
         "should return a Configuration");
   }
 
@@ -36,8 +37,8 @@ public class AmadeusTest {
         put("AMADEUS_HOST", "my.custom.host.com");
       }
     };
-    Amadeus.builder(environment);
-    assertTrue(true, "should return a Configuration");
+    Configuration config = Amadeus.builder(environment);
+    assertNotNull(config, "should return a Configuration");
 
     Amadeus amadeus = Amadeus.builder(environment).build();
     assertEquals(amadeus.getConfiguration().getLogLevel(), "debug");

@@ -53,7 +53,7 @@ public class ActivityIT {
   }
 
   @Test
-  public void given_client_when_call_activities_by_id_with_params_then_ok()
+  public void givenClientWhenCallActivitiesByIdWithParamsThenOK()
       throws ResponseException {
 
     //Given

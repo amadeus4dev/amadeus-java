@@ -57,7 +57,7 @@ public class PredictionIT {
   }
 
   @Test
-  public void given_client_when_call_flight_order_prediction_then_ok()
+  public void givenClientWhenCallFlightOrderPredictionThenOK()
       throws ResponseException, IOException {
 
     //Given

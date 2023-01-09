@@ -52,7 +52,7 @@ public class PointOfInterestIT {
   }
 
   @Test
-  public void given_client_when_call_point_of_interest_by_id_then_ok()
+  public void givenClientWhenCallPointOfInterestByIdThenOK()
       throws ResponseException {
 
     //Given

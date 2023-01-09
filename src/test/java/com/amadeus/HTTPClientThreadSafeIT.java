@@ -118,7 +118,7 @@ public class HTTPClientThreadSafeIT {
    * @throws InterruptedException A possible error with the Executor
    */
   @Test
-  public void given_client_when_call_in_parallel_multiple_times_then_thread_safety()
+  public void givenClienWhenCallInParallelMultipleTimesThenThreadSafety()
       throws InterruptedException {
 
     //Given
@@ -165,7 +165,7 @@ public class HTTPClientThreadSafeIT {
    * @throws InterruptedException A possible error with CompletableFuture
    */
   @Test
-  public void given_client_when_call_in_parallel_multiple_times_then_thread_safety2()
+  public void givenClientWhenCallInParallelMultipleTimesThenThreadSafety2()
       throws InterruptedException {
 
     //Given

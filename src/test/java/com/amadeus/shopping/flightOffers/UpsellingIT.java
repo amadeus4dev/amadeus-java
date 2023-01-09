@@ -57,7 +57,7 @@ public class UpsellingIT {
   }
 
   @Test
-  public void given_client_when_call_create_flight_order_upselling_with_params_then_ok()
+  public void givenClientWhenCallCreateFlightOrderUpsellingWithParamsThenOK()
       throws ResponseException, IOException {
 
     //Given

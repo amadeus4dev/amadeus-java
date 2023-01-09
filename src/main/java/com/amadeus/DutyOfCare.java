@@ -19,8 +19,6 @@ import com.amadeus.dutyOfCare.Diseases;
  * @hide
  */
 public class DutyOfCare {
-  private Amadeus client;
-
   /**
    * <p>
    *   A namespaced client for the
@@ -34,7 +32,6 @@ public class DutyOfCare {
    * @hide
    */
   public DutyOfCare(Amadeus client) {
-    this.client = client;
     this.diseases = new Diseases(client);
   }
 }

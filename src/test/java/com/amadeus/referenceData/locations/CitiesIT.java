@@ -55,7 +55,7 @@ public class CitiesIT {
   }
 
   @Test
-  public void given_client_when_call_city_search_with_params_then_ok()
+  public void givenClientWhenCallCitySearchWithParamsThenOK()
       throws ResponseException {
 
     //Given
@@ -75,7 +75,7 @@ public class CitiesIT {
   }
 
   @Test
-  public void given_client_when_call_city_search_without_params_then_ok()
+  public void givenClientWhenCallCitySearchWithoutParamsThenOK()
       throws ResponseException {
 
     //Given

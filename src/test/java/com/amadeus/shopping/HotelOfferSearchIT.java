@@ -55,7 +55,7 @@ public class HotelOfferSearchIT {
   }
 
   @Test
-  public void given_client_when_call_hotel_offer_search_with_params_then_ok()
+  public void givenClientWhenCallHotelOfferSearchWithParamsThenOK()
       throws ResponseException, IOException {
 
     //Given
@@ -75,7 +75,7 @@ public class HotelOfferSearchIT {
 
   //TODO Review with the team to upgrade the behaviour.
   @Test
-  public void given_client_when_call_hotel_offer_search_without_params_then_ok()
+  public void givenClientWhenCallHotelOfferSearchWithoutParamsThenOK()
       throws ResponseException {
 
     //Given

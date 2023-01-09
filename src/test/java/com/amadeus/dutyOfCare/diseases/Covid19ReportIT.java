@@ -55,7 +55,7 @@ public class Covid19ReportIT {
   }
 
   @Test
-  public void given_client_when_call_travel_restrictions_v2_with_params_then_ok()
+  public void givenClientWhenCallTravelRestrictionsV2WithParamsThenOK()
       throws ResponseException {
 
     //Given
@@ -77,7 +77,7 @@ public class Covid19ReportIT {
 
   //TODO Review with the team to upgrade the behaviour.
   @Test
-  public void given_client_when_call_travel_restrictions_v2_without_params_then_ok() {
+  public void givenClientWhenCallTravelRestrictionsV2WithoutParamsThenOK() {
 
     //Given
     String address = "/v2/duty-of-care/diseases/covid19-area-report";

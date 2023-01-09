@@ -51,7 +51,7 @@ public class SafetyRatedLocation {
     String path = String.format("/v1/safety/safety-rated-locations/%s", safetyRatedLocationId);
     Response response = client.get(path, params);
     return (SafePlace) Resource.fromObject(
-      response, com.amadeus.resources.SafePlace.class);
+      response, SafePlace.class);
   }
 
   /**
