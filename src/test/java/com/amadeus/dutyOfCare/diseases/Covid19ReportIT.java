@@ -5,7 +5,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.assertj.core.api.BDDAssertions.then;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import com.amadeus.Amadeus;
 import com.amadeus.Params;
@@ -13,6 +13,7 @@ import com.amadeus.exceptions.ClientException;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.DiseaseReport;
 import com.github.tomakehurst.wiremock.WireMockServer;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -71,7 +72,7 @@ public class Covid19ReportIT {
     );
 
     //Then
-    then(result).isNotNull();
+    assertNotNull(result);
   }
 
   //TODO Review with the team to upgrade the behaviour.

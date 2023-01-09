@@ -6,6 +6,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.assertj.core.api.BDDAssertions.then;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import com.amadeus.Amadeus;
 import com.amadeus.exceptions.ClientException;
@@ -75,7 +76,7 @@ public class FlightOfferSearchIT {
     FlightOfferSearch[] result = amadeus.shopping.flightOffersSearch.post(request);
 
     //Then
-    then(result).isNotNull();
+    assertNotNull(result);
   }
 
   //TODO Review with the team to upgrade the behaviour.

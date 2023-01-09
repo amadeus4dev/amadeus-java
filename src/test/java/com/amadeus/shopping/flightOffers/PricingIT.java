@@ -4,6 +4,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 import static org.assertj.core.api.BDDAssertions.then;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import com.amadeus.Amadeus;
 import com.amadeus.Params;
@@ -83,7 +84,7 @@ public class PricingIT {
         flightOffersSearches, params);
 
     //Then
-    then(result).isNotNull();
+    assertNotNull(result);
   }
 
   @Test
@@ -111,7 +112,7 @@ public class PricingIT {
         array, params);
 
     //Then
-    then(result).isNotNull();
+    assertNotNull(result);
   }
 
   @Test
@@ -131,7 +132,7 @@ public class PricingIT {
     FlightPrice result = amadeus.shopping.flightOffersSearch.pricing.post(request);
 
     //Then
-    then(result).isNotNull();
+    assertNotNull(result);
   }
 
   @Test
@@ -152,7 +153,7 @@ public class PricingIT {
     FlightPrice result = amadeus.shopping.flightOffersSearch.pricing.post(request, params);
 
     //Then
-    then(result).isNotNull();
+    assertNotNull(result);
   }
 
   @Test
@@ -174,7 +175,7 @@ public class PricingIT {
         request.toString(), params);
 
     //Then
-    then(result).isNotNull();
+    assertNotNull(result);
   }
 
   @Test
@@ -206,7 +207,7 @@ public class PricingIT {
         array, flightPayment);
 
     //Then
-    then(result).isNotNull();
+    assertNotNull(result);
   }
 
   @Test
@@ -236,7 +237,7 @@ public class PricingIT {
         flightOffersSearch, flightPayment);
 
     //Then
-    then(result).isNotNull();
+    assertNotNull(result);
   }
 
   private JsonObject getRequestFromResources(String jsonFile) throws IOException {

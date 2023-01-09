@@ -4,13 +4,15 @@ import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
-import static org.assertj.core.api.BDDAssertions.then;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import com.amadeus.Amadeus;
 import com.amadeus.Params;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.SafePlace;
 import com.github.tomakehurst.wiremock.WireMockServer;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -74,7 +76,7 @@ public class SafetyIT {
     SafePlace[] result = amadeus.safety.safetyRatedLocations.bySquare.get(params);
 
     //Then
-    then(result.length).isNotEqualTo(0);
+    assertNotEquals(0, result.length);
   }
 
   @Test
@@ -91,7 +93,7 @@ public class SafetyIT {
     SafePlace[] result = amadeus.safety.safetyRatedLocations.bySquare.get();
 
     //Then
-    then(result.length).isNotEqualTo(0);
+    assertNotEquals(0, result.length);
   }
 
   @Test
@@ -112,7 +114,7 @@ public class SafetyIT {
     SafePlace[] result = amadeus.safety.safetyRatedLocations.get(params);
 
     //Then
-    then(result.length).isNotEqualTo(0);
+    assertNotEquals(0, result.length);
   }
 
   @Test
@@ -130,7 +132,7 @@ public class SafetyIT {
     SafePlace result = amadeus.safety.safetyRatedLocation(id).get();
 
     //Then
-    then(result).isNotNull();
+    assertNotNull(result);
   }
 
 }

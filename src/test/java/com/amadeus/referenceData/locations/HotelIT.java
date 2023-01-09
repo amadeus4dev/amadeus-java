@@ -4,7 +4,10 @@ import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
-import static org.assertj.core.api.BDDAssertions.then;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.amadeus.Amadeus;
 import com.amadeus.Params;
@@ -12,10 +15,12 @@ import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.Hotel;
 import com.amadeus.resources.HotelOfferSearch;
 import com.github.tomakehurst.wiremock.WireMockServer;
+
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -76,8 +81,8 @@ public class HotelIT {
     Hotel[] result = amadeus.referenceData.locations.hotel.get(params);
 
     //Then
-    then(result).isNotNull();
-    then(result.length).isGreaterThan(1);
+    assertNotNull(result);
+    assertTrue(result.length > 1);
   }
 
   @Test
@@ -101,8 +106,8 @@ public class HotelIT {
     Hotel[] result = amadeus.referenceData.locations.hotel.get(params);
 
     //Then
-    then(result).isNotNull();
-    then(result.length).isEqualTo(1);
+    assertNotNull(result);
+    assertEquals(1, result.length);
   }
 
   @Test
@@ -126,8 +131,8 @@ public class HotelIT {
     Hotel[] result = amadeus.referenceData.locations.hotel.get(params);
 
     //Then
-    then(result).isNotNull();
-    then(result.length).isEqualTo(5);
+    assertNotNull(result);
+    assertEquals(5, result.length);
   }
 
   @Test
@@ -153,8 +158,7 @@ public class HotelIT {
     Hotel[] result = amadeus.referenceData.locations.hotel.get(params);
 
     //Then
-    then(result).isNotNull();
-    then(result.length).isGreaterThan(1);
+    assertTrue(result.length > 1);
   }
 
   @Test
@@ -193,6 +197,6 @@ public class HotelIT {
     );
 
     //Then
-    then(result.length).isNotEqualTo(0);
+    assertNotEquals(0, result.length);
   }
 }
