@@ -61,7 +61,7 @@ public class PricingIT {
   }
 
   @Test
-  public void given_client_when_call_create_flight_order_pricing_with_params_then_ok()
+  public void givenClientWhenCallCreateFlightOrderPricingWithParamsThenOK()
       throws ResponseException, IOException {
 
     //Given
@@ -87,7 +87,7 @@ public class PricingIT {
   }
 
   @Test
-  public void given_client_when_call_create_flight_order_pricing_with_params_alternative_2_then_ok()
+  public void givenClientWhenCallCreateFlightOrderPricingWithParamsAlternative2ThenOK()
       throws ResponseException, IOException {
 
     //Given
@@ -115,7 +115,7 @@ public class PricingIT {
   }
 
   @Test
-  public void given_client_when_call_create_flight_order_pricing_with_params_alternative_3_then_ok()
+  public void givenClientWhenCallCreateFlightOrderPricingWithParamsAlternative3ThenOK()
       throws ResponseException, IOException {
 
     //Given
@@ -135,7 +135,7 @@ public class PricingIT {
   }
 
   @Test
-  public void given_client_when_call_create_flight_order_pricing_with_params_alternative_4_then_ok()
+  public void givenClientWhenCallCreateFlightOrderPricingWithParamsAlternative4ThenOK()
       throws ResponseException, IOException {
 
     //Given
@@ -156,7 +156,7 @@ public class PricingIT {
   }
 
   @Test
-  public void given_client_when_call_create_flight_order_pricing_with_params_alternative_5_then_ok()
+  public void givenClientWhenCallCreateFlightOrderPricingWithParamsAlternative5ThenOK()
       throws ResponseException, IOException {
 
     //Given
@@ -178,7 +178,7 @@ public class PricingIT {
   }
 
   @Test
-  public void given_client_when_call_create_flight_order_pricing_with_params_alternative_6_then_ok()
+  public void givenClientWhenCallCreateFlightOrderPricingWithParamsAlternative6ThenOK()
       throws ResponseException, IOException {
 
     //Given
@@ -210,7 +210,7 @@ public class PricingIT {
   }
 
   @Test
-  public void given_client_when_call_create_flight_order_pricing_with_params_alternative_7_then_ok()
+  public void givenClientWhenCallCreateFlightOrderPricingWithParamsAlternative7ThenOK()
       throws ResponseException, IOException {
 
     //Given

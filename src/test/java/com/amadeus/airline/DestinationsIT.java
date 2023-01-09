@@ -54,7 +54,7 @@ public class DestinationsIT {
   }
 
   @Test
-  public void given_client_when_call_airline_destinations_with_mandatory_params_then_ok()
+  public void givenClientWhenCallAirlineDestinationsWithMandatoryParamsThenOk()
       throws ResponseException {
 
     //Given
@@ -75,7 +75,7 @@ public class DestinationsIT {
   }
 
   @Test
-  public void given_client_when_call_airline_destinations_with_optional_params_then_ok()
+  public void givenClientWhenCallAirlineDestinationsWithOptionalParamsThenOK()
       throws ResponseException {
 
     //Given
@@ -99,7 +99,7 @@ public class DestinationsIT {
 
   //TODO Review with the team to upgrade the behaviour.
   @Test
-  public void given_client_when_call_airline_destinations_without_params_then_ok() {
+  public void givenClientWhenCallAirlineDestinationsWithoutParamsThenOK() {
 
     //Given
     String address = "/v1/airline/destinations";

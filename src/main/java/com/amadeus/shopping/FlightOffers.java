@@ -19,7 +19,6 @@ import com.amadeus.shopping.flightOffers.Upselling;
  * amadeus.shopping.flightOffers;</pre>
  */
 public class FlightOffers {
-  private Amadeus client;
   public Prediction prediction;
   public Upselling upselling;
 
@@ -28,7 +27,6 @@ public class FlightOffers {
    * @hide
    */
   public FlightOffers(Amadeus client) {
-    this.client = client;
     this.prediction = new Prediction(client);
     this.upselling = new Upselling(client);
   }

@@ -64,7 +64,7 @@ public class FlightOrdersIT {
   }
 
   @Test
-  public void given_client_when_call_flight_offers_with_params_then_ok()
+  public void givenClientWhenCallFlightOffersWithParamsThenOK()
       throws ResponseException, IOException {
 
     //Given
@@ -135,7 +135,7 @@ public class FlightOrdersIT {
   }
 
   @Test
-  public void given_client_when_call_flight_offers_with_params_alternative_2_then_ok()
+  public void givenClientWhenCallFlightOffersWithParamsAlternative2ThenOK()
       throws ResponseException, IOException {
 
     //Given
@@ -165,7 +165,7 @@ public class FlightOrdersIT {
   }
 
   @Test
-  public void given_client_when_call_flight_offers_with_params_alternative_3_then_ok()
+  public void givenClientWhenCallFlightOffersWithParamsAlternative3ThenOK()
       throws ResponseException, IOException {
 
     //Given
@@ -195,7 +195,7 @@ public class FlightOrdersIT {
   }
 
   @Test
-  public void given_client_when_call_flight_offers_with_params_alternative_4_then_ok()
+  public void givenClientWhenCallFlightOffersWithParamsAlternative4ThenOK()
       throws ResponseException, IOException {
 
     //Given

@@ -4,6 +4,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import lombok.NonNull;
 
 /**
@@ -64,7 +66,8 @@ public class Params extends HashMap<String, String> {
         query.append("=");
         query.append(URLEncoder.encode(entry.getValue(), encoding));
       } catch (UnsupportedEncodingException e) {
-        // no need to anything
+        Logger logger = Logger.getLogger(getClass().getName());
+        logger.log(Level.WARNING, "Exception while encoding the query string", e);
       }
     }
 

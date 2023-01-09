@@ -19,8 +19,6 @@ import com.amadeus.location.Analytics;
  * @hide
  */
 public class Location {
-  private Amadeus client;
-
   /**
    * <p>
    *   A namespaced client for the
@@ -34,7 +32,6 @@ public class Location {
    * @hide
    */
   public Location(Amadeus client) {
-    this.client = client;
     this.analytics = new Analytics(client);
   }
 }

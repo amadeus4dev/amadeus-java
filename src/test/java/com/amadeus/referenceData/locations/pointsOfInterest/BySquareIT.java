@@ -55,7 +55,7 @@ public class BySquareIT {
   }
 
   @Test
-  public void given_client_when_call_points_of_interest_by_square_with_params_then_ok()
+  public void givenClientWhenCallPointsOfInterestBySquareWithParamsThenOK()
       throws ResponseException {
 
     //Given
@@ -82,7 +82,7 @@ public class BySquareIT {
 
   //TODO Review with the team to upgrade the behaviour.
   @Test
-  public void given_client_when_call_points_of_interest_by_square_without_params_then_ok()
+  public void givenClientWhenCallPointsOfInterestBySquareWithoutParamsThenOK()
       throws ResponseException {
 
     //Given
