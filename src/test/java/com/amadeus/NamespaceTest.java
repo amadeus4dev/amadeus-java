@@ -395,8 +395,8 @@ public class NamespaceTest {
     Mockito.when(client.get("/v3/shopping/hotel-offers/XXX", params))
         .thenReturn(singleResponse);
     HotelOfferSearch hotelOfferSearch = new HotelOfferSearch(client, "XXX");
-    assertNotNull(hotelOffer.get());
-    assertNotNull(hotelOffer.get(params));
+    assertNotNull(hotelOfferSearch.get());
+    assertNotNull(hotelOfferSearch.get(params));
 
     // Test flight offers search get
     Mockito.when(client.get("/v2/shopping/flight-offers", null))
@@ -683,4 +683,5 @@ public class NamespaceTest {
     assertNotNull(flightOrder.delete(params));
 
   }
+
 }

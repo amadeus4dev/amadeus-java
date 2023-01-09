@@ -20,8 +20,6 @@ import com.amadeus.referenceData.locations.hotels.ByHotels;
  * amadeus.referenceData.locations.hotels;</pre>
  */
 public class Hotels {
-  private Amadeus client;
-
   /**
    * <p>
    *   A namespaced client for the
@@ -51,7 +49,6 @@ public class Hotels {
    * @hide
    */
   public Hotels(Amadeus client) {
-    this.client = client;
     this.byCity = new ByCity(client);
     this.byHotels = new ByHotels(client);
     this.byGeocode = new ByGeocode(client);

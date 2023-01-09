@@ -3,8 +3,6 @@ package com.amadeus;
 import com.amadeus.ereputation.HotelSentiments;
 
 public class EReputation {
-  private Amadeus client;
-
   /**
    * <p>
    *   A namespaced client for the
@@ -14,7 +12,6 @@ public class EReputation {
   public HotelSentiments hotelSentiments;
 
   public EReputation(Amadeus client) {
-    this.client = client;
     this.hotelSentiments = new HotelSentiments(client);
   }
 }
