@@ -47,11 +47,12 @@ compile files('/path/to/libs/amadeus-java-1.0.1-SNAPSHOT.jar')
 To make a new release, follow the following steps:
 
 - [ ] Update the version in `Amadeus.java` using semver rules
+- [ ] Update the version in `AmadeusTest.java`
+- [ ] Update the version in `gradle.properties`
 - [ ] Update the `CHANGELOG.md` with the new version
+- [ ] Update the version in `README.md` for Maven and Gradle
 - [ ] Push all changes and ensure all tests pass on GitHub Actions
-- [ ] Tag your release in git using `git --tag vX.X.X`
-- [ ] Push the new tag `git push --tags`
-- [ ] Update the [Releases](https://github.com/amadeus4dev/amadeus-java/releases) tab on GitHub with a new release for the tag, copying the description from the `CHANGELOG.md`
+- [ ] Draft a new [release](https://github.com/amadeus4dev/amadeus-java/releases/new) by creating a tag and copying the description from the `CHANGELOG.md`
 
 GitHub Actions will now build the library and release it to Maven Central.
 
