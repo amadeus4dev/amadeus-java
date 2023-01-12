@@ -31,7 +31,7 @@ import com.google.gson.JsonObject;
  */
 public class FlightOrders {
   private Amadeus client;
-  private final static String flightOrdersUrl = "/v1/booking/flight-orders";
+  private static final String flightOrdersUrl = "/v1/booking/flight-orders";
 
   /**
    * Constructor.

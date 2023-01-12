@@ -27,7 +27,7 @@ import java.util.Base64;
  */
 public class TripParser {
   private Amadeus client;
-  private final static String tripParserUrl = "/v3/travel/trip-parser";
+  private static final String tripParserUrl = "/v3/travel/trip-parser";
 
   /**
    * Constructor.
