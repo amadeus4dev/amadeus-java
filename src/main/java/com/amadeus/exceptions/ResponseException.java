@@ -81,6 +81,7 @@ public class ResponseException extends Exception {
 
   private static StringBuffer getErrorsDescription(Response response) {
     StringBuffer message = new StringBuffer();
+    final String detail = "detail";
     for (JsonElement error : response.getResult().get("errors").getAsJsonArray()) {
       JsonObject json = error.getAsJsonObject();
       message.append("\n");
@@ -90,8 +91,8 @@ public class ResponseException extends Exception {
           message.append(String.format("[%s] ", source.get("parameter").getAsString()));
         }
       }
-      if (json.has("detail") && !json.get("detail").isJsonNull()) {
-        message.append(String.format("%s", json.get("detail").getAsString()));
+      if (json.has(detail) && !json.get(detail).isJsonNull()) {
+        message.append(String.format("%s", json.get(detail).getAsString()));
       }
     }
     return message;
