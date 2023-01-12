@@ -27,6 +27,7 @@ import java.util.Base64;
  */
 public class TripParser {
   private Amadeus client;
+  private final String tripParserUrl = "/v3/travel/trip-parser";
 
   /**
    * Constructor.
@@ -51,7 +52,7 @@ public class TripParser {
    * @throws ResponseException when an exception occurs
    */
   public TripDetail post(JsonObject body) throws ResponseException {
-    Response response = client.post("/v3/travel/trip-parser", body);
+    Response response = client.post(tripParserUrl, body);
     return (TripDetail) Resource.fromObject(response, TripDetail.class);
   }
 
@@ -69,7 +70,7 @@ public class TripParser {
    * @throws ResponseException when an exception occurs
    */
   public TripDetail post(String body) throws ResponseException {
-    Response response = client.post("/v3/travel/trip-parser", body);
+    Response response = client.post(tripParserUrl, body);
     return (TripDetail) Resource.fromObject(response, TripDetail.class);
   }
 
@@ -98,7 +99,7 @@ public class TripParser {
         body.addProperty("payload", encodedFile);
         count = count + fileInputStreamReader.read(bytes);
 
-        Response response = client.post("/v3/travel/trip-parser", body);
+        Response response = client.post(tripParserUrl, body);
         return (TripDetail) Resource.fromObject(response, TripDetail.class);
       }
     }

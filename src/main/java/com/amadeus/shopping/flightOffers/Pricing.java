@@ -31,6 +31,7 @@ import com.google.gson.JsonObject;
 public class Pricing {
 
   private Amadeus client;
+  private final String pricingUrl = "/v1/shopping/flight-offers/pricing";
 
   /**
    * Constructor.
@@ -89,7 +90,7 @@ public class Pricing {
    * @throws ResponseException when an exception occurs
    */
   public FlightPrice post(JsonObject body, Params params) throws ResponseException {
-    Response response = client.post("/v1/shopping/flight-offers/pricing", params, body);
+    Response response = client.post(pricingUrl, params, body);
     return (FlightPrice) Resource.fromObject(response, FlightPrice.class);
   }
 
@@ -110,7 +111,7 @@ public class Pricing {
    * @throws ResponseException when an exception occurs
    */
   public FlightPrice post(String body, Params params) throws ResponseException {
-    Response response = client.post("/v1/shopping/flight-offers/pricing", params, body);
+    Response response = client.post(pricingUrl, params, body);
     return (FlightPrice) Resource.fromObject(response, FlightPrice.class);
   }
 
@@ -130,7 +131,7 @@ public class Pricing {
    * @throws ResponseException when an exception occurs
    */
   public FlightPrice post(JsonObject body) throws ResponseException {
-    Response response = client.post("/v1/shopping/flight-offers/pricing", body);
+    Response response = client.post(pricingUrl, body);
     return (FlightPrice) Resource.fromObject(response, FlightPrice.class);
   }
 
@@ -150,7 +151,7 @@ public class Pricing {
    * @throws ResponseException when an exception occurs
    */
   public FlightPrice post(String body) throws ResponseException {
-    Response response = client.post("/v1/shopping/flight-offers/pricing", body);
+    Response response = client.post(pricingUrl, body);
     return (FlightPrice) Resource.fromObject(response, FlightPrice.class);
   }
 
@@ -227,9 +228,9 @@ public class Pricing {
     // Is it a call with param or without param?
     if (params != null) {
       response = client.post(
-              "/v1/shopping/flight-offers/pricing", params, jsonObject);
+              "pricingUrl", params, jsonObject);
     } else {
-      response = client.post("/v1/shopping/flight-offers/pricing", jsonObject);
+      response = client.post("pricingUrl", jsonObject);
     }
     return (FlightPrice) Resource.fromObject(response, FlightPrice.class);
   }
@@ -287,7 +288,7 @@ public class Pricing {
     JsonObject jsonObject = new JsonObject();
     jsonObject.add("data", typeObject);
 
-    Response response = client.post("/v1/shopping/flight-offers/pricing", jsonObject);
+    Response response = client.post("pricingUrl", jsonObject);
     return (FlightPrice) Resource.fromObject(response, FlightPrice.class);
   }
 
