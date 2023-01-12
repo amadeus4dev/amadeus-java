@@ -24,7 +24,7 @@ import com.google.gson.JsonObject;
  */
 public class SeatMaps {
   private Amadeus client;
-  private final String seatMapUrl = "/v1/shopping/seatmaps";
+  private final static String seatMapUrl = "/v1/shopping/seatmaps";
 
   /**
    * Constructor.

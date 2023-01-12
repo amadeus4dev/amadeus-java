@@ -31,7 +31,7 @@ import com.google.gson.JsonObject;
 public class Pricing {
 
   private Amadeus client;
-  private final String pricingUrl = "/v1/shopping/flight-offers/pricing";
+  private final static String pricingUrl = "/v1/shopping/flight-offers/pricing";
 
   /**
    * Constructor.
@@ -228,9 +228,9 @@ public class Pricing {
     // Is it a call with param or without param?
     if (params != null) {
       response = client.post(
-              "pricingUrl", params, jsonObject);
+        pricingUrl, params, jsonObject);
     } else {
-      response = client.post("pricingUrl", jsonObject);
+      response = client.post(pricingUrl, jsonObject);
     }
     return (FlightPrice) Resource.fromObject(response, FlightPrice.class);
   }
@@ -288,7 +288,7 @@ public class Pricing {
     JsonObject jsonObject = new JsonObject();
     jsonObject.add("data", typeObject);
 
-    Response response = client.post("pricingUrl", jsonObject);
+    Response response = client.post(pricingUrl, jsonObject);
     return (FlightPrice) Resource.fromObject(response, FlightPrice.class);
   }
 
