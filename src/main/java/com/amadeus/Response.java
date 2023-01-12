@@ -100,6 +100,7 @@ public class Response {
 
   // Tries to parse the data
   private void parseData() {
+    final String warningsValue = "warnings";
     this.parsed = false;
     this.body = readBody();
     this.result = parseJson();
@@ -112,12 +113,12 @@ public class Response {
         this.data = result.get("data").getAsJsonObject();
       }
     }
-    if (parsed && result.has("warnings")) {
-      if (result.get("warnings").isJsonArray()) {
-        this.warnings = result.get("warnings").getAsJsonArray();
+    if (parsed && result.has(warningsValue)) {
+      if (result.get(warningsValue).isJsonArray()) {
+        this.warnings = result.get(warningsValue).getAsJsonArray();
       }
-      if (result.get("warnings").isJsonObject()) {
-        this.warnings = result.get("warnings").getAsJsonObject();
+      if (result.get(warningsValue).isJsonObject()) {
+        this.warnings = result.get(warningsValue).getAsJsonObject();
       }
     }
   }
