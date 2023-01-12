@@ -31,6 +31,7 @@ import com.google.gson.JsonObject;
  */
 public class FlightOrders {
   private Amadeus client;
+  private final String flightOrdersUrl = "/v1/booking/flight-orders";
 
   /**
    * Constructor.
@@ -89,7 +90,7 @@ public class FlightOrders {
    * @throws ResponseException when an exception occurs
    */
   public FlightOrder post(JsonObject body) throws ResponseException {
-    Response response = client.post("/v1/booking/flight-orders", body);
+    Response response = client.post(flightOrdersUrl, body);
     return (FlightOrder) Resource.fromObject(response, FlightOrder.class);
   }
 
@@ -106,7 +107,7 @@ public class FlightOrders {
    * @throws ResponseException when an exception occurs
    */
   public FlightOrder post(String body) throws ResponseException {
-    Response response = client.post("/v1/booking/flight-orders", body);
+    Response response = client.post(flightOrdersUrl, body);
     return (FlightOrder) Resource.fromObject(response, FlightOrder.class);
   }
 
@@ -140,7 +141,7 @@ public class FlightOrders {
     JsonObject jsonObject = new JsonObject();
     jsonObject.add("data", typeObject);
 
-    Response response = client.post("/v1/booking/flight-orders", jsonObject);
+    Response response = client.post(flightOrdersUrl, jsonObject);
     return (FlightOrder) Resource.fromObject(response, FlightOrder.class);
   }
 
@@ -194,7 +195,7 @@ public class FlightOrders {
     JsonObject jsonObject = new JsonObject();
     jsonObject.add("data", typeObject);
 
-    Response response = client.post("/v1/booking/flight-orders", jsonObject);
+    Response response = client.post(flightOrdersUrl, jsonObject);
     return (FlightOrder) Resource.fromObject(response, FlightOrder.class);
   }
 
