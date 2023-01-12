@@ -26,7 +26,7 @@ import com.google.gson.JsonObject;
 public class FlightOffersSearch {
   private Amadeus client;
   public Pricing pricing;
-  private static final String flightOffersUrl = "/v2/shopping/flight-offers";
+  private static final String FLIGHT_OFFERS_URL = "/v2/shopping/flight-offers";
 
   /**
    * Constructor.
@@ -55,7 +55,7 @@ public class FlightOffersSearch {
    * @throws ResponseException when an exception occurs
    */
   public FlightOfferSearch[] get(Params params) throws ResponseException {
-    Response response = client.get(flightOffersUrl, params);
+    Response response = client.get(FLIGHT_OFFERS_URL, params);
     return (FlightOfferSearch[]) Resource.fromArray(response, FlightOfferSearch[].class);
   }
 
@@ -84,7 +84,7 @@ public class FlightOffersSearch {
    * @throws ResponseException when an exception occurs
    */
   public FlightOfferSearch[] post(JsonObject body) throws ResponseException {
-    Response response = client.post(flightOffersUrl, body);
+    Response response = client.post(FLIGHT_OFFERS_URL, body);
     return (FlightOfferSearch[]) Resource.fromArray(response, FlightOfferSearch[].class);
   }
 
@@ -105,7 +105,7 @@ public class FlightOffersSearch {
    * @throws ResponseException when an exception occurs
    */
   public FlightOfferSearch[] post(String body) throws ResponseException {
-    Response response = client.post(flightOffersUrl, body);
+    Response response = client.post(FLIGHT_OFFERS_URL, body);
     return (FlightOfferSearch[]) Resource.fromArray(response, FlightOfferSearch[].class);
   }
 
