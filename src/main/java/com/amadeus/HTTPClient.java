@@ -1,6 +1,5 @@
 package com.amadeus;
 
-import com.amadeus.Constants;
 import com.amadeus.client.AccessToken;
 import com.amadeus.exceptions.NetworkException;
 import com.amadeus.exceptions.ResponseException;
@@ -378,11 +377,13 @@ public class HTTPClient {
   // Writes the parameters to the request.
   private void write(Request request) throws IOException {
 
+    final String encoding = "UTF-8";
+
     // POST with access token + body + URL parameters
     if (request.getVerb() == HttpVerbs.POST && request.getParams() != null
             && request.getBearerToken() != null) {
       OutputStream os = request.getConnection().getOutputStream();
-      BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+      BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, encoding));
       // writer.write(request.getParams().toQueryString());
       if (request.getBody() != null) {
         writer.write(request.getBody());
@@ -396,7 +397,7 @@ public class HTTPClient {
     if (request.getVerb() == HttpVerbs.POST && request.getParams() != null
             && request.getBearerToken() == null) {
       OutputStream os = request.getConnection().getOutputStream();
-      BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+      BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, encoding));
       writer.write(request.getParams().toQueryString());
       writer.flush();
       writer.close();
@@ -406,7 +407,7 @@ public class HTTPClient {
     // POST with access token + body
     if (request.getVerb() == HttpVerbs.POST && request.getParams() == null) {
       OutputStream os = request.getConnection().getOutputStream();
-      BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+      BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, encoding));
       if (request.getBody() != null) {
         writer.write(request.getBody());
       }
