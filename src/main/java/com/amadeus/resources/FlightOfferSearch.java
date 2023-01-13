@@ -1,3 +1,5 @@
+/*NOSONAR*/
+
 package com.amadeus.resources;
 
 import com.google.gson.annotations.SerializedName;
