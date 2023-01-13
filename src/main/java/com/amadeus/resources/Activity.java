@@ -9,8 +9,6 @@ import lombok.ToString;
  */
 @ToString
 public class Activity extends Resource {
-  protected Activity() {}
-
   private @Getter String type;
   private @Getter String id;
   private @Getter String name;
@@ -23,6 +21,7 @@ public class Activity extends Resource {
   private @Getter ElementaryPrice price;
   private @Getter String[] pictures;
 
+  protected Activity() {}
 
   /**
    * An Activity-related object as returned by the Tours and Activities API.
@@ -30,17 +29,17 @@ public class Activity extends Resource {
    */
   @ToString
   public class GeoCode {
-    protected GeoCode() {}
-
     private @Getter double latitude;
     private @Getter double longitude;
+
+    protected GeoCode() {}
   }
 
   @ToString
   public class ElementaryPrice {
-    protected ElementaryPrice() {}
-
     private @Getter String amount;
     private @Getter String currencyCode;
+
+    protected ElementaryPrice() {}
   }
 }
