@@ -24,6 +24,7 @@ import com.google.gson.JsonObject;
  */
 public class SeatMaps {
   private Amadeus client;
+  private static final String SEATMAP_URL = "/v1/shopping/seatmaps";
 
   /**
    * Constructor.
@@ -48,7 +49,7 @@ public class SeatMaps {
    * @throws ResponseException when an exception occurs
    */
   public SeatMap[] get(Params params) throws ResponseException {
-    Response response = client.get("/v1/shopping/seatmaps", params);
+    Response response = client.get(SEATMAP_URL, params);
     return (SeatMap[]) Resource.fromArray(response, SeatMap[].class);
   }
 
@@ -75,7 +76,7 @@ public class SeatMaps {
    * @throws ResponseException when an exception occurs
    */
   public SeatMap[] post(JsonObject body) throws ResponseException {
-    Response response = client.post("/v1/shopping/seatmaps", body);
+    Response response = client.post(SEATMAP_URL, body);
     return (SeatMap[]) Resource.fromArray(response, SeatMap[].class);
   }
 
@@ -94,7 +95,7 @@ public class SeatMaps {
    * @throws ResponseException when an exception occurs
    */
   public SeatMap[] post(String body) throws ResponseException {
-    Response response = client.post("/v1/shopping/seatmaps", body);
+    Response response = client.post(SEATMAP_URL, body);
     return (SeatMap[]) Resource.fromArray(response, SeatMap[].class);
   }
 
