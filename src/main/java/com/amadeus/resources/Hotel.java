@@ -12,8 +12,6 @@ import lombok.ToString;
  */
 @ToString
 public class Hotel extends Resource {
-  protected Hotel() {}
-
   private @Getter String subtype;
   private @Getter String name;
   private @Getter String timeZoneName;
@@ -29,10 +27,10 @@ public class Hotel extends Resource {
   @SerializedName("last_update")
   private @Getter String lastUpdate;
 
+  protected Hotel() {}
+
   @ToString
   public class Address {
-    protected Address() {}
-
     private @Getter String category;
     private @Getter String[] lines;
     private @Getter String postalCode;
@@ -42,23 +40,25 @@ public class Hotel extends Resource {
     private @Getter String postalBox;
     private @Getter String text;
     private @Getter String state;
+
+    protected Address() {}
   }
 
   @ToString
   public class GeoCode {
-    protected GeoCode() {}
-
     private @Getter float latitude;
     private @Getter float longitude;
+
+    protected GeoCode() {}
   }
 
   @ToString
   public class Distance {
-    protected Distance() {}
-
     private @Getter String unit;
     private @Getter double value;
     private @Getter String displayValue;
     private @Getter String isUnlimited;
+
+    protected Distance() {}
   }
 }
