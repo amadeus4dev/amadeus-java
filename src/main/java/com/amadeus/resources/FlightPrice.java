@@ -5,15 +5,14 @@ import lombok.ToString;
 
 @ToString
 public class FlightPrice extends Resource {
-  protected FlightPrice() {}
-
   private @Getter String type;
   private @Getter FlightOfferSearch[] flightOffers;
   private @Getter BookingRequirements bookingRequirements;
 
+  protected FlightPrice() {}
+
   @ToString
   public class BookingRequirements {
-    protected BookingRequirements() {}
 
     private @Getter Boolean invoiceAddressRequired;
     private @Getter Boolean mailingAddressRequired;
@@ -23,12 +22,12 @@ public class FlightPrice extends Resource {
     private @Getter Boolean phoneNumberRequired;
     private @Getter Boolean postalCodeRequired;
     private @Getter PassengerConditions[] travelerRequirements;
+
+    protected BookingRequirements() {}
   }
 
   @ToString
   public class PassengerConditions {
-    protected PassengerConditions(){}
-
     private @Getter String travelerId;
     private @Getter Boolean genderRequired;
     private @Getter Boolean documentRequired;
@@ -38,6 +37,8 @@ public class FlightPrice extends Resource {
     private @Getter Boolean airFranceDiscountRequired;
     private @Getter Boolean spanishResidentDiscountRequired;
     private @Getter Boolean residenceRequired;
+
+    protected PassengerConditions(){}
   }
 
 }

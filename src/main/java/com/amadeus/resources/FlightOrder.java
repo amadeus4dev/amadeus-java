@@ -15,8 +15,6 @@ import lombok.ToString;
  */
 @ToString
 public class FlightOrder extends Resource {
-  protected FlightOrder() {}
-
   private @Getter String type;
   private @Getter String id;
   private @Getter String queuingOfficeId;
@@ -24,15 +22,17 @@ public class FlightOrder extends Resource {
   private @Getter Traveler[] travelers;
   private @Getter FlightOfferSearch[] flightOffers;
 
+  protected FlightOrder() {}
+
   @ToString
   public class AssociatedRecord {
-    protected AssociatedRecord() {
-    }
-
     private @Getter String reference;
     private @Getter String creationDateTime;
     private @Getter String originSystemCode;
     private @Getter String flightOfferId;
+
+    protected AssociatedRecord() {}
+
   }
 
   @AllArgsConstructor
