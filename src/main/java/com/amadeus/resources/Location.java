@@ -1,3 +1,5 @@
+/*NOSONAR*/
+
 package com.amadeus.resources;
 
 import lombok.Getter;
