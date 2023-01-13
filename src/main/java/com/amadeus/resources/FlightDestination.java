@@ -10,8 +10,6 @@ import lombok.ToString;
  */
 @ToString
 public class FlightDestination extends Resource {
-  protected FlightDestination() {}
-
   private @Getter String type;
   private @Getter String origin;
   private @Getter String destination;
@@ -19,14 +17,16 @@ public class FlightDestination extends Resource {
   private @Getter Date returnDate;
   private @Getter Price price;
 
+  protected FlightDestination() {}
+
   /**
    * An FlightDestination-related object as returned by the FlightDestinations API.
    * @see com.amadeus.shopping.FlightDestinations#get()
    */
   @ToString
   public class Price {
-    protected Price() {}
-
     private @Getter double total;
+
+    protected Price() {}
   }
 }

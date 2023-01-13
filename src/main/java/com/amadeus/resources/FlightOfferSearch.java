@@ -10,8 +10,6 @@ import lombok.ToString;
  */
 @ToString
 public class FlightOfferSearch extends Resource {
-  protected FlightOfferSearch() {}
-
   private @Getter String type;
   private @Getter String id;
   private @Getter String source;
@@ -30,21 +28,19 @@ public class FlightOfferSearch extends Resource {
   private @Getter String choiceProbability;
   private @Getter FareRules fareRules;
 
+  protected FlightOfferSearch() {}
+
   @ToString
   public class Itinerary {
-    protected Itinerary() {
-    }
-
     private @Getter String duration;
     private @Getter SearchSegment[] segments;
+
+    protected Itinerary() {}
 
   }
 
   @ToString
   public class SearchSegment {
-    protected SearchSegment() {
-    }
-
     private @Getter AirportInfo departure;
     private @Getter AirportInfo arrival;
     private @Getter String carrierCode;
@@ -57,60 +53,54 @@ public class FlightOfferSearch extends Resource {
     private @Getter int numberOfStops;
     private @Getter boolean blacklistedInEU;
     private @Getter Co2Emissions[] co2Emissions;
+
+    protected SearchSegment() {}
   }
 
   @ToString
   public class OperatingFlight {
-    protected OperatingFlight() {
-    }
-
     private @Getter String carrierCode;
+
+    protected OperatingFlight() {}
   }
 
   @ToString
   public class FlightStop {
-    protected FlightStop() {
-    }
-
     private @Getter String iataCode;
     private @Getter String duration;
     private @Getter String arrivalAt;
     private @Getter String departureAt;
+
+    protected FlightStop() {}
   }
 
   @ToString
   public class Co2Emissions {
-    protected Co2Emissions() {
-    }
-
     private @Getter int weight;
     private @Getter String weightUnit;
     private @Getter String cabin;
+
+    protected Co2Emissions() {}
   }
 
   @ToString
   public class AirportInfo {
-    protected AirportInfo() {
-    }
-
     private @Getter String iataCode;
     private @Getter String terminal;
     private @Getter String at;
+
+    protected AirportInfo() {}
   }
 
   @ToString
   public class Aircraft {
-    protected Aircraft() {
-    }
-
     private @Getter String code;
+
+    protected Aircraft() {}
   }
 
   @ToString
   public class SearchPrice {
-    protected SearchPrice() {
-    }
-
     private @Getter String currency;
     private @Getter String total;
     private @Getter String base;
@@ -121,33 +111,32 @@ public class FlightOfferSearch extends Resource {
     private @Getter String margin;
     private @Getter String billingCurrency;
     private @Getter AdditionalService[] additionalServices;
+
+    protected SearchPrice() {}
   }
 
   @ToString
   public class Fee {
-    protected Fee() {
-    }
-
     private @Getter String amount;
     private @Getter String type;
+
+    protected Fee() {}
   }
 
   @ToString
   public class Tax {
-    protected Tax() {
-    }
-
     private @Getter String amount;
     private @Getter String code;
+
+    protected Tax() {}
   }
 
   @ToString
   public class AdditionalService {
-    protected AdditionalService() {
-    }
-
     private @Getter String amount;
     private @Getter String type;
+
+    protected AdditionalService() {}
   }
 
   @ToString
@@ -162,22 +151,18 @@ public class FlightOfferSearch extends Resource {
 
   @ToString
   public class TravelerPricing {
-    protected TravelerPricing() {
-    }
-
     private @Getter String travelerId;
     private @Getter String fareOption;
     private @Getter String travelerType;
     private @Getter String associatedAdultId;
     private @Getter SearchPrice price;
     private @Getter FareDetailsBySegment[] fareDetailsBySegment;
+
+    protected TravelerPricing() {}
   }
 
   @ToString
   public class FareDetailsBySegment {
-    protected FareDetailsBySegment() {
-    }
-
     private @Getter String segmentId;
     private @Getter String cabin;
     private @Getter String fareBasis;
@@ -190,75 +175,70 @@ public class FlightOfferSearch extends Resource {
     private @Getter BaggageAllowance includedCheckedBags;
     private @Getter AdditionalServiceRequest additionalServices;
     private @Getter Amenity[] amenities;
+
+    protected FareDetailsBySegment() {}
   }
 
   @ToString
   public class AllotmentDetails {
-    protected AllotmentDetails() {
-    }
-
     private @Getter String tourName;
     private @Getter String tourReference;
+
+    protected AllotmentDetails() {}
   }
 
   @ToString
   public class BaggageAllowance {
-    protected BaggageAllowance() {
-    }
-
     private @Getter int quantity;
     private @Getter int weight;
     private @Getter String weightUnit;
+
+    protected BaggageAllowance() {}
   }
 
   @ToString
   public class AdditionalServiceRequest {
-    protected AdditionalServiceRequest() {
-    }
-
     private @Getter BaggageAllowance chargeableCheckedBags;
     private @Getter String chargeableSeatNumber;
     private @Getter String[] otherServices;
+
+    protected AdditionalServiceRequest() {}
   }
 
   @ToString
   public class Amenity {
-    protected Amenity() {
-    }
-
     private @Getter String code;
     private @Getter String description;
     private @Getter Boolean isChargeable;
     private @Getter String amenityType;
+
+    protected Amenity() {}
   }
 
   @ToString
   public class FareRules {
-    protected FareRules() {
-    }
-
     private @Getter String currency;
     private @Getter TermAndCondition[] rules;
+
+    protected FareRules() {}
   }
 
   @ToString
   public class TermAndCondition {
-    protected TermAndCondition() {
-    }
-
     private @Getter String category;
     private @Getter String circumstances;
     private @Getter boolean notApplicable;
     private @Getter String maxPenaltyAmount;
     private @Getter Description[] descriptions;
+
+    protected TermAndCondition() {}
   }
 
   @ToString
   public class Description {
-    protected Description() {
-    }
-
     private @Getter String descriptionType;
     private @Getter String text;
+
+    protected Description() {}
   }
 }

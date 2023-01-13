@@ -11,8 +11,6 @@ import lombok.ToString;
  */
 @ToString
 public class FlightAvailability extends Resource {
-  protected FlightAvailability() {}
-
   private @Getter String type;
   private @Getter String id;
   private @Getter String originDestinationId;
@@ -22,10 +20,10 @@ public class FlightAvailability extends Resource {
   private @Getter String duration;
   private @Getter ExtendedSegment[] segments;
 
+  protected FlightAvailability() {}
+
   @ToString
   public class ExtendedSegment {
-    protected ExtendedSegment() {}
-
     private @Getter String closedStatus;
     private @Getter AvailabilityClass[] availabilityClasses;
     private @Getter String id;
@@ -40,69 +38,70 @@ public class FlightAvailability extends Resource {
     private @Getter OperatingFlight operating;
     private @Getter String duration;
     private @Getter FlightStop[] stops;
+
+    protected ExtendedSegment() {}
   }
 
   @ToString
   public class FlightEndpoint {
-    protected FlightEndpoint() { }
-
     private @Getter String iataCode;
     private @Getter String terminal;
     private @Getter String at;
+
+    protected FlightEndpoint() {}
   }
 
   @ToString
   public class AircraftEquipment {
-    protected AircraftEquipment() {}
-
     private @Getter String code;
+
+    protected AircraftEquipment() {}
   }
 
   @ToString
   public class AvailabilityClass {
-    protected AvailabilityClass() {}
-
     private @Getter int numberOfBookableSeats;
     @SerializedName("class")
     private @Getter String segmentClass;
     private @Getter String closedStatus;
     private @Getter TourAllotment tourAllotment;
+
+    protected AvailabilityClass() {}
   }
 
   @ToString
   public class FlightStop {
-    protected FlightStop() {}
-
     private @Getter String iataCode;
     private @Getter String duration;
     private @Getter String arrivalAt;
     private @Getter String departureAt;
+
+    protected FlightStop() {}
   }
 
   @ToString
   public class OperatingFlight {
-    protected OperatingFlight() {}
-
     private @Getter String carrierCode;
+
+    protected OperatingFlight() {}
   }
 
   @ToString
   public class TourAllotment {
-    protected TourAllotment() {}
-
     private @Getter String tourName;
     private @Getter String tourReference;
     private @Getter String mode;
     private @Getter String remainingSeats;
+
+    protected TourAllotment() {}
   }
 
   @ToString
   public class Co2Emission {
-    protected Co2Emission() {
-    }
-
     private @Getter int weight;
     private @Getter String weightUnit;
     private @Getter String cabin;
+
+    protected Co2Emission() {}
   }
 }
