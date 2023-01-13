@@ -9,8 +9,6 @@ import lombok.ToString;
  */
 @ToString
 public class City extends Resource {
-  protected City() {}
-
   private @Getter String type;
   private @Getter Relationship[] relationships;
   private @Getter String subType;
@@ -19,21 +17,23 @@ public class City extends Resource {
   private @Getter Address address;
   private @Getter Location.GeoCode geoCode;
 
+  protected City() {}
+
   @ToString
   public class Relationship {
-    protected Relationship() {}
-
     private @Getter String id;
     private @Getter String type;
     private @Getter String href;
+
+    protected Relationship() {}
   }
 
   @ToString
   public class Address {
-    protected Address() {}
-
     private @Getter String postalCode;
     private @Getter String countryCode;
     private @Getter String stateCode;
+
+    protected Address() {}
   }
 }

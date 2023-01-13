@@ -9,11 +9,11 @@ import lombok.ToString;
  */
 @ToString
 public class Airline extends Resource {
-  protected Airline() {}
-
   private @Getter String type;
   private @Getter String iataCode;
   private @Getter String icaoCode;
   private @Getter String businessName;
   private @Getter String commonName;
+
+  protected Airline() {}
 }

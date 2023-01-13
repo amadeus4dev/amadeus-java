@@ -9,10 +9,10 @@ import lombok.ToString;
  */
 @ToString
 public class CheckinLink extends Resource {
-  protected CheckinLink() {}
-
   private @Getter String type;
   private @Getter String id;
   private @Getter String href;
   private @Getter String channel;
+
+  protected CheckinLink() {}
 }

@@ -9,8 +9,6 @@ import lombok.ToString;
  */
 @ToString
 public class DatedFlight extends Resource {
-  protected DatedFlight() {}
-
   private @Getter String type;
   private @Getter String scheduledDepartureDate;
   private @Getter FlightDesignator flightDesignator;
@@ -18,117 +16,106 @@ public class DatedFlight extends Resource {
   private @Getter Segment[] segments;
   private @Getter Leg[] legs;
 
+  protected DatedFlight() {}
+
   @ToString
   public class FlightDesignator {
-    protected FlightDesignator() {
-    }
-
     private @Getter String carrierCode;
     private @Getter int flightNumber;
     private @Getter String operationalSuffix;
 
+    protected FlightDesignator() {}
   }
 
   @ToString
   public class FlightPoint {
-    protected FlightPoint() {
-    }
-
     private @Getter String iataCode;
     private @Getter Departure departure;
     private @Getter Arrival arrival;
+
+    protected FlightPoint() {}
   }
 
   @ToString
   public class Departure {
-    protected Departure() {
-    }
-
     private @Getter Timing[] timings;
     private @Getter Terminal terminal;
     private @Getter Gate gate;
+
+    protected Departure() {}
   }
 
   @ToString
   public class Arrival {
-    protected Arrival() {
-    }
-
     private @Getter Timing[] timings;
     private @Getter Terminal terminal;
     private @Getter Gate gate;
+
+    protected Arrival() {}
   }
 
   @ToString
   public class Timing {
-    protected Timing() {
-    }
-
     private @Getter String qualifier;
     private @Getter String value;
     private @Getter Delay[] delays;
+
+    protected Timing() {}
   }
 
   @ToString
   public class Delay {
-    protected Delay() {
-    }
-
     private @Getter String duration;
+
+    protected Delay() {}
   }
 
   @ToString
   public class Gate {
-    protected Gate() {
-    }
-
     private @Getter String mainGate;
+
+    protected Gate() {}
   }
 
   @ToString
   public class Terminal {
-    protected Terminal() {
-    }
-
     private @Getter String code;
+
+    protected Terminal() {}
   }
 
   @ToString
   public class Segment {
-    protected Segment() {
-    }
-
     private @Getter String boardPointIataCode;
     private @Getter String offPointIataCode;
     private @Getter String scheduledSegmentDuration;
     private @Getter Partnership partnership;
+
+    protected Segment() {}
   }
 
   @ToString
   public class Partnership {
-    protected Partnership() {
-    }
-
     private @Getter FlightDesignator operatingFlight;
+
+    protected Partnership() {}
   }
 
   @ToString
   public class Leg {
-    protected Leg() {
-    }
-
     private @Getter String boardPointIataCode;
     private @Getter String offPointIataCode;
     private @Getter AircraftEquipment aircraftEquipment;
     private @Getter String scheduledLegDuration;
+
+    protected Leg() {}
   }
 
   @ToString
   public class AircraftEquipment {
-    protected AircraftEquipment() {
-    }
-
     private @Getter String aircraftType;
+
+    protected AircraftEquipment() {}
   }
 
 }
