@@ -1,3 +1,5 @@
+/*NOSONAR*/
+
 package com.amadeus.resources;
 
 import com.amadeus.dutyOfCare.diseases.Covid19Report;

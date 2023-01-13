@@ -1,4 +1,5 @@
 /*NOSONAR*/
+
 package com.amadeus.resources;
 
 import com.amadeus.shopping.availability.FlightAvailabilities;
