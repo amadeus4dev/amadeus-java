@@ -9,8 +9,6 @@ import lombok.ToString;
  */
 @ToString
 public class Location extends Resource {
-  protected Location() {}
-
   private @Getter String type;
   private @Getter String subType;
   private @Getter String name;
@@ -23,16 +21,18 @@ public class Location extends Resource {
   private @Getter Analytics analytics;
   private @Getter Double relevance;
 
+  protected Location() {}
+
   /**
    * An Location-related object as returned by the Location API.
    * @see com.amadeus.referenceData.Location#get()
    */
   @ToString
   public class GeoCode {
-    protected GeoCode() {}
-
     private @Getter double latitude;
     private @Getter double longitude;
+
+    protected GeoCode() {}
   }
 
   /**
@@ -41,13 +41,13 @@ public class Location extends Resource {
    */
   @ToString
   public class Address {
-    protected Address() {}
-
     private @Getter String cityName;
     private @Getter String cityCode;
     private @Getter String countryName;
     private @Getter String countryCode;
     private @Getter String regionCode;
+
+    protected Address() {}
   }
 
   /**
@@ -56,10 +56,10 @@ public class Location extends Resource {
    */
   @ToString
   public class Distance {
-    protected Distance() {}
-
     private @Getter Double value;
     private @Getter String unit;
+
+    protected Distance() {}
   }
 
   /**
@@ -68,10 +68,10 @@ public class Location extends Resource {
    */
   @ToString
   public class Analytics {
-    protected Analytics() {}
-
     private @Getter Flights flights;
     private @Getter Travelers travelers;
+
+    protected Analytics() {}
 
     /**
      * An Location-related object as returned by the Location API.
@@ -79,9 +79,9 @@ public class Location extends Resource {
      */
     @ToString
     public class Flights {
-      protected Flights() {}
-
       private @Getter Double score;
+
+      protected Flights() {}
     }
 
     /**
@@ -90,9 +90,9 @@ public class Location extends Resource {
      */
     @ToString
     public class Travelers {
-      protected Travelers() {}
-
       private @Getter Double score;
+
+      protected Travelers() {}
     }
   }
 }

@@ -9,11 +9,11 @@ import lombok.ToString;
  */
 @ToString
 public class Period extends Resource {
-  protected Period() {}
-
   private @Getter String type;
   private @Getter String period;
   private @Getter Analytics analytics;
+
+  protected Period() {}
 
   /**
    * An Period-related object as returned by the Busiest Period API.
@@ -21,9 +21,9 @@ public class Period extends Resource {
    */
   @ToString
   public class Analytics {
-    protected Analytics() {}
-
     private @Getter Travelers travelers;
+
+    protected Analytics() {}
 
     /**
      * An Period-related object as returned by the BusiestPeriod API.
@@ -31,9 +31,9 @@ public class Period extends Resource {
      */
     @ToString
     public class Travelers {
-      protected Travelers() {}
-
       private @Getter Double score;
+
+      protected Travelers() {}
     }
   }
 }

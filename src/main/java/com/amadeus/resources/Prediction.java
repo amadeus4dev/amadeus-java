@@ -10,12 +10,11 @@ import lombok.ToString;
  */
 @ToString
 public class Prediction extends Resource {
-  protected Prediction() {
-  }
-
   private @Getter String type;
   private @Getter String subType;
   private @Getter String id;
   private @Getter String result;
   private @Getter String probability;
+
+  protected Prediction() {}
 }
