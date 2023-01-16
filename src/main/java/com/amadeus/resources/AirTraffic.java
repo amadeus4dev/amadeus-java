@@ -1,5 +1,3 @@
-/*NOSONAR*/
-
 package com.amadeus.resources;
 
 import lombok.Getter;
@@ -50,7 +48,7 @@ public class AirTraffic extends Resource {
     public class Travelers {
       private @Getter Double score;
 
-      protected Travelers() {} // NOSONAR
+      protected Travelers() {}
     }
   }
 }
