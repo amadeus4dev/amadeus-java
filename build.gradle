@@ -87,7 +87,5 @@ sonarqube {
     property "sonar.projectKey", "amadeus4dev_amadeus-java"
     property "sonar.organization", "amadeus4dev"
     property "sonar.host.url", "https://sonarcloud.io"
-    
-    properties["sonar.exclusions"] += "src/main/java/com/amadeus/resources/**"
   }
 }
