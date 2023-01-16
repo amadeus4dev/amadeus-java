@@ -94,7 +94,7 @@ public class Location extends Resource {
     public class Travelers {
       private @Getter Double score;
 
-      protected Travelers() {}
+      protected Travelers() {} // NOSONAR
     }
   }
 }

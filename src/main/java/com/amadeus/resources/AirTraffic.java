@@ -50,7 +50,7 @@ public class AirTraffic extends Resource {
     public class Travelers {
       private @Getter Double score;
 
-      protected Travelers() {}
+      protected Travelers() {} // NOSONAR
     }
   }
 }
