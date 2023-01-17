@@ -1,4 +1,4 @@
-package com.amadeus.dutyOfCare.diseases;
+package com.amadeus.dutyofcare.diseases;
 
 import com.amadeus.Amadeus;
 import com.amadeus.Params;
