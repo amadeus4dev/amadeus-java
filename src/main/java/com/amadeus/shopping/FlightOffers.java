@@ -1,8 +1,8 @@
 package com.amadeus.shopping;
 
 import com.amadeus.Amadeus;
-import com.amadeus.shopping.flightOffers.Prediction;
-import com.amadeus.shopping.flightOffers.Upselling;
+import com.amadeus.shopping.flightoffers.Prediction;
+import com.amadeus.shopping.flightoffers.Upselling;
 
 /**
  * <p>
