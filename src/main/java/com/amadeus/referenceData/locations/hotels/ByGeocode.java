@@ -1,4 +1,4 @@
-package com.amadeus.referenceData.locations.hotels;
+package com.amadeus.referencedata.locations.hotels;
 
 import com.amadeus.Amadeus;
 import com.amadeus.Params;

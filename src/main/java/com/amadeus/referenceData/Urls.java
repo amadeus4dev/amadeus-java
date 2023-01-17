@@ -1,7 +1,7 @@
-package com.amadeus.referenceData;
+package com.amadeus.referencedata;
 
 import com.amadeus.Amadeus;
-import com.amadeus.referenceData.urls.CheckinLinks;
+import com.amadeus.referencedata.urls.CheckinLinks;
 
 /**
  * <p>

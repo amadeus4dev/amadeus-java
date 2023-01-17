@@ -1,9 +1,9 @@
-package com.amadeus.referenceData.locations;
+package com.amadeus.referencedata.locations;
 
 import com.amadeus.Amadeus;
-import com.amadeus.referenceData.locations.hotels.ByCity;
-import com.amadeus.referenceData.locations.hotels.ByGeocode;
-import com.amadeus.referenceData.locations.hotels.ByHotels;
+import com.amadeus.referencedata.locations.hotels.ByCity;
+import com.amadeus.referencedata.locations.hotels.ByGeocode;
+import com.amadeus.referencedata.locations.hotels.ByHotels;
 
 /**
  * <p>

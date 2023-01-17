@@ -1,10 +1,10 @@
-package com.amadeus.referenceData;
+package com.amadeus.referencedata;
 
 import com.amadeus.Amadeus;
 import com.amadeus.Params;
 import com.amadeus.Response;
 import com.amadeus.exceptions.ResponseException;
-import com.amadeus.referenceData.locations.Airports;
+import com.amadeus.referencedata.locations.Airports;
 import com.amadeus.resources.Resource;
 
 /**

@@ -5,7 +5,7 @@ import lombok.ToString;
 
 /**
  * An Location object as returned by the Locaion API.
- * @see com.amadeus.referenceData.Location#get()
+ * @see com.amadeus.referencedata.Location#get()
  */
 @ToString
 public class Location extends Resource {
@@ -25,7 +25,7 @@ public class Location extends Resource {
 
   /**
    * An Location-related object as returned by the Location API.
-   * @see com.amadeus.referenceData.Location#get()
+   * @see com.amadeus.referencedata.Location#get()
    */
   @ToString
   public class GeoCode {
@@ -37,7 +37,7 @@ public class Location extends Resource {
 
   /**
    * An Location-related object as returned by the Location API.
-   * @see com.amadeus.referenceData.Location#get()
+   * @see com.amadeus.referencedata.Location#get()
    */
   @ToString
   public class Address {
@@ -52,7 +52,7 @@ public class Location extends Resource {
 
   /**
    * An Location-related object as returned by the Location API.
-   * @see com.amadeus.referenceData.Location#get()
+   * @see com.amadeus.referencedata.Location#get()
    */
   @ToString
   public class Distance {
@@ -64,7 +64,7 @@ public class Location extends Resource {
 
   /**
    * An Location-related object as returned by the Location API.
-   * @see com.amadeus.referenceData.Location#get()
+   * @see com.amadeus.referencedata.Location#get()
    */
   @ToString
   public class Analytics {
@@ -75,7 +75,7 @@ public class Location extends Resource {
 
     /**
      * An Location-related object as returned by the Location API.
-     * @see com.amadeus.referenceData.Location#get()
+     * @see com.amadeus.referencedata.Location#get()
      */
     @ToString
     public class Flights {
@@ -86,7 +86,7 @@ public class Location extends Resource {
 
     /**
      * An Location-related object as returned by the Location API.
-     * @see com.amadeus.referenceData.Location#get()
+     * @see com.amadeus.referencedata.Location#get()
      */
     @ToString
     public class Travelers {

@@ -5,7 +5,7 @@ import lombok.ToString;
 
 /**
  * A City object as returned by the City Search API.
- * @see com.amadeus.referenceData.locations.Cities#get()
+ * @see com.amadeus.referencedata.locations.Cities#get()
  */
 @ToString
 public class City extends Resource {

@@ -1,10 +1,10 @@
 package com.amadeus;
 
-import com.amadeus.referenceData.Airlines;
-import com.amadeus.referenceData.Location;
-import com.amadeus.referenceData.Locations;
-import com.amadeus.referenceData.RecommendedLocations;
-import com.amadeus.referenceData.Urls;
+import com.amadeus.referencedata.Airlines;
+import com.amadeus.referencedata.Location;
+import com.amadeus.referencedata.Locations;
+import com.amadeus.referencedata.RecommendedLocations;
+import com.amadeus.referencedata.Urls;
 
 /**
  * <p>
