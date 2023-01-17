@@ -9,8 +9,6 @@ import lombok.ToString;
  * @see com.amadeus.shopping.SeatMaps#post() */
 @ToString
 public class SeatMap extends Resource {
-  protected SeatMap() {}
-
   private @Getter String type;
   private @Getter String flightOfferid;
   private @Getter String segmentid;
@@ -22,46 +20,40 @@ public class SeatMap extends Resource {
   private @Getter AircraftCabinAmenities aircraftCabinAmenities;
   private @Getter AvailableSeatsCounter[] availableSeatsCounters;
 
+  protected SeatMap() {}
+
   @ToString
   public class Aircraft {
-    protected Aircraft() {
-    }
-
     private @Getter String code;
+
+    protected Aircraft() {}
   }
 
   @ToString
   public class Departure {
-    protected Departure() {
-    }
-
     private @Getter String iataCode;
     private @Getter String at;
+
+    protected Departure() {}
   }
 
   @ToString
   public class Arrival {
-    protected Arrival() {
-    }
-
     private @Getter String iataCode;
+
+    protected Arrival() {}
   }
 
   @ToString
   public class Deck {
-    protected Deck() {
-    }
-
     private @Getter String deckType;
     private @Getter DeckConfiguration deckConfiguration;
 
+    protected Deck() {}
   }
 
   @ToString
   public class AircraftCabinAmenities {
-    protected AircraftCabinAmenities() {
-    }
-
     private @Getter AmenityPower power;
     private @Getter AmenityWifi wifi;
     private @Getter AmenityBeverage beverage;
@@ -69,76 +61,63 @@ public class SeatMap extends Resource {
     private @Getter AmenityEntertainment[] entertainment;
     private @Getter AmenitySeat seat;
 
+    protected AircraftCabinAmenities() {}
   }
 
   @ToString
   public class AmenitySeat {
-    protected AmenitySeat() {
-    }
-
     private @Getter int legSpace;
     private @Getter String spaceUnit;
     private @Getter String tilt;
     private @Getter String amenityType;
     private @Getter Media[] medias;
 
+    protected AmenitySeat() {}
   }
 
   @ToString
   public class AmenityPower {
-    protected AmenityPower() {
-    }
-
     private @Getter boolean isChargeable;
     private @Getter String powerType;
     private @Getter String usbType;
 
+    protected AmenityPower() {}
   }
 
   @ToString
   public class AmenityWifi {
-    protected AmenityWifi() {
-    }
-
     private @Getter boolean isChargeable;
     private @Getter String wifiCoverage;
 
+    protected AmenityWifi() {}
   }
 
   @ToString
   public class AmenityBeverage {
-    protected AmenityBeverage() {
-    }
-
     private @Getter boolean isChargeable;
     private @Getter String beverageType;
 
+    protected AmenityBeverage() {}
   }
 
   @ToString
   public class AmenityFood {
-    protected AmenityFood() {
-    }
-
     private @Getter boolean isChargeable;
     private @Getter String foodType;
 
+    protected AmenityFood() {}
   }
 
   @ToString
   public class AmenityEntertainment {
-    protected AmenityEntertainment() {
-    }
-
     private @Getter boolean isChargeable;
     private @Getter String entertainmentType;
 
+    protected AmenityEntertainment() {}
   }
 
   @ToString
   public class DeckConfiguration {
-    protected DeckConfiguration() {
-    }
 
     private @Getter int width;
     private @Getter int length;
@@ -149,34 +128,32 @@ public class SeatMap extends Resource {
     private @Getter int startWingsX;
     private @Getter int endWingsX;
 
+    protected DeckConfiguration() {}
   }
 
   @ToString
   public class AvailableSeatsCounter {
-    protected AvailableSeatsCounter() {
-    }
-
     private @Getter int value;
     private @Getter String travelerId;
+
+    protected AvailableSeatsCounter() {}
   }
 
   @ToString
   public class Media {
-    protected Media() {
-    }
-
     private @Getter String title;
     private @Getter String href;
     private @Getter String mediaType;
     private @Getter QualifiedFreeText description;
+
+    protected Media() {}
   }
 
   @ToString
   public class QualifiedFreeText {
-    protected QualifiedFreeText() {
-    }
-
     private @Getter String text;
     private @Getter String lang;
+
+    protected QualifiedFreeText() {}
   }
 }

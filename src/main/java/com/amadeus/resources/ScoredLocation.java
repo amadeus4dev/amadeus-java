@@ -9,60 +9,60 @@ import lombok.ToString;
  */
 @ToString
 public class ScoredLocation extends Resource {
-  protected ScoredLocation() {}
-
   private @Getter GeoCode geoCode;
   private @Getter int radius;
   private @Getter CategoryScores categoryScores;
   private @Getter String type;
 
+  protected ScoredLocation() {}
+
   @ToString
   public class GeoCode {
-    protected GeoCode() {}
-
     private @Getter float latitude;
     private @Getter float longitude;
+
+    protected GeoCode() {}
   }
 
   @ToString
   public class CategoryScores {
-    protected CategoryScores() {}
-
     private @Getter Sight sight;
     private @Getter Restaurant restaurant;
     private @Getter Shopping shopping;
     private @Getter NightLife nightLife;
 
+    protected CategoryScores() {}
+
     @ToString
     public class Sight {
-      protected Sight() {}
-
       private @Getter int overall;
       private @Getter int historical;
       private @Getter int beachAndPark;
+
+      protected Sight() {}
     }
 
     @ToString
     public class Restaurant {
-      protected Restaurant() {}
-
       private @Getter int overall;
       private @Getter int vegetarian;
+
+      protected Restaurant() {}
     }
 
     @ToString
     public class Shopping {
-      protected Shopping() {}
-
       private @Getter int overall;
       private @Getter int luxury;
+
+      protected Shopping() {}
     }
 
     @ToString
     public class NightLife {
-      protected NightLife() {}
-
       private @Getter int overall;
+
+      protected NightLife() {}
     }
   }
 
