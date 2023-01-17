@@ -11,7 +11,7 @@ import lombok.ToString;
 public class TripDetail extends Resource {
   private @Getter Trip trip;
 
-    protected TripDetail() {}
+  protected TripDetail() {}
 
   @ToString
   public class Trip {
