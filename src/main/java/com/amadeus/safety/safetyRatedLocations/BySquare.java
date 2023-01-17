@@ -1,4 +1,4 @@
-package com.amadeus.safety.safetyRatedLocations;
+package com.amadeus.safety.safetyratedlocations;
 
 import com.amadeus.Amadeus;
 import com.amadeus.Params;
