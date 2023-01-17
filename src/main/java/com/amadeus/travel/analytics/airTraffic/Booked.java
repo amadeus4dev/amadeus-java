@@ -1,4 +1,4 @@
-package com.amadeus.travel.analytics.airTraffic;
+package com.amadeus.travel.analytics.airtraffic;
 
 import com.amadeus.Amadeus;
 import com.amadeus.Params;

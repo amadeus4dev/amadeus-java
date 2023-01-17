@@ -1,9 +1,9 @@
 package com.amadeus.travel.analytics;
 
 import com.amadeus.Amadeus;
-import com.amadeus.travel.analytics.airTraffic.Booked;
-import com.amadeus.travel.analytics.airTraffic.BusiestPeriod;
-import com.amadeus.travel.analytics.airTraffic.Traveled;
+import com.amadeus.travel.analytics.airtraffic.Booked;
+import com.amadeus.travel.analytics.airtraffic.BusiestPeriod;
+import com.amadeus.travel.analytics.airtraffic.Traveled;
 
 /**
  * <p>
