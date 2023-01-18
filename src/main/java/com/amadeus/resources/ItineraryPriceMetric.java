@@ -9,8 +9,6 @@ import lombok.ToString;
  */
 @ToString
 public class ItineraryPriceMetric extends Resource {
-  protected ItineraryPriceMetric() {}
-
   private @Getter String type;
   private @Getter Location origin;
   private @Getter Location destination;
@@ -20,19 +18,21 @@ public class ItineraryPriceMetric extends Resource {
   private @Getter Boolean oneWay;
   private @Getter PriceMetrics[] priceMetrics;
 
+  protected ItineraryPriceMetric() {}
+
   @ToString
   public class Location {
-    protected Location() {}
-
     private @Getter String iataCode;
+
+    protected Location() {}
   }
 
   @ToString
   public class PriceMetrics {
-    protected PriceMetrics() {}
-
     private @Getter String amount;
     private @Getter String quartileRanking;
+
+    protected PriceMetrics() {}
   }
 
 }

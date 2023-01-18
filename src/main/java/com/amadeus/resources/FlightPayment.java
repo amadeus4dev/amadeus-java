@@ -9,9 +9,9 @@ import lombok.ToString;
  */
 @ToString
 public class FlightPayment extends Resource {
-  protected FlightPayment() {}
-
   private @Getter String brand;
   private @Getter Integer binNumber;
   private @Getter String[] flightOfferIds;
+
+  protected FlightPayment() {}
 }

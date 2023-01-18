@@ -9,8 +9,6 @@ import lombok.ToString;
  */
 @ToString
 public class PointOfInterest extends Resource {
-  protected PointOfInterest() {}
-
   private @Getter String type;
   private @Getter String subType;
   private @Getter String name;
@@ -18,16 +16,18 @@ public class PointOfInterest extends Resource {
   private @Getter String category;
   private @Getter String[] tags;
 
+  protected PointOfInterest() {}
+
   /**
    * An PointOfInterest-related object as returned by the PointOfInterest API.
    * @see com.amadeus.referencedata.locations.PointOfInterest#get()
    */
   @ToString
   public class GeoCode {
-    protected GeoCode() {}
-
     private @Getter double latitude;
     private @Getter double longitude;
+
+    protected GeoCode() {}
   }
 
 }

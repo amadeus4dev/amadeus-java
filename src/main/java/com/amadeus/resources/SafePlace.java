@@ -9,14 +9,14 @@ import lombok.ToString;
  */
 @ToString
 public class SafePlace extends Resource {
-  protected SafePlace() {}
-
   private @Getter String type;
   private @Getter String id;
   private @Getter String subType;
   private @Getter String name;
   private @Getter GeoCode geoCode;
   private @Getter SafetyScores safetyScores;
+
+  protected SafePlace() {}
 
 
   /**
@@ -25,10 +25,10 @@ public class SafePlace extends Resource {
    */
   @ToString
   public class GeoCode {
-    protected GeoCode() {}
-
     private @Getter double latitude;
     private @Getter double longitude;
+
+    protected GeoCode() {}
   }
 
   /**
@@ -37,8 +37,6 @@ public class SafePlace extends Resource {
    */
   @ToString
   public class SafetyScores {
-    protected SafetyScores() {}
-
     private @Getter int women;
     private @Getter int physicalHarm;
     private @Getter int theft;
@@ -46,6 +44,8 @@ public class SafePlace extends Resource {
     private @Getter int lgbtq;
     private @Getter int medical;
     private @Getter int overall;
+
+    protected SafetyScores() {}
 
   }
 

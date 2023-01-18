@@ -11,12 +11,12 @@ import lombok.ToString;
  */
 @ToString
 public class AirTraffic extends Resource {
-  protected AirTraffic() {}
-
   private @Getter String type;
   private @Getter String subType;
   private @Getter String destination;
   private @Getter Analytics analytics;
+
+  protected AirTraffic() {}
 
   /**
    * An AirTraffic-related object as returned by the AirTraffic API.
@@ -24,10 +24,10 @@ public class AirTraffic extends Resource {
    */
   @ToString
   public class Analytics {
-    protected Analytics() {}
-
     private @Getter Flights flights;
     private @Getter Travelers travelers;
+
+    protected Analytics() {}
 
     /**
      * An AirTraffic-related object as returned by the AirTraffic API.
@@ -35,9 +35,9 @@ public class AirTraffic extends Resource {
      */
     @ToString
     public class Flights {
-      protected Flights() {}
-
       private @Getter Double score;
+
+      protected Flights() {}
     }
 
     /**
@@ -46,9 +46,9 @@ public class AirTraffic extends Resource {
      */
     @ToString
     public class Travelers {
-      protected Travelers() {}
-
       private @Getter Double score;
+
+      protected Travelers() {}
     }
   }
 }

@@ -9,8 +9,6 @@ import lombok.Getter;
  * A generic resource as returned by all namespaced APIs.
  */
 public class Resource {
-  protected Resource() {}
-
   /**
    * The original response that this object is populated from.
    */
@@ -20,6 +18,8 @@ public class Resource {
    * @hide as only used internally
    */
   private transient @Getter Class deSerializationClass;
+
+  protected Resource() {}
 
   /**
    * Turns a response into a Gson deserialized array of resources,

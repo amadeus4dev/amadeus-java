@@ -10,18 +10,16 @@ import lombok.ToString;
 
 @ToString
 public class HotelSentiment extends Resource {
-  protected HotelSentiment() {}
-
   private @Getter String hotelId;
   private @Getter String type;
   private @Getter int overallRating;
   private @Getter int numberOfReviews;
   private @Getter Sentiment sentiments;
 
+  protected HotelSentiment() {}
+
   @ToString
   public class Sentiment {
-    protected Sentiment() {}
-
     private @Getter int staff;
     private @Getter int location;
     private @Getter int service;
@@ -32,6 +30,8 @@ public class HotelSentiment extends Resource {
     private @Getter int facilities;
     private @Getter int catering;
     private @Getter int pointsOfInterest;
+
+    protected Sentiment() {}
   }
 
 }
