@@ -1,4 +1,19 @@
 # Changelog
+6.5.0 - 2023-01-18
+--------------------
+Added missing assertions on integrations tests
+
+Split long unit tests methods in more smaller ones
+
+Updated package names to follow Java conventions
+
+Updated all resources to make sure field declarations are on top of constructors
+
+Updated method names to camelcase to follow Java conventions
+
+Updated contributor's guide 
+
+Fixed warnings from SonarCloud and several improvements to improve code quality
 
 6.4.1 - 2022-12-21
 --------------------
