@@ -1,6 +1,6 @@
 package com.amadeus;
 
-import com.amadeus.dutyOfCare.Diseases;
+import com.amadeus.dutyofcare.Diseases;
 
 /**
  * <p>

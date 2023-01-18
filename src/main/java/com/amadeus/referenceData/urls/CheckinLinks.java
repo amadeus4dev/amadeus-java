@@ -1,4 +1,4 @@
-package com.amadeus.referenceData.urls;
+package com.amadeus.referencedata.urls;
 
 import com.amadeus.Amadeus;
 import com.amadeus.Params;

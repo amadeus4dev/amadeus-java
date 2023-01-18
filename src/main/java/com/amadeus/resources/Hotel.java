@@ -6,9 +6,9 @@ import lombok.ToString;
 
 /**
  * A Hotel object as returned by the Hotel List API.
- * @see com.amadeus.referenceData.locations.hotels.ByHotels#get()
- * @see com.amadeus.referenceData.locations.hotels.ByCity#get()
- * @see com.amadeus.referenceData.locations.hotels.ByGeocode#get()
+ * @see com.amadeus.referencedata.locations.hotels.ByHotels#get()
+ * @see com.amadeus.referencedata.locations.hotels.ByCity#get()
+ * @see com.amadeus.referencedata.locations.hotels.ByGeocode#get()
  */
 @ToString
 public class Hotel extends Resource {

@@ -1,10 +1,10 @@
-package com.amadeus.referenceData.locations;
+package com.amadeus.referencedata.locations;
 
 import com.amadeus.Amadeus;
 import com.amadeus.Params;
 import com.amadeus.Response;
 import com.amadeus.exceptions.ResponseException;
-import com.amadeus.referenceData.locations.pointsOfInterest.BySquare;
+import com.amadeus.referencedata.locations.pointsofinterest.BySquare;
 import com.amadeus.resources.PointOfInterest;
 import com.amadeus.resources.Resource;
 import com.google.gson.Gson;

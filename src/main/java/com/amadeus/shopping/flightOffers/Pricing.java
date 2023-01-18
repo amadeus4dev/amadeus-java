@@ -1,4 +1,4 @@
-package com.amadeus.shopping.flightOffers;
+package com.amadeus.shopping.flightoffers;
 
 import com.amadeus.Amadeus;
 import com.amadeus.Params;

@@ -5,7 +5,7 @@ import lombok.ToString;
 
 /**
  * An CheckinLink object as returned by the CheckinLink API.
- * @see com.amadeus.referenceData.urls.CheckinLinks#get()
+ * @see com.amadeus.referencedata.urls.CheckinLinks#get()
  */
 @ToString
 public class CheckinLink extends Resource {

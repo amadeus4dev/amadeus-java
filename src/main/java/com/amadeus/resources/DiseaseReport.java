@@ -1,6 +1,7 @@
 package com.amadeus.resources;
 
-import com.amadeus.dutyOfCare.diseases.Covid19Report;
+import com.amadeus.dutyofcare.diseases.Covid19Report;
+
 import lombok.Getter;
 import lombok.ToString;
 

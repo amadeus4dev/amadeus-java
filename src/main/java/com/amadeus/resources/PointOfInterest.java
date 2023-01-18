@@ -5,7 +5,7 @@ import lombok.ToString;
 
 /**
  * A PointOfInterest object as returned by the Location API.
- * @see com.amadeus.referenceData.locations.PointOfInterest#get()
+ * @see com.amadeus.referencedata.locations.PointOfInterest#get()
  */
 @ToString
 public class PointOfInterest extends Resource {
@@ -20,7 +20,7 @@ public class PointOfInterest extends Resource {
 
   /**
    * An PointOfInterest-related object as returned by the PointOfInterest API.
-   * @see com.amadeus.referenceData.locations.PointOfInterest#get()
+   * @see com.amadeus.referencedata.locations.PointOfInterest#get()
    */
   @ToString
   public class GeoCode {

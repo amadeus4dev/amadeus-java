@@ -1,4 +1,4 @@
-package com.amadeus.referenceData;
+package com.amadeus.referencedata;
 
 import com.amadeus.Amadeus;
 import com.amadeus.Params;

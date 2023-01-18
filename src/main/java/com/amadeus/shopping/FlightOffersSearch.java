@@ -6,7 +6,7 @@ import com.amadeus.Response;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.FlightOfferSearch;
 import com.amadeus.resources.Resource;
-import com.amadeus.shopping.flightOffers.Pricing;
+import com.amadeus.shopping.flightoffers.Pricing;
 import com.google.gson.JsonObject;
 
 /**

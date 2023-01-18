@@ -1,4 +1,4 @@
-package com.amadeus.referenceData.locations.pointsOfInterest;
+package com.amadeus.referencedata.locations.pointsofinterest;
 
 import com.amadeus.Amadeus;
 import com.amadeus.Params;

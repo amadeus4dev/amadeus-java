@@ -6,7 +6,7 @@ import com.amadeus.Response;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.resources.Resource;
 import com.amadeus.resources.SafePlace;
-import com.amadeus.safety.safetyRatedLocations.BySquare;
+import com.amadeus.safety.safetyratedlocations.BySquare;
 
 /**
  * <p>

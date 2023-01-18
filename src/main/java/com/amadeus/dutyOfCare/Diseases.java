@@ -1,8 +1,8 @@
-package com.amadeus.dutyOfCare;
+package com.amadeus.dutyofcare;
 
 import com.amadeus.Amadeus;
-import com.amadeus.dutyOfCare.diseases.Covid19AreaReport;
-import com.amadeus.dutyOfCare.diseases.Covid19Report;
+import com.amadeus.dutyofcare.diseases.Covid19AreaReport;
+import com.amadeus.dutyofcare.diseases.Covid19Report;
 
 /**
  * <p>

@@ -1,15 +1,15 @@
-package com.amadeus.referenceData;
+package com.amadeus.referencedata;
 
 import com.amadeus.Amadeus;
 import com.amadeus.Params;
 import com.amadeus.Response;
 import com.amadeus.exceptions.ResponseException;
-import com.amadeus.referenceData.locations.Airports;
-import com.amadeus.referenceData.locations.Cities;
-import com.amadeus.referenceData.locations.Hotel;
-import com.amadeus.referenceData.locations.Hotels;
-import com.amadeus.referenceData.locations.PointOfInterest;
-import com.amadeus.referenceData.locations.PointsOfInterest;
+import com.amadeus.referencedata.locations.Airports;
+import com.amadeus.referencedata.locations.Cities;
+import com.amadeus.referencedata.locations.Hotel;
+import com.amadeus.referencedata.locations.Hotels;
+import com.amadeus.referencedata.locations.PointOfInterest;
+import com.amadeus.referencedata.locations.PointsOfInterest;
 import com.amadeus.resources.Location;
 import com.amadeus.resources.Resource;
 
