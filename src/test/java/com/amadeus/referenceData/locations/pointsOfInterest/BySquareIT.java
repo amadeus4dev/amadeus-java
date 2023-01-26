@@ -1,4 +1,4 @@
-package com.amadeus.referenceData.locations.pointsOfInterest;
+package com.amadeus.referencedata.locations.pointsofinterest;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
