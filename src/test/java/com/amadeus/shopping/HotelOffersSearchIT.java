@@ -12,7 +12,6 @@ import com.amadeus.Amadeus;
 import com.amadeus.Params;
 import com.amadeus.exceptions.ClientException;
 import com.amadeus.exceptions.ResponseException;
-import com.amadeus.resources.HotelOffer;
 import com.amadeus.resources.HotelOfferSearch;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import java.io.IOException;
