@@ -33,9 +33,6 @@ import com.amadeus.shopping.Activities;
 import com.amadeus.shopping.FlightDates;
 import com.amadeus.shopping.FlightDestinations;
 import com.amadeus.shopping.FlightOffersSearch;
-import com.amadeus.shopping.HotelOffer;
-import com.amadeus.shopping.HotelOffers;
-import com.amadeus.shopping.HotelOffersByHotel;
 import com.amadeus.shopping.HotelOffersSearch;
 import com.amadeus.shopping.SeatMaps;
 import com.amadeus.shopping.availability.FlightAvailabilities;
@@ -90,12 +87,8 @@ public class NamespaceTest {
     assertNotNull(client.shopping.flightOffersSearch.pricing);
     assertNotNull(client.shopping.flightOffers.prediction);
     assertNotNull(client.shopping.flightOffers.upselling);
-    assertNotNull(client.shopping.hotelOffers);
-    assertNotNull(client.shopping.hotelOffersSearch);
-    assertNotNull(client.shopping.hotelOffersByHotel);
     assertNotNull(client.shopping.seatMaps);
     assertNotNull(client.ereputation.hotelSentiments);
-    assertNotNull(client.shopping.hotelOffer("XXX"));
     assertNotNull(client.airport.predictions.onTime);
     assertNotNull(client.booking.flightOrder("XXX"));
     assertNotNull(client.booking.hotelBookings);
@@ -426,43 +419,6 @@ public class NamespaceTest {
     assertNotNull(flightDestinations.get());
     assertNotNull(flightDestinations.get(params));
     assertEquals(flightDestinations.get().length, 2);
-  }
-
-  @Test
-  public void testHotelOffers() throws ResponseException {
-    // Testing hotel offers v2
-    Mockito.when(client.get("/v2/shopping/hotel-offers", null))
-        .thenReturn(multiResponse);
-    Mockito.when(client.get("/v2/shopping/hotel-offers", params))
-        .thenReturn(multiResponse);
-    HotelOffers hotelOffers = new HotelOffers(client);
-    assertNotNull(hotelOffers.get());
-    assertNotNull(hotelOffers.get(params));
-    assertEquals(hotelOffers.get().length, 2);
-  }
-
-  @Test
-  public void testHotelOffersByHotel() throws ResponseException {
-    // Testing hotel offer search for a hotel
-    Mockito.when(client.get("/v2/shopping/hotel-offers/by-hotel", null))
-        .thenReturn(singleResponse);
-    Mockito.when(client.get("/v2/shopping/hotel-offers/by-hotel", params))
-        .thenReturn(singleResponse);
-    HotelOffersByHotel hotelOffersByHotel = new HotelOffersByHotel(client);
-    assertNotNull(hotelOffersByHotel.get());
-    assertNotNull(hotelOffersByHotel.get(params));
-  }
-
-  @Test
-  public void testHotelOffersByIdl() throws ResponseException {
-    // Test fetching a specific offer
-    Mockito.when(client.get("/v2/shopping/hotel-offers/XXX", null))
-        .thenReturn(singleResponse);
-    Mockito.when(client.get("/v2/shopping/hotel-offers/XXX", params))
-        .thenReturn(singleResponse);
-    HotelOffer hotelOffer = new HotelOffer(client, "XXX");
-    assertNotNull(hotelOffer.get());
-    assertNotNull(hotelOffer.get(params));
   }
 
   @Test
