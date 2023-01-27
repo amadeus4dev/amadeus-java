@@ -89,6 +89,7 @@ public class NamespaceTest {
     assertNotNull(client.shopping.flightOffers.upselling);
     assertNotNull(client.shopping.seatMaps);
     assertNotNull(client.ereputation.hotelSentiments);
+    assertNotNull(client.shopping.hotelOffersSearch);
     assertNotNull(client.airport.predictions.onTime);
     assertNotNull(client.booking.flightOrder("XXX"));
     assertNotNull(client.booking.hotelBookings);
