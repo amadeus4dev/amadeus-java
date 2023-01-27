@@ -94,10 +94,10 @@ This library conveniently maps every API path to a similar path. For example, `G
 amadeus.referenceData.urls.checkinLinks.get(Params.with("airlineCode", "BA"));
 ```
 
-Similarly, to select a resource by ID, you can pass in the ID to the **singular** path. For example,  `GET /v2/shopping/hotel-offers/XXX` would be:
+Similarly, to select a resource by ID, you can pass in the ID to the **singular** path. For example,  `GET v1/reference-data/locations/pois` would be:
 
 ```java
-amadeus.shopping.hotelOffer("XXX").get(...);
+amadeus.referenceData.locations.pointOfInterest("9CB40CB5D0").get();
 ```
 
 You can make any arbitrary API call as well directly with the `.get` method.
@@ -268,22 +268,6 @@ Period[] busiestPeriods = amadeus.travel.analytics.airTraffic.busiestPeriod.get(
   .and("period", "2017")
   .and("direction", BusiestPeriod.ARRIVING));
 
-// Hotel Search API
-// Get list of hotels by city code
-HotelOffer[] offers = amadeus.shopping.hotelOffers.get(Params
-  .with("cityCode", "MAD"));
-// Get list of offers for a specific hotel
-HotelOffer hotelOffer = amadeus.shopping.hotelOffersByHotel.get(Params.with("hotelId", "BGLONBGB"));
-// Confirm the availability of a specific offer
-HotelOffer offer = amadeus.shopping.hotelOffer("4BA070CE929E135B3268A9F2D0C51E9D4A6CF318BA10485322FA2C7E78C7852E").get();
-
-// Hotel Booking
-// The body can be a String version of your JSON or a JsonObject
-HotelBooking[] hotel = amadeus.booking.hotelBookings.post(body);
-
-// Hotel Ratings / Sentiments
-HotelSentiment[] hotelSentiments = amadeus.ereputation.hotelSentiments.get(Params.with("hotelIds", "ELONMFS,ADNYCCTB"));
-
 // Points of Interest
 // What are the popular places in Barcelona (based a geo location and a radius)
 PointOfInterest[] pointsOfInterest = amadeus.referenceData.locations.pointsOfInterest.get(Params
@@ -444,12 +428,19 @@ Hotel[] result = amadeus.referenceData.locations.hotel.get(Params
 HotelOfferSearch[] offers = amadeus.shopping.hotelOffersSearch.get(Params
   .with("hotelIds", "MCLONGHM")
   .and("adults", 1)
-  .and("checkInDate", "2022-11-22")
+  .and("checkInDate", "2023-05-22")
   .and("roomQuantity", 1)
   .and("paymentPolicy", "NONE")
   .and("bestRateOnly", true));
 // Get hotel offer pricing by offer id
 HotelOfferSearch offer = amadeus.shopping.hotelOfferSearch("QF3MNOBDQ8").get();
+
+// Hotel Booking
+// The body can be a String version of your JSON or a JsonObject
+HotelBooking[] hotel = amadeus.booking.hotelBookings.post(body);
+
+// Hotel Ratings / Sentiments
+HotelSentiment[] hotelSentiments = amadeus.ereputation.hotelSentiments.get(Params.with("hotelIds", "ELONMFS,ADNYCCTB"));
 
 // Airline Routes
 // Get airline destinations

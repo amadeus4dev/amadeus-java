@@ -5,14 +5,12 @@ import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.assertj.core.api.BDDAssertions.then;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import com.amadeus.Amadeus;
 import com.amadeus.Params;
 import com.amadeus.exceptions.ClientException;
 import com.amadeus.exceptions.ResponseException;
-import com.amadeus.resources.HotelOffer;
 import com.amadeus.resources.HotelOfferSearch;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import java.io.IOException;
