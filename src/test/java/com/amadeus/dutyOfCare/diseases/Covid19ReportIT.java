@@ -1,4 +1,4 @@
-package com.amadeus.dutyOfCare.diseases;
+package com.amadeus.dutyofCare.diseases;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;

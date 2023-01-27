@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.ToString;
 
 /**
- * A DiseaseReport object as returned by the Travel Restrictions V2 API.
+ * A DiseaseReport object as returned by the Travel Restrictions v2 API.
  * @see Covid19Report#get()
  */
 @ToString

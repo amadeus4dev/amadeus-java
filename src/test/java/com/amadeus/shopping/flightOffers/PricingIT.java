@@ -1,4 +1,4 @@
-package com.amadeus.shopping.flightOffers;
+package com.amadeus.shopping.flightoffers;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.post;

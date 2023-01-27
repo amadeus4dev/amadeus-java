@@ -1,4 +1,4 @@
-package com.amadeus.referenceData.locations.hotels;
+package com.amadeus.referencedata.locations.hotels;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
