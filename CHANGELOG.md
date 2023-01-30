@@ -1,5 +1,5 @@
 # Changelog
-6.5.0 - 2023-01-30
+7.0.0 - 2023-01-30
 --------------------
 Decommissioned Travel Restrictions API v1
 
