@@ -1,4 +1,10 @@
 # Changelog
+7.0.0 - 2023-01-30
+--------------------
+Decommissioned Travel Restrictions API v1
+
+Decommissioned Hotel Search API v2
+
 6.5.0 - 2023-01-18
 --------------------
 Added missing assertions on integrations tests
