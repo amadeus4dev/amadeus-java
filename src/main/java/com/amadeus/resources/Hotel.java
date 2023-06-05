@@ -24,7 +24,6 @@ public class Hotel extends Resource {
   private @Getter String hotelId;
   private @Getter String chainCode;
   private @Getter Distance distance;
-  @SerializedName("last_update")
   private @Getter String lastUpdate;
 
   protected Hotel() {}

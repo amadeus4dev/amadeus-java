@@ -23,12 +23,15 @@ public class HotelOfferSearch extends Resource {
    */
   @ToString
   public class Hotel {
+    private @Getter String type;
     private @Getter String hotelId;
     private @Getter String chainCode;
     private @Getter String brandCode;
     private @Getter String dupeId;
     private @Getter String name;
     private @Getter String cityCode;
+    private @Getter double latitude;
+    private @Getter double longitude;
 
     protected Hotel() {}
 
@@ -126,7 +129,7 @@ public class HotelOfferSearch extends Resource {
     private @Getter PriceVariations variations;
 
     protected HotelPrice() {}
-    
+
   }
 
   /**
