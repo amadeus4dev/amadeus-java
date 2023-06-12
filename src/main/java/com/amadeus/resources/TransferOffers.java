@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.ToString;
 
 /**
- * A TripDetail object as returned by the Transfer Offers API.
+ * A TransferOffers object as returned by the Transfer Offers API.
  * @see com.amadeus.shopping.TransferOffers#post()
  */
 @ToString
