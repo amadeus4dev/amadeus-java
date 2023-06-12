@@ -1,7 +1,5 @@
 package com.amadeus.resources;
 
-import com.amadeus.resources.SafePlace.SafetyScores;
-
 import lombok.Getter;
 import lombok.ToString;
 
