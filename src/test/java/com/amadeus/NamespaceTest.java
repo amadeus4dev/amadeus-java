@@ -34,6 +34,7 @@ import com.amadeus.shopping.FlightDestinations;
 import com.amadeus.shopping.FlightOffersSearch;
 import com.amadeus.shopping.HotelOffersSearch;
 import com.amadeus.shopping.SeatMaps;
+import com.amadeus.shopping.TransferOffers;
 import com.amadeus.shopping.availability.FlightAvailabilities;
 import com.amadeus.shopping.flightoffers.Prediction;
 import com.amadeus.shopping.flightoffers.Pricing;
@@ -786,6 +787,18 @@ public class NamespaceTest {
     assertNotNull(flightOrder.delete());
     assertNotNull(flightOrder.delete(params));
 
+  }
+
+  @Test
+  public void testTransferOffers() throws ResponseException {
+    // Testing Transfer Offers
+    Mockito.when(client.post("/v1/shopping/transfer-offers", (String) null))
+      .thenReturn(singleResponse);
+    Mockito.when(client.post("/v1/shopping/transfer-offers", body))
+      .thenReturn(singleResponse);
+    TransferOffers transferOffers = new TransferOffers(client);
+    assertNotNull(transferOffers.post());
+    assertNotNull(transferOffers.post(body));
   }
 
 }
