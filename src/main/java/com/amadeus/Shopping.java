@@ -10,6 +10,7 @@ import com.amadeus.shopping.FlightOffersSearch;
 import com.amadeus.shopping.HotelOfferSearch;
 import com.amadeus.shopping.HotelOffersSearch;
 import com.amadeus.shopping.SeatMaps;
+import com.amadeus.shopping.TransferOffers;
 
 
 /**
@@ -104,6 +105,14 @@ public class Shopping {
   public Availability availability;
 
   /**
+   * <p>
+   *   A namespaced client for the
+   *   <code>/v1/shopping/transfer-offers</code> endpoints.
+   * </p>
+   */
+  public TransferOffers transferOffers;
+
+  /**
    * Constructor.
    * @hide
    */
@@ -117,6 +126,7 @@ public class Shopping {
     this.seatMaps = new SeatMaps(client);
     this.activities = new Activities(client);
     this.availability = new Availability(client);
+    this.transferOffers = new TransferOffers(client);
   }
 
   /**
