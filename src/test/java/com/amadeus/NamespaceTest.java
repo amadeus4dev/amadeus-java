@@ -793,12 +793,13 @@ public class NamespaceTest {
   public void testTransferOffers() throws ResponseException {
     // Testing Transfer Offers
     Mockito.when(client.post("/v1/shopping/transfer-offers", (String) null))
-      .thenReturn(singleResponse);
+      .thenReturn(multiResponse);
     Mockito.when(client.post("/v1/shopping/transfer-offers", body))
-      .thenReturn(singleResponse);
+      .thenReturn(multiResponse);
     TransferOffers transferOffers = new TransferOffers(client);
     assertNotNull(transferOffers.post());
     assertNotNull(transferOffers.post(body));
+    assertEquals(transferOffers.post().length, 2);
   }
 
 }
