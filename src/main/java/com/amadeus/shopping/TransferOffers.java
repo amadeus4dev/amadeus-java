@@ -23,6 +23,7 @@ import com.google.gson.JsonObject;
  */
 public class TransferOffers {
   private Amadeus client;
+  private static final String TRANSFER_OFFERS_URL = "/v1/shopping/transfer-offers";
 
   /**
    * Constructor.
@@ -46,7 +47,7 @@ public class TransferOffers {
    * @throws ResponseException when an exception occurs
    */
   public TransferOffersPost[] post(JsonObject body) throws ResponseException {
-    Response response = client.post("/v1/shopping/transfer-offers", body);
+    Response response = client.post(TRANSFER_OFFERS_URL, body);
     return
       (TransferOffersPost[]) Resource.fromArray(response, TransferOffersPost[].class);
   }
@@ -64,7 +65,7 @@ public class TransferOffers {
    * @throws ResponseException when an exception occurs
    */
   public TransferOffersPost[] post(String body) throws ResponseException {
-    Response response = client.post("/v1/shopping/transfer-offers", body);
+    Response response = client.post(TRANSFER_OFFERS_URL, body);
     return
       (TransferOffersPost[]) Resource.fromArray(response, TransferOffersPost[].class);
   }

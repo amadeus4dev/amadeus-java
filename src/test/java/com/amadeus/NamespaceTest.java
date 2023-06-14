@@ -14,6 +14,7 @@ import com.amadeus.dutyofcare.diseases.Covid19Report;
 import com.amadeus.ereputation.HotelSentiments;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.location.analytics.CategoryRatedAreas;
+import com.amadeus.ordering.TransferOrders;
 import com.amadeus.referencedata.Airlines;
 import com.amadeus.referencedata.Location;
 import com.amadeus.referencedata.Locations;
@@ -88,6 +89,7 @@ public class NamespaceTest {
     assertNotNull(client.shopping.flightOffers.prediction);
     assertNotNull(client.shopping.flightOffers.upselling);
     assertNotNull(client.shopping.seatMaps);
+    assertNotNull(client.shopping.transferOffers);
     assertNotNull(client.ereputation.hotelSentiments);
     assertNotNull(client.shopping.hotelOffersSearch);
     assertNotNull(client.airport.predictions.onTime);
@@ -110,6 +112,7 @@ public class NamespaceTest {
     assertNotNull(client.referenceData.locations.hotels.byGeocode);
     assertNotNull(client.referenceData.locations.cities);
     assertNotNull(client.airline.destinations);
+    assertNotNull(client.ordering.tranferOrders);
   }
 
   /**
@@ -800,6 +803,15 @@ public class NamespaceTest {
     assertNotNull(transferOffers.post());
     assertNotNull(transferOffers.post(body));
     assertEquals(transferOffers.post().length, 2);
+  }
+
+  @Test
+  public void testTransferOrders() throws ResponseException {
+    // Testing Transfer Booking
+    Params params = Params.with("foo", "bar");
+    Mockito.when(client.post("/v1/ordering/transfer-orders", params, body)).thenReturn(singleResponse);
+    TransferOrders transferOrders = new TransferOrders(client);
+    assertNotNull(transferOrders.post(body, params));
   }
 
 }
