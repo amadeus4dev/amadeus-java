@@ -809,7 +809,8 @@ public class NamespaceTest {
   public void testTransferOrders() throws ResponseException {
     // Testing Transfer Booking
     Params params = Params.with("foo", "bar");
-    Mockito.when(client.post("/v1/ordering/transfer-orders", params, body)).thenReturn(singleResponse);
+    Mockito.when(client.post("/v1/ordering/transfer-orders", params, body))
+      .thenReturn(singleResponse);
     TransferOrders transferOrders = new TransferOrders(client);
     assertNotNull(transferOrders.post(body, params));
   }
