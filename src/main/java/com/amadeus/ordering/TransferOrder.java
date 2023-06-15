@@ -1,16 +1,12 @@
 package com.amadeus.ordering;
 
 import com.amadeus.Amadeus;
-import com.amadeus.Params;
-import com.amadeus.Response;
-import com.amadeus.exceptions.ResponseException;
 import com.amadeus.ordering.transferOrders.Transfers;
-import com.amadeus.resources.Resource;
 
 /**
  * <p>
  *   A namespaced client for the
- *   <code>/v2/shopping/hotel-offers/:offer_id</code> endpoints.
+ *   <code>/v1/ordering/transfer-orders/:orderId</code> endpoints.
  * </p>
  *
  * <p>
@@ -19,7 +15,7 @@ import com.amadeus.resources.Resource;
  *
  * <pre>
  * Amadeus amadeus = Amadeus.builder(API_KEY, API_SECRET).build();
- * amadeus.shopping.HotelOffer(offerId);</pre>
+ * amadeus.ordering.transferOrder(orderId);</pre>
  *
  * @hide
  */
