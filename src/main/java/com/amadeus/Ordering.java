@@ -1,6 +1,7 @@
 package com.amadeus;
 
 import com.amadeus.ordering.TransferOrders;
+import com.amadeus.ordering.TransferOrder;
 
 /**
  * <p>
@@ -19,6 +20,8 @@ import com.amadeus.ordering.TransferOrders;
  * @hide
  */
 public class Ordering {
+  private Amadeus client;
+
   /**
    * <p>
    *   A namespaced client for the
@@ -28,10 +31,21 @@ public class Ordering {
   public TransferOrders tranferOrders;
 
   /**
+   * <p>
+   *   A namespaced client for the
+   *   <code>/v1/ordering/transafer-orders/:orderId</code> endpoints.
+   * </p>
+   */
+  public TransferOrder transferOrder(String orderId) {
+    return new TransferOrder(client, orderId);
+  }
+
+  /**
    * Constructor.
    * @hide
    */
   public Ordering(Amadeus client) {
     this.tranferOrders = new TransferOrders(client);
+    this.client = client;
   }
 }

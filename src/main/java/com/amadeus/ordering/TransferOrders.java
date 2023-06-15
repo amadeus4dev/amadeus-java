@@ -24,6 +24,7 @@ import com.google.gson.JsonObject;
  */
 public class TransferOrders {
   private Amadeus client;
+
   private static final String TRANSFER_ORDERS_URL = "/v1/ordering/transfer-orders";
 
   /**
