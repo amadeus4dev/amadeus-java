@@ -42,35 +42,15 @@ public class Cancellation {
    * </p>
    *
    * <pre>
-   * amadeus.ordering.transferOrder(orderId).transfers.cancellation.post(body, params);</pre>
+   * amadeus.ordering.transferOrder(orderId).transfers.cancellation.post(params);</pre>
    *
-   * @param body the parameters to send to the API as a JsonObject
    * @param params URL parameters
    * @return an API resource
    * @throws ResponseException when an exception occurs
    */
-  public TransferCancellation post(JsonObject body, Params params) throws ResponseException {
+  public TransferCancellation post(Params params) throws ResponseException {
     String path = String.format("/v1/ordering/transfer-orders/%s/transfers/cancellation", orderId);
-    Response response = client.post(path, params, body);
-    return (TransferCancellation) Resource.fromObject(response, TransferCancellation.class);
-  }
-
-  /**
-   * <p>
-   *   The Amadeus Transfer Management API allows cancel private transfers.
-   * </p>
-   *
-   * <pre>
-   * amadeus.ordering.transferOrders(orderId).transfers.cancellation.post(body, params);</pre>
-   *
-   * @param body the parameters to send to the API as a String
-   * @param params URL parameters
-   * @return an API resource
-   * @throws ResponseException when an exception occurs
-   */
-  public TransferCancellation post(String body, Params params) throws ResponseException {
-    String path = String.format("/v1/ordering/transfer-orders/%s/transfers/cancellation", orderId);
-    Response response = client.post(path, params, body);
+    Response response = client.post(path, params);
     return (TransferCancellation) Resource.fromObject(response, TransferCancellation.class);
   }
 

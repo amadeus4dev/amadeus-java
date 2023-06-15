@@ -822,10 +822,10 @@ public class NamespaceTest {
   public void testTransferCancellation() throws ResponseException {
     // Testing Transfer Management
     Params params = Params.with("foo", "bar");
-    Mockito.when(client.post("/v1/ordering/transfer-orders/XXX/transfers/cancellation", params, body))
+    Mockito.when(client.post("/v1/ordering/transfer-orders/XXX/transfers/cancellation", params))
       .thenReturn(singleResponse);
     Cancellation transferCancellation = new Cancellation(client, "XXX");
-    assertNotNull(transferCancellation.post(body, params));
+    assertNotNull(transferCancellation.post(params));
   }
 
 }
