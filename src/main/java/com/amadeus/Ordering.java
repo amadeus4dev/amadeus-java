@@ -1,7 +1,7 @@
 package com.amadeus;
 
-import com.amadeus.ordering.TransferOrders;
 import com.amadeus.ordering.TransferOrder;
+import com.amadeus.ordering.TransferOrders;
 
 /**
  * <p>
