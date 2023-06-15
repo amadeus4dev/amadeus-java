@@ -15,6 +15,7 @@ import com.amadeus.ereputation.HotelSentiments;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.location.analytics.CategoryRatedAreas;
 import com.amadeus.ordering.TransferOrders;
+import com.amadeus.ordering.transferOrders.transfers.Cancellation;
 import com.amadeus.referencedata.Airlines;
 import com.amadeus.referencedata.Location;
 import com.amadeus.referencedata.Locations;
@@ -27,6 +28,7 @@ import com.amadeus.referencedata.locations.hotels.ByCity;
 import com.amadeus.referencedata.locations.hotels.ByGeocode;
 import com.amadeus.referencedata.locations.hotels.ByHotels;
 import com.amadeus.referencedata.urls.CheckinLinks;
+import com.amadeus.resources.TransferCancellation;
 import com.amadeus.safety.SafetyRatedLocations;
 import com.amadeus.schedule.Flights;
 import com.amadeus.shopping.Activities;
@@ -113,6 +115,7 @@ public class NamespaceTest {
     assertNotNull(client.referenceData.locations.cities);
     assertNotNull(client.airline.destinations);
     assertNotNull(client.ordering.tranferOrders);
+    assertNotNull(client.ordering.transferOrder("XXX"));
   }
 
   /**
@@ -813,6 +816,16 @@ public class NamespaceTest {
       .thenReturn(singleResponse);
     TransferOrders transferOrders = new TransferOrders(client);
     assertNotNull(transferOrders.post(body, params));
+  }
+
+  @Test
+  public void testTransferCancellation() throws ResponseException {
+    // Testing Transfer Management
+    Params params = Params.with("foo", "bar");
+    Mockito.when(client.post("/v1/ordering/transfer-orders/XXX/transfers/cancellation", params, body))
+      .thenReturn(singleResponse);
+    Cancellation transferCancellation = new Cancellation(client, "XXX");
+    assertNotNull(transferCancellation.post(body, params));
   }
 
 }
