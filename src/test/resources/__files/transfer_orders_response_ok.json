@@ -1,0 +1,247 @@
+{
+    "data": {
+      "type": "transfer-order",
+      "id": "UVZTWlJJfERPRQ",
+      "reference": "YNK4JQ",
+      "agency": {
+        "contacts": [
+          {
+            "email": {
+              "address": "abc@test.com"
+            }
+          }
+        ]
+      },
+      "transfers": [
+        {
+          "status": "CONFIRMED",
+          "confirmNbr": "2904892",
+          "note": "Note to driver",
+          "methodOfPayment": "CREDIT_CARD",
+          "offerId": "0cb11574-4a02-11e8-842f-0ed5f89f718b",
+          "transferType": "PRIVATE",
+          "start": {
+            "dateTime": "2019-11-10T10:30:00",
+            "locationCode": "CDG"
+          },
+          "end": {
+            "address": {
+              "line": "Avenue de la Bourdonnais, 19",
+              "zip": "75007",
+              "countryCode": "FR",
+              "cityName": "Paris",
+              "latitude": 48.859466,
+              "longitude": 2.2976965,
+              "uicCode": "7400001"
+            },
+            "googlePlaceId": "ChIJL-DOWeBv5kcRfTbh97PimNc",
+            "name": "Souvenirs De La Tour"
+          },
+          "stopOvers": [
+            {
+              "duration": "PT2H30M",
+              "sequenceNumber": 1,
+              "location": {
+                "locationCode": "CDG",
+                "lfiCode": "FR01216",
+                "address": {
+                  "line": "Avenue de la Bourdonnais, 19",
+                  "zip": "75007",
+                  "countryCode": "FR",
+                  "cityName": "Paris",
+                  "latitude": 48.859477,
+                  "longitude": 2.2976975
+                },
+                "googlePlaceId": "DOWeBv5kcRfTbh97PimN",
+                "name": "De La Tours"
+              }
+            }
+          ],
+          "vehicle": {
+            "code": "VAN",
+            "category": "BU",
+            "description": "Mercedes-Benz V-Class, Chevrolet Suburban, Cadillac Escalade or similar",
+            "seats": [
+              {
+                "count": 3
+              }
+            ],
+            "baggages": [
+              {
+                "count": 3,
+                "size": "M"
+              }
+            ],
+            "imageURL": "https://provider.com/images/BU_VAN.png"
+          },
+          "serviceProvider": {
+            "code": "ABC",
+            "name": "Provider name",
+            "logoUrl": "https://provider.com/images/logo.png",
+            "termsUrl": "https://provider.com/terms_and_conditions.html",
+            "contacts": {
+              "phoneNumber": "+33123456789",
+              "email": "support@provider.com",
+              "address": {
+                "line": "Avenue de la Bourdonnais, 19",
+                "zip": "75007",
+                "countryCode": "FR",
+                "cityName": "Paris",
+                "stateCode": "CDG"
+              }
+            },
+            "settings": [
+              "BILLING_ADDRESS_REQUIRED",
+              "FLIGHT_NUMBER_REQUIRED",
+              "CVV_NUMBER_REQUIRED"
+            ],
+            "businessIdentification": {
+              "vatRegistrationNumber": "GB999 9999 22"
+            }
+          },
+          "partnerInfo": {
+            "serviceProvider": {
+              "code": "XYZ",
+              "name": "SubProvider name",
+              "logoUrl": "https://provider.com/images/logo.png",
+              "termsUrl": "https://provider.com/terms_and_conditions.html",
+              "isPreferred": true,
+              "contacts": {
+                "phoneNumber": "+33123456789",
+                "email": "support@provider.com",
+                "address": {
+                  "line": "Avenue de la Bourdonnais, 19",
+                  "zip": "75007",
+                  "countryCode": "FR",
+                  "cityName": "Paris",
+                  "stateCode": "CDG"
+                }
+              },
+              "businessIdentification": {
+                "vatRegistrationNumber": "GB999 9999 22"
+              }
+            }
+          },
+          "quotation": {
+            "monetaryAmount": "63.70",
+            "currencyCode": "USD",
+            "isEstimated": false,
+            "base": {
+              "monetaryAmount": "103.70"
+            },
+            "discount": {
+              "monetaryAmount": "50.00"
+            },
+            "fees": [
+              {
+                "indicator": "AIRPORT",
+                "monetaryAmount": "10.00"
+              }
+            ],
+            "totalTaxes": {
+              "monetaryAmount": "12.74"
+            },
+            "totalFees": {
+              "monetaryAmount": "10.00"
+            }
+          },
+          "converted": {
+            "monetaryAmount": "63.70",
+            "currencyCode": "EUR",
+            "isEstimated": false,
+            "base": {
+              "monetaryAmount": "103.70"
+            },
+            "discount": {
+              "monetaryAmount": "50.00"
+            },
+            "fees": [
+              {
+                "indicator": "AIRPORT",
+                "monetaryAmount": "10.00"
+              }
+            ],
+            "totalTaxes": {
+              "monetaryAmount": "12.74"
+            },
+            "totalFees": {
+              "monetaryAmount": "10.00"
+            }
+          },
+          "extraServices": [
+            {
+              "code": "EWT",
+              "itemId": "EWT0291",
+              "description": "Extra 15 min. wait",
+              "quotation": {
+                "monetaryAmount": "39.20",
+                "currencyCode": "USD",
+                "base": {
+                  "monetaryAmount": "36.00"
+                },
+                "totalTaxes": {
+                  "monetaryAmount": "3.20"
+                }
+              },
+              "converted": {
+                "monetaryAmount": "32.70",
+                "currencyCode": "EUR",
+                "base": {
+                  "monetaryAmount": "30.00"
+                },
+                "totalTaxes": {
+                  "monetaryAmount": "2.7"
+                }
+              },
+              "isBookable": true,
+              "taxIncluded": true,
+              "includedInTotal": true
+            }
+          ],
+          "cancellationRules": [
+            {
+              "feeType": "PERCENTAGE",
+              "feeValue": "100",
+              "metricType": "DAYS",
+              "metricMin": "0",
+              "metricMax": "1"
+            },
+            {
+              "feeType": "PERCENTAGE",
+              "feeValue": "0",
+              "metricType": "DAYS",
+              "metricMin": "1",
+              "metricMax": "100"
+            }
+          ],
+          "distance": {
+            "value": 152,
+            "unit": "KM"
+          }
+        }
+      ],
+      "passengerCharacteristics": [
+        {
+          "passengerTypeCode": "ADT",
+          "age": 20
+        }
+      ],
+      "passengers": [
+        {
+          "firstName": "John",
+          "lastName": "Doe",
+          "title": "MR",
+          "contacts": {
+            "phoneNumber": "+33123456789",
+            "email": "user@email.com"
+          },
+          "billingAddress": {
+            "line": "Avenue de la Bourdonnais, 19",
+            "zip": "75007",
+            "countryCode": "FR",
+            "cityName": "Paris"
+          }
+        }
+      ]
+    }
+  }
