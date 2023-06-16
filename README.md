@@ -187,8 +187,8 @@ FlightDate[] flightDates = amadeus.shopping.flightDates.get(Params
 FlightOfferSearch[] flightOffersSearches = amadeus.shopping.flightOffersSearch.get(
               Params.with("originLocationCode", "SYD")
                       .and("destinationLocationCode", "BKK")
-                      .and("departureDate", "2022-09-01")
-                      .and("returnDate", "2022-09-08")
+                      .and("departureDate", "2023-11-01")
+                      .and("returnDate", "2023-11-08")
                       .and("adults", 2)
                       .and("max", 3));
 
@@ -214,8 +214,8 @@ FlightPrice[] flightPricing = amadeus.shopping.flightOffersSearch.pricing.post(
 FlightOfferSearch[] flightOffers = amadeus.shopping.flightOffersSearch.get(
               Params.with("originLocationCode", "NYC")
                       .and("destinationLocationCode", "MAD")
-                      .and("departureDate", "2021-04-01")
-                      .and("returnDate", "2021-04-08")
+                      .and("departureDate", "2024-04-01")
+                      .and("returnDate", "2024-04-08")
                       .and("adults", 1));
 
 // Using a JSonObject
@@ -319,7 +319,7 @@ Activity activity = amadeus.shopping.activity("4615").get();
 // What's the likelihood flights from this airport will leave on time?
 Prediction AirportOnTime = amadeus.airport.predictions.onTime.get(Params
     .with("airportCode", "NCE")
-    .and("date", "2021-04-01"));
+    .and("date", "2024-04-01"));
 
 // What's the likelihood of a given flight to be delayed?
 Prediction[] flightDelay = amadeus.travel.predictions.flightDelay.get(Params
@@ -354,8 +354,8 @@ SeatMap[] seatmap = amadeus.shopping.seatMaps.post(body);
 Prediction tripPurpose = amadeus.travel.predictions.tripPurpose.get(Params
     .with("originLocationCode", "NYC")
     .and("destinationLocationCode", "MAD")
-    .and("departureDate", "2021-04-01")
-    .and("returnDate", "2021-04-08"));
+    .and("departureDate", "2024-04-01")
+    .and("returnDate", "2024-04-08"));
 
 // Travel Recommendations
 Location destinations = amadeus.referenceData.recommendedLocations.get(Params
@@ -366,13 +366,13 @@ Location destinations = amadeus.referenceData.recommendedLocations.get(Params
 DatedFlight[] flightStatus = amadeus.schedule.flights.get(Params
     .with("carrierCode", "AZ")
     .and("flightNumber", "319")
-    .and("scheduledDepartureDate", "2021-03-13"));
+    .and("scheduledDepartureDate", "2024-03-13"));
 
 // Flight Price Analysis
 ItineraryPriceMetric[] metrics = amadeus.analytics.itineraryPriceMetrics.get(Params
     .with("originIataCode", "MAD")
     .and("destinationIataCode", "CDG")
-    .and("departureDate", "2021-03-21"));
+    .and("departureDate", "2024-03-21"));
 
 // Trip Parser v3 POST
 // body can be a String version of your JSON or a JsonObject or a compatible File object
@@ -428,7 +428,7 @@ Hotel[] result = amadeus.referenceData.locations.hotel.get(Params
 HotelOfferSearch[] offers = amadeus.shopping.hotelOffersSearch.get(Params
   .with("hotelIds", "MCLONGHM")
   .and("adults", 1)
-  .and("checkInDate", "2023-05-22")
+  .and("checkInDate", "2023-11-22")
   .and("roomQuantity", 1)
   .and("paymentPolicy", "NONE")
   .and("bestRateOnly", true));
@@ -447,6 +447,15 @@ HotelSentiment[] hotelSentiments = amadeus.ereputation.hotelSentiments.get(Param
 Destination[] destinations = amadeus.airline.destinations.get(Params
   .with("airlineCode", "BA")
   .and("max", 2));
+
+// Transfer Search
+TransferOffersPost[] transfers = amadeus.shopping.transferOffers.post(body);
+
+// Transfer Booking
+TransferOrder transfers = amadeus.ordering.transferOrders.post(body, params);
+
+// Transfer Management
+TransferCancellation transfers = amadeus.ordering.transferOrder("123456").transfers.cancellation.post(params);
 ```
 
 ## Development & Contributing
