@@ -30,7 +30,7 @@ public class ActivityIT {
     wireMockServer = new WireMockServer(8080);
     wireMockServer.start();
 
-    // https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
+    // API at https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
     String address = "/v1/security/oauth2/token"
         + "?grant_type=client_credentials&client_secret=DEMO&client_id=DEMO";
     wireMockServer.stubFor(post(urlEqualTo(address))
@@ -56,7 +56,7 @@ public class ActivityIT {
   public void givenClientWhenCallActivitiesByIdWithParamsThenOK()
       throws ResponseException {
 
-    //Given
+    // Given
     String id = "4615";
 
     String address = "/v1/shopping/activities/" + id;
@@ -65,10 +65,10 @@ public class ActivityIT {
         .withStatus(200)
         .withBodyFile("activities_response_by_id_ok.json")));
 
-    //When
+    // When
     Activity result = amadeus.shopping.activity(id).get();
 
-    //Then
+    // Then
     assertNotNull(result);
   }
 

@@ -18,7 +18,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-// https://developers.amadeus.com/self-service/category/hotel/api-doc/hotel-search/api-reference
+// API at https://developers.amadeus.com/self-service/category/hotel/api-doc/hotel-search/api-reference
 public class HotelOfferSearchIT {
   WireMockServer wireMockServer;
 
@@ -32,7 +32,7 @@ public class HotelOfferSearchIT {
     wireMockServer = new WireMockServer(8080);
     wireMockServer.start();
 
-    // https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
+    // API at https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
     String address = "/v1/security/oauth2/token"
         + "?grant_type=client_credentials&client_secret=DEMO&client_id=DEMO";
     wireMockServer.stubFor(post(urlEqualTo(address))
@@ -58,7 +58,7 @@ public class HotelOfferSearchIT {
   public void givenClientWhenCallHotelOfferSearchWithParamsThenOK()
       throws ResponseException, IOException {
 
-    //Given
+    // Given
     String offerId = "QF3MNOBDQ8";
     String address = "/v3/shopping/hotel-offers/" + offerId;
     wireMockServer.stubFor(get(urlEqualTo(address))
@@ -66,10 +66,10 @@ public class HotelOfferSearchIT {
         .withStatus(200)
         .withBodyFile("hotel_offer_search_response_ok.json")));
 
-    //When
+    // When
     HotelOfferSearch result = amadeus.shopping.hotelOfferSearch(offerId).get();
 
-    //Then
+    // Then
     assertNotNull(result);
   }
 
@@ -78,15 +78,15 @@ public class HotelOfferSearchIT {
   public void givenClientWhenCallHotelOfferSearchWithoutParamsThenOK()
       throws ResponseException {
 
-    //Given
+    // Given
     String address = "/v3/shopping/hotel-offers/null";
     wireMockServer.stubFor(get(urlEqualTo(address))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
         .withStatus(400)
         .withBody("")));
 
-    //When
-    //Then
+    // When
+    // Then
     assertThatThrownBy(() -> {
       amadeus.shopping.hotelOfferSearch(null).get();
     }).isInstanceOf(ClientException.class);

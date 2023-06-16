@@ -33,7 +33,7 @@ public class TripParserIT {
     wireMockServer = new WireMockServer(8080);
     wireMockServer.start();
 
-    // https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
+    // API at https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
     String address = "/v1/security/oauth2/token"
         + "?grant_type=client_credentials&client_secret=DEMO&client_id=DEMO";
     wireMockServer.stubFor(post(urlEqualTo(address))
@@ -59,7 +59,7 @@ public class TripParserIT {
   public void given_client_when_call_trip_parser_with_params_then_ok()
       throws ResponseException, IOException {
 
-    //Given
+    // Given
     String address = "/v3/travel/trip-parser";
     wireMockServer.stubFor(post(urlEqualTo(address))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
@@ -68,10 +68,10 @@ public class TripParserIT {
 
     JsonObject request = getRequestFromResources("trip_parser_request_ok.json");
 
-    //When
+    // When
     TripDetail result = amadeus.travel.tripParser.post(request);
 
-    //Then
+    // Then
     assertNotNull(result);
   }
 
@@ -79,7 +79,7 @@ public class TripParserIT {
   public void given_client_when_call_trip_parser_with_params_alternative_1_then_ok()
       throws ResponseException, IOException {
 
-    //Given
+    // Given
     String address = "/v3/travel/trip-parser";
     wireMockServer.stubFor(post(urlEqualTo(address))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
@@ -88,10 +88,10 @@ public class TripParserIT {
 
     File request = getFileRequestFromResources("trip_parser_request_ok.json");
 
-    //When
+    // When
     TripDetail result = amadeus.travel.tripParser.post(request);
 
-    //Then
+    // Then
     assertNotNull(result);
   }
 

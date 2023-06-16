@@ -18,7 +18,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-// https://developers.amadeus.com/self-service/category/cars-and-transfers/api-doc/transfer-search
+// API at https://developers.amadeus.com/self-service/category/cars-and-transfers/api-doc/transfer-search
 public class TransferOffersIT {
 
   WireMockServer wireMockServer;
@@ -33,7 +33,7 @@ public class TransferOffersIT {
     wireMockServer = new WireMockServer(8080);
     wireMockServer.start();
 
-    // https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
+    // API at https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
     String address = "/v1/security/oauth2/token"
         + "?grant_type=client_credentials&client_secret=DEMO&client_id=DEMO";
     wireMockServer.stubFor(post(urlEqualTo(address))
@@ -59,7 +59,7 @@ public class TransferOffersIT {
   public void givenClientWhenCallTransferOffersWithParamsThenOK()
       throws ResponseException, IOException {
 
-    //Given
+    // Given
     String address = "/v1/shopping/transfer-offers";
     wireMockServer.stubFor(post(urlEqualTo(address))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
@@ -68,10 +68,10 @@ public class TransferOffersIT {
 
     JsonObject request = getRequestFromResources("transfer_offers_request_ok.json");
 
-    //When
+    // When
     TransferOffersPost[] result = amadeus.shopping.transferOffers.post(request);
 
-    //Then
+    // Then
     assertNotNull(result);
   }
 

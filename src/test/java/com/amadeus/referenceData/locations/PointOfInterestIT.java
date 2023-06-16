@@ -29,7 +29,7 @@ public class PointOfInterestIT {
     wireMockServer = new WireMockServer(8080);
     wireMockServer.start();
 
-    // https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
+    // API at https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
     String address = "/v1/security/oauth2/token"
         + "?grant_type=client_credentials&client_secret=DEMO&client_id=DEMO";
     wireMockServer.stubFor(post(urlEqualTo(address))
@@ -55,7 +55,7 @@ public class PointOfInterestIT {
   public void givenClientWhenCallPointOfInterestByIdThenOK()
       throws ResponseException {
 
-    //Given
+    // Given
     String id = "9CB40CB5D0";
 
     String address = "/v1/reference-data/locations/pois/" + id;
@@ -64,10 +64,10 @@ public class PointOfInterestIT {
         .withStatus(200)
         .withBodyFile("poi_by_id_response.json")));
 
-    //When
+    // When
     PointOfInterest result = amadeus.referenceData.locations.pointOfInterest(id).get();
 
-    //Then
+    // Then
     assertNotNull(result);
   }
 

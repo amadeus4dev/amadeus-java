@@ -41,7 +41,7 @@ public class FlightOrdersIT {
     wireMockServer = new WireMockServer(8080);
     wireMockServer.start();
 
-    // https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
+    // API at https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
     String address = "/v1/security/oauth2/token"
         + "?grant_type=client_credentials&client_secret=DEMO&client_id=DEMO";
     wireMockServer.stubFor(post(urlEqualTo(address))
@@ -67,7 +67,7 @@ public class FlightOrdersIT {
   public void givenClientWhenCallFlightOffersWithParamsThenOK()
       throws ResponseException, IOException {
 
-    //Given
+    // Given
     String address = "/v2/shopping/flight-offers"; //"/v1/shopping/flight-offers/pricing"; //
     wireMockServer.stubFor(post(urlEqualTo(address))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
@@ -96,10 +96,10 @@ public class FlightOrdersIT {
     FlightPrice flightPricing = amadeus.shopping.flightOffersSearch.pricing.post(
         flightOffersSearches[1]);
 
-    //When
+    // When
     FlightOrder result = amadeus.booking.flightOrders.post(flightPricing, travelerArray);
 
-    //Then
+    // Then
     assertNotNull(result);
   }
 
@@ -138,7 +138,7 @@ public class FlightOrdersIT {
   public void givenClientWhenCallFlightOffersWithParamsAlternative2ThenOK()
       throws ResponseException, IOException {
 
-    //Given
+    // Given
     String address = "/v2/shopping/flight-offers"; //"/v1/shopping/flight-offers/pricing"; //
     wireMockServer.stubFor(post(urlEqualTo(address))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
@@ -157,10 +157,10 @@ public class FlightOrdersIT {
 
     FlightOfferSearch[] flightOffersSearches = amadeus.shopping.flightOffersSearch.post(request);
 
-    //When
+    // When
     FlightOrder result = amadeus.booking.flightOrders.post(flightOffersSearches, travellers);
 
-    //Then
+    // Then
     assertNotNull(result);
   }
 
@@ -168,7 +168,7 @@ public class FlightOrdersIT {
   public void givenClientWhenCallFlightOffersWithParamsAlternative3ThenOK()
       throws ResponseException, IOException {
 
-    //Given
+    // Given
     String address = "/v2/shopping/flight-offers"; //"/v1/shopping/flight-offers/pricing"; //
     wireMockServer.stubFor(post(urlEqualTo(address))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
@@ -187,10 +187,10 @@ public class FlightOrdersIT {
 
     FlightOfferSearch[] flightOffersSearches = amadeus.shopping.flightOffersSearch.post(request);
 
-    //When
+    // When
     FlightOrder result = amadeus.booking.flightOrders.post(flightOffersSearches[0], travellers);
 
-    //Then
+    // Then
     assertNotNull(result);
   }
 
@@ -198,7 +198,7 @@ public class FlightOrdersIT {
   public void givenClientWhenCallFlightOffersWithParamsAlternative4ThenOK()
       throws ResponseException, IOException {
 
-    //Given
+    // Given
     String address = "/v1/booking/flight-orders";
     wireMockServer.stubFor(post(urlEqualTo(address))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
@@ -207,10 +207,10 @@ public class FlightOrdersIT {
 
     JsonObject request = getRequestFromResources("flight_create_order_request.json");
 
-    //When
+    // When
     FlightOrder result = amadeus.booking.flightOrders.post(request);
 
-    //Then
+    // Then
     assertNotNull(result);
   }
 

@@ -39,7 +39,7 @@ public class HotelIT {
     wireMockServer = new WireMockServer(8080);
     wireMockServer.start();
 
-    // https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
+    // API at https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
     String address = "/v1/security/oauth2/token"
         + "?grant_type=client_credentials&client_secret=DEMO&client_id=DEMO";
     wireMockServer.stubFor(post(urlEqualTo(address))
@@ -65,7 +65,7 @@ public class HotelIT {
   public void givenClientWhenCallHotelWithMandatoryParametersThenReturnsOK()
       throws ResponseException {
 
-    //Given
+    // Given
     Params params = Params
         .with("keyword", "PARI")
         .and("subType", "HOTEL_GDS");
@@ -77,10 +77,10 @@ public class HotelIT {
         .withStatus(200)
         .withBodyFile("reference_data_hotel_default_response_ok.json")));
 
-    //When
+    // When
     Hotel[] result = amadeus.referenceData.locations.hotel.get(params);
 
-    //Then
+    // Then
     assertNotNull(result);
     assertTrue(result.length > 1);
   }
@@ -89,7 +89,7 @@ public class HotelIT {
   public void givenClientWhenCallHotelThenReturnsSingleHotelResponseOK()
       throws ResponseException {
 
-    //Given
+    // Given
     Params params = Params
         .with("keyword", "PARI")
         .and("subType", "HOTEL_GDS")
@@ -102,10 +102,10 @@ public class HotelIT {
         .withStatus(200)
         .withBodyFile("reference_data_hotel_single_hotel_response_ok.json")));
 
-    //When
+    // When
     Hotel[] result = amadeus.referenceData.locations.hotel.get(params);
 
-    //Then
+    // Then
     assertNotNull(result);
     assertEquals(1, result.length);
   }
@@ -114,7 +114,7 @@ public class HotelIT {
   public void givenClientWhenCallHotelThenReturnsMultipleHotelResponseOK()
       throws ResponseException {
 
-    //Given
+    // Given
     Params params = Params
         .with("keyword", "PARI")
         .and("subType", "HOTEL_GDS")
@@ -127,10 +127,10 @@ public class HotelIT {
         .withStatus(200)
         .withBodyFile("reference_data_hotel_multiple_hotel_response_ok.json")));
 
-    //When
+    // When
     Hotel[] result = amadeus.referenceData.locations.hotel.get(params);
 
-    //Then
+    // Then
     assertNotNull(result);
     assertEquals(5, result.length);
   }
@@ -139,7 +139,7 @@ public class HotelIT {
   public void givenClientWhenCallHotelWithAllParametersThenResponseOK()
       throws ResponseException {
 
-    //Given
+    // Given
     Params params = Params
         .with("keyword", "PARI")
         .and("subType", "HOTEL_GDS")
@@ -154,10 +154,10 @@ public class HotelIT {
         .withStatus(200)
         .withBodyFile("reference_data_hotel_default_response_ok.json")));
 
-    //When
+    // When
     Hotel[] result = amadeus.referenceData.locations.hotel.get(params);
 
-    //Then
+    // Then
     assertTrue(result.length > 1);
   }
 
@@ -165,7 +165,7 @@ public class HotelIT {
   public void givenClientWhenCallHotelOffersSearchWithParamsThenOK()
       throws ResponseException, IOException {
 
-    //Given
+    // Given
     String input = URLEncoder.encode("MCLONGHM,WIMAD079", "UTF-8");
     String address = "/v3/shopping/hotel-offers"
         + "?hotelIds=" + input
@@ -186,7 +186,7 @@ public class HotelIT {
     String idsToStr1 = String.join(",", ids);
     // String idsToStr2 = ids.stream().map(String::valueOf).collect(Collectors.joining(","));
 
-    //When
+    // When
     HotelOfferSearch[] result = amadeus.shopping.hotelOffersSearch.get(
       Params.with("hotelIds", idsToStr1) // ***** HERE *****
         .and("adults", 1)
@@ -196,7 +196,7 @@ public class HotelIT {
         .and("bestRateOnly", true)
     );
 
-    //Then
+    // Then
     assertNotEquals(0, result.length);
   }
 }

@@ -34,7 +34,7 @@ public class PredictionIT {
     wireMockServer = new WireMockServer(8080);
     wireMockServer.start();
 
-    // https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
+    // API at https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
     String address = "/v1/security/oauth2/token"
         + "?grant_type=client_credentials&client_secret=DEMO&client_id=DEMO";
     wireMockServer.stubFor(post(urlEqualTo(address))
@@ -60,7 +60,7 @@ public class PredictionIT {
   public void givenClientWhenCallFlightOrderPredictionThenOK()
       throws ResponseException, IOException {
 
-    //Given
+    // Given
     String address = "/v2/shopping/flight-offers/prediction";
     wireMockServer.stubFor(post(urlEqualTo(address))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
@@ -69,10 +69,10 @@ public class PredictionIT {
 
     JsonObject request = getRequestFromResources("flight_search_offer_request_ok.json");
 
-    //When
+    // When
     FlightOfferSearch[] result = amadeus.shopping.flightOffers.prediction.post(request);
 
-    //Then
+    // Then
     assertNotNull(result);
   }
 

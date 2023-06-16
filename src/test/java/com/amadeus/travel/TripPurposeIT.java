@@ -30,7 +30,7 @@ public class TripPurposeIT {
     wireMockServer = new WireMockServer(8080);
     wireMockServer.start();
 
-    // https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
+    // API at https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
     String address = "/v1/security/oauth2/token"
         + "?grant_type=client_credentials&client_secret=DEMO&client_id=DEMO";
     wireMockServer.stubFor(post(urlEqualTo(address))
@@ -56,17 +56,17 @@ public class TripPurposeIT {
   public void givenClientWhenCallPredictionsTripPurposeWithoutParamsThenOK()
       throws ResponseException {
 
-    //Given
+    // Given
     String address = "/v1/travel/predictions/trip-purpose";
     wireMockServer.stubFor(get(urlEqualTo(address))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
         .withStatus(200)
         .withBodyFile("trip_purpose_response_ok.json")));
 
-    //When
+    // When
     Prediction result = amadeus.travel.predictions.tripPurpose.get();
 
-    //Then
+    // Then
     assertNotNull(result);
   }
 
