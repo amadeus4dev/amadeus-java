@@ -61,7 +61,8 @@ public class CancellationIT {
       throws ResponseException, IOException {
 
     //Given
-    String address = "/v1/ordering/transfer-orders/123456/transfers/cancellation" + "?confirmNmb=12029761";
+    String address = "/v1/ordering/transfer-orders/123456/transfers/cancellation" +
+     "?confirmNmb=12029761";
     wireMockServer.stubFor(post(urlEqualTo(address))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
         .withStatus(200)
