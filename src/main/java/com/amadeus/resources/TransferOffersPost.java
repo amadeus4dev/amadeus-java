@@ -133,7 +133,7 @@ public class TransferOffersPost extends Resource {
 
   @ToString
   public class PartnerInfo {
-    private @Getter String serviceProvider;
+    private @Getter ServiceProvider serviceProvider;
 
     protected PartnerInfo() {}
 

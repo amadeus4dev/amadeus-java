@@ -114,7 +114,7 @@ public class NamespaceTest {
     assertNotNull(client.referenceData.locations.hotels.byGeocode);
     assertNotNull(client.referenceData.locations.cities);
     assertNotNull(client.airline.destinations);
-    assertNotNull(client.ordering.tranferOrders);
+    assertNotNull(client.ordering.transferOrders);
     assertNotNull(client.ordering.transferOrder("XXX"));
   }
 

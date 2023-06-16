@@ -28,7 +28,7 @@ public class Ordering {
    *   <code>/v1/ordering/transfer-orders</code> endpoints.
    * </p>
    */
-  public TransferOrders tranferOrders;
+  public TransferOrders transferOrders;
 
   /**
    * <p>
@@ -45,7 +45,7 @@ public class Ordering {
    * @hide
    */
   public Ordering(Amadeus client) {
-    this.tranferOrders = new TransferOrders(client);
+    this.transferOrders = new TransferOrders(client);
     this.client = client;
   }
 }

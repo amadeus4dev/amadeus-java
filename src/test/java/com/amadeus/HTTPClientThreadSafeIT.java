@@ -39,7 +39,7 @@ public class HTTPClientThreadSafeIT {
     wireMockServer = new WireMockServer(8080);
     wireMockServer.start();
 
-    //https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
+    // https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
     String address = "/v1/security/oauth2/token"
         + "?grant_type=client_credentials&client_secret=DEMO&client_id=DEMO";
     wireMockServer.stubFor(post(urlEqualTo(address))

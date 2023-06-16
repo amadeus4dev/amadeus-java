@@ -1,31 +1,33 @@
-package com.amadeus.dutyofCare.diseases;
+package com.amadeus.ordering;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
-import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import com.amadeus.Amadeus;
 import com.amadeus.Params;
-import com.amadeus.exceptions.ClientException;
 import com.amadeus.exceptions.ResponseException;
-import com.amadeus.resources.DiseaseReport;
+import com.amadeus.resources.TransferOrder;
 import com.github.tomakehurst.wiremock.WireMockServer;
-
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-// https://developers.amadeus.com/self-service/category/covid-19-and-travel-safety/api-doc/travel-restrictions/api-reference
-public class Covid19ReportIT {
+// https://developers.amadeus.com/self-service/category/cars-and-transfers/api-doc/transfer-booking
+public class TransferOrdersIT {
+
   WireMockServer wireMockServer;
 
   private Amadeus amadeus;
 
   /**
-   * In every test, we will authenticate.
+   * Authentication is conducted for each test.
    */
   @BeforeEach
   public void setup() {
@@ -55,42 +57,35 @@ public class Covid19ReportIT {
   }
 
   @Test
-  public void givenClientWhenCallTravelRestrictionsV2WithParamsThenOK()
-      throws ResponseException {
+  public void givenClientWhenCallTransferOrdersWithParamsThenOK()
+      throws ResponseException, IOException {
 
     //Given
-    String address = "/v2/duty-of-care/diseases/covid19-area-report"
-        + "?countryCode=US&cityCode=NYC&language=EN";
-    wireMockServer.stubFor(get(urlEqualTo(address))
+    String address = "/v1/ordering/transfer-orders" + "?offerId=123456";
+    wireMockServer.stubFor(post(urlEqualTo(address))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
         .withStatus(200)
-        .withBodyFile("travel_restrictions_v2_response_ok.json")));
+        .withBodyFile("transfer_orders_response_ok.json")));
+
+    JsonObject request = getRequestFromResources("transfer_orders_request_ok.json");
+    Params params = Params.with("offerId", "123456");
 
     //When
-    DiseaseReport result = amadeus.dutyOfCare.diseases.covid19Report.get(
-        Params.with("countryCode", "US").and("cityCode", "NYC").and("language", "EN")
-    );
+    TransferOrder result = amadeus.ordering.transferOrders.post(request, params);
 
     //Then
     assertNotNull(result);
   }
 
-  //TODO Review with the team to upgrade the behaviour.
-  @Test
-  public void givenClientWhenCallTravelRestrictionsV2WithoutParamsThenOK() {
+  private JsonObject getRequestFromResources(String jsonFile) throws IOException {
 
-    //Given
-    String address = "/v2/duty-of-care/diseases/covid19-area-report";
-    wireMockServer.stubFor(get(urlEqualTo(address))
-        .willReturn(aResponse().withHeader("Content-Type", "application/json")
-        .withStatus(400)
-        .withBody("")));
+    final String folder = "__files/";
 
-    //When
-    //Then
-    assertThatThrownBy(() -> {
-      amadeus.dutyOfCare.diseases.covid19Report.get();
-    }).isInstanceOf(ClientException.class);
+    ClassLoader classLoader = getClass().getClassLoader();
+    File file = new File(classLoader.getResource(folder + jsonFile).getFile());
+    String jsonString = new String(Files.readAllBytes(file.toPath()));
+
+    return new JsonParser().parse(jsonString).getAsJsonObject();
   }
-}
 
+}

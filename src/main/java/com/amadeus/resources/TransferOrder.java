@@ -36,6 +36,7 @@ public class TransferOrder extends Resource {
     private @Getter TransferOffersPost.Vehicle vehicle;
     private @Getter TransferOffersPost.ServiceProvider serviceProvider;
     private @Getter TransferOffersPost.PartnerInfo partnerInfo;
+    
     private @Getter TransferOffersPost.Quotation quotation;
     private @Getter TransferOffersPost.Quotation converted;
     private @Getter TransferOffersPost.ExtraService[] extraServices;
@@ -77,7 +78,7 @@ public class TransferOrder extends Resource {
 
   @ToString
   public class Agency {
-    private @Getter Email contacts;
+    private @Getter Email[] contacts;
 
     protected Agency() {}
 
