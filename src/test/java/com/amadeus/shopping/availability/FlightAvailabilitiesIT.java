@@ -33,7 +33,7 @@ public class FlightAvailabilitiesIT {
     wireMockServer = new WireMockServer(8080);
     wireMockServer.start();
 
-    //https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
+    // API at https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
     String address = "/v1/security/oauth2/token"
         + "?grant_type=client_credentials&client_secret=DEMO&client_id=DEMO";
     wireMockServer.stubFor(post(urlEqualTo(address))
@@ -59,7 +59,7 @@ public class FlightAvailabilitiesIT {
   public void givenClientWhenCallShoppingAvailabiltiyFlightWithParamsThenOK()
       throws ResponseException, IOException {
 
-    //Given
+    // Given
     String address = "/v1/shopping/availability/flight-availabilities";
     wireMockServer.stubFor(post(urlEqualTo(address))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
@@ -68,10 +68,10 @@ public class FlightAvailabilitiesIT {
 
     JsonObject request = getRequestFromResources("flight_search_availability_request_ok.json");
 
-    //When
+    // When
     FlightAvailability[] result = amadeus.shopping.availability.flightAvailabilities.post(request);
 
-    //Then
+    // Then
     assertNotNull(result);
   }
 

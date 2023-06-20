@@ -1,29 +1,32 @@
 package com.amadeus.shopping;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
-import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import com.amadeus.Amadeus;
 import com.amadeus.exceptions.ResponseException;
-import com.amadeus.resources.Activity;
+import com.amadeus.resources.TransferOffersPost;
 import com.github.tomakehurst.wiremock.WireMockServer;
-
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-//https://developers.amadeus.com/self-service/category/destination-content/api-doc/tours-and-activities/api-reference
-public class ActivityIT {
+// API at https://developers.amadeus.com/self-service/category/cars-and-transfers/api-doc/transfer-search
+public class TransferOffersIT {
 
   WireMockServer wireMockServer;
 
   private Amadeus amadeus;
 
   /**
-   * In every tests, we will authenticate.
+   * Authentication is conducted for each test.
    */
   @BeforeEach
   public void setup() {
@@ -53,23 +56,34 @@ public class ActivityIT {
   }
 
   @Test
-  public void givenClientWhenCallActivitiesByIdWithParamsThenOK()
-      throws ResponseException {
+  public void givenClientWhenCallTransferOffersWithParamsThenOK()
+      throws ResponseException, IOException {
 
     // Given
-    String id = "4615";
-
-    String address = "/v1/shopping/activities/" + id;
-    wireMockServer.stubFor(get(urlEqualTo(address))
+    String address = "/v1/shopping/transfer-offers";
+    wireMockServer.stubFor(post(urlEqualTo(address))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
         .withStatus(200)
-        .withBodyFile("activities_response_by_id_ok.json")));
+        .withBodyFile("transfer_offers_response_ok.json")));
+
+    JsonObject request = getRequestFromResources("transfer_offers_request_ok.json");
 
     // When
-    Activity result = amadeus.shopping.activity(id).get();
+    TransferOffersPost[] result = amadeus.shopping.transferOffers.post(request);
 
     // Then
     assertNotNull(result);
+  }
+
+  private JsonObject getRequestFromResources(String jsonFile) throws IOException {
+
+    final String folder = "__files/";
+
+    ClassLoader classLoader = getClass().getClassLoader();
+    File file = new File(classLoader.getResource(folder + jsonFile).getFile());
+    String jsonString = new String(Files.readAllBytes(file.toPath()));
+
+    return new JsonParser().parse(jsonString).getAsJsonObject();
   }
 
 }

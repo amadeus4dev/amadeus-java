@@ -1,29 +1,29 @@
-package com.amadeus.shopping;
+package com.amadeus.ordering.transferOrders.transfers;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
-import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import com.amadeus.Amadeus;
+import com.amadeus.Params;
 import com.amadeus.exceptions.ResponseException;
-import com.amadeus.resources.Activity;
+import com.amadeus.resources.TransferCancellation;
 import com.github.tomakehurst.wiremock.WireMockServer;
-
+import java.io.IOException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-//https://developers.amadeus.com/self-service/category/destination-content/api-doc/tours-and-activities/api-reference
-public class ActivityIT {
+// API at https://developers.amadeus.com/self-service/category/cars-and-transfers/api-doc/transfer-management
+public class CancellationIT {
 
   WireMockServer wireMockServer;
 
   private Amadeus amadeus;
 
   /**
-   * In every tests, we will authenticate.
+   * Authentication is conducted for each test.
    */
   @BeforeEach
   public void setup() {
@@ -53,20 +53,21 @@ public class ActivityIT {
   }
 
   @Test
-  public void givenClientWhenCallActivitiesByIdWithParamsThenOK()
-      throws ResponseException {
+  public void givenClientWhenCallTransferOrdersWithParamsThenOK()
+      throws ResponseException, IOException {
 
     // Given
-    String id = "4615";
-
-    String address = "/v1/shopping/activities/" + id;
-    wireMockServer.stubFor(get(urlEqualTo(address))
+    String address = "/v1/ordering/transfer-orders/123456/transfers/cancellation"
+        + "?confirmNmb=12029761";
+    wireMockServer.stubFor(post(urlEqualTo(address))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
         .withStatus(200)
-        .withBodyFile("activities_response_by_id_ok.json")));
+        .withBodyFile("transfer_orders_management_response_ok.json")));
+    Params params = Params.with("confirmNmb", "12029761");
 
     // When
-    Activity result = amadeus.shopping.activity(id).get();
+    TransferCancellation result = amadeus.ordering
+        .transferOrder("123456").transfers.cancellation.post(params);
 
     // Then
     assertNotNull(result);

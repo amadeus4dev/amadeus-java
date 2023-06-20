@@ -111,6 +111,13 @@ public class Amadeus extends HTTPClient {
    */
   public Airline airline;
 
+  /**
+   * <p>
+   * A namespaced client for the <code>/v1/ordering</code> endpoints.
+   * </p>
+   */
+  public Ordering ordering;
+
   protected Amadeus(Configuration configuration) {
     super(configuration);
     this.referenceData = new ReferenceData(this);
@@ -125,6 +132,7 @@ public class Amadeus extends HTTPClient {
     this.dutyOfCare = new DutyOfCare(this);
     this.location = new Location(this);
     this.airline = new Airline(this);
+    this.ordering = new Ordering(this);
   }
 
   /**

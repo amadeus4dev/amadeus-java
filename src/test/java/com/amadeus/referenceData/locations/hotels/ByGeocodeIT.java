@@ -18,7 +18,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-// https://developers.amadeus.com/self-service/category/hotel/api-doc/hotel-list/api-reference
+// API at https://developers.amadeus.com/self-service/category/hotel/api-doc/hotel-list/api-reference
 public class ByGeocodeIT {
   WireMockServer wireMockServer;
 
@@ -32,7 +32,7 @@ public class ByGeocodeIT {
     wireMockServer = new WireMockServer(8080);
     wireMockServer.start();
 
-    //https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
+    // API at https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
     String address = "/v1/security/oauth2/token"
         + "?grant_type=client_credentials&client_secret=DEMO&client_id=DEMO";
     wireMockServer.stubFor(post(urlEqualTo(address))
@@ -58,7 +58,7 @@ public class ByGeocodeIT {
   public void givenClientWhenCallHotelsByGeocodeWithParamsThenOK()
       throws ResponseException {
 
-    //Given
+    // Given
     String address = "/v1/reference-data/locations/hotels/by-geocode?"
         + "hotelSource=ALL&latitude=41.397158&radius=5&radiusUnit=KM&longitude=2.160873";
     wireMockServer.stubFor(get(urlEqualTo(address))
@@ -73,11 +73,11 @@ public class ByGeocodeIT {
         .and("radiusUnit", "KM")
         .and("hotelSource", "ALL");
 
-    //When
+    // When
     Hotel[] result = amadeus.referenceData.locations
       .hotels.byGeocode.get(params);
 
-    //Then
+    // Then
     assertNotEquals(0, result.length);
   }
 
@@ -86,15 +86,15 @@ public class ByGeocodeIT {
   public void givenClientWhenCallHotelsByGeocodeWithoutParamsThenOK()
       throws ResponseException {
 
-    //Given
+    // Given
     String address = "/v1/reference-data/locations/hotels/by-geocode";
     wireMockServer.stubFor(get(urlEqualTo(address))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
         .withStatus(400)
         .withBody("")));
 
-    //When
-    //Then
+    // When
+    // Then
     assertThatThrownBy(() -> {
       amadeus.referenceData.locations.hotels.byGeocode.get();
     }).isInstanceOf(ClientException.class);

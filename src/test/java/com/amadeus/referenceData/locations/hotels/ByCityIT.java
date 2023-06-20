@@ -18,7 +18,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-// https://developers.amadeus.com/self-service/category/hotel/api-doc/hotel-list/api-reference
+// API at https://developers.amadeus.com/self-service/category/hotel/api-doc/hotel-list/api-reference
 public class ByCityIT {
   WireMockServer wireMockServer;
 
@@ -32,7 +32,7 @@ public class ByCityIT {
     wireMockServer = new WireMockServer(8080);
     wireMockServer.start();
 
-    //https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
+    // API at https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
     String address = "/v1/security/oauth2/token"
         + "?grant_type=client_credentials&client_secret=DEMO&client_id=DEMO";
     wireMockServer.stubFor(post(urlEqualTo(address))
@@ -58,7 +58,7 @@ public class ByCityIT {
   public void givenClientWhenCallHotelsByCityWithParamsThenOK()
       throws ResponseException {
 
-    //Given
+    // Given
     String address = "/v1/reference-data/locations/hotels/by-city"
         + "?cityCode=PAR";
     wireMockServer.stubFor(get(urlEqualTo(address))
@@ -68,10 +68,10 @@ public class ByCityIT {
 
     Params params = Params.with("cityCode", "PAR");
 
-    //When
+    // When
     Hotel[] result = amadeus.referenceData.locations.hotels.byCity.get(params);
 
-    //Then
+    // Then
     assertNotEquals(0, result.length);
   }
 
@@ -80,15 +80,15 @@ public class ByCityIT {
   public void givenClientWhenCallHotelsByCityWithoutParamsThenOK()
       throws ResponseException {
 
-    //Given
+    // Given
     String address = "/v1/reference-data/locations/hotels/by-city";
     wireMockServer.stubFor(get(urlEqualTo(address))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
         .withStatus(400)
         .withBody("")));
 
-    //When
-    //Then
+    // When
+    // Then
     assertThatThrownBy(() -> {
       amadeus.referenceData.locations.hotels.byCity.get();
     }).isInstanceOf(ClientException.class);

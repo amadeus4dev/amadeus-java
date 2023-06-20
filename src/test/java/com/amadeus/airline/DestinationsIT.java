@@ -19,7 +19,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-// https://developers.amadeus.com/self-service/category/air/api-doc/airline-routes/api-reference
+// API at https://developers.amadeus.com/self-service/category/air/api-doc/airline-routes/api-reference
 public class DestinationsIT {
   WireMockServer wireMockServer;
 
@@ -33,7 +33,7 @@ public class DestinationsIT {
     wireMockServer = new WireMockServer(8080);
     wireMockServer.start();
 
-    //https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
+    // API at https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
     String address = "/v1/security/oauth2/token"
         + "?grant_type=client_credentials&client_secret=DEMO&client_id=DEMO";
     wireMockServer.stubFor(post(urlEqualTo(address))
@@ -59,7 +59,7 @@ public class DestinationsIT {
   public void givenClientWhenCallAirlineDestinationsWithMandatoryParamsThenOk()
       throws ResponseException {
 
-    //Given
+    // Given
     String address = "/v1/airline/destinations"
         + "?airlineCode=BA";
     wireMockServer.stubFor(get(urlEqualTo(address))
@@ -67,12 +67,12 @@ public class DestinationsIT {
         .withStatus(200)
         .withBodyFile("airline_routes_response_ok.json")));
 
-    //When
+    // When
     Destination[] result = amadeus.airline.destinations.get(
       Params.with("airlineCode", "BA")
     );
 
-    //Then
+    // Then
     assertNotEquals(0, result.length);
   }
 
@@ -80,7 +80,7 @@ public class DestinationsIT {
   public void givenClientWhenCallAirlineDestinationsWithOptionalParamsThenOK()
       throws ResponseException {
 
-    //Given
+    // Given
     String address = "/v1/airline/destinations"
         + "?max=2"
         + "&airlineCode=BA";
@@ -89,13 +89,13 @@ public class DestinationsIT {
         .withStatus(200)
         .withBodyFile("airline_routes_response_ok2.json")));
 
-    //When
+    // When
     Destination[] result = amadeus.airline.destinations.get(
       Params.with("airlineCode", "BA")
         .and("max", 2)
     );
 
-    //Then
+    // Then
     assertEquals(2, result.length);
   }
 
@@ -103,15 +103,15 @@ public class DestinationsIT {
   @Test
   public void givenClientWhenCallAirlineDestinationsWithoutParamsThenOK() {
 
-    //Given
+    // Given
     String address = "/v1/airline/destinations";
     wireMockServer.stubFor(get(urlEqualTo(address))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
         .withStatus(400)
         .withBody("")));
 
-    //When
-    //Then
+    // When
+    // Then
     assertThatThrownBy(() -> {
       amadeus.airline.destinations.get();
     }).isInstanceOf(ClientException.class);

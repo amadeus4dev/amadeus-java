@@ -32,7 +32,7 @@ public class SafetyIT {
     wireMockServer = new WireMockServer(8080);
     wireMockServer.start();
 
-    //https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
+    // API at https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
     String address = "/v1/security/oauth2/token"
         + "?grant_type=client_credentials&client_secret=DEMO&client_id=DEMO";
     wireMockServer.stubFor(post(urlEqualTo(address))
@@ -58,7 +58,7 @@ public class SafetyIT {
   public void givenClientWhenCallSafetyRateLocationBySquareWithParamsThenOK()
       throws ResponseException {
 
-    //Given
+    // Given
     String address = "/v1/safety/safety-rated-locations/by-square"
         + "?east=2.177181&south=41.394582&north=41.397158&west=2.160873";
     wireMockServer.stubFor(get(urlEqualTo(address))
@@ -72,10 +72,10 @@ public class SafetyIT {
         .and("south", "41.394582")
         .and("east", "2.177181");
 
-    //When
+    // When
     SafePlace[] result = amadeus.safety.safetyRatedLocations.bySquare.get(params);
 
-    //Then
+    // Then
     assertNotEquals(0, result.length);
   }
 
@@ -83,23 +83,23 @@ public class SafetyIT {
   public void givenClientWhenCallSafetyRateLocationBySquareWithoutParamsThenOK()
       throws ResponseException {
 
-    //Given
+    // Given
     wireMockServer.stubFor(get(urlEqualTo("/v1/safety/safety-rated-locations/by-square"))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
         .withStatus(200)
         .withBodyFile("safety_rate_location_by_square_response_ok.json")));
 
-    //When
+    // When
     SafePlace[] result = amadeus.safety.safetyRatedLocations.bySquare.get();
 
-    //Then
+    // Then
     assertNotEquals(0, result.length);
   }
 
   @Test
   public void givenClientWhenCallSafetyRateLocationThenOK() throws ResponseException {
 
-    //Given
+    // Given
     wireMockServer.stubFor(get(urlEqualTo("/v1/safety/safety-rated-locations"
         + "?latitude=41.39715&longitude=2.160873"))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
@@ -110,17 +110,17 @@ public class SafetyIT {
         .with("latitude", "41.39715")
         .and("longitude", "2.160873");
 
-    //When
+    // When
     SafePlace[] result = amadeus.safety.safetyRatedLocations.get(params);
 
-    //Then
+    // Then
     assertNotEquals(0, result.length);
   }
 
   @Test
   public void givenClientWhenCallSafetyRateLocationByIdThenOK() throws ResponseException {
 
-    //Given
+    // Given
     wireMockServer.stubFor(get(urlEqualTo("/v1/safety/safety-rated-locations/Q930402719"))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
         .withStatus(200)
@@ -128,10 +128,10 @@ public class SafetyIT {
 
     String id = "Q930402719";
 
-    //When
+    // When
     SafePlace result = amadeus.safety.safetyRatedLocation(id).get();
 
-    //Then
+    // Then
     assertNotNull(result);
   }
 

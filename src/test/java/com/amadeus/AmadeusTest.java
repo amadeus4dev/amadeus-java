@@ -49,15 +49,15 @@ public class AmadeusTest {
   @Test
   public void testBuilderWithInvalidEnvironment() {
 
-    //Given
+    // Given
     Map<String,String> environment = new HashMap<>(); //System.getenv();
     environment.put("AMADEUS_CLIENT_ID", "MY_CLIENT_ID");
     environment.put("AMADEUS_CLIENT_SECRET", "MY_CLIENT_SECRET");
 
-    //When
+    // When
     boolean result = Amadeus.builder(environment).build() instanceof Amadeus;
 
-    //Then
+    // Then
     assertTrue(result, "should return a Configuration");
   }
 

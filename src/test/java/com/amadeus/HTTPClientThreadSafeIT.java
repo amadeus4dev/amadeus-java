@@ -39,7 +39,7 @@ public class HTTPClientThreadSafeIT {
     wireMockServer = new WireMockServer(8080);
     wireMockServer.start();
 
-    //https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
+    // API at https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
     String address = "/v1/security/oauth2/token"
         + "?grant_type=client_credentials&client_secret=DEMO&client_id=DEMO";
     wireMockServer.stubFor(post(urlEqualTo(address))
@@ -121,7 +121,7 @@ public class HTTPClientThreadSafeIT {
   public void givenClienWhenCallInParallelMultipleTimesThenThreadSafety()
       throws InterruptedException {
 
-    //Given
+    // Given
 
     //Alternative 1
     String address = "/v1/color?id=blue";
@@ -139,8 +139,8 @@ public class HTTPClientThreadSafeIT {
 
     ExecutorService service = Executors.newFixedThreadPool(2);
 
-    //When
-    //Then
+    // When
+    // Then
     AtomicInteger counter = new AtomicInteger(0);
     for (int i = 1; i < 10_000; i++) {
       List<Task> taskList = new ArrayList<>();
@@ -168,7 +168,7 @@ public class HTTPClientThreadSafeIT {
   public void givenClientWhenCallInParallelMultipleTimesThenThreadSafety2()
       throws InterruptedException {
 
-    //Given
+    // Given
 
     //Alternative 1
     String address = "/v1/color?id=blue";

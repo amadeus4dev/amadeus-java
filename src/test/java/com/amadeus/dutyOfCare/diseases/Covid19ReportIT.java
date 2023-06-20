@@ -18,7 +18,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-// https://developers.amadeus.com/self-service/category/covid-19-and-travel-safety/api-doc/travel-restrictions/api-reference
+// API at https://developers.amadeus.com/self-service/category/covid-19-and-travel-safety/api-doc/travel-restrictions/api-reference
 public class Covid19ReportIT {
   WireMockServer wireMockServer;
 
@@ -32,7 +32,7 @@ public class Covid19ReportIT {
     wireMockServer = new WireMockServer(8080);
     wireMockServer.start();
 
-    //https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
+    // API at https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
     String address = "/v1/security/oauth2/token"
         + "?grant_type=client_credentials&client_secret=DEMO&client_id=DEMO";
     wireMockServer.stubFor(post(urlEqualTo(address))
@@ -58,7 +58,7 @@ public class Covid19ReportIT {
   public void givenClientWhenCallTravelRestrictionsV2WithParamsThenOK()
       throws ResponseException {
 
-    //Given
+    // Given
     String address = "/v2/duty-of-care/diseases/covid19-area-report"
         + "?countryCode=US&cityCode=NYC&language=EN";
     wireMockServer.stubFor(get(urlEqualTo(address))
@@ -66,12 +66,12 @@ public class Covid19ReportIT {
         .withStatus(200)
         .withBodyFile("travel_restrictions_v2_response_ok.json")));
 
-    //When
+    // When
     DiseaseReport result = amadeus.dutyOfCare.diseases.covid19Report.get(
         Params.with("countryCode", "US").and("cityCode", "NYC").and("language", "EN")
     );
 
-    //Then
+    // Then
     assertNotNull(result);
   }
 
@@ -79,15 +79,15 @@ public class Covid19ReportIT {
   @Test
   public void givenClientWhenCallTravelRestrictionsV2WithoutParamsThenOK() {
 
-    //Given
+    // Given
     String address = "/v2/duty-of-care/diseases/covid19-area-report";
     wireMockServer.stubFor(get(urlEqualTo(address))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
         .withStatus(400)
         .withBody("")));
 
-    //When
-    //Then
+    // When
+    // Then
     assertThatThrownBy(() -> {
       amadeus.dutyOfCare.diseases.covid19Report.get();
     }).isInstanceOf(ClientException.class);

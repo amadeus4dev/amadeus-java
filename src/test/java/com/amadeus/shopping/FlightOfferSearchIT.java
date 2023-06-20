@@ -37,7 +37,7 @@ public class FlightOfferSearchIT {
     wireMockServer = new WireMockServer(8080);
     wireMockServer.start();
 
-    //https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
+    // API at https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
     String address = "/v1/security/oauth2/token"
         + "?grant_type=client_credentials&client_secret=DEMO&client_id=DEMO";
     wireMockServer.stubFor(post(urlEqualTo(address))
@@ -63,7 +63,7 @@ public class FlightOfferSearchIT {
   public void givenClientWhenCallShoppingFlightSearchWithParamsThenOK()
       throws ResponseException, IOException {
 
-    //Given
+    // Given
     String address = "/v2/shopping/flight-offers";
     wireMockServer.stubFor(post(urlEqualTo(address))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
@@ -72,10 +72,10 @@ public class FlightOfferSearchIT {
 
     JsonObject request = getRequestFromResources("flight_search_offer_request_ok.json");
 
-    //When
+    // When
     FlightOfferSearch[] result = amadeus.shopping.flightOffersSearch.post(request);
 
-    //Then
+    // Then
     assertNotNull(result);
   }
 
@@ -84,15 +84,15 @@ public class FlightOfferSearchIT {
   public void givenClientWhenCallShoppingFlightSearchWithoutParamsThenOK()
       throws ResponseException {
 
-    //Given
+    // Given
     String address = "/v2/shopping/flight-offers";
     wireMockServer.stubFor(get(urlEqualTo(address))
         .willReturn(aResponse().withHeader("Content-Type", "application/json")
         .withStatus(400)
         .withBody("")));
 
-    //When
-    //Then
+    // When
+    // Then
     assertThatThrownBy(() -> {
       amadeus.shopping.flightOffersSearch.get();
     }).isInstanceOf(ClientException.class);
