@@ -1,4 +1,13 @@
 # Changelog
+7.1.0 - 2023-06-20
+--------------------
+Add support for the [Transfer Search API](https://developers.amadeus.com/self-service/category/cars-and-transfers/api-doc/transfer-search/api-reference)
+
+Add support for the [Transfer Booking API](https://developers.amadeus.com/self-service/category/cars-and-transfers/api-doc/transfer-booking/api-reference)
+
+Add support for the [Transfer Management API](https://developers.amadeus.com/self-service/category/cars-and-transfers/api-doc/transfer-management/api-reference)
+
+
 7.0.0 - 2023-01-30
 --------------------
 Decommissioned Travel Restrictions API v1
