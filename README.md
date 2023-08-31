@@ -388,9 +388,6 @@ Destination[] directDestinations = amadeus.airport.directDestinations.get(Params
 FlightAvailability[] flightAvailabilities
   = amadeus.shopping.availability.flightAvailabilities.post(body);
 
-// Travel Restrictions v2 GET
-DiseaseReport diseaseReport
-  = amadeus.dutyOfCare.diseases.covid19Report.get(Params.with("countryCode","US"));
 
 // Location Score GET
 ScoredLocation[] scoredLocations

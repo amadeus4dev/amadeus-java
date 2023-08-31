@@ -92,13 +92,6 @@ public class Amadeus extends HTTPClient {
 
   /**
    * <p>
-   * A namespaced client for the <code>/v1/duty-of-care</code> endpoints.
-   * </p>
-   */
-  public DutyOfCare dutyOfCare;
-
-  /**
-   * <p>
    * A namespaced client for the <code>/v1/location</code> endpoints.
    * </p>
    */
@@ -129,7 +122,6 @@ public class Amadeus extends HTTPClient {
     this.safety = new Safety(this);
     this.schedule = new Schedule(this);
     this.analytics = new Analytics(this);
-    this.dutyOfCare = new DutyOfCare(this);
     this.location = new Location(this);
     this.airline = new Airline(this);
     this.ordering = new Ordering(this);
