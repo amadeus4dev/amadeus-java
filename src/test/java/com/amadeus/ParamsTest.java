@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 public class ParamsTest {
   /**
    * Params Test.
@@ -20,6 +22,11 @@ public class ParamsTest {
   @Test public void testToQueryString() {
     Params params = Params.with("foo", "123").and("bar", "234");
     assertEquals(params.toQueryString(), "bar=234&foo=123");
+  }
+
+  @Test public void testToQueryStringWithList(){
+    Params params = Params.with("foo", List.of("id1", "id2"));
+    assertEquals(params.toQueryString(), "foo=id1%2Cid2");
   }
 
   @Test public void testToQueryStringWithEncodingError() {
