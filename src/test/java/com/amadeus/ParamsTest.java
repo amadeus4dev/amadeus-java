@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
+import java.util.Arrays;
 
 public class ParamsTest {
   /**
@@ -24,8 +24,8 @@ public class ParamsTest {
     assertEquals(params.toQueryString(), "bar=234&foo=123");
   }
 
-  @Test public void testToQueryStringWithList(){
-    Params params = Params.with("foo", List.of("id1", "id2"));
+  @Test public void testToQueryStringWithList() {
+    Params params = Params.with("foo", Arrays.asList("id1", "id2"));
     assertEquals(params.toQueryString(), "foo=id1%2Cid2");
   }
 
