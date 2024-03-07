@@ -49,7 +49,7 @@ public class Params extends HashMap<String, String> {
    * @return the Param object, allowing for convenient chaining
    */
   public Params and(@NonNull String key, Object value) {
-    if(value instanceof List) {
+    if (value instanceof List) {
       @SuppressWarnings("unchecked") List<String> values = (List<String>) value;
       put(key, String.join(",", values));
     } else {
