@@ -3,6 +3,7 @@ package com.amadeus;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -48,7 +49,12 @@ public class Params extends HashMap<String, String> {
    * @return the Param object, allowing for convenient chaining
    */
   public Params and(@NonNull String key, Object value) {
-    put(key, String.valueOf(value));
+    if (value instanceof List) {
+      @SuppressWarnings("unchecked") List<String> values = (List<String>) value;
+      put(key, String.join(",", values));
+    } else {
+      put(key, String.valueOf(value));
+    }
     return this;
   }
 

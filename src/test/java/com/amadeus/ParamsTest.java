@@ -3,6 +3,7 @@ package com.amadeus;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 public class ParamsTest {
@@ -20,6 +21,11 @@ public class ParamsTest {
   @Test public void testToQueryString() {
     Params params = Params.with("foo", "123").and("bar", "234");
     assertEquals(params.toQueryString(), "bar=234&foo=123");
+  }
+
+  @Test public void testToQueryStringWithList() {
+    Params params = Params.with("foo", Arrays.asList("id1", "id2"));
+    assertEquals(params.toQueryString(), "foo=id1%2Cid2");
   }
 
   @Test public void testToQueryStringWithEncodingError() {
