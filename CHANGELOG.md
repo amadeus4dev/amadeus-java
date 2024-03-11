@@ -1,7 +1,7 @@
 # Changelog
 8.1.0 - 2024-03-11
 --------------------
-Renamed folder referenceData to referencedata to follow Java package naming convention. Many thanks to [Gabriele Atria](https://github.com/gabbor) for the contribution
+Renamed the folder `referenceData` to `referencedata` to follow the Java package naming convention. Many thanks to [Gabriele Atria](https://github.com/gabbor) for the contribution
 
 Updated params to accept String array as input. Many thanks to [Sergei Prokofev](https://github.com/Sprokof) for the contribution
 
