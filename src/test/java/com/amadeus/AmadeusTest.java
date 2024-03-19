@@ -20,11 +20,11 @@ public class AmadeusTest {
   }
 
   @Test public void testBuilderWithNullClientId() {
-    assertThrows(NullPointerException.class, () -> Amadeus.builder(null, "secret").build());
+    assertThrows(IllegalArgumentException.class, () -> Amadeus.builder(null, "secret").build());
   }
 
   @Test public void testBuilderWithNullClientSecret() {
-    assertThrows(NullPointerException.class, () -> Amadeus.builder("client", null).build());
+    assertThrows(IllegalArgumentException.class, () -> Amadeus.builder("client", null).build());
   }
 
   @Test public void testBuilderWithEnvironment() {

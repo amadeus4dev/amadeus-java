@@ -2,6 +2,7 @@ package com.amadeus;
 
 import java.util.Map;
 import java.util.logging.Logger;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -110,9 +111,9 @@ public class Configuration {
    * Builds an Amadeus client with the provided credentials.
    *
    * @return an Amadeus client
-   * @throws NullPointerException when a client ID or client secret is missing
+   * @throws IllegalArgumentException when a client ID or client secret is missing
    */
-  public Amadeus build() throws NullPointerException {
+  public Amadeus build() throws IllegalArgumentException {
     return new Amadeus(this);
   }
 

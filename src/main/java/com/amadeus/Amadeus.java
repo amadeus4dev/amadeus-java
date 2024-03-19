@@ -1,7 +1,6 @@
 package com.amadeus;
 
 import java.util.Map;
-import lombok.NonNull;
 
 /**
  * <p>
@@ -138,7 +137,13 @@ public class Amadeus extends HTTPClient {
    * @param clientSecret Your API com.amadeus.client credential secret
    * @return a Configuration object
    */
-  public static Configuration builder(@NonNull String clientId, @NonNull String clientSecret) {
+  public static Configuration builder(String clientId, String clientSecret) {
+    if (clientId == null) {
+      throw new IllegalArgumentException("clientId can't be null");
+    }
+    if (clientSecret == null) {
+      throw new IllegalArgumentException("clientSecret can't be null");
+    }
     return new Configuration(clientId, clientSecret);
   }
 
