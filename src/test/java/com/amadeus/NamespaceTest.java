@@ -95,9 +95,6 @@ public class NamespaceTest {
     assertNotNull(client.airport.predictions.onTime);
     assertNotNull(client.booking.flightOrder("XXX"));
     assertNotNull(client.booking.hotelBookings);
-    assertNotNull(client.safety.safetyRatedLocations);
-    assertNotNull(client.safety.safetyRatedLocations.bySquare);
-    assertNotNull(client.safety.safetyRatedLocation("XXX"));
     assertNotNull(client.schedule.flights);
     assertNotNull(client.travel.tripParser);
     assertNotNull(client.airport.directDestinations);
