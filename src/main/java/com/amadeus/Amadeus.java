@@ -70,13 +70,6 @@ public class Amadeus extends HTTPClient {
 
   /**
    * <p>
-   * A namespaced client for the <code>/v1/safety</code> endpoints.
-   * </p>
-   */
-  public Safety safety;
-
-  /**
-   * <p>
    * A namespaced client for the <code>/v2/schedule</code> endpoints.
    * </p>
    */
