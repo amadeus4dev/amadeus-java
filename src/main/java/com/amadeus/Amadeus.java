@@ -111,7 +111,6 @@ public class Amadeus extends HTTPClient {
     this.ereputation = new EReputation(this);
     this.airport = new Airport(this);
     this.booking = new Booking(this);
-    this.safety = new Safety(this);
     this.schedule = new Schedule(this);
     this.analytics = new Analytics(this);
     this.location = new Location(this);
