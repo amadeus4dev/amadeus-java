@@ -70,13 +70,6 @@ public class Amadeus extends HTTPClient {
 
   /**
    * <p>
-   * A namespaced client for the <code>/v1/safety</code> endpoints.
-   * </p>
-   */
-  public Safety safety;
-
-  /**
-   * <p>
    * A namespaced client for the <code>/v2/schedule</code> endpoints.
    * </p>
    */
@@ -118,7 +111,6 @@ public class Amadeus extends HTTPClient {
     this.ereputation = new EReputation(this);
     this.airport = new Airport(this);
     this.booking = new Booking(this);
-    this.safety = new Safety(this);
     this.schedule = new Schedule(this);
     this.analytics = new Analytics(this);
     this.location = new Location(this);

@@ -28,7 +28,6 @@ import com.amadeus.referencedata.locations.hotels.ByGeocode;
 import com.amadeus.referencedata.locations.hotels.ByHotels;
 import com.amadeus.referencedata.urls.CheckinLinks;
 import com.amadeus.resources.TransferCancellation;
-import com.amadeus.safety.SafetyRatedLocations;
 import com.amadeus.schedule.Flights;
 import com.amadeus.shopping.Activities;
 import com.amadeus.shopping.FlightDates;
@@ -96,9 +95,6 @@ public class NamespaceTest {
     assertNotNull(client.airport.predictions.onTime);
     assertNotNull(client.booking.flightOrder("XXX"));
     assertNotNull(client.booking.hotelBookings);
-    assertNotNull(client.safety.safetyRatedLocations);
-    assertNotNull(client.safety.safetyRatedLocations.bySquare);
-    assertNotNull(client.safety.safetyRatedLocation("XXX"));
     assertNotNull(client.schedule.flights);
     assertNotNull(client.travel.tripParser);
     assertNotNull(client.airport.directDestinations);
@@ -238,53 +234,6 @@ public class NamespaceTest {
     assertNotNull(destinations.get());
     assertNotNull(destinations.get(params));
     assertEquals(destinations.get().length, 2);
-  }
-
-  @Test
-  public void testSafetyRatedLocations() throws ResponseException {
-    // Testing Safe Place
-    Mockito.when(client.get("/v1/safety/safety-rated-locations", null))
-        .thenReturn(multiResponse);
-    Mockito.when(client.get("/v1/safety/safety-rated-locations", params))
-        .thenReturn(multiResponse);
-    SafetyRatedLocations safetyCoords = new SafetyRatedLocations(client);
-    assertNotNull(safetyCoords.get());
-    assertNotNull(safetyCoords.get(params));
-    assertEquals(safetyCoords.get().length, 2);
-  }
-
-  @Test
-  public void testSafetyRatedLocationsBySquare() throws ResponseException {
-    // Testing Safe Place by square
-    Mockito.when(client.get("/v1/safety/safety-rated-locations", null))
-        .thenReturn(multiResponse);
-    Mockito.when(client.get("/v1/safety/safety-rated-locations", params))
-        .thenReturn(multiResponse);
-    Mockito.when(client.get("/v1/safety/safety-rated-locations/by-square", null))
-        .thenReturn(multiResponse);
-    Mockito.when(client.get("/v1/safety/safety-rated-locations/by-square", params))
-        .thenReturn(multiResponse);
-    SafetyRatedLocations safetySquare = new SafetyRatedLocations(client);
-    assertNotNull(safetySquare.get());
-    assertNotNull(safetySquare.get(params));
-    assertEquals(safetySquare.get().length, 2);
-  }
-  
-  @Test
-  public void testSafetyRatedLocationsById() throws ResponseException {
-    // Testing Safe Place by Id  
-    Mockito.when(client.get("/v1/safety/safety-rated-locations", null))
-        .thenReturn(multiResponse);
-    Mockito.when(client.get("/v1/safety/safety-rated-locations", params))
-        .thenReturn(multiResponse);
-    Mockito.when(client.get("/v1/safety/safety-rated-locations/XXX", null))
-        .thenReturn(multiResponse);
-    Mockito.when(client.get("/v1/safety/safety-rated-locations/XXX", params))
-        .thenReturn(multiResponse);
-    SafetyRatedLocations safetyById = new SafetyRatedLocations(client);
-    assertNotNull(safetyById.get());
-    assertNotNull(safetyById.get(params));
-    assertEquals(safetyById.get().length, 2);
   }
 
   @Test
