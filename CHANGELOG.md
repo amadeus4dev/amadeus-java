@@ -3,7 +3,7 @@
 --------------------
 Decommissioned Safe Place API
 
-Replaced `NullPointerException` with `IllegalArgumentException` in `Amadeus.builder`.` Many thanks to [Sergei Prokofev](https://github.com/Sprokof) for the contribution
+Replaced `NullPointerException` with `IllegalArgumentException` in `Amadeus.builder`. Many thanks to [Sergei Prokofev](https://github.com/Sprokof) for the contribution
 
 8.1.0 - 2024-03-11
 --------------------
