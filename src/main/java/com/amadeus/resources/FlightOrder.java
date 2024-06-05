@@ -53,6 +53,7 @@ public class FlightOrder extends Resource {
 
     private @Getter @Setter String firstName;
     private @Getter @Setter String lastName;
+    private @Getter @Setter String middleName;
   }
 
   @AllArgsConstructor
