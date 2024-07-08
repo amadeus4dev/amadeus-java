@@ -3,6 +3,7 @@ package com.amadeus;
 import com.amadeus.booking.FlightOrder;
 import com.amadeus.booking.FlightOrders;
 import com.amadeus.booking.HotelBookings;
+import com.amadeus.booking.HotelOrders;
 
 public class Booking {
   private Amadeus client;
@@ -32,6 +33,14 @@ public class Booking {
   public HotelBookings hotelBookings;
 
   /**
+   * <p>
+   *   A namespaced client for the
+   *   <code>/v1/booking/hotelOrders</code> endpoints.
+   * </p>
+   */
+  public HotelOrders hotelOrders;
+
+  /**
    * Constructor.
    * @hide
    */
@@ -39,6 +48,7 @@ public class Booking {
     this.client = client;
     this.flightOrders = new FlightOrders(client);
     this.hotelBookings = new HotelBookings(client);
+    this.hotelOrders = new HotelOrders(client);
   }
 
   public FlightOrder flightOrder(String flightOrderId) {
