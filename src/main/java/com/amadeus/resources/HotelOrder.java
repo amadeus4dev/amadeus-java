@@ -15,7 +15,7 @@ public class HotelOrder extends Resource {
   private @Getter String id;
   private @Getter HotelBooking[] hotelBookings;
   private @Getter AssociatedRecord[] associatedRecords;
-  private @Getter Guest[]  guests;
+  private @Getter Guest[] guests;
 
   protected HotelOrder() {}
 
