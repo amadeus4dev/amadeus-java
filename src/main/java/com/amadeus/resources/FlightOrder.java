@@ -48,6 +48,7 @@ public class FlightOrder extends Resource {
 
   @AllArgsConstructor
   @NoArgsConstructor
+  
   @ToString
   public static class Name {
 

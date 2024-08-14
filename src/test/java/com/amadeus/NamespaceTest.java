@@ -10,6 +10,7 @@ import com.amadeus.analytics.ItineraryPriceMetrics;
 import com.amadeus.booking.FlightOrder;
 import com.amadeus.booking.FlightOrders;
 import com.amadeus.booking.HotelBookings;
+import com.amadeus.booking.HotelOrders;
 import com.amadeus.ereputation.HotelSentiments;
 import com.amadeus.exceptions.ResponseException;
 import com.amadeus.location.analytics.CategoryRatedAreas;
@@ -27,6 +28,7 @@ import com.amadeus.referencedata.locations.hotels.ByCity;
 import com.amadeus.referencedata.locations.hotels.ByGeocode;
 import com.amadeus.referencedata.locations.hotels.ByHotels;
 import com.amadeus.referencedata.urls.CheckinLinks;
+import com.amadeus.resources.HotelOrder;
 import com.amadeus.resources.TransferCancellation;
 import com.amadeus.schedule.Flights;
 import com.amadeus.shopping.Activities;
@@ -95,6 +97,7 @@ public class NamespaceTest {
     assertNotNull(client.airport.predictions.onTime);
     assertNotNull(client.booking.flightOrder("XXX"));
     assertNotNull(client.booking.hotelBookings);
+    assertNotNull(client.booking.hotelOrders);
     assertNotNull(client.schedule.flights);
     assertNotNull(client.travel.tripParser);
     assertNotNull(client.airport.directDestinations);
@@ -672,6 +675,20 @@ public class NamespaceTest {
     HotelBookings hotel = new HotelBookings(client);
     assertNotNull(hotel.post());
     assertNotNull(hotel.post(body));
+  }
+
+  @Test
+  public void testHotelOrders() throws ResponseException {
+    // Test Trip Parser
+    Mockito.when(client.post("/v2/booking/hotel-orders", (String) null))
+            .thenReturn(singleResponse);
+    Mockito.when(client.post("/v2/booking/hotel-orders", body))
+            .thenReturn(singleResponse);
+    Mockito.when(client.post("/v2/booking/hotel-orders", jsonObject))
+            .thenReturn(singleResponse);
+    HotelOrders hotelOrder = new HotelOrders(client);
+    assertNotNull(hotelOrder.post());
+    assertNotNull(hotelOrder.post(body));
   }
 
   @Test

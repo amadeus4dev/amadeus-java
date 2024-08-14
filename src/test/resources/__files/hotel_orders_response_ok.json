@@ -1,0 +1,119 @@
+{
+    "data": {
+      "type": "hotel-order",
+      "id": "V0g2VFJaLzIwMjQtMDYtMDc=",
+      "hotelBookings": [
+        {
+          "type": "hotel-booking",
+          "id": "MS84OTkyMjcxMC85MDIyNDU0OQ==",
+          "bookingStatus": "CONFIRMED",
+          "hotelProviderInformation": [
+            {
+              "hotelProviderCode": "AR",
+              "confirmationNumber": "89922710"
+            }
+          ],
+          "roomAssociations": [
+            {
+              "hotelOfferId": "******",
+              "guestReferences": [
+                {
+                  "guestReference": "1"
+                }
+              ]
+            }
+          ],
+          "hotelOffer": {
+            "id": "******",
+            "type": "hotel-offer",
+            "category": "TYPE_CONDITIONAL",
+            "checkInDate": "2024-06-07",
+            "checkOutDate": "2024-06-08",
+            "guests": {
+              "adults": 1
+            },
+            "policies": {
+              "cancellations": [
+                {
+                  "amount": "215.05",
+                  "deadline": "2024-06-06T23:59:00+02:00"
+                }
+              ],
+              "paymentType": "GUARANTEE"
+            },
+            "price": {
+              "base": "195.50",
+              "currency": "EUR",
+              "sellingTotal": "215.05",
+              "taxes": [
+                {
+                  "amount": "19.55",
+                  "code": "VALUE_ADDED_TAX",
+                  "currency": "EUR",
+                  "included": false,
+                  "pricingFrequency": "PER_STAY",
+                  "pricingMode": "PER_PRODUCT"
+                }
+              ],
+              "total": "215.05",
+              "variations": {
+                "changes": [
+                  {
+                    "endDate": "2024-06-08",
+                    "startDate": "2024-06-07",
+                    "base": "195.50",
+                    "currency": "EUR"
+                  }
+                ]
+              }
+            },
+            "rateCode": "S9R",
+            "room": {
+              "description": {
+                "lang": "EN",
+                "text": "Marriott Senior Discount, includes"
+              },
+              "type": "XMI"
+            },
+            "roomQuantity": 1
+          },
+          "hotel": {
+            "hotelId": "ARMADAIT",
+            "chainCode": "AR",
+            "name": "AC BY MARRIOTT HOTEL AITANA",
+            "self": "https://test.travel.api.amadeus.com/v1/reference-data/locations/by-hotel/ARMADAIT"
+          },
+          "payment": {
+            "method": "CREDIT_CARD",
+            "paymentCard": {
+              "paymentCardInfo": {
+                "vendorCode": "VI",
+                "cardNumber": "415128XXXXXX1370",
+                "expiryDate": "0826",
+                "holderName": "BOB SMITH"
+              }
+            }
+          },
+          "travelAgentId": "00000000"
+        }
+      ],
+      "guests": [
+        {
+          "tid": 1,
+          "id": 1,
+          "title": "MR",
+          "firstName": "BOB",
+          "lastName": "SMITH",
+          "phone": "+33679278416",
+          "email": "bob.smith@email.com"
+        }
+      ],
+      "associatedRecords": [
+        {
+          "reference": "WH6TRZ",
+          "originSystemCode": "GDS"
+        }
+      ],
+      "self": "http://test.api.amadeus.com/v2/booking/hotel-orders/V0g2VFJaLzIwMjQtMDYtMDc="
+    }
+  }
