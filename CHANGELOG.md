@@ -1,4 +1,10 @@
 # Changelog
+9.1.0 - 2024-08-21
+--------------------
+Add support for the [Hotel Booking v2 API](https://developers.amadeus.com/self-service/category/hotels/api-doc/hotel-booking/v/2.0)
+
+Add middle name in Traveler model
+
 9.0.0 - 2024-04-17
 --------------------
 Decommissioned Safe Place API
