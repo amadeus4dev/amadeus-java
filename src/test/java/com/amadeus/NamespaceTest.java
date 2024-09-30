@@ -42,7 +42,6 @@ import com.amadeus.shopping.availability.FlightAvailabilities;
 import com.amadeus.shopping.flightoffers.Prediction;
 import com.amadeus.shopping.flightoffers.Pricing;
 import com.amadeus.shopping.flightoffers.Upselling;
-import com.amadeus.travel.TripParser;
 import com.amadeus.travel.analytics.airtraffic.Booked;
 import com.amadeus.travel.analytics.airtraffic.BusiestPeriod;
 import com.amadeus.travel.analytics.airtraffic.Traveled;
@@ -99,7 +98,6 @@ public class NamespaceTest {
     assertNotNull(client.booking.hotelBookings);
     assertNotNull(client.booking.hotelOrders);
     assertNotNull(client.schedule.flights);
-    assertNotNull(client.travel.tripParser);
     assertNotNull(client.airport.directDestinations);
     assertNotNull(client.shopping.availability.flightAvailabilities);
     assertNotNull(client.location.analytics);
@@ -679,7 +677,7 @@ public class NamespaceTest {
 
   @Test
   public void testHotelOrders() throws ResponseException {
-    // Test Trip Parser
+    // Test Hotel Orders
     Mockito.when(client.post("/v2/booking/hotel-orders", (String) null))
             .thenReturn(singleResponse);
     Mockito.when(client.post("/v2/booking/hotel-orders", body))
@@ -689,20 +687,6 @@ public class NamespaceTest {
     HotelOrders hotelOrder = new HotelOrders(client);
     assertNotNull(hotelOrder.post());
     assertNotNull(hotelOrder.post(body));
-  }
-
-  @Test
-  public void testTripParser() throws ResponseException {
-    // Test Trip Parser
-    Mockito.when(client.post("/v3/travel/trip-parser", (String) null))
-            .thenReturn(singleResponse);
-    Mockito.when(client.post("/v3/travel/trip-parser", body))
-            .thenReturn(singleResponse);
-    Mockito.when(client.post("/v3/travel/trip-parser", jsonObject))
-            .thenReturn(singleResponse);
-    TripParser tripParser = new TripParser(client);
-    assertNotNull(tripParser.post());
-    assertNotNull(tripParser.post(body));
   }
 
   @Test
