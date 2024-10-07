@@ -1,4 +1,8 @@
 # Changelog
+10.0.0 - 2024-10-07
+--------------------
+Decommissioned Trip Parser API
+
 9.1.0 - 2024-08-21
 --------------------
 Add support for the [Hotel Booking v2 API](https://developers.amadeus.com/self-service/category/hotels/api-doc/hotel-booking/v/2.0)
